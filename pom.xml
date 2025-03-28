@@ -8,10 +8,10 @@
         <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.atm.java6</groupId>
-    <artifactId>buenaspracticas</artifactId>
+    <groupId>com.grupo4.java6</groupId>
+    <artifactId>resenascom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>buenaspracticas</name>
+    <name>resenascom</name>
     <description>buenaspracticas</description>
     <url/>
     <licenses>
