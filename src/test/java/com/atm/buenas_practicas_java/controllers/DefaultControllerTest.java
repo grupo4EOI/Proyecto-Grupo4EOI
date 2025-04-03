@@ -116,4 +116,34 @@ class DefaultControllerTest extends PostgreSQLContainerTest {
                 .andExpect(view().name("redirect:/entities"));
         log.info("La eliminación de EntidadPadre y la redirección se verificaron correctamente.");
     }
+
+    @Test
+    void mostrarPaginaContacto() throws Exception {
+        log.info("Probando la vista de pagina contacto.");
+        // Act & Assert
+        mockMvc.perform(get("/contacto"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("contacto"));
+        log.info("La vista de contacto se verificaron correctamente.");
+    }
+
+    @Test
+    void mostrarPoliticaPrivacidad() throws Exception {
+        log.info("Probando la vista de política de privacidad.");
+        // Act & Assert
+        mockMvc.perform(get("/politica-privacidad"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("politicaPrivacidad"));
+        log.info("La vista de politica de privacidad se verificó correctamente.");
+    }
+
+    @Test
+    void mostrarQuienesSomos() throws Exception {
+        log.info("Probando la vista de quienes somos.");
+        // Act & Assert
+        mockMvc.perform(get("/quienes-somos"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("quienesSomos"));
+        log.info("La vista de quienes somos se verificaron correctamente.");
+    }
 }

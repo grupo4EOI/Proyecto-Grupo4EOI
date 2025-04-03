@@ -92,9 +92,14 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/contacto").permitAll()
+                        .requestMatchers("/quienes-somos").permitAll()
+                        .requestMatchers("/politica-privacidad").permitAll()
                         .requestMatchers("/entities").permitAll()
                         .requestMatchers("/entities/*").permitAll()
                         .requestMatchers("/css/*").permitAll()
+                        .requestMatchers("/images/*").permitAll()
+                        .requestMatchers("/js/*").permitAll()
                         .requestMatchers(HttpMethod.POST,"/entidades/deleteHija/*").authenticated()
                         .anyRequest().authenticated()
                 );

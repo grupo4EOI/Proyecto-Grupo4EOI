@@ -110,4 +110,22 @@ public class DefaultController {
         return "redirect:/entities";
     }
 
+    /* Aqui empiezan nuestros métodos */
+    @GetMapping("/contacto")
+    public String mostrarPaginaContacto()
+    {
+        return "contacto"; // View name
+    }
+
+    @GetMapping("/politica-privacidad")
+    public String mostrarPoliticaPrivacidad()
+    {
+        return "politicaPrivacidad"; // View name
+    }
+
+    @GetMapping("/quienes-somos")
+    public String mostrarQuienesSomos()
+    {
+        return "quienesSomos"; // View name
+    }
 }
