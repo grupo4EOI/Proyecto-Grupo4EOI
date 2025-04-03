@@ -12,7 +12,7 @@
     <artifactId>resenascom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>resenascom</name>
-    <description>buenaspracticas</description>
+    <description>Proyecto reseñas</description>
     <url/>
     <licenses>
         <license/>
@@ -165,7 +165,7 @@
                 <configuration>
                     <image>
                         <!--suppress UnresolvedMavenProperty -->
-                        <name>buenaspracticas:${env.VERSION}</name>
+                        <name>resenascom:${env.VERSION}</name>
                     </image>
                 </configuration>
             </plugin>
