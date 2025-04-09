@@ -23,7 +23,7 @@ services:
   db:
     image: postgres:latest
     ports:
-      - "${PUERTO_DB_DESASRROLLO}:5432"
+      - "${PUERTO_DB_DESARROLLO}:5432"
     environment:
       POSTGRES_DB: 'desarrollo'
       POSTGRES_USER: 'desarrollouser'
