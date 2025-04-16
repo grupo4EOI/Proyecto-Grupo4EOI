@@ -1,4 +1,4 @@
 {
-    "sonarQubeUri": "http://eoijava.ddns.net:9000",
-    "projectKey": "com.eoi.java6:buenaspracticas"
+    "sonarQubeUri": "http://46.6.8.224:9000",
+    "projectKey": "com.grupo4.java6:resenascom"
 }
