@@ -15,11 +15,11 @@
         <project.name>resenascom</project.name>
         <project.groupId>com.grupo4.java6</project.groupId>
     </properties>
-    <groupId>com.grupo4.java6</groupId>
-    <artifactId>resenascom</artifactId>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.name}</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>resenascom</name>
-    <description>Proyecto resenas</description>
+    <name>${project.name}</name>
+    <description>${project.name}</description>
     <url/>
     <licenses>
         <license/>
@@ -174,7 +174,7 @@
                 <configuration>
                     <image>
                         <!--suppress UnresolvedMavenProperty -->
-                        <name>resenascom:${env.VERSION}</name>
+                        <name>${project.name}:${env.VERSION}</name>
                     </image>
                 </configuration>
             </plugin>
