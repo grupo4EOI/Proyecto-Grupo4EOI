@@ -1,0 +1,156 @@
+.a:hover, .nav-link:hover {
+    cursor: pointer;
+    color: #FF8C42 !important;
+}
+.redes, .soporte, .legal {
+    text-decoration: none;
+    color: inherit;
+}
+.redes:hover, .soporte:hover, .legal:hover {
+    color: #FF8C42;
+}
+.bg-custom{
+    background-color: #4E598C !important;
+    color: white !important;
+    margin-top: 0 !important; 
+    
+}
+.btn:hover {
+    background-color: #FF8C42 !important;
+}
+#barraDeBusqueda {
+    width:430px !important;
+}
+
+/* *** Estilo del perfil de usuario *** */
+main {
+    background-color: #b9c1e2;
+}
+
+#ficha-principal-perfil {
+    margin-top: 2%;
+    padding: 20px;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+
+img.rounded-circle {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.badge {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color:#b9c1e2;
+}
+
+.tabs-contenido-principal {
+    margin-left: -13px; 
+}
+
+.nav-tabs .nav-link {
+    font-size: 1.1rem;
+}
+
+.nav-tabs .nav-item {
+    margin-right: 1rem;
+}
+
+.imagen-circular {
+    width: 100%;
+    max-width: 300px; 
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.imagen-circular img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bg-light.rounded.shadow-sm.p-3 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; 
+}
+.tab-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+.tab-pane {
+    flex-grow: 1;
+    min-height: 1000px; 
+}
+
+.contenedor-datos-ficha-perfil {
+    margin-top: 90px; 
+    background-color: #b9c1e2;
+    max-width: 300px;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #ficha-principal-perfil > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    #ficha-principal-perfil{
+        margin-top: 20px;
+    }
+}
+
+.contenedores-amigos-insignias{
+    max-width: 350px;
+}
+
+/* *** Estilo de la configuración del perfil de usuario *** */
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+#color-picker {
+    appearance: none; 
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#paleta-perfil {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 5px; 
+}
+
+#contenedor-menu-desplegable {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    flex-wrap: wrap;
+}
+
+/*Para que el footer no suba*/
+.contenedor-ajustes-usuario {
+    flex: 1;
+}
+
+

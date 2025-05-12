@@ -1,0 +1,73 @@
+a:hover, .nav-link:hover {
+    cursor: pointer;
+    color: #FF8C42 !important;
+}
+.redes, .soporte, .legal {
+    text-decoration: none;
+    color: inherit;
+}
+.redes:hover, .soporte:hover, .legal:hover {
+    color: #FF8C42;
+}
+.bg-custom{
+    background-color: #4E598C !important;
+    color: white !important;
+}
+.btn:hover {
+    background-color: #FF8C42 !important;
+}
+#barraDeBusqueda {
+    width:430px !important;
+}
+
+.fondo-columna {
+    background-color: #FF8C42 !important;
+}
+
+/*Carousel principal en construcción*/
+
+.carousel-inner {
+    display: flex; /* Asegura que los elementos se alineen horizontalmente */
+}
+
+.carousel-item {
+    flex: 0 0 auto; /* Evita que los elementos se reduzcan */
+    width: 100%; /* Ajusta el ancho al contenedor */
+}
+
+.carousel-item img {
+    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
+    height: 500px; /* Establece una altura fija para pantallas grandes */
+}
+
+@media (max-width: 200px) {
+    .carousel-item img {
+        height: auto; /* Ajusta automáticamente la altura en pantallas pequeñas */
+    }
+}
+.carousel-caption {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    color: white;
+    text-align: center;
+}
+
+.carousel-caption h5 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+@media (max-width: 1200px) {
+    .carousel-caption {
+        bottom: 5%;
+        padding: 5px;
+    }
+    .carousel-caption h5 {
+        font-size: 0.9rem; /* Texto más pequeño en móviles */
+    }
+}
+

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas.com</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style-perfil-usuario.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!--Header-->
+  <nav class="navbar navbar-expand-lg bg-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">Reseñas.com</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="inicio" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" aria-current="cine" href="#">Cine</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" aria-current="series" href="#">Series</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
+          </li>
+        </ul>
+        <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
+          <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
+          <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
+        </form>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="inicio" href="#"><i class="bi bi-bell"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="perfil" href="#"><i class="bi bi-person"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="cerrar sesión" href="#">Cerrar sesión</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+ <!--Contenido principal-->
+ <div class="contenedor-ajustes-usuario container mt-5">
+  <h2 class="text-center mb-5">Configuración del perfil de usuario</h2>
+
+  <form>
+   <div class="mb-3">
+     <label for="username" class="form-label">Nombre de usuario</label>
+     <input type="text" class="form-control" id="username" placeholder="Introduce tu nuevo nombre de usuario">
+   </div>
+
+   <div class="mb-3">
+     <label for="password" class="form-label">Contraseña</label>
+     <input type="password" class="form-control" id="password" placeholder="Introduce tu nueva contraseña">
+   </div>
+
+   <!--Géneros de películas favoritos-->
+   <div class="mb-3">
+    <label for="generos-peliculas" class="form-label">Géneros de películas favoritos</label>
+    <div id="contenedor-menu-desplegable">
+        <div class="desplegable">
+            <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+              <li><a class="dropdown-item" href="#">Acción</a></li>
+              <li><a class="dropdown-item" href="#">Aventuras</a></li>
+              <li><a class="dropdown-item" href="#">Animación</a></li>
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Bélico</a></li>
+              <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item" href="#">Comedia</a></li>
+              <li><a class="dropdown-item" href="#">Policiaca</a></li>
+              <li><a class="dropdown-item" href="#">Documental</a></li>
+              <li><a class="dropdown-item" href="#">Drama</a></li>
+              <li><a class="dropdown-item" href="#">Familiar</a></li>
+              <li><a class="dropdown-item" href="#">Fantasía</a></li>
+              <li><a class="dropdown-item" href="#">Historia</a></li>
+              <li><a class="dropdown-item" href="#">Musical</a></li>
+              <li><a class="dropdown-item" href="#">Misterio</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Suspense</a></li>
+              <li><a class="dropdown-item" href="#">Terror</a></li>
+            </ul>
+        </div>
+        <div class="desplegable">
+            <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+              <li><a class="dropdown-item" href="#">Acción</a></li>
+              <li><a class="dropdown-item" href="#">Aventuras</a></li>
+              <li><a class="dropdown-item" href="#">Animación</a></li>
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Bélico</a></li>
+              <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item" href="#">Comedia</a></li>
+              <li><a class="dropdown-item" href="#">Policiaca</a></li>
+              <li><a class="dropdown-item" href="#">Documental</a></li>
+              <li><a class="dropdown-item" href="#">Drama</a></li>
+              <li><a class="dropdown-item" href="#">Familiar</a></li>
+              <li><a class="dropdown-item" href="#">Fantasía</a></li>
+              <li><a class="dropdown-item" href="#">Historia</a></li>
+              <li><a class="dropdown-item" href="#">Musical</a></li>
+              <li><a class="dropdown-item" href="#">Misterio</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Suspense</a></li>
+              <li><a class="dropdown-item" href="#">Terror</a></li>
+            </ul>
+        </div>
+        <div class="desplegable">
+            <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+              <li><a class="dropdown-item" href="#">Acción</a></li>
+              <li><a class="dropdown-item" href="#">Aventuras</a></li>
+              <li><a class="dropdown-item" href="#">Animación</a></li>
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Bélico</a></li>
+              <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item" href="#">Comedia</a></li>
+              <li><a class="dropdown-item" href="#">Policiaca</a></li>
+              <li><a class="dropdown-item" href="#">Documental</a></li>
+              <li><a class="dropdown-item" href="#">Drama</a></li>
+              <li><a class="dropdown-item" href="#">Familiar</a></li>
+              <li><a class="dropdown-item" href="#">Fantasía</a></li>
+              <li><a class="dropdown-item" href="#">Historia</a></li>
+              <li><a class="dropdown-item" href="#">Musical</a></li>
+              <li><a class="dropdown-item" href="#">Misterio</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Suspense</a></li>
+              <li><a class="dropdown-item" href="#">Terror</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+   <!--Géneros de series favoritos-->
+   <div class="mb-3">
+    <label for="generos-series" class="form-label">Géneros de series favoritos</label>
+    <div id="contenedor-menu-desplegable">
+      <div class="desplegable">
+            <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+              <li><a class="dropdown-item" href="#">Acción</a></li>
+              <li><a class="dropdown-item" href="#">Aventura</a></li>
+              <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item" href="#">Comedia</a></li>
+              <li><a class="dropdown-item" href="#">Drama</a></li>
+              <li><a class="dropdown-item" href="#">Fantasía</a></li>
+              <li><a class="dropdown-item" href="#">Policiaca</a></li>
+              <li><a class="dropdown-item" href="#">Misterio</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Suspense</a></li>
+              <li><a class="dropdown-item" href="#">Terror</a></li>
+              <li><a class="dropdown-item" href="#">Animación</a></li>
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Documental</a></li>
+              <li><a class="dropdown-item" href="#">Telenovela</a></li>
+              <li><a class="dropdown-item" href="#">Sitcom</a></li>
+              <li><a class="dropdown-item" href="#">Reality Show</a></li>
+              <li><a class="dropdown-item" href="#">True Crime</a></li>
+              <li><a class="dropdown-item" href="#">Serie antológica</a></li>
+              
+            </ul>
+        </div>
+        <div class="desplegable">
+            <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+              <li><a class="dropdown-item" href="#">Acción</a></li>
+              <li><a class="dropdown-item" href="#">Aventura</a></li>
+              <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item" href="#">Comedia</a></li>
+              <li><a class="dropdown-item" href="#">Drama</a></li>
+              <li><a class="dropdown-item" href="#">Fantasía</a></li>
+              <li><a class="dropdown-item" href="#">Policiaca</a></li>
+              <li><a class="dropdown-item" href="#">Misterio</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Suspense</a></li>
+              <li><a class="dropdown-item" href="#">Terror</a></li>
+              <li><a class="dropdown-item" href="#">Animación</a></li>
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Documental</a></li>
+              <li><a class="dropdown-item" href="#">Telenovela</a></li>
+              <li><a class="dropdown-item" href="#">Sitcom</a></li>
+              <li><a class="dropdown-item" href="#">Reality Show</a></li>
+              <li><a class="dropdown-item" href="#">True Crime</a></li>
+              <li><a class="dropdown-item" href="#">Serie antológica</a></li>
+            </ul>
+        </div>
+        <div class="desplegable">
+            <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+              <li><a class="dropdown-item" href="#">Acción</a></li>
+              <li><a class="dropdown-item" href="#">Aventura</a></li>
+              <li><a class="dropdown-item" href="#">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item" href="#">Comedia</a></li>
+              <li><a class="dropdown-item" href="#">Drama</a></li>
+              <li><a class="dropdown-item" href="#">Fantasía</a></li>
+              <li><a class="dropdown-item" href="#">Policiaca</a></li>
+              <li><a class="dropdown-item" href="#">Misterio</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Suspense</a></li>
+              <li><a class="dropdown-item" href="#">Terror</a></li>
+              <li><a class="dropdown-item" href="#">Animación</a></li>
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Documental</a></li>
+              <li><a class="dropdown-item" href="#">Telenovela</a></li>
+              <li><a class="dropdown-item" href="#">Sitcom</a></li>
+              <li><a class="dropdown-item" href="#">Reality Show</a></li>
+              <li><a class="dropdown-item" href="#">Serie antológica</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- Géneros de videojuegos favoritos-->
+      <div class="mb-3">
+        <label for="generos-videojuegos" class="form-label">Géneros de videojuegos favoritos</label>
+        <div id="contenedor-menu-desplegable">
+          <div class="desplegable">
+                <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    #
+                </button>
+                <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+                  <li><a class="dropdown-item" href="#">Aventura</a></li>
+                  <li><a class="dropdown-item" href="#">Acción</a></li>
+                  <li><a class="dropdown-item" href="#">RPG</a></li>
+                  <li><a class="dropdown-item" href="#">Estrategia</a></li>
+                  <li><a class="dropdown-item" href="#">Deportes</a></li>
+                  <li><a class="dropdown-item" href="#">Carreras</a></li>
+                  <li><a class="dropdown-item" href="#">Simulación</a></li>
+                  <li><a class="dropdown-item" href="#">Terror</a></li>
+                  <li><a class="dropdown-item" href="#">Lucha</a></li>
+                  <li><a class="dropdown-item" href="#">Plataformas</a></li>
+                  <li><a class="dropdown-item" href="#">Puzles</a></li>
+                  <li><a class="dropdown-item" href="#">Aventura Gráfica</a></li>
+                  <li><a class="dropdown-item" href="#">Sandbox</a></li>
+                  <li><a class="dropdown-item" href="#">Supervivencia</a></li>
+                  <li><a class="dropdown-item" href="#">Música</a></li>
+                  <li><a class="dropdown-item" href="#">Battle Royale</a></li>
+                  <li><a class="dropdown-item" href="#">Táctico</a></li>
+                  <li><a class="dropdown-item" href="#">MMO</a></li>
+                  <li><a class="dropdown-item" href="#">Mundo abierto</a></li>
+                  <li><a class="dropdown-item" href="#">Juego de cartas</a></li>
+                  <li><a class="dropdown-item" href="#">Juegos de mesa</a></li>
+                  <li><a class="dropdown-item" href="#">RTS</a></li>
+                  <li><a class="dropdown-item" href="#">TBS</a></li>
+                  <li><a class="dropdown-item" href="#">Supervivencia</a></li>
+                  <li><a class="dropdown-item" href="#">Educativos</a></li>
+                </ul>
+            </div>
+            <div class="desplegable">
+                <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    #
+                </button>
+                <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+                  <li><a class="dropdown-item" href="#">Aventura</a></li>
+                  <li><a class="dropdown-item" href="#">Acción</a></li>
+                  <li><a class="dropdown-item" href="#">RPG</a></li>
+                  <li><a class="dropdown-item" href="#">Estrategia</a></li>
+                  <li><a class="dropdown-item" href="#">Deportes</a></li>
+                  <li><a class="dropdown-item" href="#">Carreras</a></li>
+                  <li><a class="dropdown-item" href="#">Simulación</a></li>
+                  <li><a class="dropdown-item" href="#">Terror</a></li>
+                  <li><a class="dropdown-item" href="#">Lucha</a></li>
+                  <li><a class="dropdown-item" href="#">Plataformas</a></li>
+                  <li><a class="dropdown-item" href="#">Puzles</a></li>
+                  <li><a class="dropdown-item" href="#">Aventura Gráfica</a></li>
+                  <li><a class="dropdown-item" href="#">Sandbox</a></li>
+                  <li><a class="dropdown-item" href="#">Supervivencia</a></li>
+                  <li><a class="dropdown-item" href="#">Música</a></li>
+                  <li><a class="dropdown-item" href="#">Battle Royale</a></li>
+                  <li><a class="dropdown-item" href="#">Táctico</a></li>
+                  <li><a class="dropdown-item" href="#">MMO</a></li>
+                  <li><a class="dropdown-item" href="#">Mundo abierto</a></li>
+                  <li><a class="dropdown-item" href="#">Juego de cartas</a></li>
+                  <li><a class="dropdown-item" href="#">Juegos de mesa</a></li>
+                  <li><a class="dropdown-item" href="#">RTS</a></li>
+                  <li><a class="dropdown-item" href="#">TBS</a></li>
+                  <li><a class="dropdown-item" href="#">Supervivencia</a></li>
+                  <li><a class="dropdown-item" href="#">Educativos</a></li>
+                </ul>
+            </div>
+            <div class="desplegable">
+                <button class="btn btn-outline-dark rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    #
+                </button>
+                <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
+                  <li><a class="dropdown-item" href="#">Aventura</a></li>
+                  <li><a class="dropdown-item" href="#">Acción</a></li>
+                  <li><a class="dropdown-item" href="#">RPG</a></li>
+                  <li><a class="dropdown-item" href="#">Estrategia</a></li>
+                  <li><a class="dropdown-item" href="#">Deportes</a></li>
+                  <li><a class="dropdown-item" href="#">Carreras</a></li>
+                  <li><a class="dropdown-item" href="#">Simulación</a></li>
+                  <li><a class="dropdown-item" href="#">Terror</a></li>
+                  <li><a class="dropdown-item" href="#">Lucha</a></li>
+                  <li><a class="dropdown-item" href="#">Plataformas</a></li>
+                  <li><a class="dropdown-item" href="#">Puzles</a></li>
+                  <li><a class="dropdown-item" href="#">Aventura Gráfica</a></li>
+                  <li><a class="dropdown-item" href="#">Sandbox</a></li>
+                  <li><a class="dropdown-item" href="#">Supervivencia</a></li>
+                  <li><a class="dropdown-item" href="#">Música</a></li>
+                  <li><a class="dropdown-item" href="#">Battle Royale</a></li>
+                  <li><a class="dropdown-item" href="#">Táctico</a></li>
+                  <li><a class="dropdown-item" href="#">MMO</a></li>
+                  <li><a class="dropdown-item" href="#">Mundo abierto</a></li>
+                  <li><a class="dropdown-item" href="#">Juego de cartas</a></li>
+                  <li><a class="dropdown-item" href="#">Juegos de mesa</a></li>
+                  <li><a class="dropdown-item" href="#">RTS</a></li>
+                  <li><a class="dropdown-item" href="#">TBS</a></li>
+                  <li><a class="dropdown-item" href="#">Supervivencia</a></li>
+                  <li><a class="dropdown-item" href="#">Educativos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+   <!--Color para el perfil-->
+   <label for="color-perfil" class="form-label">Color del perfil</label>
+   <div class="mb-3" id="paleta-perfil">
+     <input type="color" class="form-control" id="color-picker" value="#33a1ff">
+     <div class="color-option" style="background-color: #db0505;"></div>
+     <div class="color-option" style="background-color: #3f814b;"></div>
+     <div class="color-option" style="background-color: #5733ff;"></div>
+     <div class="color-option" style="background-color: #ff33a1;"></div>
+     <div class="color-option" style="background-color: #ff5733;"></div>
+   </div>
+ 
+   <div class="text-center m-5">
+    <a href="./perfil.html" class="btn btn-primary">Guardar cambios</a>
+</div>
+ </form>
+</div>
+
+    <!--Footer-->
+    <footer class="bg-custom text-center py-3 mt-5">
+         <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Redes Sociales</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="redes">Facebook</a></li>
+                        <li><a href="#" class="redes">Twitter</a></li>
+                        <li><a href="#" class="redes">Instagram</a></li>
+                        <li><a href="#" class="redes">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Soporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="soporte">FAQ</a></li>
+                        <li><a href="#" class="soporte">Contacto</a></li>
+                        <li><a href="#" class="soporte">Soporte Técnico</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="legal">Términos y Condiciones</a></li>
+                        <li><a href="#" class="legal">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; Reseñas.com. Todos los derechos reservados 2025.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
