@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.contenedorcontacto {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+ /*Flexbox para alinear los elementos */
+.contenedorcontacto2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap; /* Permite que se adapten en pantallas pequeñas */
+    gap: 20px; /* Margen uniforme entre elementos */
+}
+
+.item1{
+    text-align: center;
+}
+
+.item2{
+    flex: 1; /* Ambos ocupan el mismo espacio */
+    min-width: 300px; /* Evita que se encojan demasiado */
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px; /* Asegura márgenes iguales */
+}
+
+.item3{
+    flex: 1; /* Ambos ocupan el mismo espacio */
+    min-width: 300px; /* Evita que se encojan demasiado */
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 10px; /* Asegura márgenes iguales */
+}
+
+.contenedorredes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas grandes */
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.imgredes img {
+    width: 100%;
+    max-width: 90px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.imgredes img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .contenedorcontacto2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedorcontacto{
+        margin-top: 40px;
+    }
+
+    .item2, .item3 {
+        width: 100%; /* Ocupan todo el ancho en pantallas pequeñas */
+        margin: 10px 0; /* Ajuste para mantener el mismo espaciado */
+    }
+
+    .contenedorredes {
+        grid-template-columns: repeat(2, 1fr); /* 2 imágenes por fila */
+    }
+}
+
+
+

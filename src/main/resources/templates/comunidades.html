@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidades</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <style>
+        .a:hover, .nav-link:hover {
+            cursor: pointer;
+            color: #FF8C42 !important;
+        }
+        .redes, .soporte, .legal {
+            text-decoration: none;
+            color: inherit;
+        }
+        .redes:hover, .soporte:hover, .legal:hover {
+            color: #FF8C42;
+        }
+        .bg-custom{
+            background-color: #4E598C !important;
+            color: white !important;
+        }
+        .btn:hover {
+            background-color: #FF8C42 !important;
+        }
+        #barraDeBusqueda {
+            width:430px !important;
+        }
+        .card {
+            background-color: #4E598C !important;
+        }
+    </style>
+</head>
+<body>
+<!--Header-->
+<nav class="navbar navbar-expand-lg bg-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Reseñas.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="inicio" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="cine" href="#">Cine</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="series" href="#">Series</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
+                </li>
+
+            </ul>
+            <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
+                <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
+                <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
+            </form>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="inicio" href="#"><i class="bi bi-bell"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="perfil" href="#"><i class="bi bi-person"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="cerrar sesión" href="#">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--Contenido de la página-->
+<div class="container mt-4">
+    <input type="text" id="filtro" class="form-control" placeholder="Buscar comunidades..." onkeyup="filtrarTarjetas()">
+</div>
+<div class="row mt-4 ms-1 me-1">
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/harrypotter.jpg" class="img-fluid card-img-top" alt="Imagen Harry Potter">
+            <div class="card-body">
+                <h5 class="card-title" alt="Harry Potter">Harry Potter</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Harry Potter"><i class="bi bi-envelope"> </i>1567 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Harry Potter"><i class="bi bi-people"> </i>69 usuarios activos</p>
+                <a href="comunidades/comunidad_harry_potter.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Harry Potter">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/interstellar.jpg" class="img-fluid card-img-top" alt="Imagen Interstellar">
+            <div class="card-body">
+                <h5 class="card-title" alt="Interstellar">Interstellar</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Interstellar"><i class="bi bi-envelope"> </i>6214 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Interstellar"><i class="bi bi-people"> </i>41 usuarios activos</p>
+                <a href="comunidades/comunidad_interstellar.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Interstellar">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/creed.jpg" class="img-fluid card-img-top" alt="Imagen Creed">
+            <div class="card-body">
+                <h5 class="card-title" alt="Creed">Creed</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Creed"><i class="bi bi-envelope"> </i>126 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Creed"><i class="bi bi-people"> </i>12 usuarios activos</p>
+                <a href="comunidades/comunidad_creed.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Creed">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/thegentlemen.jpg" class="img-fluid card-img-top" alt="Imagen The Gentlemen">
+            <div class="card-body">
+                <h5 class="card-title" alt="The Gentlemen">The Gentlemen</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de The Gentlemen"><i class="bi bi-envelope"> </i>268 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de The Gentlemen"><i class="bi bi-people"> </i>23 usuarios activos</p>
+                <a href="comunidades/comunidad_TheGentlemen.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de The Gentlemen">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/elpadrino.jpg" class="img-fluid card-img-top" alt="Imagen El Padrino">
+            <div class="card-body">
+                <h5 class="card-title" alt="El Padrino">El Padrino</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de El Padrino"><i class="bi bi-envelope"> </i>1567 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de El Padrino"><i class="bi bi-people"> </i>69 usuarios activos</p>
+                <a href="comunidades/comunidad_elpadrino.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de El Padrino">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/cadenaperpetua.jpg" class="img-fluid card-img-top" alt="Imagen Cadena Perpetua">
+            <div class="card-body">
+                <h5 class="card-title" alt="Cadena Perpetua">Cadena Perpetua</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Cadena Perpetua"><i class="bi bi-envelope"> </i>167 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Cadena Perpetua"><i class="bi bi-people"> </i>32 usuarios activos</p>
+                <a href="comunidades/comunidad_cadenaperpetua.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Cadena Perpetua">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/forrestgump.jpg" class="img-fluid card-img-top" alt="Imagen Forrest Gump">
+            <div class="card-body">
+                <h5 class="card-title" alt="Forrest Gump">Forrest Gump</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Forrest Gump"><i class="bi bi-envelope"> </i>845 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Forrest Gump"><i class="bi bi-people"> </i>6 usuarios activos</p>
+                <a href="comunidades/comunidad_forrestgump.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Forrest Gump">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/elreyleon.jpg" class="img-fluid card-img-top" alt="Imagen El Rey León">
+            <div class="card-body">
+                <h5 class="card-title" alt="El Rey León">El Rey León</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de El Rey León"><i class="bi bi-envelope"> </i>654 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de El Rey León"><i class="bi bi-people"> </i>8 usuarios activos</p>
+                <a href="comunidades/comunidad_elreyleon.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de El Rey León">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/elseñordelosanillos.jpg" class="img-fluid card-img-top" alt="Imagen El Señor De Los Anillos">
+            <div class="card-body">
+                <h5 class="card-title" alt="El Señor De Los Anillos">El Señor De Los Anillos</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de El Señor De Los Anillos"><i class="bi bi-envelope"> </i>457 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de El Señor De Los Anillos"><i class="bi bi-people"> </i>95 usuarios activos</p>
+                <a href="comunidades/comunidad_esdla.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de El Señor De Los Anillos">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/toystory.jpg" class="img-fluid card-img-top" alt="Imagen Toy Story">
+            <div class="card-body">
+                <h5 class="card-title" alt="Toy Story">Toy Story</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Toy Story"><i class="bi bi-envelope"> </i>1136 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Toy Story"><i class="bi bi-people"> </i>84 usuarios activos</p>
+                <a href="comunidades/comunidad_toystory.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Toy Story">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/kingsman.jpg" class="img-fluid card-img-top" alt="Imagen Kingsman">
+            <div class="card-body">
+                <h5 class="card-title" alt="Kingsman">Kingsman</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Kingsman"><i class="bi bi-envelope"> </i>2491 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Kingsman"><i class="bi bi-people"> </i>74 usuarios activos</p>
+                <a href="comunidades/comunidad_kingsman.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Kingsman">Únete!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-4">
+        <div class="card">
+            <img src="img/rambo.jpg" class="img-fluid card-img-top" alt="Imagen Rambo">
+            <div class="card-body">
+                <h5 class="card-title" alt="Rambo">Rambo</h5>
+                <p class="card-text" alt="Temas creados en la comunidad de Rambo"><i class="bi bi-envelope"> </i>3485 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad de Rambo"><i class="bi bi-people"> </i>1 usuarios activos</p>
+                <a href="comunidades/comunidad_rambo.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Rambo">Únete!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Footer-->
+<footer class="bg-custom text-center py-3 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Redes Sociales</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="redes">Facebook</a></li>
+                    <li><a href="#" class="redes">Twitter</a></li>
+                    <li><a href="#" class="redes">Instagram</a></li>
+                    <li><a href="#" class="redes">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Soporte</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="soporte">FAQ</a></li>
+                    <li><a href="#" class="soporte">Contacto</a></li>
+                    <li><a href="#" class="soporte">Soporte Técnico</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Legal</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="legal">Términos y Condiciones</a></li>
+                    <li><a href="#" class="legal">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        <p>&copy; Reseñas.com. Todos los derechos reservados 2025.</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script>
+    function filtrarTarjetas() {
+        let input = document.getElementById("filtro").value.toLowerCase();
+        let cards = document.querySelectorAll(".card");
+
+        cards.forEach(card => {
+            let titulo = card.querySelector(".card-title").textContent.toLowerCase();
+
+            if (titulo.includes(input)) {
+                card.parentElement.style.display = "block"; // Muestra la card
+            } else {
+                card.parentElement.style.display = "none"; // Oculta la card
+            }
+        });
+    }
+</script>
+</body>
+</html>

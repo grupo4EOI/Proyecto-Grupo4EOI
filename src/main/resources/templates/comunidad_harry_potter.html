@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad Harry potter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<style>
+    .a:hover, .nav-link:hover {
+        cursor: pointer;
+        color: #FF8C42 !important;
+    }
+    .redes, .soporte, .legal {
+        text-decoration: none;
+        color: inherit;
+    }
+    .redes:hover, .soporte:hover, .legal:hover {
+        color: #FF8C42;
+    }
+    .bg-custom{
+        background-color: #4E598C !important;
+        color: white !important;
+    }
+    .btn:hover {
+        background-color: #FF8C42 !important;
+    }
+    #barraDeBusqueda {
+        width:430px !important;
+    }
+    .filtro {
+      color: #FF8C42;
+    }
+    .icono-mensaje {
+      color: #FF8C42;
+    }
+    .btn-filtro {
+      outline: 2px;
+      outline-color: #4E598C !important;
+      color: #4E598C !important;
+    }
+
+</style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!--Header-->
+    <nav class="navbar navbar-expand-lg bg-custom">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">Reseñas.com</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="inicio" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="cine" href="#">Cine</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="series" href="#">Series</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
+              </li>
+            </ul>
+            <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
+              <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
+              <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
+            </form>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="inicio" href="#"><i class="bi bi-bell"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" aria-current="perfil" href="#"><i class="bi bi-person"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" aria-current="cerrar sesión" href="#">Cerrar sesión</a>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!--Contenido de la página-->
+    <!--Comunidad en la que estás y botón de nuevo tema-->
+    <div class="bg-custom mt-4 mx-auto rounded-top p-3 w-75">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>Harry Potter</h1>
+        <a type="button" class="btn btn-outline-light text-white" href="nuevo_tema/nuevo_tema.html">Nuevo tema <i class="bi bi-pencil"></i></a>
+    </div>
+    </div>
+    <!--Separador con filtro-->
+    <div class="bg-dark text-light mt-2 mx-auto p-3 w-75">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>Temas</h3>
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-funnel-fill fs-3 filtro"></i>
+          </a>
+        
+          <ul class="dropdown-menu">
+            <!-- Filtro por categoría -->
+            <li><div class="dropdown-item">
+              <label for="categoryFilter">Clasificar por:</label>
+              <select id="categoryFilter" class="form-select">
+                <option value="categoria1">Título de tema</option>
+                <option value="categoria2">Último mensaje</option>
+                <option value="categoria3">Hora de inicio de tema</option>
+                <option value="categoria4">Número de respuestas</option>
+                <option value="categoria5">Autor</option>
+              </select>
+            </div></li>
+            <!-- Filtro por orden -->
+            <li><div class="dropdown-item">
+              <label for="orderFilter">Orden:</label>
+              <select id="orderFilter" class="form-select">
+                <option value="categoria1">Ascendente</option>
+                <option value="categoria2">Descendente</option>
+              </select>
+            </div></li>
+            <!-- Filtro por periodo -->
+            <li><div class="dropdown-item">
+              <label for="dateFilter">Desde:</label>
+              <select id="dateFilter" class="form-select">
+                <option value="categoria1">Último día</option>
+                <option value="categoria2">Última semana</option>
+                <option value="categoria3">Último mes</option>
+                <option value="categoria4">Último año</option>
+              </select>
+            </div></li>
+            <li>
+              <div class="dropdown-item">
+                <button class="btn" id="applyFiltersBtn">Aplicar filtros</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+    </div>
+    <!--Temas-->
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="temas_harry_potter/ejemplo_tema.html"><h6 class="mb-1">Título de tema 1</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 2</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 3</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 4</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 5</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 6</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 7</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 8</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 9</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 10</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 11</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 12</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 13</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 14</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 15</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 16</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 17</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 18</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 19</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" href="#"><h6 class="mb-1">Título de tema 20</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
+    <!--Footer-->
+    <footer class="bg-custom text-center py-3 mt-4">
+         <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Redes Sociales</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="redes">Facebook</a></li>
+                        <li><a href="#" class="redes">Twitter</a></li>
+                        <li><a href="#" class="redes">Instagram</a></li>
+                        <li><a href="#" class="redes">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Soporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="soporte">FAQ</a></li>
+                        <li><a href="#" class="soporte">Contacto</a></li>
+                        <li><a href="#" class="soporte">Soporte Técnico</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="legal">Términos y Condiciones</a></li>
+                        <li><a href="#" class="legal">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; Reseñas.com. Todos los derechos reservados 2025.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

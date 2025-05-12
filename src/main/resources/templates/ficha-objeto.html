@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reseñas.com</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <style>
+    nav > a:hover, .nav-link:hover {
+      cursor: pointer;
+      color: #FF8C42 !important;
+    }
+    .redes, .soporte, .legal {
+      text-decoration: none;
+      color: inherit;
+    }
+    .redes:hover, .soporte:hover, .legal:hover {
+      color: #FF8C42;
+    }
+    .bg-custom{
+      background-color: #4E598C !important;
+      color: white !important;
+    }
+    .btn:hover {
+      background-color: #FF8C42 !important;
+    }
+    #barraDeBusqueda {
+      width:430px !important;
+    }
+
+    img {
+      width: 300px;
+      height: 400px;
+    }
+
+    /* Estilo para etiquetas (direccion, reparto, etiquetas, generos) */
+    .etiqueta {
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 5px;
+      background-color: #F9C784;
+    }
+
+    .etiqueta:hover {
+      transition: background-color 0.3s ease;
+      background-color: #FF8C42;
+      cursor: pointer;
+    }
+
+    /* Estilo para etiquetas adicionales */
+
+
+    /* Estilos botón de trailer */
+    .image-container {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      height: 400px;
+    }
+
+    .image-container > img {
+      display: block;
+      transition: opacity 0.3s ease;
+      border-radius: 8px;
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      max-width: 300px;
+      max-height: 400px;
+    }
+
+    .image-container:hover img {
+      opacity: 0.6;
+    }
+
+    .trailer-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 12px 24px;
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.3s ease;
+      z-index: 2;
+      font-weight: bold;
+    }
+
+    .image-container:hover .trailer-button {
+      opacity: 1;
+      transition: background-color 0.3s ease;
+    }
+
+    .trailer-button:hover{
+      background-color: #f0f0f0;
+    }
+
+    /* Estilos para el modal */
+    .modal-dialog {
+      max-width: 800px;
+      margin: 100px auto;
+    }
+
+    .modal-body {
+      position: relative;
+      padding: 0px;
+    }
+
+    .btn-close {
+      position: absolute;
+      right: -30px;
+      top: 0;
+    }
+
+    /* Diseño imagen para vista menor que ordenador*/
+    .image-container-ext {
+      width: 300px;
+      height: 400px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .image-container-ext {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+      }
+    }
+
+    /* Diseño en vista más reducida de la columna derecha*/
+    @media screen and (min-width: 1401px) {
+      #columna-derecha {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+      }
+    }
+
+    @media screen and (max-width: 1400px) {
+      #columna-derecha > .etiqueta {
+        width: auto;
+        flex: 0 0 auto;
+      }
+
+      #columna-derecha {
+        display: flex; !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+    }
+
+    /* color de fondo página */
+    body {
+      background: rgb(255,255,255);
+      background: linear-gradient(90deg, rgba(255,255,255,0.3024859602043942) 46%, rgba(252,175,88,0.6330181730895483) 100%);
+    }
+
+    /* Estilo para las reseñas */
+    #review, #publicacion {
+      border: 2px solid black;
+      border-radius: 8px;
+    }
+  </style>
+
+  <!-- Parte de JavaScript para el modal A REVISAR -->
+  <script>
+    // Declare a variable to store the video source
+    let videoSrc;
+
+    // Add click event listener to all elements with class "video-btn"
+    document.querySelectorAll('.video-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Get the video source from the data-src attribute
+        videoSrc = button.dataset.src;
+        console.log(videoSrc);
+      });
+    });
+
+    // Add event listener for when the modal is opened
+    document.getElementById('modal-trailer').addEventListener('shown.bs.modal', () => {
+      // Update the video source with autoplay and other options
+      document.getElementById('video').src = videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0";
+    });
+
+    // Add event listener for when the modal is closed
+    document.getElementById('modal-trailer').addEventListener('hide.bs.modal', () => {
+      // Stop the video by resetting the source
+      document.getElementById('video').src = videoSrc;
+    });
+  </script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<!--Header-->
+<!--Donde pone reseñas.com, notificaciones y perfil, debería ir la imagen correspondiente como en la imagen que
+        pasó Almudena por discord, pero para no liarla con las rutas, vamos a dejarlo ahora mismo así y más
+        adelante se cambia-->
+
+<nav class="navbar navbar-expand-lg bg-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Reseñas.com</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Cine</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Series</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Videojuegos</a>
+        </li>
+
+      </ul>
+      <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
+        <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
+        <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
+      </form>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" href="#"><i class="bi bi-bell"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#"><i class="bi bi-person"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Cerrar sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--Contenido de la página-->
+<div class="container" id="body-pagina">
+
+  <!--  Primera fila: datos del objeto + botones asociados al objeto / usuario -->
+  <div class="row mx-3 gx-0">
+
+    <!-- Titular y datos: año publicación y duración -->
+    <div class="col-12 mt-4"><h2>El lado oscuro del corazón</h2></div>
+    <div class="col-12 mt-2"><p>Año publicación: 1992 - Duración: 2h 7min</p></div>
+
+    <!-- Imagen objeto -->
+    <div class="image-container-ext">
+      <div class="image-container col-xxl-3 col-xl-5 col-lg-12 me-2">
+        <img class="img-fluid" src="img/pelicula.jpg" alt="Cartel de película: El lado oscuro del corazón">
+        <!-- Boton para acceder al trailer de una película / serie / videojuego -->
+        <button
+                type="button"
+                class="trailer-button btn btn-primary video-btn"
+                data-bs-toggle="modal"
+                data-src="https://www.youtube.com/watch?v=f7kWcUYKcv8"
+                data-bs-target="#modal-trailer">
+          <i class="bi bi-play-circle me-2"></i>Ver trailer
+        </button>
+        <!-- Modal que aparecerá en caso de que se clique el botón de trailer -->
+        <div class="modal fade" id="modal-trailer" tabindex="-1" role="dialog" aria-labelledby="modal-trailer" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <div class="ratio ratio-16x9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=f7kWcUYKcv8" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  <!-- Fin imagen del objeto -->
+    </div>
+
+    <!-- Columna información objeto -->
+    <div class="col-xxl-6 col-xl-7 col-lg-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p class="mb-2">Puntuación: 3,5 / 5
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+              <i class="bi bi-star"></i>
+            </p>
+          </div>
+          <div class="col-12">
+            <p>
+              Número total reseñas: 1324 usuarios
+            </p>
+          </div>
+          <hr class="hr mt-0">
+          <div class="col-12 d-flex align-items-center gap-2">
+            <span><b>Dirección:</b></span>
+            <div class="etiqueta"><i class="bi bi-person me-2"></i>Eliseo Subiela</div>
+          </div>
+          <div class="col-12 mt-2 d-flex flex-wrap align-items-center gap-2">
+            <span><b>Reparto:</b> </span>
+            <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>Darío Grandinetti</div>
+            <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>Sandra Ballesteros</div>
+            <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>Nacha Guevara</div>
+            <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>Eliseo Subiela</div>
+            <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>André Melançon</div>
+            <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>Nombre Apellido</div>
+          </div>
+          <div class="col-12 mt-2 d-inline-flex flex-wrap">
+            <p><b>Descripción:</b> Oliveiro es un joven poeta que vive en Buenos Aires, donde a veces tiene que vender
+               sus ideas a una agencia de publicidad para ganarse la vida o cambiar sus poemas por un filete.</p>
+          </div>
+          <div class="col-12 mt-0 d-flex flex-wrap align-items-center gap-2">
+            <span><b>Géneros:</b> </span>
+            <div class="etiqueta px-3">Drama</div>
+            <div class="etiqueta px-3">Romance</div>
+            <div class="etiqueta px-3">Comedia</div>
+          </div>
+          <div class="col-12 mt-2 d-flex flex-wrap align-items-center gap-2">
+            <span><b>Etiquetas:</b> </span>
+            <div class="etiqueta px-3">#etiqueta-1</div>
+            <div class="etiqueta px-3">#etiqueta-2</div>
+            <div class="etiqueta px-3">#etiqueta-3</div>
+            <div class="etiqueta px-3">#etiqueta-4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-3 col-xl-12 col-lg-12" id="columna-derecha">
+      <div class="etiqueta px-3 mb-2 mx-1">
+        <i class="bi bi-star mx-2"></i>
+        Añadir reseña
+      </div>
+      <div class="etiqueta px-3 mb-2 mx-1">
+        <i class="bi bi-pencil mx-2"></i>
+        Añadir publicación
+      </div>
+      <div class="etiqueta px-3 mb-2 mx-1">
+        <i class="bi bi-heart mx-2"></i>
+        Añadir a lista de favoritos
+      </div>
+      <div class="etiqueta px-3 mb-2 mx-1">
+        <i class="bi bi-bar-chart mx-2"></i>
+        Añade tu progreso
+      </div>
+      <div class="etiqueta px-3 mb-2 mx-1">
+        <i class="bi bi-people mx-2"></i>
+        Unirte a la comunidad
+      </div>
+    </div>
+  </div>
+  <hr class="hr mt-3">
+  <!-- Apartado reseñas -->
+  <div class="row mx-3 my-3 gx-0">
+      <h3 class="col-12"><b>Reseñas</b></h3>
+      <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador</div>
+      <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
+      <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
+      <div class="container" id="review">
+        <div class="row">
+          <div class="col-12 mb-2 mt-1">
+            Puntuación: 4 / 5
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+          </div>
+          <div class="col-12 mb-2">
+            <b>Título de la reseña:</b> Una de las mejore películas que he visto :)
+          </div>
+          <div class="col-12 mb-1">
+            <b>Contenido de la reseña:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi
+            delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat
+            quibusdam quisquam quos repellat sunt vitae.
+          </div>
+        </div>
+      </div>
+      <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
+      <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-chat"></i> Comentarios</div>
+  </div>
+  <hr class="hr mt-3">
+
+  <!-- Apartado publicaciones-->
+  <div class="row mx-3 my-3 gx-0">
+    <h3 class="col-12"><b>Publicaciones</b></h3>
+    <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador23142</div>
+    <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
+    <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
+    <div class="container" id="publicacion">
+      <div class="row">
+        <div class="col-12 mt-1 mb-2">
+          <b>Título de la publicación:</b> Recomendaciones antes de ver la película -------- antes de ver toda la saga
+        </div>
+        <div class="col-12 mb-1">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi delectus, deleniti dolorem dolores
+          ducimus eos ex facere laudantium magnam minus nihil odit quaerat quibusdam quisquam quos repellat sunt
+          vitae.
+        </div>
+      </div>
+    </div>
+    <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
+    <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-chat"></i> Comentarios</div>
+  </div>
+
+</div>
+
+
+<!--Footer-->
+<footer class="bg-custom text-center py-3 mt-auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Redes Sociales</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="redes"><i class="fa fa-facebook"></i> Facebook</a></li>
+          <li><a href="#" class="redes"><i class="fa fa-twitter"></i> Twitter</a></li>
+          <li><a href="#" class="redes"><i class="fa fa-instagram"></i> Instagram</a></li>
+          <li><a href="#" class="redes"><i class="fa fa-youtube"></i> YouTube</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Soporte</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="soporte">FAQ</a></li>
+          <li><a href="#" class="soporte">Contacto</a></li>
+          <li><a href="#" class="soporte">Soporte Técnico</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Legal</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="legal">Términos y Condiciones</a></li>
+          <li><a href="#" class="legal">Política de Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <p>&copy; <a class="text-decoration-none" href="#">Reseñas.com</a>. Todos los derechos reservados 2025.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de ejemplo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<style>
+    .a:hover, .nav-link:hover {
+        cursor: pointer;
+        color: #FF8C42 !important;
+    }
+    .redes, .soporte, .legal {
+        text-decoration: none;
+        color: inherit;
+    }
+    .redes:hover, .soporte:hover, .legal:hover {
+        color: #FF8C42;
+    }
+    .bg-custom{
+        background-color: #4E598C !important;
+        color: white !important;
+    }
+    .btn:hover {
+        background-color: #FF8C42 !important;
+    }
+    #barraDeBusqueda {
+        width:430px !important;
+    }
+    .card {
+        background-color: #4E598C !important;
+    }
+    .condiciones {
+      text-decoration: none;
+      color: #FF8C42 !important;
+    }
+    .condiciones:hover {
+      color:#914f27 !important;
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+    }
+</style>
+</head>
+<body>
+    <!--Header-->
+    <nav class="navbar navbar-expand-lg bg-custom">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">Reseñas.com</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="inicio" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="cine" href="#">Cine</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="series" href="#">Series</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
+              </li>
+            
+            </ul>
+            <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
+              <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
+              <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
+            </form>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="inicio" href="#"><i class="bi bi-bell"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" aria-current="perfil" href="#"><i class="bi bi-person"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" aria-current="cerrar sesión" href="#">Cerrar sesión</a>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!--Contenido de la página-->
+
+    <!--Banner título del tema-->
+    <div class="bg-custom mt-4 mx-auto p-3 w-75" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+        <h2>Título de ejemplo</h2>
+    </div>
+
+    <!--Mensaje del creador del tema-->
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
+      <!--Este div contiene la información del mensaje-->
+      <div class="d-flex justify-content-between align-items-center">
+        <!--Imagen de perfil-->
+      <div class="border-right border-dark me-3">
+        <img class="avatar" src="../../img/avatar.jpg">
+      </div>
+      <!--Usuario y rol-->
+      <div class="ms-3">
+        <a class="nav-link" href="#"><h6 class="mb-1">Usuario1</h6></a>
+        <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
+      </div>
+      <!--Fecha y número de mensaje-->
+      <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
+        <p class="mb-0">Hoy XX:XX</p>
+        <p class="mb-0">#1</p>
+      </div>
+    </div>
+    <!--Línea de separación-->
+  <hr class="w-75 mx-auto my-3 border-light">
+      <!--Contenido del tema-->
+    <div class="my-3 mx-3">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas euismod lorem accumsan placerat. Sed molestie nulla et nisl convallis venenatis. Nam auctor eros enim, in aliquam nibh tincidunt sed. Sed nec efficitur sapien. Cras eget venenatis nisi. Mauris porta tortor nibh, sit amet condimentum quam semper in. Morbi eu leo pretium arcu pellentesque pellentesque. Integer id libero eget sapien pulvinar mollis. Cras ac tincidunt sapien, id tincidunt ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam convallis bibendum neque, vel pellentesque ex ultrices in. Nullam nibh sem, volutpat at mi non, rhoncus egestas purus. Curabitur egestas, tellus quis consequat maximus, massa risus fermentum ante, quis cursus augue elit ac tortor.</p>
+  </div>
+  <!--Línea de separación-->
+  <hr class="w-75 mx-auto my-3 border-light">
+      <!--Botones de reportar, citar y responder-->
+      <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
+        <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
+        <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
+        <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
+      </div>
+  </div>
+
+  <!--Respuestas-->
+  <!--Div que engloba la respuesta 1-->
+  <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
+    <!--Este div contiene la información del mensaje-->
+    <div class="d-flex justify-content-between align-items-center">
+      <!--Imagen de perfil-->
+    <div class="border-right border-dark me-3">
+      <img class="avatar" src="../../img/avatar.jpg">
+    </div>
+    <!--Usuario y rol-->
+    <div class="ms-3">
+      <a class="nav-link" href="#"><h6 class="mb-1">Usuario2</h6></a>
+      <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
+    </div>
+    <!--Fecha y número de mensaje-->
+    <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
+      <p class="mb-0">Hoy XX:XX</p>
+      <p class="mb-0">#2</p>
+    </div>
+  </div>
+  <!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+    <!--Contenido de la respuesta-->
+  <div class="my-3 mx-3">
+  <p>In eget ultrices urna, a finibus metus. Sed ac efficitur nunc, nec facilisis odio.</p>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+    <!--Botones de reportar, citar y responder-->
+    <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
+      <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
+      <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
+      <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
+    </div>
+</div>
+
+<!--Div que engloba la respuesta 2-->
+<div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
+  <!--Este div contiene la información del mensaje-->
+  <div class="d-flex justify-content-between align-items-center">
+    <!--Imagen de perfil-->
+  <div class="border-right border-dark me-3">
+    <img class="avatar" src="../../img/avatar.jpg">
+  </div>
+  <!--Usuario y rol-->
+  <div class="ms-3">
+    <a class="nav-link" href="#"><h6 class="mb-1">Usuario3</h6></a>
+    <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
+  </div>
+  <!--Fecha y número de mensaje-->
+  <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
+    <p class="mb-0">Hoy XX:XX</p>
+    <p class="mb-0">#3</p>
+  </div>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+  <!--Contenido de la respuesta-->
+<div class="my-3 mx-3">
+<p>Mauris pellentesque massa nisi, in pulvinar turpis porta a. Nullam iaculis, purus non pulvinar sollicitudin, urna dui sodales diam, ut hendrerit lacus lectus in ligula.</p>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+  <!--Botones de reportar, citar y responder-->
+  <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
+    <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
+    <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
+    <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
+  </div>
+</div>
+
+<!--Div que engloba la respuesta 3-->
+<div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
+  <!--Este div contiene la información del mensaje-->
+  <div class="d-flex justify-content-between align-items-center">
+    <!--Imagen de perfil-->
+  <div class="border-right border-dark me-3">
+    <img class="avatar" src="../../img/avatar.jpg">
+  </div>
+  <!--Usuario y rol-->
+  <div class="ms-3">
+    <a class="nav-link" href="#"><h6 class="mb-1">Usuario4</h6></a>
+    <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
+  </div>
+  <!--Fecha y número de mensaje-->
+  <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
+    <p class="mb-0">Hoy XX:XX</p>
+    <p class="mb-0">#4</p>
+  </div>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+  <!--Contenido de la respuesta-->
+<div class="my-3 mx-3">
+<p>Vestibulum varius ac tortor sed ultrices. Fusce vulputate eleifend turpis at rhoncus.</p>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+  <!--Botones de reportar, citar y responder-->
+  <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
+    <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
+    <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
+    <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
+  </div>
+</div>
+
+<!--Div que engloba la respuesta 4-->
+<div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
+  <!--Este div contiene la información del mensaje-->
+  <div class="d-flex justify-content-between align-items-center">
+    <!--Imagen de perfil-->
+  <div class="border-right border-dark me-3">
+    <img class="avatar" src="../../img/avatar.jpg">
+  </div>
+  <!--Usuario y rol-->
+  <div class="ms-3">
+    <a class="nav-link" href="#"><h6 class="mb-1">Usuario5</h6></a>
+    <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
+  </div>
+  <!--Fecha y número de mensaje-->
+  <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
+    <p class="mb-0">Hoy XX:XX</p>
+    <p class="mb-0">#5</p>
+  </div>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+  <!--Contenido de la respuesta-->
+<div class="my-3 mx-3">
+<p>Nulla pellentesque erat id dui porttitor cursus. Praesent lorem dui, vestibulum sed est et, lobortis malesuada erat.</p>
+</div>
+<!--Línea de separación-->
+<hr class="w-75 mx-auto my-3 border-light">
+  <!--Botones de reportar, citar y responder-->
+  <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
+    <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
+    <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
+    <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
+  </div>
+</div>
+
+
+    <!--Caja de edición de texto de respuesta-->
+    <div class="bg-dark text-light mt-3 mx-auto p-2 w-75">
+      <h4>Responder</h4>
+    </div>
+    <div class="bg-custom mx-auto p-4 w-75" style="border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem;">
+        <!--Iconos de edición de texto-->
+      <div class="d-flex justify-content-center">
+        <div class="d-flex">
+        <a class="nav-link"><i class="bi bi-type-bold fs-2"></i></a>
+        <a class="nav-link"><i class="bi bi-type-italic fs-2"></i></a>
+        <a class="nav-link"><i class="bi bi-type-underline fs-2"></i></a>
+      </div>
+      <div class="d-flex ms-4">
+        <a class="nav-link"><i class="bi bi-text-left fs-2"></i></a>
+        <a class="nav-link"><i class="bi bi-text-center fs-2"></i></a>
+        <a class="nav-link"><i class="bi bi-text-right fs-2"></i></a>
+      </div>
+      <div class="d-flex ms-5">
+        <a class="nav-link"><i class="bi bi-list-ol fs-2"></i></a>
+      </div>
+      <div class="d-flex ms-5">
+        <a class="nav-link"><i class="bi bi-list-ul fs-2"></i></a>
+      </div>
+      <div class="d-flex ms-5">
+        <a class="nav-link"><i class="bi bi-card-image fs-2"></i></a>
+      </div>
+      </div>
+        <!--Caja de contenido de la respuesta-->
+        <div class="mt-2">
+        <form>
+          <textarea type="text" id="contenido-tema" class="form-control" rows="5" placeholder="Escribe aquí tu respuesta"></textarea>
+        </form>
+      </div>
+      <!--Advertencia y Botón Enviar Respuesta-->
+      <div class="mt-4 d-flex justify-content-between align-items-center">
+        <p class="mb-0 w-75 opacity-50" style="font-size: 10px;">
+          Te informamos que eres responsable del contenido ilícito que publiques.
+          El contenido que publiques puede incumplir nuestras condiciones generales de uso o suponer una infracción del ordenamiento jurídico.
+          Te recomendamos visitar nuestras <a href="#" class="condiciones">condiciones generales de uso</a> para conocer qué tipo de contenido no puedes publicar.
+        </p>
+        <button type="button" class="btn btn-outline-light text-white" href="#">Enviar respuesta</button>
+      </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="bg-custom text-center py-3 mt-4">
+         <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Redes Sociales</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="redes">Facebook</a></li>
+                        <li><a href="#" class="redes">Twitter</a></li>
+                        <li><a href="#" class="redes">Instagram</a></li>
+                        <li><a href="#" class="redes">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Soporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="soporte">FAQ</a></li>
+                        <li><a href="#" class="soporte">Contacto</a></li>
+                        <li><a href="#" class="soporte">Soporte Técnico</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="legal">Términos y Condiciones</a></li>
+                        <li><a href="#" class="legal">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; Reseñas.com. Todos los derechos reservados 2025.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reseñas.com</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="../static/css/contacto.css" rel="stylesheet">
     <style>
         .a:hover, .nav-link:hover {
             cursor: pointer;
@@ -28,6 +27,19 @@
         }
         #barraDeBusqueda {
             width:430px !important;
+        }
+
+        .contenido{
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
     </style>
@@ -79,54 +91,45 @@
 </nav>
 
 <!--Contenido de la página-->
-<div>
-    <div class="container contenedorcontacto">
-        <div class="item1">
-            <h1>CONTACTA CON NOSOTROS</h1>
-        </div>
-        <div class="contenedorcontacto2">
-            <div class="item2">
-                <div class="textcont2">
-                    <h4>También puedes contactar con nosotros a través de:</h4>
-                </div>
-                <div class="contenedorredes">
-                    <div class="imgredes">
-                        <a href="#"><img src="imagenesredes/instagram.png" alt="img"></a>
-                    </div>
-                    <div class="imgredes">
-                        <a href="#"><img src="imagenesredes/facebook.png" alt="img"></a>
-                    </div>
-                    <div class="imgredes">
-                        <a href="#"><img src="imagenesredes/tiktok.png" alt="img"></a>
-                    </div>
-                    <div class="imgredes">
-                        <a href="#"><img src="imagenesredes/twitter.png" alt="img"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item3">
+<div class="container contenido">
+    <h1>Términos y Condiciones</h1>
+    <p>Bienvenido/a a <strong>Reseñas.com</strong>.
+        Al utilizar este sitio web, aceptas cumplir con los siguientes términos y condiciones. Por favor, léelos detenidamente antes de continuar.</p>
 
-                <form id="contactForm">
-                    <!-- Correo Electrónico -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-                    </div>
+    <h2>1. Introducción</h2>
+    <p>Estos términos regulan el uso del sitio web <strong>Reseñas.com</strong>
+        ,que ofrece reseñas de películas, series y videojuegos. Si no estás de acuerdo con estos términos, no utilices el sitio.</p>
 
-                    <!-- Mensaje -->
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Mensaje</label>
-                        <textarea class="form-control" id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-                    </div>
+    <h2>2. Uso del Sitio</h2>
+    <ul>
+        <li>No está permitido publicar contenido ofensivo, ilegal o que infrinja derechos de autor.</li>
+        <li>Está prohibido usar el sitio para fines comerciales sin autorización previa.</li>
+    </ul>
 
-                    <!-- Botón de Enviar -->
-                    <button type="submit" class="btn btn-dark w-100">Enviar Mensaje</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    <h2>3. Propiedad Intelectual</h2>
+    <p>Todo el contenido del sitio (reseñas, imágenes, logotipos) es propiedad de <strong>Reseñas.com</strong>
+        o sus colaboradores. No se permite su reproducción sin autorización por escrito.</p>
+
+    <h2>4. Contenido Generado por Usuarios</h2>
+    <p>Los usuarios pueden publicar comentarios y reseñas bajo su propia responsabilidad.
+        Nos reservamos el derecho de eliminar contenido inapropiado o que infrinja nuestras políticas.</p>
+
+    <h2>5. Limitación de Responsabilidad</h2>
+    <p><strong>Reseñas.com</strong> no garantiza la exactitud ni la actualización de las reseñas publicadas.
+        No nos hacemos responsables por daños derivados del uso del sitio o la confianza en su contenido.</p>
+
+    <h2>6. Política de Privacidad</h2>
+    <p>Para más información sobre cómo recopilamos y usamos tus datos personales, consulta nuestra <a href="#">Política de Privacidad</a>.</p>
+
+    <h2>7. Modificaciones</h2>
+    <p><strong>Reseñas.com</strong> se reserva el derecho de modificar estos términos en cualquier momento.
+        Los cambios serán publicados en esta página y entrarán en vigor inmediatamente.</p>
+
+    <h2>8. Legislación Aplicable</h2>
+    <p>Estos términos están sujetos a las leyes vigentes en españa. Cualquier disputa será resuelta en los tribunales correspondientes.</p>
+
+    <p><em>Última actualización: 30/04/25</em></p>
 </div>
-
 
 
 <!--Footer-->
