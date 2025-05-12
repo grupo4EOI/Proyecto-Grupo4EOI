@@ -32,10 +32,20 @@
         .card {
             background-color: #4E598C !important;
         }
-        .dimensiones-img {
-            width: 290px;
-            height: 433px;
-            object-fit: cover;
+        @media (max-width: 1323px) {
+            .col-comunidad {
+                width: 25%; /* Muestra 4 tarjetas por fila */
+            }
+        }
+        @media (max-width: 884px) {
+            .col-comunidad {
+                width: 50%; /* Muestra 2 tarjetas por fila */
+            }
+        }
+        @media (max-width: 576px) {
+            .col-comunidad {
+                width: 100%; /* Muestra 1 tarjetas por fila */
+            }
         }
     </style>
 </head>
@@ -87,135 +97,14 @@
     <input type="text" id="filtro" class="form-control" placeholder="Buscar comunidades..." onkeyup="filtrarTarjetas()">
 </div>
 <div class="row mt-4 ms-1 me-1">
-    <div class="col-md-2 mb-4">
+    <div class="col-md-2 col-comunidad mb-4">
         <div class="card">
-            <img src="../static/images/comunidades/harrypotter.jpg" class="img-fluid card-img-top" alt="Imagen Harry Potter">
+            <img src="../static/images/comunidades/harrypotter.jpg" class="img-fluid card-img-top dimensiones-img" alt="Imagen Harry Potter">
             <div class="card-body">
                 <h5 class="card-title" alt="Harry Potter">Harry Potter</h5>
                 <p class="card-text" alt="Temas creados en la comunidad de Harry Potter"><i class="bi bi-envelope"> </i>1567 temas creados</p>
                 <p class="card-text" alt="Usuarios activos en la comunidad de Harry Potter"><i class="bi bi-people"> </i>69 usuarios activos</p>
-                <a href="comunidades/comunidad_harry_potter.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Harry Potter">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/interstellar.jpg" class="img-fluid card-img-top" alt="Imagen Interstellar">
-            <div class="card-body">
-                <h5 class="card-title" alt="Interstellar">Interstellar</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Interstellar"><i class="bi bi-envelope"> </i>6214 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Interstellar"><i class="bi bi-people"> </i>41 usuarios activos</p>
-                <a href="comunidades/comunidad_interstellar.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Interstellar">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/creed.jpg" class="img-fluid card-img-top" alt="Imagen Creed">
-            <div class="card-body">
-                <h5 class="card-title" alt="Creed">Creed</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Creed"><i class="bi bi-envelope"> </i>126 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Creed"><i class="bi bi-people"> </i>12 usuarios activos</p>
-                <a href="comunidades/comunidad_creed.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Creed">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/thegentlemen.jpg" class="img-fluid card-img-top" alt="Imagen The Gentlemen">
-            <div class="card-body">
-                <h5 class="card-title" alt="The Gentlemen">The Gentlemen</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de The Gentlemen"><i class="bi bi-envelope"> </i>268 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de The Gentlemen"><i class="bi bi-people"> </i>23 usuarios activos</p>
-                <a href="comunidades/comunidad_TheGentlemen.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de The Gentlemen">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/elpadrino.jpg" class="img-fluid card-img-top" alt="Imagen El Padrino">
-            <div class="card-body">
-                <h5 class="card-title" alt="El Padrino">El Padrino</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de El Padrino"><i class="bi bi-envelope"> </i>1567 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de El Padrino"><i class="bi bi-people"> </i>69 usuarios activos</p>
-                <a href="comunidades/comunidad_elpadrino.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de El Padrino">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/cadenaperpetua.jpg" class="img-fluid card-img-top" alt="Imagen Cadena Perpetua">
-            <div class="card-body">
-                <h5 class="card-title" alt="Cadena Perpetua">Cadena Perpetua</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Cadena Perpetua"><i class="bi bi-envelope"> </i>167 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Cadena Perpetua"><i class="bi bi-people"> </i>32 usuarios activos</p>
-                <a href="comunidades/comunidad_cadenaperpetua.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Cadena Perpetua">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/forrestgump.jpg" class="img-fluid card-img-top" alt="Imagen Forrest Gump">
-            <div class="card-body">
-                <h5 class="card-title" alt="Forrest Gump">Forrest Gump</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Forrest Gump"><i class="bi bi-envelope"> </i>845 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Forrest Gump"><i class="bi bi-people"> </i>6 usuarios activos</p>
-                <a href="comunidades/comunidad_forrestgump.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Forrest Gump">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/elreyleon.jpg" class="img-fluid card-img-top" alt="Imagen El Rey León">
-            <div class="card-body">
-                <h5 class="card-title" alt="El Rey León">El Rey León</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de El Rey León"><i class="bi bi-envelope"> </i>654 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de El Rey León"><i class="bi bi-people"> </i>8 usuarios activos</p>
-                <a href="comunidades/comunidad_elreyleon.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de El Rey León">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/elseñordelosanillos.jpg" class="img-fluid card-img-top" alt="Imagen El Señor De Los Anillos">
-            <div class="card-body">
-                <h5 class="card-title" alt="El Señor De Los Anillos">El Señor De Los Anillos</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de El Señor De Los Anillos"><i class="bi bi-envelope"> </i>457 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de El Señor De Los Anillos"><i class="bi bi-people"> </i>95 usuarios activos</p>
-                <a href="comunidades/comunidad_esdla.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de El Señor De Los Anillos">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/toystory.jpg" class="img-fluid card-img-top" alt="Imagen Toy Story">
-            <div class="card-body">
-                <h5 class="card-title" alt="Toy Story">Toy Story</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Toy Story"><i class="bi bi-envelope"> </i>1136 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Toy Story"><i class="bi bi-people"> </i>84 usuarios activos</p>
-                <a href="comunidades/comunidad_toystory.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Toy Story">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/kingsman.jpg" class="img-fluid card-img-top" alt="Imagen Kingsman">
-            <div class="card-body">
-                <h5 class="card-title" alt="Kingsman">Kingsman</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Kingsman"><i class="bi bi-envelope"> </i>2491 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Kingsman"><i class="bi bi-people"> </i>74 usuarios activos</p>
-                <a href="comunidades/comunidad_kingsman.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Kingsman">Únete!</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 mb-4">
-        <div class="card">
-            <img src="../static/images/comunidades/rambo.jpg" class="img-fluid card-img-top" alt="Imagen Rambo">
-            <div class="card-body">
-                <h5 class="card-title" alt="Rambo">Rambo</h5>
-                <p class="card-text" alt="Temas creados en la comunidad de Rambo"><i class="bi bi-envelope"> </i>3485 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Rambo"><i class="bi bi-people"> </i>1 usuarios activos</p>
-                <a href="comunidades/comunidad_rambo.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Rambo">Únete!</a>
+                <a href="comunidad_harry_potter.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad de Harry Potter">Únete!</a>
             </div>
         </div>
     </div>
