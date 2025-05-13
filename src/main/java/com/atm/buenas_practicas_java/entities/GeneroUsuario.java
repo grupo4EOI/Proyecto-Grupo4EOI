@@ -13,23 +13,19 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="objeto_usuario")
-public class ObjetoUsuario {
+@Table(name="generos_usuarios")
+
+public class GeneroUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_objeto_usuario")
-    private int idObjetoUsuario;
-    private boolean favorito;
-    private boolean estado;
+    @Column(name="id_genero_usuario")
+    private int idGeneroUsuario;
 
     @ManyToOne
-    @JoinColumn(name="usuario_id")
+    @JoinColumn(name="id_genero")
+    private Genero genero;
+    @ManyToOne
+    @JoinColumn(name="id_usuario")
     private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name="objeto_id")
-    private Objeto objeto;
-
-
 
 }

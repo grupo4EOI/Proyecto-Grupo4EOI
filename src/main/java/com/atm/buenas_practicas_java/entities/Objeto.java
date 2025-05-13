@@ -35,6 +35,10 @@ public class Objeto {
     private int temporadas;
     private int episodios;
 
+    @ManyToOne
+    @JoinColumn(name="id_tipo")
+    private Tipo tipo;
+
     @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> usuarios;
 
