@@ -17,18 +17,16 @@ import java.util.Date;
 public class ObjetoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id_objeto_usuario")
+    private int idObjetoUsuario;
     private boolean favorito;
     private boolean estado;
 
     @ManyToOne
-    @JoinColumn(name="usuario_id")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name="objeto_id")
+    @JoinColumn(name = "id_objeto")
     private Objeto objeto;
-
-
-
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,4 +34,8 @@ public class Objeto {
     private int duracionMinutos;
     private int temporadas;
     private int episodios;
+
+    @OneToMany(mappedBy = "usuario")
+    private Set<ObjetoUsuario> usuarios;
+
 }

@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -39,5 +40,8 @@ public class Usuario {
     // Relación 1:N con reseñas
     @OneToMany
     @JoinColumn(name = "id_resena")
-    List<Resena> resenas = new ArrayList<>();
+    private List<Resena> resenas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "objeto")
+    private Set<ObjetoUsuario> objetos;
 }
