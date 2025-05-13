@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -39,7 +40,12 @@ public class Objeto {
     @JoinColumn(name="id_tipo")
     private Tipo tipo;
 
-    @OneToMany(mappedBy = "usuario")
+    // Relación M:N de las tablas usuarios y objetos
+    @OneToMany(mappedBy = "usuarios")
     private Set<ObjetoUsuario> usuarios;
+
+    // Relacion 1:N de las tablas objetos y reseñas
+    @OneToMany(mappedBy = "objetos")
+    private List<Resena> resenas;
 
 }

@@ -26,6 +26,7 @@ public class Resena {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    // Relacion 1:N entre la tabla objetos y reseñas
     @ManyToOne
     @JoinColumn(name = "id_objeto")
     private Objeto objeto;

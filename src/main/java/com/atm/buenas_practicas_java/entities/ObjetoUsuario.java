@@ -22,14 +22,13 @@ public class ObjetoUsuario {
     private boolean favorito;
     private boolean estado;
 
+    // Relación M:N entre la tabla usuario y objeto
     @ManyToOne
-    @JoinColumn(name="usuario_id")
+    @JoinColumn(name="id_usuario")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name="objeto_id")
+    @JoinColumn(name = "id_objeto")
     private Objeto objeto;
-
-
 
 }

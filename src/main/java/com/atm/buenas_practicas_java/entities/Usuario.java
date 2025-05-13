@@ -42,10 +42,12 @@ public class Usuario {
     @JoinColumn(name = "id_resena")
     private List<Resena> resenas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "objeto")
+    // Relación M:N entre las tablas objetos y usuarios
+    @OneToMany(mappedBy = "objetos")
     private Set<ObjetoUsuario> objetos;
 
-    @OneToMany(mappedBy = "usuario")
+    // Relación con comentarios de las publicaciones
+    @OneToMany(mappedBy = "usuarios")
     Set<ComentarioPublicacion> comentariosPublicacion;
 
 
