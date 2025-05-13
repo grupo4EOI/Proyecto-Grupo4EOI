@@ -18,7 +18,8 @@ import java.util.Date;
 public class Objeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id_objeto")
+    private int idObjeto;
     private String titulo;
     @Column(columnDefinition = "TEXT")
     private String descripcion;
