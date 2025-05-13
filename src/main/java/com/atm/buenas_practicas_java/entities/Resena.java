@@ -15,10 +15,19 @@ import lombok.Setter;
 public class Resena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id_resena")
+    private int idResena;
     private String titulo;
     private String contenido;
     private float puntuacion;
     private boolean spoiler;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_objeto")
+    private Objeto objeto;
 
 }
