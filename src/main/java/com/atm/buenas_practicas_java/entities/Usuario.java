@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +20,8 @@ import java.time.LocalDateTime;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id_usuario")
+    private int idUsuario;
     @Column(name="nombre_usuario")
     private String nombreUsuario;
     private String email;
@@ -32,4 +35,9 @@ public class Usuario {
     private LocalDateTime ultimaConexion;
     @Column
     private boolean esAdministrador;
+
+    // Relación 1:N con reseñas
+    @OneToMany
+    @JoinColumn(name = "id_resena")
+    List<Resena> resenas = new ArrayList<>();
 }
