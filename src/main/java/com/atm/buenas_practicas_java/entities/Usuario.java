@@ -44,4 +44,9 @@ public class Usuario {
 
     @OneToMany(mappedBy = "objeto")
     private Set<ObjetoUsuario> objetos;
+
+    @OneToMany(mappedBy = "usuario")
+    Set<ComentarioPublicacion> comentariosPublicacion;
+
+
 }
