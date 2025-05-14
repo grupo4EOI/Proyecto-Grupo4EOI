@@ -21,9 +21,11 @@ public class GeneroUsuario {
     @Column(name="id_genero_usuario")
     private int idGeneroUsuario;
 
+    // Relacion N:M de las tablas generos y usuarios
     @ManyToOne
     @JoinColumn(name="id_genero")
     private Genero genero;
+
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuario;

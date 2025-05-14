@@ -21,6 +21,7 @@ public class GeneroObjeto {
     @Column(name="id_genero_objeto")
     private int idGeneroObjeto;
 
+    // Relación M:N entre la tabla generos y objetos.
     @ManyToOne
     @JoinColumn(name="id_genero")
     private Genero genero;

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +22,10 @@ public class Genero {
     @Column(name="id_genero")
     private int idGenero;
     private String nombre;
+
+    @OneToMany(mappedBy = "genero")
+    private List<GeneroObjeto> generosObjetos;
+
+    @OneToMany(mappedBy = "genero")
+    private List<GeneroUsuario> generosUsuarios;
 }
