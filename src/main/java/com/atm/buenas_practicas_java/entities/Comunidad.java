@@ -6,21 +6,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="comunidades")
+@Table(name = "comunidades")
 public class Comunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_comunidad")
     private int idComunidad;
-    private String nombre;
+    @Column(name = "nombre_comunidad")
+    private String nombreComunidad;
     @Column(columnDefinition = "TEXT")
     private String descripcion;
-    @Column(name = "es_saga")
-    private boolean esSaga;
 
+    // Relación con usuarios (tabla intermedia)
+    @OneToMany(mappedBy = "comunidades")
+    private Set<UsuarioComunidad> usuariosComunidad;
 }
