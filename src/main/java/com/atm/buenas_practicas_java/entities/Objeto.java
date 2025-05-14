@@ -48,4 +48,8 @@ public class Objeto {
     @OneToMany(mappedBy = "objetos")
     private List<Resena> resenas;
 
+    // Relacion 1:N de las tablas objetos y personasObjetos
+    @OneToMany(mappedBy = "objeto")
+    private List<PersonaObjeto> personasObjetos;
+
 }
