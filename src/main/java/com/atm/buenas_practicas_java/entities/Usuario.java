@@ -50,5 +50,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuarios")
     Set<ComentarioPublicacion> comentariosPublicacion;
 
-
+    // Relación con comunidad (tabla intermedia)
+    @OneToMany(mappedBy = "usuarios")
+    Set<UsuarioComunidad> usuariosComunidad;
 }
