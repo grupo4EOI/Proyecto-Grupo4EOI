@@ -17,6 +17,7 @@ import java.util.Set;
 public class Comunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_comunidad")
     private int idComunidad;
     @Column(name = "nombre_comunidad")
     private String nombreComunidad;
