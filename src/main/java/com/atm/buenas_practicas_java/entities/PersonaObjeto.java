@@ -18,7 +18,8 @@ public class PersonaObjeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_persona_objeto")
     private int idPersonaObjeto;
-
+    //Rol indica si es 1 es director y si es 0 es actor
+    private boolean rol;
 
     @ManyToOne
     @JoinColumn(name="id_persona")
