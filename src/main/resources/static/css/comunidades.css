@@ -1,0 +1,39 @@
+.a:hover, .nav-link:hover {
+    cursor: pointer;
+    color: #FF8C42 !important;
+}
+.redes, .soporte, .legal {
+    text-decoration: none;
+    color: inherit;
+}
+.redes:hover, .soporte:hover, .legal:hover {
+    color: #FF8C42;
+}
+.bg-custom{
+    background-color: #4E598C !important;
+    color: white !important;
+}
+.btn:hover {
+    background-color: #FF8C42 !important;
+}
+#barraDeBusqueda {
+    width:430px !important;
+}
+.card {
+    background-color: #4E598C !important;
+}
+@media (max-width: 1596px) {
+    .col-comunidad {
+        width: 25%; /* Muestra 4 tarjetas por fila */
+    }
+}
+@media (max-width: 1066px) {
+    .col-comunidad {
+        width: 50%; /* Muestra 2 tarjetas por fila */
+    }
+}
+@media (max-width: 576px) {
+    .col-comunidad {
+        width: 100%; /* Muestra 1 tarjeta por fila */
+    }
+}

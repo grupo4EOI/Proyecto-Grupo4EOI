@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Tema</title>
+    <title>Comunidad Harry potter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/nuevo_tema.css">
+    <link rel="stylesheet" href="../static/css/comunidad.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!--Header-->
     <nav class="navbar navbar-expand-lg bg-custom">
         <div class="container-fluid">
@@ -31,7 +31,6 @@
               <li class="nav-item">
                 <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
               </li>
-            
             </ul>
             <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
               <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
@@ -53,58 +52,76 @@
       </nav>
 
     <!--Contenido de la página-->
-
-    <!--Banner Crear Nuevo Tema-->
-    <div class="bg-custom mt-4 mx-auto rounded-4 p-3 w-75">
+    <!--Comunidad en la que estás y botón de nuevo tema-->
+    <div class="bg-custom mt-4 mx-auto rounded-top p-3 w-75">
       <div class="d-flex justify-content-between align-items-center">
-        <h1>Crear Nuevo Tema</h1>
-        <button type="button" class="btn btn-outline-light text-white" href="#">Previsualizar <i class="bi bi-eye"></i></button>
+        <h1>Harry Potter</h1>
+        <a type="button" class="btn btn-outline-light text-white" href="nuevo_tema/nuevo_tema.html">Nuevo tema <i class="bi bi-pencil"></i></a>
     </div>
     </div>
-
-    <!--Caja de edición de texto-->
-    <div class="bg-custom mt-2 mx-auto rounded-4 p-4 w-75">
-        <!--Caja de título de tema-->
-      <form>
-        <input type="text" id="titulo-tema" class="form-control" placeholder="Escribe aquí el título">
-      </form>
-        <!--Iconos de edición de texto-->
-      <div class="mt-2 d-flex justify-content-center">
-        <div class="d-flex">
-        <a class="nav-link"><i class="bi bi-type-bold fs-2"></i></a>
-        <a class="nav-link"><i class="bi bi-type-italic fs-2"></i></a>
-        <a class="nav-link"><i class="bi bi-type-underline fs-2"></i></a>
+    <!--Separador con filtro-->
+    <div class="bg-dark text-light mt-2 mx-auto p-3 w-75">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>Temas</h3>
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-funnel-fill fs-3 filtro"></i>
+          </a>
+        
+          <ul class="dropdown-menu">
+            <!-- Filtro por categoría -->
+            <li><div class="dropdown-item">
+              <label for="categoryFilter">Clasificar por:</label>
+              <select id="categoryFilter" class="form-select">
+                <option value="categoria1">Título de tema</option>
+                <option value="categoria2">Último mensaje</option>
+                <option value="categoria3">Hora de inicio de tema</option>
+                <option value="categoria4">Número de respuestas</option>
+                <option value="categoria5">Autor</option>
+              </select>
+            </div></li>
+            <!-- Filtro por orden -->
+            <li><div class="dropdown-item">
+              <label for="orderFilter">Orden:</label>
+              <select id="orderFilter" class="form-select">
+                <option value="categoria1">Ascendente</option>
+                <option value="categoria2">Descendente</option>
+              </select>
+            </div></li>
+            <!-- Filtro por periodo -->
+            <li><div class="dropdown-item">
+              <label for="dateFilter">Desde:</label>
+              <select id="dateFilter" class="form-select">
+                <option value="categoria1">Último día</option>
+                <option value="categoria2">Última semana</option>
+                <option value="categoria3">Último mes</option>
+                <option value="categoria4">Último año</option>
+              </select>
+            </div></li>
+            <li>
+              <div class="dropdown-item">
+                <button class="btn" id="applyFiltersBtn">Aplicar filtros</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+    </div>
+    <!--Temas-->
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mb-1">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
       </div>
-      <div class="d-flex ms-4 iconos-alinear">
-        <a class="nav-link"><i class="bi bi-text-left fs-2"></i></a>
-        <a class="nav-link"><i class="bi bi-text-center fs-2"></i></a>
-        <a class="nav-link"><i class="bi bi-text-right fs-2"></i></a>
+      <div>
+        <a class="nav-link" href="temas_harry_potter/ejemplo_tema.html"><h6 class="mb-1">Título de tema 1</h6></a>
+        <p class="mb-0">@Usuario - Actualizado Hoy a las XX:XX</p>
       </div>
-      <div class="d-flex ms-5 icono-olList">
-        <a class="nav-link"><i class="bi bi-list-ol fs-2"></i></a>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
       </div>
-      <div class="d-flex ms-5 icono-ulList">
-        <a class="nav-link"><i class="bi bi-list-ul fs-2"></i></a>
-      </div>
-      <div class="d-flex ms-5 icono-img">
-        <a class="nav-link"><i class="bi bi-card-image fs-2"></i></a>
-      </div>
-      </div>
-        <!--Caja de contenido del hilo-->
-        <div class="mt-2">
-        <form>
-          <textarea type="text" id="contenido-tema" class="form-control" rows="10" placeholder="Escribe aquí el contenido"></textarea>
-        </form>
-      </div>
-      <!--Advertencia y Botón Crear Nuevo Tema-->
-      <div class="mt-4 d-flex justify-content-between align-items-center">
-        <p class="mb-0 w-75 opacity-50" style="font-size: 10px;">
-          Te informamos que eres responsable del contenido ilícito que publiques.
-          El contenido que publiques puede incumplir nuestras condiciones generales de uso o suponer una infracción del ordenamiento jurídico.
-          Te recomendamos visitar nuestras <a href="#" class="condiciones">condiciones generales de uso</a> para conocer qué tipo de contenido no puedes publicar.
-        </p>
-        <button type="button" class="btn btn-outline-light text-white" href="#">Crear Nuevo Tema</button>
-      </div>
+    </div>
     </div>
 
     <!--Footer-->
@@ -140,5 +157,5 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
