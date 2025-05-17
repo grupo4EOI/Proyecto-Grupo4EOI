@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,18 +22,14 @@ import java.util.Set;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
+    @Column(name = "id")
     private int idUsuario;
-    @Column(name="nombre_usuario")
     private String nombreUsuario;
     private String email;
     private String contrasena;
-    @Column(name="fecha_registro")
     private LocalDateTime fechaRegistro;
-    @Column(name="avatar_url")
     private String avatarUrl;
     private String biografia;
-    @Column(name="ultima_conexion")
     private LocalDateTime ultimaConexion;
     @Column
     private boolean esAdministrador;
