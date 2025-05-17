@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
@@ -22,10 +23,13 @@ public class GeneroObjeto {
     private int idGeneroObjeto;
 
     // Relación M:N entre la tabla generos y objetos.
-    @ManyToOne
-    @JoinColumn(name="id_genero")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_genero", nullable = false)
     private Genero genero;
-    @ManyToOne
-    @JoinColumn(name="id_objeto")
+
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_objeto", nullable = false)
     private Objeto objeto;
 }

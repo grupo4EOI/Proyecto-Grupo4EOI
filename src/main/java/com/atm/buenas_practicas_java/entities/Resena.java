@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -25,13 +26,15 @@ public class Resena {
     private float puntuacion;
     private boolean spoiler;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     // Relacion 1:N entre la tabla objetos y reseñas
-    @ManyToOne
-    @JoinColumn(name = "id_objeto")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_objeto", nullable = false)
     private Objeto objeto;
 
     @OneToMany(mappedBy = "resena")
@@ -39,4 +42,5 @@ public class Resena {
 
     @OneToMany(mappedBy = "resena")
     private Set<ComentarioResena> comentariosResena;
+
 }
