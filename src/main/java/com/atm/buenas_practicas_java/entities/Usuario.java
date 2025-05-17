@@ -71,4 +71,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private Set<ComentarioResena> comentariosResenas;
 
+    @OneToMany(mappedBy = "usuario")
+    private Set<GeneroUsuario> generosUsuario;
 }
