@@ -54,4 +54,6 @@ public class Objeto {
     @OneToMany(mappedBy = "objeto")
     private Set<PersonaObjeto> personasObjetos;
 
+    @OneToMany(mappedBy = "objeto")
+    private Set<ObjetoComunidad> objetosComunidades;
 }

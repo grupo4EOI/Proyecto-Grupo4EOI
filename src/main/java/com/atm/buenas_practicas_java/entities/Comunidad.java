@@ -24,9 +24,12 @@ public class Comunidad {
     private String descripcion;
 
     // Relación con usuarios (tabla intermedia)
-    @OneToMany(mappedBy = "comunidades")
+    @OneToMany(mappedBy = "comunidad")
     private Set<UsuarioComunidad> usuariosComunidad;
 
     @OneToMany(mappedBy = "comunidad")
     private List<Publicacion> publicaciones;
+
+    @OneToMany(mappedBy = "comunidad")
+    private Set<ObjetoComunidad> objetosComunidades;
 }
