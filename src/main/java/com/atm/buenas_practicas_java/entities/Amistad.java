@@ -18,7 +18,7 @@ import java.util.Date;
 public class Amistad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_amistad")
+    @Column(name = "id")
     private int idAmistad;
     private boolean estado;
     private Date fecha;
@@ -26,9 +26,10 @@ public class Amistad {
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
+
     @ManyToOne
-    @JoinColumn(name="id2_usuario")
-    private Usuario usuario2;
+    @JoinColumn(name="id_amigo")
+    private Usuario amigo;
 
 
 }
