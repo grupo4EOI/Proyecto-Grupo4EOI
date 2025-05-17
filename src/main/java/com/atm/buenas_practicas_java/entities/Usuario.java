@@ -6,8 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 
 @Getter
 @Setter
@@ -18,18 +23,54 @@ import java.time.LocalDateTime;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name="nombre_usuario")
+    @Column(name = "id")
+    @NotNull
+    private Long idUsuario;
+    @NotNull
     private String nombreUsuario;
+    @NotNull
     private String email;
+    @NotNull
     private String contrasena;
-    @Column(name="fecha_registro")
+    @Column(columnDefinition = "DATETIME default NOW()")
     private LocalDateTime fechaRegistro;
-    @Column(name="avatar_url")
     private String avatarUrl;
     private String biografia;
-    @Column(name="ultima_conexion")
+    @Column(columnDefinition = "DATETIME default NOW()")
     private LocalDateTime ultimaConexion;
-    @Column
+    @Column(columnDefinition = "BOOLEAN default FALSE")
     private boolean esAdministrador;
+
+    // Relación 1:N con reseñas
+    @OneToMany
+    @JoinColumn(name = "id_resena")
+    private List<Resena> resenas = new ArrayList<>();
+
+    // Relación M:N entre las tablas objetos y usuarios
+    @OneToMany(mappedBy = "objetos")
+    private Set<ObjetoUsuario> objetos;
+
+    // Relación con comentarios de las publicaciones
+    @OneToMany(mappedBy = "usuarios")
+    private Set<ComentarioPublicacion> comentariosPublicacion;
+
+    // Relación con comunidad (tabla intermedia)
+    @OneToMany(mappedBy = "usuarios")
+    private Set<UsuarioComunidad> usuariosComunidad;
+
+    // Relación con la tabla Amistad (M:N autorelación de Usuario)
+    @OneToMany(mappedBy = "usuario")
+    private Set<Amistad> usuarios;
+
+    @OneToMany(mappedBy = "amigo")
+    private Set<Amistad> amigos;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Reaccion> reacciones;
+
+    @OneToMany(mappedBy = "usuario")
+    private Set<ComentarioResena> comentariosResenas;
+
+    @OneToMany(mappedBy = "usuario")
+    private Set<GeneroUsuario> generosUsuario;
 }
