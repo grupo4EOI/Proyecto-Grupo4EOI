@@ -47,7 +47,7 @@ public class Objeto {
     private Set<ObjetoUsuario> usuarios;
 
     // Relacion 1:N de las tablas objetos y reseñas
-    @OneToMany(mappedBy = "objetos")
+    @OneToMany(mappedBy = "objeto")
     private List<Resena> resenas;
 
     // Relacion 1:N de las tablas objetos y personasObjetos
