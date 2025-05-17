@@ -47,15 +47,15 @@ public class Usuario {
     private List<Resena> resenas = new ArrayList<>();
 
     // Relación M:N entre las tablas objetos y usuarios
-    @OneToMany(mappedBy = "objetos")
+    @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> objetos;
 
     // Relación con comentarios de las publicaciones
-    @OneToMany(mappedBy = "usuarios")
+    @OneToMany(mappedBy = "usuario")
     private Set<ComentarioPublicacion> comentariosPublicacion;
 
     // Relación con comunidad (tabla intermedia)
-    @OneToMany(mappedBy = "usuarios")
+    @OneToMany(mappedBy = "usuario")
     private Set<UsuarioComunidad> usuariosComunidad;
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)

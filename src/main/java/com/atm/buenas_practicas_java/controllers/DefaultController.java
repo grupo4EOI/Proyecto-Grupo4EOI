@@ -130,7 +130,7 @@ public class DefaultController {
     }
 
     @GetMapping("/ficha-objeto")
-    public String mostrarFichaObjet() {
-        return "fichaObjeto";
+    public String mostrarFichaObjeto() {
+        return "ficha-objeto";
     }
 }

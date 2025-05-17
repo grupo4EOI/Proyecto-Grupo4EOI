@@ -23,7 +23,7 @@ public class Publicacion {
     @Column(columnDefinition = "VARCHAR(200)")
     private String titulo;
 
-    @OneToMany(mappedBy = "publicaciones")
+    @OneToMany(mappedBy = "publicacion")
     private List<ComentarioPublicacion> comentariosPublicacion;
 
     @ManyToOne
