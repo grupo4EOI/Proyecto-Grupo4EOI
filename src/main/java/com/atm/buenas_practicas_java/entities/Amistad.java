@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +32,7 @@ public class Amistad {
     @JoinColumn(name="id_amigo")
     private Usuario amigo;
 
+    @OneToMany(mappedBy = "amistad")
+    private List<Mensaje> mensajes;
 
 }
