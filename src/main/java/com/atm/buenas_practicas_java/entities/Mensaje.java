@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
@@ -14,17 +15,17 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name="mensajes")
-
 public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMensaje;
     @Column(columnDefinition = "TEXT")
-    private String mensaje;
+    private String contenido;
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name="id_amistad")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_amistad", nullable = false)
     private Amistad amistad;
 
 }
