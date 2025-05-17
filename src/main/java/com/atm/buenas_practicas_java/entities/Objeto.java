@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -36,8 +37,9 @@ public class Objeto {
     private int temporadas;
     private int episodios;
 
-    @ManyToOne
-    @JoinColumn(name="id_tipo")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_tipo", nullable = false)
     private Tipo tipo;
 
     // Relación M:N de las tablas usuarios y objetos
