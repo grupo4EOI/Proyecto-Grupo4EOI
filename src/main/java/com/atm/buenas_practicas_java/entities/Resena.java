@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -37,5 +38,5 @@ public class Resena {
     private List<Reaccion> reacciones;
 
     @OneToMany(mappedBy = "resena")
-    private List<ComentarioResena> comentariosResena;
+    private Set<ComentarioResena> comentariosResena;
 }

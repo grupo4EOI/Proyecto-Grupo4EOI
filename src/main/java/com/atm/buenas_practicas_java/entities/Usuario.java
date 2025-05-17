@@ -52,23 +52,23 @@ public class Usuario {
 
     // Relación con comentarios de las publicaciones
     @OneToMany(mappedBy = "usuarios")
-    Set<ComentarioPublicacion> comentariosPublicacion;
+    private Set<ComentarioPublicacion> comentariosPublicacion;
 
     // Relación con comunidad (tabla intermedia)
     @OneToMany(mappedBy = "usuarios")
-    Set<UsuarioComunidad> usuariosComunidad;
+    private Set<UsuarioComunidad> usuariosComunidad;
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)
     @OneToMany(mappedBy = "usuario")
-    Set<Amistad> usuarios;
+    private Set<Amistad> usuarios;
 
     @OneToMany(mappedBy = "amigo")
-    Set<Amistad> amigos;
+    private Set<Amistad> amigos;
 
     @OneToMany(mappedBy = "usuario")
-    List<Reaccion> reacciones;
+    private List<Reaccion> reacciones;
 
     @OneToMany(mappedBy = "usuario")
-    List<ComentarioResena> comentariosResenas;
+    private Set<ComentarioResena> comentariosResenas;
 
 }
