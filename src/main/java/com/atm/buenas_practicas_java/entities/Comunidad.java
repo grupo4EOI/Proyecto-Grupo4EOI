@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -25,4 +26,7 @@ public class Comunidad {
     // Relación con usuarios (tabla intermedia)
     @OneToMany(mappedBy = "comunidades")
     private Set<UsuarioComunidad> usuariosComunidad;
+
+    @OneToMany(mappedBy = "comunidad")
+    private List<Publicacion> publicaciones;
 }

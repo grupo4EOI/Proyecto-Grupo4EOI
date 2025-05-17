@@ -26,4 +26,7 @@ public class Publicacion {
     @OneToMany(mappedBy = "publicaciones")
     private List<ComentarioPublicacion> comentariosPublicacion;
 
+    @ManyToOne
+    @JoinColumn(name = "id_comunidad")
+    private Comunidad comunidad;
 }
