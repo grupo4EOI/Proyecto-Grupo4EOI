@@ -36,4 +36,6 @@ public class Resena {
     @OneToMany(mappedBy = "resena")
     private List<Reaccion> reacciones;
 
+    @OneToMany(mappedBy = "resena")
+    private List<ComentarioResena> comentariosResena;
 }

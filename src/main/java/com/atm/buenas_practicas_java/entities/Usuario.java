@@ -67,4 +67,8 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     List<Reaccion> reacciones;
+
+    @OneToMany(mappedBy = "usuario")
+    List<ComentarioResena> comentariosResenas;
+
 }
