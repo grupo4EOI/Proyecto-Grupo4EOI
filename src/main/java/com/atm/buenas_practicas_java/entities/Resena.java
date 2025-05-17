@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,5 +32,8 @@ public class Resena {
     @ManyToOne
     @JoinColumn(name = "id_objeto")
     private Objeto objeto;
+
+    @OneToMany(mappedBy = "resena")
+    private List<Reaccion> reacciones;
 
 }

@@ -64,4 +64,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "amigo")
     Set<Amistad> amigos;
+
+    @OneToMany(mappedBy = "usuario")
+    List<Reaccion> reacciones;
 }
