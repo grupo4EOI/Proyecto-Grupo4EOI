@@ -21,7 +21,7 @@ public class Objeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_objeto")
-    private int idObjeto;
+    private Long idObjeto;
     private String titulo;
     @Column(columnDefinition = "TEXT")
     private String descripcion;

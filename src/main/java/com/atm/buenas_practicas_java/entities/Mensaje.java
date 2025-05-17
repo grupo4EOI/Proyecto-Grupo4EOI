@@ -18,7 +18,7 @@ import java.util.Date;
 public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMensaje;
+    private Long idMensaje;
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Date fecha;

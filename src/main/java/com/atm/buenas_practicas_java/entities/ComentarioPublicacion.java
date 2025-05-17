@@ -15,7 +15,7 @@ import lombok.Setter;
 public class ComentarioPublicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idComentarioPublicacion;
+    private Long idComentarioPublicacion;
 
     @Column(columnDefinition = "TEXT")
     private String contenido;

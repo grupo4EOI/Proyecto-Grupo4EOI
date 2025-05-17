@@ -17,7 +17,7 @@ public class PersonaObjeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_persona_objeto")
-    private int idPersonaObjeto;
+    private Long idPersonaObjeto;
     //Rol indica si es 1 es director y si es 0 es actor
     private boolean rol;
 

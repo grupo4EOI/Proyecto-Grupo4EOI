@@ -16,7 +16,7 @@ public class Resena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_resena")
-    private int idResena;
+    private Long idResena;
     private String titulo;
     private String contenido;
     private float puntuacion;

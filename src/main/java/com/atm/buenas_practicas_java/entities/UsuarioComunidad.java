@@ -15,7 +15,7 @@ import lombok.Setter;
 public class UsuarioComunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuarioComunidad;
+    private Long idUsuarioComunidad;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")

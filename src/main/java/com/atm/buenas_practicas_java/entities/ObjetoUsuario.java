@@ -18,7 +18,7 @@ public class ObjetoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_objeto_usuario")
-    private int idObjetoUsuario;
+    private Long idObjetoUsuario;
     private boolean favorito;
     private boolean estado;
 

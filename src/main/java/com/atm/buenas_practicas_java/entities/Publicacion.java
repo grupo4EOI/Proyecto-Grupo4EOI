@@ -18,7 +18,7 @@ public class Publicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_publicacion")
-    private int idPublicacion;
+    private Long idPublicacion;
 
     @Column(columnDefinition = "VARCHAR(200)")
     private String titulo;
