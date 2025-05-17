@@ -24,13 +24,13 @@ public class Amistad {
     private boolean estado;
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name="id_usuario")
-    private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name="id_amigo")
-    private Usuario amigo;
+//    @ManyToOne
+//    @JoinColumn(name="id_usuario")
+//    private Usuario usuario;
+//
+//    @ManyToOne
+//    @JoinColumn(name="id_amigo")
+//    private Usuario amigo;
 
     @OneToMany(mappedBy = "amistad")
     private List<Mensaje> mensajes;

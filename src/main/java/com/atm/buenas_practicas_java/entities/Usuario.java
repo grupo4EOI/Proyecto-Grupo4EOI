@@ -54,10 +54,12 @@ public class Usuario {
     private Set<UsuarioComunidad> usuariosComunidad;
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany
+    @JoinColumn(name = "id_usuario")
     private Set<Amistad> usuarios;
 
-    @OneToMany(mappedBy = "amigo")
+    @OneToMany
+    @JoinColumn(name = "id_amigo")
     private Set<Amistad> amigos;
 
     @OneToMany(mappedBy = "usuario")
