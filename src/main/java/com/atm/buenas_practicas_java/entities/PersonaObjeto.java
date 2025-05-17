@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 @Getter
 @Setter
@@ -21,12 +22,14 @@ public class PersonaObjeto {
     //Rol indica si es 1 es director y si es 0 es actor
     private boolean rol;
 
-    @ManyToOne
-    @JoinColumn(name="id_persona")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_persona", nullable = false)
     private Persona persona;
 
-    @ManyToOne
-    @JoinColumn(name="id_objeto")
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_objeto", nullable = false)
     private Objeto objeto;
 
 }

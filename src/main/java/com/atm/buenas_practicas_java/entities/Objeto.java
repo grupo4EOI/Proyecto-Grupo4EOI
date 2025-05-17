@@ -50,6 +50,6 @@ public class Objeto {
 
     // Relacion 1:N de las tablas objetos y personasObjetos
     @OneToMany(mappedBy = "objeto")
-    private List<PersonaObjeto> personasObjetos;
+    private Set<PersonaObjeto> personasObjetos;
 
 }

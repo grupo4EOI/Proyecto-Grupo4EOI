@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,5 +32,5 @@ public class Persona {
 
     //Relacion 1:M personas con personas_objetos
     @OneToMany(mappedBy = "persona")
-    private List<PersonaObjeto> personasObjetos;
+    private Set<PersonaObjeto> personasObjetos;
 }
