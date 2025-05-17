@@ -128,4 +128,9 @@ public class DefaultController {
     {
         return "quienesSomos"; // View name
     }
+
+    @GetMapping("/ficha-objeto")
+    public String mostrarFichaObjet() {
+        return "fichaObjeto";
+    }
 }

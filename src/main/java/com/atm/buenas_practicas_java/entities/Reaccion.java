@@ -22,7 +22,6 @@ public class Reaccion {
     private Boolean like;
 
     @NotNull
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
