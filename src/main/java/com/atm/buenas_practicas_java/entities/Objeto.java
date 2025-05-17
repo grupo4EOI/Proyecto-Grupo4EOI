@@ -43,7 +43,7 @@ public class Objeto {
     private Tipo tipo;
 
     // Relación M:N de las tablas usuarios y objetos
-    @OneToMany(mappedBy = "usuarios")
+    @OneToMany(mappedBy = "objeto")
     private Set<ObjetoUsuario> usuarios;
 
     // Relacion 1:N de las tablas objetos y reseñas
