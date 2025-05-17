@@ -15,8 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="amistades")
-
+@Table(name="amistades", uniqueConstraints = @UniqueConstraint(columnNames = {"id_usuario", "id_amigo"}))
 public class Amistad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

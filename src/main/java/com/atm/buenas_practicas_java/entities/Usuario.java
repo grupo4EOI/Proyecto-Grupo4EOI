@@ -9,7 +9,6 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +23,6 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @NotNull
     private Long idUsuario;
     @NotNull
     private String nombreUsuario;
@@ -32,19 +30,16 @@ public class Usuario {
     private String email;
     @NotNull
     private String contrasena;
-    @Column(columnDefinition = "DATETIME default NOW()")
     private LocalDateTime fechaRegistro;
     private String avatarUrl;
     private String biografia;
-    @Column(columnDefinition = "DATETIME default NOW()")
     private LocalDateTime ultimaConexion;
-    @Column(columnDefinition = "BOOLEAN default FALSE")
+    @Column(columnDefinition = "BOOLEAN default false")
     private boolean esAdministrador;
 
     // Relación 1:N con reseñas
-    @OneToMany
-    @JoinColumn(name = "id_resena")
-    private List<Resena> resenas = new ArrayList<>();
+    @OneToMany(mappedBy = "usuario")
+    private List<Resena> resenas;
 
     // Relación M:N entre las tablas objetos y usuarios
     @OneToMany(mappedBy = "usuario")
