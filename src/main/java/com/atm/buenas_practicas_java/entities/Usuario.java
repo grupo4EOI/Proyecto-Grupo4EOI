@@ -22,7 +22,6 @@ import java.util.Set;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long idUsuario;
     @NotNull
     private String nombreUsuario;
