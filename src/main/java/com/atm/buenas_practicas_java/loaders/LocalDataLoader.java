@@ -40,6 +40,8 @@ public class LocalDataLoader {
     private final UsuarioRepository usuarioRepository;
     private final ResenaRepository resenaRepository;
     private final TipoRepository tipoRepository;
+    private final GeneroRepository generoRepository;
+    private final GeneroObjetoRepository generoObjetoRepository;
 
     /**
      * Constructor de la clase {@code LocalDataLoader}.
@@ -54,7 +56,7 @@ public class LocalDataLoader {
      *                                Es utilizado para gestionar datos de la entidad hija y su relación con
      *                                la entidad padre.
      */
-    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository) {
+    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository, GeneroRepository generoRepository, GeneroObjetoRepository generoObjetoRepository) {
         this.repository = repository;
         this.entidadHijaRepository = entidadHijaRepository;
         this.objetoRepository = objetoRepository;
@@ -63,6 +65,8 @@ public class LocalDataLoader {
         this.usuarioRepository = usuarioRepository;
         this.resenaRepository = resenaRepository;
         this.tipoRepository = tipoRepository;
+        this.generoRepository = generoRepository;
+        this.generoObjetoRepository = generoObjetoRepository;
     }
 
     /**
@@ -120,14 +124,22 @@ public class LocalDataLoader {
         // Tipos de objeto
         Tipo tipoPeliculas = new Tipo();
         tipoPeliculas.setNombre("pelicula");
-
         Tipo tipoSeries = new Tipo();
         tipoSeries.setNombre("serie");
-
         Tipo tipoVideojuegos = new Tipo();
         tipoVideojuegos.setNombre("videojuego");
 
         tipoRepository.saveAll(Arrays.asList(tipoPeliculas, tipoSeries, tipoVideojuegos));
+
+        // Géneros de prueba
+        Genero genero1 = new Genero();
+        genero1.setNombre("Drama");
+        Genero genero2 = new Genero();
+        genero2.setNombre("Romance");
+        Genero genero3 = new Genero();
+        genero3.setNombre("Comedia");
+
+        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3));
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
@@ -159,6 +171,7 @@ public class LocalDataLoader {
         objeto.setEpisodios(0);
         objeto.setTipo(tipoPeliculas);
 
+
         PersonaObjeto personaObjeto1 = new PersonaObjeto();
         personaObjeto1.setRol(false);
         personaObjeto1.setPersona(persona1);
@@ -169,9 +182,24 @@ public class LocalDataLoader {
         personaObjeto2.setPersona(persona2);
         personaObjeto2.setObjeto(objeto);
 
-        objeto.setPersonasObjetos(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2)));
+        objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2)));
+
+        GeneroObjeto generoObjeto1 = new GeneroObjeto();
+        generoObjeto1.setGenero(genero1);
+        generoObjeto1.setObjeto(objeto);
+        GeneroObjeto generoObjeto2 = new GeneroObjeto();
+        generoObjeto2.setGenero(genero2);
+        generoObjeto2.setObjeto(objeto);
+        GeneroObjeto generoObjeto3 = new GeneroObjeto();
+        generoObjeto3.setGenero(genero3);
+        generoObjeto3.setObjeto(objeto);
+
+
+        objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3)));
 
         objetoRepository.save(objeto);
+
+        generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3));
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2));
 
