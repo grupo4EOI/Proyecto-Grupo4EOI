@@ -1,8 +1,10 @@
 package com.atm.buenas_practicas_java.controllers;
 
 
+import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.services.EntidadHijaService;
 import com.atm.buenas_practicas_java.services.EntidadPadreService;
+import com.atm.buenas_practicas_java.services.ObjetoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +39,7 @@ public class DefaultController {
 
     private final EntidadHijaService entidadHijaService;
     private final EntidadPadreService entidadPadreService;
+    private final ObjetoService objetoService;
 
     /**
      * Constructor de la clase DefaultController.
@@ -49,9 +52,10 @@ public class DefaultController {
      * @param entidadPadreService instancia de {@link EntidadPadreService} que proporciona
      *                            funcionalidades adicionales relacionadas con la entidad EntidadPadre.
      */
-    public DefaultController(EntidadHijaService entidadHijaService, EntidadPadreService entidadPadreService) {
+    public DefaultController(EntidadHijaService entidadHijaService, EntidadPadreService entidadPadreService, ObjetoService objetoService) {
         this.entidadHijaService = entidadHijaService;
         this.entidadPadreService = entidadPadreService;
+        this.objetoService = objetoService;
     }
 
     /**
@@ -111,6 +115,14 @@ public class DefaultController {
     }
 
     /* Aqui empiezan nuestros métodos */
+    @GetMapping("/ficha-objeto-new/{id}")
+    public String mostrarFichaObjeto(Model model, @PathVariable Long id) {
+        Objeto objeto = objetoService.findById(id);
+        model.addAttribute("titulo", objeto.getTitulo());
+
+        return "ficha-objeto-new";
+    }
+
     @GetMapping("/contacto")
     public String mostrarPaginaContacto()
     {
@@ -129,8 +141,5 @@ public class DefaultController {
         return "quienesSomos"; // View name
     }
 
-    @GetMapping("/ficha-objeto")
-    public String mostrarFichaObjeto() {
-        return "ficha-objeto";
-    }
+
 }
