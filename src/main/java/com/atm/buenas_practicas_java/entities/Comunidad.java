@@ -18,6 +18,7 @@ import java.util.Set;
 public class Comunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idComunidad;
     private String nombreComunidad;
     @Column(columnDefinition = "TEXT")

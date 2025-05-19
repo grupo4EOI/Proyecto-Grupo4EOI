@@ -19,7 +19,7 @@ import java.util.Date;
 public class GeneroObjeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_genero_objeto")
+    @Column(name="id_genero_objeto", columnDefinition = "INTEGER")
     private int idGeneroObjeto;
 
     // Relación M:N entre la tabla generos y objetos.
