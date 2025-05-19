@@ -22,6 +22,7 @@ import java.util.Set;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idUsuario;
     @NotNull
     private String nombreUsuario;

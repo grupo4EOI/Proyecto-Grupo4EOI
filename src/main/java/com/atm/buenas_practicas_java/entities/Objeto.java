@@ -21,7 +21,7 @@ import java.util.Set;
 public class Objeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_objeto")
+    @Column(name = "id_objeto", columnDefinition = "INTEGER")
     private Long idObjeto;
     private String titulo;
     @Column(columnDefinition = "TEXT")

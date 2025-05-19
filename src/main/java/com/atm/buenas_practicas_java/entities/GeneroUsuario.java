@@ -18,7 +18,7 @@ import java.util.Date;
 public class GeneroUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_genero_usuario")
+    @Column(name="id_genero_usuario", columnDefinition = "INTEGER")
     private int idGeneroUsuario;
 
     // Relacion N:M de las tablas generos y usuarios

@@ -17,6 +17,7 @@ import java.util.List;
 public class ComentarioPublicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idComentarioPublicacion;
 
     @Column(columnDefinition = "TEXT")

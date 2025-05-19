@@ -19,7 +19,7 @@ import java.util.List;
 public class Amistad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id" ,columnDefinition = "INTEGER")
     private Long idAmistad;
     private boolean estado;
     private Date fecha;

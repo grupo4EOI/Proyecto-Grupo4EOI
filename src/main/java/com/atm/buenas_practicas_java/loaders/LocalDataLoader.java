@@ -138,14 +138,17 @@ public class LocalDataLoader {
         genero2.setNombre("Romance");
         Genero genero3 = new Genero();
         genero3.setNombre("Comedia");
+        Genero genero4 = new Genero();
+        genero4.setNombre("RPG");
 
-        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3));
+
+        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3, genero4));
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
         persona1.setNombre("Daniel");
         persona1.setApellido("Radcliffe");
-        persona1.setBiografia("Este chaval nación en Torremolinos junto con su familia y amigos." +
+        persona1.setBiografia("Este chaval nació en Torremolinos junto con su familia y amigos." +
                 " Disfrutó de una infancia agradable y luego se puso a hacer películas.");
         persona1.setFotoUrl("https://cdn-images.dzcdn.net/images/artist/477d3a877aeb43dd565cb0d9888861f7/1900x1900-000000-80-0-0.jpg");
 

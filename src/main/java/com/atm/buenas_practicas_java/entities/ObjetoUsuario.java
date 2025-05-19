@@ -17,7 +17,7 @@ import java.util.Date;
 public class ObjetoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_objeto_usuario")
+    @Column(name = "id_objeto_usuario", columnDefinition = "INTEGER")
     private Long idObjetoUsuario;
     private boolean favorito;
     private boolean estado;

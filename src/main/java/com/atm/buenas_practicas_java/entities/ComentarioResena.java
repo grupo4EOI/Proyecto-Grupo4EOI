@@ -19,6 +19,7 @@ import java.util.List;
 public class ComentarioResena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idComentarioResena;
     private LocalDateTime fecha;
     @Column(columnDefinition = "TEXT")
