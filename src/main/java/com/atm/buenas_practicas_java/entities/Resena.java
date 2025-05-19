@@ -20,7 +20,7 @@ public class Resena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_resena", columnDefinition = "INTEGER")
-    private Long idResena;
+    private int idResena;
     private String titulo;
     private String contenido;
     private float puntuacion;
@@ -32,9 +32,8 @@ public class Resena {
     private Usuario usuario;
 
     // Relacion 1:N entre la tabla objetos y reseñas
-    @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_objeto", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_objeto")
     private Objeto objeto;
 
     @OneToMany(mappedBy = "resena")

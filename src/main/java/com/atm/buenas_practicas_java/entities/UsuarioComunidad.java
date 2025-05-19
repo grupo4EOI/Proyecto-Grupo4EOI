@@ -15,6 +15,7 @@ import lombok.Setter;
 public class UsuarioComunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idUsuarioComunidad;
 
     @ManyToOne
