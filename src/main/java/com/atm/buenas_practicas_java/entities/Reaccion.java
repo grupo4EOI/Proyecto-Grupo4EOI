@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class Reaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idReaccion;
     @NotNull
     private Boolean like;

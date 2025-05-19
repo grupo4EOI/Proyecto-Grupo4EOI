@@ -19,7 +19,7 @@ import java.util.Set;
 public class Resena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_resena")
+    @Column(name = "id_resena", columnDefinition = "INTEGER")
     private Long idResena;
     private String titulo;
     private String contenido;

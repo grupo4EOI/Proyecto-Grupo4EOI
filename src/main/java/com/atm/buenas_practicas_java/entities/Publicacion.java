@@ -17,7 +17,7 @@ import java.util.List;
 public class Publicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_publicacion")
+    @Column(name = "id_publicacion", columnDefinition = "INTEGER")
     private Long idPublicacion;
 
     @Column(columnDefinition = "VARCHAR(200)")

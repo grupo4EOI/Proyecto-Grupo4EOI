@@ -145,7 +145,8 @@ public class DefaultController {
      * Path variable con Id o con el titulo del objeto
      */
     @GetMapping("/ficha-objeto")
-    public String mostrarFichaObjeto() {
+    public String mostrarFichaObjeto(Model model) {
+
         return "/ficha-objeto";
     }
 
