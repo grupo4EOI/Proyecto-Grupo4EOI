@@ -15,8 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="amistades")
-
+@Table(name="amistades", uniqueConstraints = @UniqueConstraint(columnNames = {"id_usuario", "id_amigo"}))
 public class Amistad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +24,13 @@ public class Amistad {
     private boolean estado;
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name="id_usuario")
-    private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name="id_amigo")
-    private Usuario amigo;
+//    @ManyToOne
+//    @JoinColumn(name="id_usuario")
+//    private Usuario usuario;
+//
+//    @ManyToOne
+//    @JoinColumn(name="id_amigo")
+//    private Usuario amigo;
 
     @OneToMany(mappedBy = "amistad")
     private List<Mensaje> mensajes;

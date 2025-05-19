@@ -3,6 +3,7 @@ package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.services.EntidadHijaService;
 import com.atm.buenas_practicas_java.services.EntidadPadreService;
+import com.atm.buenas_practicas_java.services.ObjetoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class DefaultController {
 
     private final EntidadHijaService entidadHijaService;
     private final EntidadPadreService entidadPadreService;
+    private final ObjetoService objetoService;
 
     /**
      * Constructor de la clase DefaultController.
@@ -49,9 +51,10 @@ public class DefaultController {
      * @param entidadPadreService instancia de {@link EntidadPadreService} que proporciona
      *                            funcionalidades adicionales relacionadas con la entidad EntidadPadre.
      */
-    public DefaultController(EntidadHijaService entidadHijaService, EntidadPadreService entidadPadreService) {
+    public DefaultController(EntidadHijaService entidadHijaService, EntidadPadreService entidadPadreService, ObjetoService objetoService) {
         this.entidadHijaService = entidadHijaService;
         this.entidadPadreService = entidadPadreService;
+        this.objetoService = objetoService;
     }
 
     /**
@@ -111,21 +114,70 @@ public class DefaultController {
     }
 
     /* Aqui empiezan nuestros métodos */
+    @GetMapping("/ajustes-perfil")
+    public String mostrarAjustesPerfil() {
+        return "/ajustes-perfil";
+    }
+
+    /** TODO: Añadir path variable cuando se hagan los serviicios y controladores */
+    @GetMapping("/comunidad-harry-potter")
+    public String mostrarComunidad() {
+        return "/comunidad-harry-potter";
+    }
+
+    @GetMapping("/comunidades")
+    public String mostrarComunidades() {
+        return "/comunidades";
+    }
+
     @GetMapping("/contacto")
-    public String mostrarPaginaContacto()
-    {
-        return "contacto"; // View name
+    public String mostrarContacto() {
+        return "/contacto";
+    }
+
+    /** TODO: Cambiar el path y este mapping cuando se hagan servicios y controladores */
+    @GetMapping("/ejemplo-tema")
+    public String mostrarTema() {
+        return "/ejemplo-tema";
+    }
+
+    /** TODO: Cambiar el mapping cuando se hagan servicios y controladores
+     * Path variable con Id o con el titulo del objeto
+     */
+    @GetMapping("/ficha-objeto")
+    public String mostrarFichaObjeto() {
+        return "/ficha-objeto";
+    }
+
+    /** TODO: Cambiar el mapping a un PostMapping cuando se hagan servicios y controladores */
+    @GetMapping("/nuevo-tema")
+    public String mostrarNuevoTema() {
+        return "/nuevo-tema";
+    }
+
+    @GetMapping("/pagina-principal")
+    public String mostrarPaginaPrincipal() {
+        return "/pagina-principal";
+    }
+
+    /** TODO: Cambiar mapping cuando se hagan servicios y controladores */
+    @GetMapping("/perfil")
+    public String mostrarPerfil() {
+        return "/perfil";
     }
 
     @GetMapping("/politica-privacidad")
-    public String mostrarPoliticaPrivacidad()
-    {
-        return "politicaPrivacidad"; // View name
+    public String mostrarPoliticaPrivacidad() {
+        return "/politica-privacidad";
     }
 
     @GetMapping("/quienes-somos")
-    public String mostrarQuienesSomos()
-    {
-        return "quienesSomos"; // View name
+    public String mostrarQuienesSomos() {
+        return "/quienes-somos";
+    }
+
+    @GetMapping("/terminos-y-condiciones")
+    public String mostrarTerminosYCondiciones() {
+        return "/terminos-y-condiciones";
     }
 }

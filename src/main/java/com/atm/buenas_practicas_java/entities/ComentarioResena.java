@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,4 +33,7 @@ public class ComentarioResena {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_resena", nullable = false)
     private Resena resena;
+
+    @OneToMany(mappedBy = "comentarioResena")
+    private List<Reaccion> reacciones;
 }

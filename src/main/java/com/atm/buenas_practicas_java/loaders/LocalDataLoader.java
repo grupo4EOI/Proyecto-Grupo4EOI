@@ -1,15 +1,15 @@
 package com.atm.buenas_practicas_java.loaders;
 
-import com.atm.buenas_practicas_java.entities.EntidadHija;
-import com.atm.buenas_practicas_java.entities.EntidadPadre;
-import com.atm.buenas_practicas_java.repositories.EntidadHijaRepository;
-import com.atm.buenas_practicas_java.repositories.EntidadPadreRepository;
+import com.atm.buenas_practicas_java.entities.*;
+import com.atm.buenas_practicas_java.repositories.*;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
-import java.util.Arrays;
+import java.time.LocalDateTime;
+import java.util.*;
 
 
 /**
@@ -34,6 +34,14 @@ public class LocalDataLoader {
 
     private final EntidadPadreRepository repository;
     private final EntidadHijaRepository entidadHijaRepository;
+    private final ObjetoRepository objetoRepository;
+    private final PersonaRepository personaRepository;
+    private final PersonaObjetoRepository personaObjetoRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final ResenaRepository resenaRepository;
+    private final TipoRepository tipoRepository;
+    private final GeneroRepository generoRepository;
+    private final GeneroObjetoRepository generoObjetoRepository;
 
     /**
      * Constructor de la clase {@code LocalDataLoader}.
@@ -48,9 +56,17 @@ public class LocalDataLoader {
      *                                Es utilizado para gestionar datos de la entidad hija y su relación con
      *                                la entidad padre.
      */
-    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository) {
+    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository, GeneroRepository generoRepository, GeneroObjetoRepository generoObjetoRepository) {
         this.repository = repository;
         this.entidadHijaRepository = entidadHijaRepository;
+        this.objetoRepository = objetoRepository;
+        this.personaRepository = personaRepository;
+        this.personaObjetoRepository = personaObjetoRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.resenaRepository = resenaRepository;
+        this.tipoRepository = tipoRepository;
+        this.generoRepository = generoRepository;
+        this.generoObjetoRepository = generoObjetoRepository;
     }
 
     /**
@@ -104,11 +120,125 @@ public class LocalDataLoader {
             entidadHija.setEntidadPadre(entidadPadre);
             entidadHijaRepository.save(entidadHija);
         }
+
+        // Tipos de objeto
+        Tipo tipoPeliculas = new Tipo();
+        tipoPeliculas.setNombre("pelicula");
+        Tipo tipoSeries = new Tipo();
+        tipoSeries.setNombre("serie");
+        Tipo tipoVideojuegos = new Tipo();
+        tipoVideojuegos.setNombre("videojuego");
+
+        tipoRepository.saveAll(Arrays.asList(tipoPeliculas, tipoSeries, tipoVideojuegos));
+
+        // Géneros de prueba
+        Genero genero1 = new Genero();
+        genero1.setNombre("Drama");
+        Genero genero2 = new Genero();
+        genero2.setNombre("Romance");
+        Genero genero3 = new Genero();
+        genero3.setNombre("Comedia");
+
+        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3));
+
+        // Personas (actores / directores) de prueba
+        Persona persona1 = new Persona();
+        persona1.setNombre("Daniel");
+        persona1.setApellido("Radcliffe");
+        persona1.setBiografia("Este chaval nación en Torremolinos junto con su familia y amigos." +
+                " Disfrutó de una infancia agradable y luego se puso a hacer películas.");
+        persona1.setFotoUrl("https://cdn-images.dzcdn.net/images/artist/477d3a877aeb43dd565cb0d9888861f7/1900x1900-000000-80-0-0.jpg");
+
+        Persona persona2 = new Persona();
+        persona2.setNombre("Emma");
+        persona2.setApellido("Watson");
+        persona2.setBiografia("Esta chavala nació en Guadalajara junto con su familia y amigos." +
+                " Disfrutó de una infancia muy triste y luego se puso a hacer películas.");
+        persona2.setFotoUrl("https://m.media-amazon.com/images/M/MV5BMTQ3ODE2NTMxMV5BMl5BanBnXkFtZTgwOTIzOTQzMjE@._V1_.jpg");
+
+        personaRepository.saveAll(Arrays.asList(persona1, persona2));
+
+        // Objeto de prueba
+        Objeto objeto = new Objeto();
+        objeto.setTitulo("Harry Potter");
+        objeto.setDescripcion("Harry Potter es una pelicula que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto.setImagenUrl("https://www.compraentradas.com/Carteles/piedrafilosofal.jpg");
+        objeto.setDuracionMinutos(123);
+        objeto.setTemporadas(0);
+        objeto.setEpisodios(0);
+        objeto.setTipo(tipoPeliculas);
+
+
+        PersonaObjeto personaObjeto1 = new PersonaObjeto();
+        personaObjeto1.setRol(false);
+        personaObjeto1.setPersona(persona1);
+        personaObjeto1.setObjeto(objeto);
+
+        PersonaObjeto personaObjeto2 = new PersonaObjeto();
+        personaObjeto2.setRol(false);
+        personaObjeto2.setPersona(persona2);
+        personaObjeto2.setObjeto(objeto);
+
+        objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2)));
+
+        GeneroObjeto generoObjeto1 = new GeneroObjeto();
+        generoObjeto1.setGenero(genero1);
+        generoObjeto1.setObjeto(objeto);
+        GeneroObjeto generoObjeto2 = new GeneroObjeto();
+        generoObjeto2.setGenero(genero2);
+        generoObjeto2.setObjeto(objeto);
+        GeneroObjeto generoObjeto3 = new GeneroObjeto();
+        generoObjeto3.setGenero(genero3);
+        generoObjeto3.setObjeto(objeto);
+
+
+        objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3)));
+
+        objetoRepository.save(objeto);
+
+        generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3));
+
+        personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2));
+
+        // Usuarios de prueba
+        Usuario usuario1 = new Usuario();
+        usuario1.setNombreUsuario("Usuario1");
+        usuario1.setEmail("hola@gmail.com");
+        usuario1.setContrasena("1234");
+
+        Usuario usuario2 = new Usuario();
+        usuario2.setNombreUsuario("Usuario2");
+        usuario2.setEmail("adios@gmail.com");
+        usuario2.setContrasena("4321");
+
+        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2));
+
+        // Reseñas de prueba
+        Resena resena1 = new Resena();
+        resena1.setTitulo("La peor película de mi vida");
+        resena1.setContenido("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae.");
+        resena1.setPuntuacion(3);
+        resena1.setSpoiler(false);
+        resena1.setUsuario(usuario1);
+        resena1.setObjeto(objeto);
+
+        Resena resena2 = new Resena();
+        resena2.setTitulo("La mejor película de mi vida");
+        resena2.setContenido("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae.");
+        resena2.setPuntuacion(3);
+        resena2.setSpoiler(false);
+        resena2.setUsuario(usuario2);
+        resena2.setObjeto(objeto);
+        resenaRepository.saveAll(Arrays.asList(resena1, resena2));
+
         log.info("Datos de entidades cargados correctamente.");
     }
-
-
-
-
 
 }

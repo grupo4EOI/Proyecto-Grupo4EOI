@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -15,19 +15,16 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name="personas")
-
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_persona")
     private Long idPersona;
     private String nombre;
     private String apellido;
-    @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(columnDefinition = "TEXT")
     private String biografia;
-    @Column(name = "foto_url")
+    @Column(columnDefinition = "TEXT")
     private String fotoUrl;
 
     //Relacion 1:M personas con personas_objetos

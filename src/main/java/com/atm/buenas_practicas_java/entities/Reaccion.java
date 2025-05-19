@@ -18,11 +18,9 @@ public class Reaccion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReaccion;
     @NotNull
-    @Column(nullable = false)
     private Boolean like;
 
     @NotNull
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
@@ -34,4 +32,8 @@ public class Reaccion {
     @ManyToOne
     @JoinColumn(name = "id_resena")
     private Resena resena;
+
+    @ManyToOne
+    @JoinColumn(name = "id_comentario_resena")
+    private ComentarioResena comentarioResena;
 }
