@@ -18,6 +18,7 @@ import java.util.Date;
 public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idMensaje;
     @Column(columnDefinition = "TEXT")
     private String contenido;

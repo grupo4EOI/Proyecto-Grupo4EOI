@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class ObjetoComunidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long id;
 
     @NotNull

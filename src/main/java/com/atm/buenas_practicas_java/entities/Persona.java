@@ -18,6 +18,7 @@ import java.util.Set;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INTEGER")
     private Long idPersona;
     private String nombre;
     private String apellido;

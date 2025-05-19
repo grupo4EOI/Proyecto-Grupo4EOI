@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public class PersonaObjeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_persona_objeto")
+    @Column(name="id_persona_objeto", columnDefinition = "INTEGER")
     private Long idPersonaObjeto;
     //Rol indica si es 1 es director y si es 0 es actor
     private boolean rol;
