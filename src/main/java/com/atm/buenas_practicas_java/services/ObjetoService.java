@@ -33,6 +33,6 @@ public class ObjetoService {
 
     public Double calcularPuntuacionObjeto(Objeto objeto) {
         List<Resena> resenas = resenaRepository.findResenasByObjeto(objeto);
-        return resenas.stream().mapToDouble(r -> r.getPuntuacion()).sum() / (resenas.size());
+        return resenas.stream().mapToDouble(Resena::getPuntuacion).sum() / (resenas.size());
     }
 }
