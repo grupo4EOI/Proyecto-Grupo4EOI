@@ -14,7 +14,7 @@ a:hover, .nav-link:hover {
     color: white !important;
 }
 .btn:hover {
-    background-color: #FF8C42 !important;
+    background-color: #FF8C42;
 }
 #barraDeBusqueda {
     width:430px !important;
@@ -71,3 +71,93 @@ a:hover, .nav-link:hover {
     }
 }
 
+
+/* Estilo PopUp Registro */
+
+.modal-content {
+    width: 80%;
+    margin: 0 auto;
+}
+.modal-body {
+    padding: 0;
+}
+.btn-close {
+    position: absolute;
+    right: 0;
+    padding: 1em;
+}
+
+.h1reg{
+    font-size: 2.3em;
+    font-weight: bold;
+    color: black;
+}
+.myform-reg {
+    padding: 2em;
+    max-width: 100%;
+    color: #fff;
+    box-shadow: 0 10px 10px 0 rgba(22, 22, 26, 0.18);
+}
+@media (max-width: 576px) {
+    .myform-reg {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.myform-reg .btn {
+    width: 100%;
+    font-weight: 800;
+    background-color: #000000;
+    border-radius: 0;
+    padding: 0.5em 0;
+}
+.myform-reg .btn:hover {
+    background-color: inherit;
+    color: #000000;
+    border-color: #fff;
+}
+
+.textoNTC{
+    text-align: center;
+    /*padding-top: 2em;*/
+    color: grey;
+}
+
+.linkReg{
+    color: #000000;
+    text-decoration: none;
+}
+.linkReg:hover{
+    color: #ff8c42;
+}
+.mb-3{
+    color: black;
+}
+
+.password-container {
+    position: relative;
+}
+
+.input-group-text {
+    background: transparent;
+    border-left: none;
+    cursor: pointer;
+}
+
+.input-group-text i {
+    font-size: 1.3rem;
+    color: #666;
+}
+
+.input-group-text i:hover {
+    color: #333;
+}
+
+.form-control {
+    padding-right: 40px; /* Espacio para el ícono */
+}
+
+.btn-register:hover {
+    background-color: #000000;
+}
