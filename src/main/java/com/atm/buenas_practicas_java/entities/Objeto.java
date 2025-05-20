@@ -34,8 +34,7 @@ public class Objeto {
     private String trailerUrl;
     @Column(name="duracion_minutos")
     private int duracionMinutos;
-    private int temporadas;
-    private int episodios;
+
 
     @NotNull
     @ManyToOne(optional = false)
