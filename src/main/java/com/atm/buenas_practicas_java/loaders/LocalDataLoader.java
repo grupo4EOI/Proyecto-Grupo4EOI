@@ -222,7 +222,7 @@ public class LocalDataLoader {
         resena1.setContenido("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
                 " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
                 " quibusdam quisquam quos repellat sunt vitae.");
-        resena1.setPuntuacion(3);
+        resena1.setPuntuacion(3.0);
         resena1.setSpoiler(false);
         resena1.setUsuario(usuario1);
         resena1.setObjeto(objeto);
@@ -232,7 +232,7 @@ public class LocalDataLoader {
         resena2.setContenido("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
                 " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
                 " quibusdam quisquam quos repellat sunt vitae.");
-        resena2.setPuntuacion(3);
+        resena2.setPuntuacion(3.5);
         resena2.setSpoiler(false);
         resena2.setUsuario(usuario2);
         resena2.setObjeto(objeto);
