@@ -1,7 +1,9 @@
 package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.entities.Objeto;
+import com.atm.buenas_practicas_java.entities.Resena;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
+import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +12,11 @@ import java.util.List;
 public class ObjetoService {
 
     private final ObjetoRepository objetoRepository;
+    private final ResenaRepository resenaRepository;
 
-    public ObjetoService(ObjetoRepository objetoRepository) {
+    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository) {
         this.objetoRepository = objetoRepository;
+        this.resenaRepository = resenaRepository;
     }
 
     public Objeto save(Objeto objeto) {
@@ -25,5 +29,10 @@ public class ObjetoService {
 
     public Objeto findById(Long id) {
         return objetoRepository.findObjetoByIdObjeto(id);
+    }
+
+    public Double calcularPuntuacionObjeto(Objeto objeto) {
+        List<Resena> resenas = resenaRepository.findResenasByObjeto(objeto);
+        return resenas.stream().mapToDouble(r -> r.getPuntuacion()).sum() / (resenas.size());
     }
 }
