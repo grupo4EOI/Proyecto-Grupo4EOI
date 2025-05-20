@@ -167,10 +167,8 @@ public class LocalDataLoader {
                 " quibusdam quisquam quos repellat sunt vitae");
         objeto.setImagenUrl("https://www.compraentradas.com/Carteles/piedrafilosofal.jpg");
         objeto.setDuracionMinutos(123);
-        objeto.setTemporadas(0);
-        objeto.setEpisodios(0);
         objeto.setTipo(tipoPeliculas);
-
+        objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
 
         PersonaObjeto personaObjeto1 = new PersonaObjeto();
         personaObjeto1.setRol(false);
