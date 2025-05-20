@@ -142,16 +142,6 @@ public class DefaultController {
         return "/ejemplo-tema";
     }
 
-    /** TODO: Cambiar el mapping cuando se hagan servicios y controladores
-     * Path variable con Id o con el titulo del objeto
-     */
-    @GetMapping("/ficha-objeto/{id}")
-    public String mostrarFichaObjeto(Model model, @PathVariable Long id) {
-        Objeto objeto = objetoService.findById(id);
-        model.addAttribute("objeto", objeto);
-        return "ficha-objeto";
-    }
-
     /** TODO: Cambiar el mapping a un PostMapping cuando se hagan servicios y controladores */
     @GetMapping("/nuevo-tema")
     public String mostrarNuevoTema() {
