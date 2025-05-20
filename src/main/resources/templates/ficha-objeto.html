@@ -63,8 +63,8 @@
   <div class="row mx-3 gx-0">
 
     <!-- Titular y datos: año publicación y duración -->
-    <div class="col-12 mt-4"><h2>El lado oscuro del corazón</h2></div>
-    <div class="col-12 mt-2"><p>Año publicación: 1992 - Duración: 2h 7min</p></div>
+    <div class="col-12 mt-4"><h2 th:text="${objeto.getTitulo()}">El lado oscuro del corazón</h2></div>
+    <div class="col-12 mt-2"><p th:text="'Año publicación: ' + ${objeto.getFechaPublicacion()} + ' - Duración: ' + ${objeto.getDuracion()} min">Año publicación: 1992 - Duración: 2h 7min</p></div>
 
     <!-- Imagen objeto -->
     <div class="image-container-ext">
