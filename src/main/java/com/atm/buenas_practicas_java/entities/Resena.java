@@ -23,7 +23,7 @@ public class Resena {
     private Long idResena;
     private String titulo;
     private String contenido;
-    private float puntuacion;
+    private Double puntuacion;
     private boolean spoiler;
 
     @NotNull
