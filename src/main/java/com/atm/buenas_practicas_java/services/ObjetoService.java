@@ -35,4 +35,8 @@ public class ObjetoService {
         List<Resena> resenas = resenaRepository.findResenasByObjeto(objeto);
         return resenas.stream().mapToDouble(Resena::getPuntuacion).sum() / (resenas.size());
     }
+
+    public int calcularNumeroResenas(Objeto objeto) {
+        return resenaRepository.findResenasByObjeto(objeto).size();
+    }
 }

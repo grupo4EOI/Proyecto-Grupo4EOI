@@ -54,8 +54,9 @@ public class Objeto {
     private Set<PersonaObjeto> personasObjeto;
 
     @OneToMany(mappedBy = "objeto")
-    private Set<ObjetoComunidad> objetosComunidades;
-
-    @OneToMany(mappedBy = "objeto")
     private Set<GeneroObjeto> generosObjeto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_comunidad")
+    private Comunidad comunidad;
 }

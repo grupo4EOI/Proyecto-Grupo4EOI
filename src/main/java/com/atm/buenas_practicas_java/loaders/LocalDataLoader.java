@@ -42,6 +42,9 @@ public class LocalDataLoader {
     private final TipoRepository tipoRepository;
     private final GeneroRepository generoRepository;
     private final GeneroObjetoRepository generoObjetoRepository;
+    private final ComentarioPublicacionRepository comentarioPublicacionRepository;
+    private final PublicacionRepository publicacionRepository;
+    private final ComunidadRepository comunidadRepository;
 
     /**
      * Constructor de la clase {@code LocalDataLoader}.
@@ -56,7 +59,7 @@ public class LocalDataLoader {
      *                                Es utilizado para gestionar datos de la entidad hija y su relación con
      *                                la entidad padre.
      */
-    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository, GeneroRepository generoRepository, GeneroObjetoRepository generoObjetoRepository) {
+    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository, GeneroRepository generoRepository, GeneroObjetoRepository generoObjetoRepository, ComentarioPublicacionRepository comentarioPublicacionRepository, PublicacionRepository publicacionRepository, ComunidadRepository comunidadRepository) {
         this.repository = repository;
         this.entidadHijaRepository = entidadHijaRepository;
         this.objetoRepository = objetoRepository;
@@ -67,6 +70,9 @@ public class LocalDataLoader {
         this.tipoRepository = tipoRepository;
         this.generoRepository = generoRepository;
         this.generoObjetoRepository = generoObjetoRepository;
+        this.comentarioPublicacionRepository = comentarioPublicacionRepository;
+        this.publicacionRepository = publicacionRepository;
+        this.comunidadRepository = comunidadRepository;
     }
 
     /**
@@ -138,14 +144,18 @@ public class LocalDataLoader {
         genero2.setNombre("Romance");
         Genero genero3 = new Genero();
         genero3.setNombre("Comedia");
+        Genero genero4 = new Genero();
+        genero4.setNombre("Ficción");
+        Genero genero5 = new Genero();
+        genero5.setNombre("Fantasía");
 
-        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3));
+        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3, genero4, genero5));
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
         persona1.setNombre("Daniel");
         persona1.setApellido("Radcliffe");
-        persona1.setBiografia("Este chaval nación en Torremolinos junto con su familia y amigos." +
+        persona1.setBiografia("Este chaval nació en Torremolinos junto con su familia y amigos." +
                 " Disfrutó de una infancia agradable y luego se puso a hacer películas.");
         persona1.setFotoUrl("https://cdn-images.dzcdn.net/images/artist/477d3a877aeb43dd565cb0d9888861f7/1900x1900-000000-80-0-0.jpg");
 
@@ -191,13 +201,19 @@ public class LocalDataLoader {
         GeneroObjeto generoObjeto3 = new GeneroObjeto();
         generoObjeto3.setGenero(genero3);
         generoObjeto3.setObjeto(objeto);
+        GeneroObjeto generoObjeto4 = new GeneroObjeto();
+        generoObjeto4.setGenero(genero4);
+        generoObjeto4.setObjeto(objeto);
+        GeneroObjeto generoObjeto5 = new GeneroObjeto();
+        generoObjeto5.setGenero(genero5);
+        generoObjeto5.setObjeto(objeto);
 
 
-        objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3)));
+        objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5)));
 
         objetoRepository.save(objeto);
 
-        generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3));
+        generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5));
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2));
 
@@ -236,7 +252,45 @@ public class LocalDataLoader {
         resena2.setObjeto(objeto);
         resenaRepository.saveAll(Arrays.asList(resena1, resena2));
 
-        log.info("Datos de entidades cargados correctamente.");
-    }
+        // Datos de prueba para las publicaciones, comunidades y comentarios
+//
+//        Publicacion publicacion1 = new Publicacion();
+//        publicacion1.setTitulo("Recomendaciones para ver la película _________ de harry potter");
+//
+//        Comunidad comunidad1 = new Comunidad();
+//        comunidad1.setNombreComunidad("Comunidad de Harry Potter");
+//        comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
+//                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+//        comunidad1.setObjetos(Arrays.asList(objeto));
+//        comunidad1.setPublicaciones(Arrays.asList(publicacion1));
+//
+//        objeto.setComunidad(comunidad1);
+//        objetoRepository.save(objeto);
+//        publicacion1.setComunidad(comunidad1);
+//
+//
+//        ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
+//        comentarioPublicacion1.setPublicacion(publicacion1);
+//        comentarioPublicacion1.setUsuario(usuario1);
+//        comentarioPublicacion1.setContenido("Este es el primer comentario de la publicación 1." +
+//                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
+//                "las publicaciones asociadas a la comunidad.");
+//
+//        ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
+//        comentarioPublicacion2.setPublicacion(publicacion1);
+//        comentarioPublicacion2.setUsuario(usuario2);
+//        comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
+//                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+//                " las publicaciones asociadas a la comunidad.");
+//
+//        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+//
+//
+//        publicacionRepository.save(publicacion1);
+//        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+//        comunidadRepository.saveAll(Arrays.asList(comunidad1));
 
+        log.info("Datos de entidades cargados correctamente.");
+
+    }
 }

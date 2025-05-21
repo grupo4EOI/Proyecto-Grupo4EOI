@@ -64,18 +64,18 @@
 
     <!-- Titular y datos: año publicación y duración -->
     <div class="col-12 mt-4"><h2 th:text="${objeto.getTitulo()}">El lado oscuro del corazón</h2></div>
-    <div class="col-12 mt-2"><p th:text="'Año publicación: ' + ${objeto.getFechaPublicacion()} + ' - Duración: ' + ${objeto.getDuracion()} min">Año publicación: 1992 - Duración: 2h 7min</p></div>
+    <div class="col-12 mt-2"><p>Año publicación: 1992 - Duración: 2h 7min</p></div>
 
     <!-- Imagen objeto -->
     <div class="image-container-ext">
       <div class="image-container col-xxl-3 col-xl-5 col-lg-12 me-2">
-        <img class="img-fluid" src="img/pelicula.jpg" alt="Cartel de película: El lado oscuro del corazón">
+        <img class="img-fluid" th:src="${objeto.getImagenUrl()}" th:alt="'Cartel de ' + ${objeto.getTipo().getNombre()} + ': ' + ${objeto.getTitulo()}">
         <!-- Boton para acceder al trailer de una película / serie / videojuego -->
         <button
                 type="button"
                 class="trailer-button btn btn-primary video-btn"
                 data-bs-toggle="modal"
-                data-src="https://www.youtube.com/watch?v=f7kWcUYKcv8"
+                th:data-src="${objeto.getTrailerUrl()}"
                 data-bs-target="#modal-trailer">
           <i class="bi bi-play-circle me-2"></i>Ver trailer
         </button>
@@ -86,7 +86,7 @@
               <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 <div class="ratio ratio-16x9">
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=f7kWcUYKcv8" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                  <iframe class="embed-responsive-item" th:src="${objeto.getTrailerUrl()}" id="video" allow="autoplay"></iframe>
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <p class="mb-2">Puntuación: 3,5 / 5
+            <p class="mb-2" th:text="'Puntuación: ' + ${puntuacion} + ' / 5'">Puntuación: 3,5 / 5
               <i class="bi bi-star-fill"></i>
               <i class="bi bi-star-fill"></i>
               <i class="bi bi-star-fill"></i>
@@ -109,9 +109,7 @@
             </p>
           </div>
           <div class="col-12">
-            <p>
-              Número total reseñas: 1324 usuarios
-            </p>
+            <p th:text="'Numero total reseñas: ' + ${numeroResenas}"></p>
           </div>
           <hr class="hr mt-0">
           <div class="col-12 d-flex align-items-center gap-2">
@@ -128,21 +126,12 @@
             <div class="etiqueta px-2"><i class="bi bi-person me-2"></i>Nombre Apellido</div>
           </div>
           <div class="col-12 mt-2 d-inline-flex flex-wrap">
-            <p><b>Descripción:</b> Oliveiro es un joven poeta que vive en Buenos Aires, donde a veces tiene que vender
+            <p th:text="${objeto.getDescripcion()}"><b>Descripción:</b> Oliveiro es un joven poeta que vive en Buenos Aires, donde a veces tiene que vender
                sus ideas a una agencia de publicidad para ganarse la vida o cambiar sus poemas por un filete.</p>
           </div>
           <div class="col-12 mt-0 d-flex flex-wrap align-items-center gap-2">
             <span><b>Géneros:</b> </span>
-            <div class="etiqueta px-3">Drama</div>
-            <div class="etiqueta px-3">Romance</div>
-            <div class="etiqueta px-3">Comedia</div>
-          </div>
-          <div class="col-12 mt-2 d-flex flex-wrap align-items-center gap-2">
-            <span><b>Etiquetas:</b> </span>
-            <div class="etiqueta px-3">#etiqueta-1</div>
-            <div class="etiqueta px-3">#etiqueta-2</div>
-            <div class="etiqueta px-3">#etiqueta-3</div>
-            <div class="etiqueta px-3">#etiqueta-4</div>
+            <div th:each="genero : ${listaGeneros}" th:text="${genero.getNombre()}" class="etiqueta px-3"></div>
           </div>
         </div>
       </div>
@@ -172,28 +161,21 @@
   </div>
   <hr class="hr mt-3">
   <!-- Apartado reseñas -->
-  <div class="row mx-3 my-3 gx-0">
-      <h3 class="col-12"><b>Reseñas</b></h3>
-      <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador</div>
+  <h3 class="col-12"><b>Reseñas</b></h3>
+  <div th:each="resena : ${listaResenas}" class="row mx-3 my-3 gx-0">
+      <div th:text="'@' + ${resena.getUsuario().getNombreUsuario()}" class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador</div>
       <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
       <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
       <div class="container" id="review">
         <div class="row">
-          <div class="col-12 mb-2 mt-1">
-            Puntuación: 4 / 5
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star"></i>
-          </div>
+          <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.getPuntuacion()} + ' / 5'"></span></div>
           <div class="col-12 mb-2">
-            <b>Título de la reseña:</b> Una de las mejore películas que he visto :)
+            <b>Título de la reseña: </b><span th:text="${resena.getTitulo()}">Una de las mejores películas que he visto :)</span>
           </div>
           <div class="col-12 mb-1">
-            <b>Contenido de la reseña:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi
-            delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat
-            quibusdam quisquam quos repellat sunt vitae.
+            <b>Contenido de la reseña: </b><span th:text="${resena.getContenido()}">Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Autem commodi delectus, deleniti dolorem dolores ducimus eos ex facere
+            laudantium magnam minus nihil odit quaerat quibusdam quisquam quos repellat sunt vitae.</span>
           </div>
         </div>
       </div>
@@ -203,15 +185,15 @@
   <hr class="hr mt-3">
 
   <!-- Apartado publicaciones-->
+  <h3 class="col-12"><b>Publicaciones</b></h3>
   <div class="row mx-3 my-3 gx-0">
-    <h3 class="col-12"><b>Publicaciones</b></h3>
     <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador23142</div>
     <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
     <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
     <div class="container" id="publicacion">
       <div class="row">
         <div class="col-12 mt-1 mb-2">
-          <b>Título de la publicación:</b> Recomendaciones antes de ver la película -------- antes de ver toda la saga
+          <b>Título de la publicación:</b> <span>Recomendaciones antes de ver la película -------- antes de ver toda la saga</span>
         </div>
         <div class="col-12 mb-1">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi delectus, deleniti dolorem dolores
