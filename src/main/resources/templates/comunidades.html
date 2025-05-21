@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,98 +10,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style-comunidades.css}">
+    <link rel="stylesheet" th:href="@{/css/style-pagina-principal.css}">
 </head>
-<body>
-<nav class="navbar navbar-expand-lg bg-custom">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">Reseñas.com</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="inicio" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="cine" href="#">Cine</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="series" href="#">Series</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
-                </li>
-
-            </ul>
-            <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
-                <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
-                <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
-            </form>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="inicio" href="#"><i class="bi bi-bell"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="perfil" href="#"><i class="bi bi-person"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="cerrar sesión" href="#">Cerrar sesión</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <!--Contenido de la página-->
-<div class="container mt-4">
-    <input type="text" id="filtro" class="form-control" placeholder="Buscar comunidades..." onkeyup="filtrarTarjetas()">
-</div>
-<div class="row mt-4 ms-1 me-1 display-flex flex-wrap">
-    <div class="col-md-2 col-comunidad mb-4 display-flex">
-        <div class="card h-100 w-100">
-            <img src="../static/images/comunidades/harrypotter.jpg" class="img-fluid card-img-top" alt="Imagen Harry Potter">
-            <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title" alt="Harry Potter">Harry Potter</h5>
-                <p class="card-text" alt="Descripción de la comunidad de Harry Potter">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
-                <p class="card-text" alt="Temas creados en la comunidad de Harry Potter"><i class="bi bi-envelope"> </i>1567 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Harry Potter"><i class="bi bi-people"> </i>69 usuarios activos</p>
-                <a href="comunidad-harry-potter.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad">Únete!</a>
+<div layout:fragment="content">
+    <div class="container mt-4">
+        <input type="text" id="filtro" class="form-control" placeholder="Buscar comunidades..." onkeyup="filtrarTarjetas()">
+    </div>
+    <div class="row mt-4 ms-1 me-1 display-flex flex-wrap">
+        <div class="col-md-2 col-comunidad mb-4 display-flex">
+            <div class="card h-100 w-100">
+                <img src="../static/images/comunidades/harrypotter.jpg" class="img-fluid card-img-top" alt="Imagen Harry Potter">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title" alt="Harry Potter">Harry Potter</h5>
+                    <p class="card-text" alt="Descripción de la comunidad de Harry Potter">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
+                    <p class="card-text" alt="Temas creados en la comunidad de Harry Potter"><i class="bi bi-envelope"> </i>1567 temas creados</p>
+                    <p class="card-text" alt="Usuarios activos en la comunidad de Harry Potter"><i class="bi bi-people"> </i>69 usuarios activos</p>
+                    <a href="comunidad-harry-potter.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad">Únete!</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--Footer-->
-<footer class="bg-custom text-center py-3 mt-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Redes Sociales</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="redes"><i class="fa fa-facebook"></i> Facebook</a></li>
-                    <li><a href="#" class="redes"><i class="fa fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#" class="redes"><i class="fa fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#" class="redes"><i class="fa fa-youtube"></i> YouTube</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Soporte</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="soporte">FAQ</a></li>
-                    <li><a href="#" class="soporte">Contacto</a></li>
-                    <li><a href="#" class="soporte">Soporte Técnico</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Legal</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="legal">Términos y Condiciones</a></li>
-                    <li><a href="#" class="legal">Política de Privacidad</a></li>
-                </ul>
-            </div>
-        </div>
-        <p>&copy; Reseñas.com. Todos los derechos reservados 2025.</p>
-    </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script>
