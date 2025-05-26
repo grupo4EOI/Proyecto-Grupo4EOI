@@ -322,42 +322,44 @@ public class LocalDataLoader {
         comentarioResenaRepository.saveAll(Arrays.asList(comentarioResena1, comentarioResena2));
 
         // Datos de prueba para las publicaciones, comunidades y comentarios
-//
-//        Publicacion publicacion1 = new Publicacion();
-//        publicacion1.setTitulo("Recomendaciones para ver la película _________ de harry potter");
-//
-//        Comunidad comunidad1 = new Comunidad();
-//        comunidad1.setNombreComunidad("Comunidad de Harry Potter");
-//        comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
-//                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
-//        comunidad1.setObjetos(Arrays.asList(objeto));
-//        comunidad1.setPublicaciones(Arrays.asList(publicacion1));
-//
-//        objeto.setComunidad(comunidad1);
-//        objetoRepository.save(objeto);
-//        publicacion1.setComunidad(comunidad1);
-//
-//
-//        ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
-//        comentarioPublicacion1.setPublicacion(publicacion1);
-//        comentarioPublicacion1.setUsuario(usuario1);
-//        comentarioPublicacion1.setContenido("Este es el primer comentario de la publicación 1." +
-//                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
-//                "las publicaciones asociadas a la comunidad.");
-//
-//        ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
-//        comentarioPublicacion2.setPublicacion(publicacion1);
-//        comentarioPublicacion2.setUsuario(usuario2);
-//        comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
-//                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-//                " las publicaciones asociadas a la comunidad.");
-//
-//        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
-//
-//
-//        publicacionRepository.save(publicacion1);
-//        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
-//        comunidadRepository.saveAll(Arrays.asList(comunidad1));
+
+        Publicacion publicacion1 = new Publicacion();
+        publicacion1.setTitulo("Recomendaciones para ver la película _________ de harry potter");
+
+        Comunidad comunidad1 = new Comunidad();
+        comunidad1.setNombreComunidad("Comunidad de Harry Potter");
+        comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad1.setObjetos(Arrays.asList(objeto));
+        comunidad1.setPublicaciones(Arrays.asList(publicacion1));
+
+        objeto.setComunidad(comunidad1);
+
+        publicacion1.setComunidad(comunidad1);
+
+
+        ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
+        comentarioPublicacion1.setPublicacion(publicacion1);
+        comentarioPublicacion1.setUsuario(usuario1);
+        comentarioPublicacion1.setContenido("Este es el primer comentario de la publicación 1." +
+                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
+                "las publicaciones asociadas a la comunidad.");
+
+        ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
+        comentarioPublicacion2.setPublicacion(publicacion1);
+        comentarioPublicacion2.setUsuario(usuario2);
+        comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
+
+        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+
+
+        comunidadRepository.saveAll(Arrays.asList(comunidad1));
+        publicacionRepository.save(publicacion1);
+        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+
+        objetoRepository.save(objeto);
 
         log.info("Datos de entidades cargados correctamente.");
 
