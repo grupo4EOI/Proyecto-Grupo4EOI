@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,15 +29,14 @@ public class Objeto {
     @Column(columnDefinition = "TEXT")
     private String descripcion;
     @Column(name="fecha_publicacion")
-    private Date fechaPublicacion;
+    private LocalDate fechaPublicacion;
     @Column(name="imagen_url")
     private String imagenUrl;
     @Column(name="trailer_url")
     private String trailerUrl;
     @Column(name="duracion_minutos")
     private int duracionMinutos;
-    private int temporadas;
-    private int episodios;
+
 
     @NotNull
     @ManyToOne(optional = false)
@@ -55,8 +56,9 @@ public class Objeto {
     private Set<PersonaObjeto> personasObjeto;
 
     @OneToMany(mappedBy = "objeto")
-    private Set<ObjetoComunidad> objetosComunidades;
-
-    @OneToMany(mappedBy = "objeto")
     private Set<GeneroObjeto> generosObjeto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_comunidad")
+    private Comunidad comunidad;
 }

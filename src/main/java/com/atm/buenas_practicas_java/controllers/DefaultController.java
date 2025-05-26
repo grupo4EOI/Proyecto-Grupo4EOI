@@ -1,6 +1,7 @@
 package com.atm.buenas_practicas_java.controllers;
 
 
+import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.services.EntidadHijaService;
 import com.atm.buenas_practicas_java.services.EntidadPadreService;
 import com.atm.buenas_practicas_java.services.ObjetoService;
@@ -139,15 +140,6 @@ public class DefaultController {
     @GetMapping("/ejemplo-tema")
     public String mostrarTema() {
         return "/ejemplo-tema";
-    }
-
-    /** TODO: Cambiar el mapping cuando se hagan servicios y controladores
-     * Path variable con Id o con el titulo del objeto
-     */
-    @GetMapping("/ficha-objeto")
-    public String mostrarFichaObjeto(Model model) {
-
-        return "/ficha-objeto";
     }
 
     /** TODO: Cambiar el mapping a un PostMapping cuando se hagan servicios y controladores */

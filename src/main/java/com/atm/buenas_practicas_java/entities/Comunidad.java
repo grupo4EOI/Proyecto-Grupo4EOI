@@ -32,5 +32,5 @@ public class Comunidad {
     private List<Publicacion> publicaciones;
 
     @OneToMany(mappedBy = "comunidad")
-    private Set<ObjetoComunidad> objetosComunidades;
+    private List<Objeto> objetos;
 }

@@ -22,8 +22,9 @@ public class Resena {
     @Column(name = "id_resena", columnDefinition = "INTEGER")
     private int idResena;
     private String titulo;
+    @Column(columnDefinition = "TEXT")
     private String contenido;
-    private float puntuacion;
+    private Double puntuacion;
     private boolean spoiler;
 
     @NotNull
@@ -39,7 +40,7 @@ public class Resena {
     @OneToMany(mappedBy = "resena")
     private List<Reaccion> reacciones;
 
-    @OneToMany(mappedBy = "resena")
+    @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER)
     private Set<ComentarioResena> comentariosResena;
 
 }
