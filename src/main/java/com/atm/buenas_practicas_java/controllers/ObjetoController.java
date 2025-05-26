@@ -1,14 +1,13 @@
 package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.entities.Objeto;
-import com.atm.buenas_practicas_java.services.ComentarioPublicacionService;
-import com.atm.buenas_practicas_java.services.GeneroService;
-import com.atm.buenas_practicas_java.services.ObjetoService;
-import com.atm.buenas_practicas_java.services.ResenaService;
+import com.atm.buenas_practicas_java.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.stream.Collectors;
 
 @Controller
 public class ObjetoController {
@@ -16,16 +15,19 @@ public class ObjetoController {
     private final ObjetoService objetoService;
     private final GeneroService generoService;
     private final ResenaService resenaService;
-    private final ComentarioPublicacionService comentarioPublicacionService;
+    private final PersonaService personaService;
+    private final ComentarioResenaService comentarioResenaService;
 
     public ObjetoController(ObjetoService objetoService,
                             GeneroService generoService,
                             ResenaService resenaService,
-                            ComentarioPublicacionService comentarioPublicacionService) {
+                            PersonaService personaService,
+                            ComentarioResenaService comentarioResenaService) {
         this.objetoService = objetoService;
         this.generoService = generoService;
         this.resenaService = resenaService;
-        this.comentarioPublicacionService = comentarioPublicacionService;
+        this.personaService = personaService;
+        this.comentarioResenaService = comentarioResenaService;
     }
 
     // TODO: Revisar los métodos en los servicios que tomen como parámetro el objeto entero. Cambiar por idObjeto.
@@ -37,7 +39,8 @@ public class ObjetoController {
         model.addAttribute("listaGeneros", generoService.obtenerGenerosPorObjeto(id));
         model.addAttribute("numeroResenas", objetoService.calcularNumeroResenas(objeto));
         model.addAttribute("listaResenas", resenaService.findResenasByObjeto(objeto));
-//        model.addAttribute("publicaciones", comentarioPublicacionService.getPrimerosComentariosObjeto(id));
+        model.addAttribute("directores", personaService.getDirectoresByObjetoId(id));
+        model.addAttribute("actores", personaService.getActoresByObjetoId(id));
         return "ficha-objeto";
     }
 }

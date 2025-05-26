@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +29,7 @@ public class Objeto {
     @Column(columnDefinition = "TEXT")
     private String descripcion;
     @Column(name="fecha_publicacion")
-    private Date fechaPublicacion;
+    private LocalDate fechaPublicacion;
     @Column(name="imagen_url")
     private String imagenUrl;
     @Column(name="trailer_url")
