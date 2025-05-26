@@ -25,8 +25,11 @@ public class Comunidad {
     private String descripcion;
 
     // Relación con usuarios (tabla intermedia)
-    @OneToMany(mappedBy = "comunidad")
-    private Set<UsuarioComunidad> usuariosComunidad;
+    @ManyToMany
+    @JoinTable(name = "usuarios_comunidades"
+    , joinColumns = @JoinColumn(name = "id_comunidad"),
+    inverseJoinColumns = @JoinColumn(name = "id_usuario"))
+    private List<Usuario> usuarios;
 
     @OneToMany(mappedBy = "comunidad")
     private List<Publicacion> publicaciones;

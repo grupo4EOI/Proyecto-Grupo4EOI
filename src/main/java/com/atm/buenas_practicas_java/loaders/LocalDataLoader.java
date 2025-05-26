@@ -351,6 +351,12 @@ public class LocalDataLoader {
         comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
+        comentarioPublicacion3.setPublicacion(publicacion1);
+        comentarioPublicacion3.setUsuario(usuario3);
+        comentarioPublicacion3.setContenido("Este es el tercer comentario de la publicación 1." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
 
         publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
 

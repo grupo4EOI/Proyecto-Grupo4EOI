@@ -49,9 +49,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private Set<ComentarioPublicacion> comentariosPublicacion;
 
-    // Relación con comunidad (tabla intermedia)
-    @OneToMany(mappedBy = "usuario")
-    private Set<UsuarioComunidad> usuariosComunidad;
+    // Relación con comunidad
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Comunidad> comunidades;
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)
     @OneToMany
