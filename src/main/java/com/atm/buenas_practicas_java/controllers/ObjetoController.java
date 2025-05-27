@@ -16,7 +16,6 @@ public class ObjetoController {
     private final GeneroService generoService;
     private final ResenaService resenaService;
     private final PersonaService personaService;
-    private final ComentarioResenaService comentarioResenaService;
 
     public ObjetoController(ObjetoService objetoService,
                             GeneroService generoService,
@@ -27,7 +26,6 @@ public class ObjetoController {
         this.generoService = generoService;
         this.resenaService = resenaService;
         this.personaService = personaService;
-        this.comentarioResenaService = comentarioResenaService;
     }
 
     // TODO: Revisar los métodos en los servicios que tomen como parámetro el objeto entero. Cambiar por idObjeto.

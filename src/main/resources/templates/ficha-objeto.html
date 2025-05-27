@@ -176,18 +176,67 @@
             </div>
         </div>
         <div class="col-xxl-3 col-xl-12 col-lg-12 ps-xxl-4" id="columna-derecha">
-            <div class="etiqueta px-3 mb-2 mx-1">
+            <div class="etiqueta px-3 mb-2 mx-1" data-bs-toggle="modal" data-bs-target="#modalResena">
                 <i class="bi bi-star mx-2"></i>
                 Añadir reseña
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalResena" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Añadir Reseña</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/ficha-objeto/{id}/resenas(id=${objeto.idObjeto})}" method="post">
+                            <div class="modal-body">
+                                <!-- Puntuación con estrellas decimales -->
+                                <div class="form-group">
+                                    <label>Puntuación:</label>
+                                    <input
+                                            type="number"
+                                            name="puntuacion"
+                                            class="form-control"
+                                            min="0.0"
+                                            max="5.0"
+                                            step="0.1"
+                                            required
+                                    >
+                                </div>
+
+                                <!-- Texto de la reseña -->
+                                <div class="form-group">
+                        <textarea
+                                class="form-control"
+                                name="texto"
+                                rows="5"
+                                placeholder="Escribe tu reseña..."
+                                required
+                        ></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Publicar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div class="etiqueta px-3 mb-2 mx-1">
                 <i class="bi bi-pencil mx-2"></i>
                 Añadir publicación
             </div>
+
             <div class="etiqueta px-3 mb-2 mx-1">
                 <i class="bi bi-heart mx-2"></i>
                 Añadir a lista de favoritos
             </div>
+
             <div class="etiqueta px-3 mb-2 mx-1">
                 <i class="bi bi-bar-chart mx-2"></i>
                 Añade tu progreso
