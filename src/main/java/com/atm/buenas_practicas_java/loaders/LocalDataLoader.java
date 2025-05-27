@@ -201,7 +201,7 @@ public class LocalDataLoader {
                 " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
                 " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
                 " quibusdam quisquam quos repellat sunt vitae");
-        objeto.setImagenUrl("https://www.compraentradas.com/Carteles/piedrafilosofal.jpg");
+        objeto.setImagenUrl("https://artesiete.es/Posters/harrypotterpiedra20.jpg");
         objeto.setDuracionMinutos(123);
         objeto.setTipo(tipoPeliculas);
         objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
