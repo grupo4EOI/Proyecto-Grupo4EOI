@@ -465,8 +465,10 @@ public class LocalDataLoader {
 
 
         comunidadRepository.saveAll(Arrays.asList(comunidad1, comunidad2, comunidad3));
-        publicacionRepository.save(publicacion1);
-        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+        publicacionRepository.saveAll(Arrays.asList(publicacion1, publicacion2, publicacion3));
+        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1,
+                comentarioPublicacion2, comentarioPublicacion3, comentarioPublicacion4, comentarioPublicacion5,
+                comentarioPublicacion6, comentarioPublicacion7, comentarioPublicacion8));
 
         objetoRepository.save(objeto);
 

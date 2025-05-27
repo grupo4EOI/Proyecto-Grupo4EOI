@@ -27,7 +27,7 @@ public class ComentarioPublicacion {
     @JoinColumn(name = "id_publicacion")
     private Publicacion publicacion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 

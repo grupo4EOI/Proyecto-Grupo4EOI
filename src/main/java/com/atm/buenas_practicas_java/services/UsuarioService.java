@@ -7,6 +7,9 @@ import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
 import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UsuarioService {
 
@@ -22,5 +25,13 @@ public class UsuarioService {
         Publicacion publicacion = publicacionRepository.findById(idPublicacion).get();
         ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();
         return comentario.getUsuario();
+    }
+
+    public List<Usuario> findUsuariosByPublicaciones(List<Publicacion> publicaciones) {
+        List<Usuario> usuarios = new ArrayList<>();
+        for (Publicacion publicacion : publicaciones) {
+            usuarios.add(findUsuarioByPublicacion(publicacion.getIdPublicacion()));
+        }
+        return usuarios;
     }
 }

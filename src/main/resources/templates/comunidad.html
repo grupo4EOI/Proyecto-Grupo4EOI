@@ -114,7 +114,7 @@
       </div>
       <div>
         <a class="nav-link" href="temas_harry_potter/ejemplo_tema.html" th:text="${publicacion.titulo}"><h6 class="mb-1">Título de tema 1</h6></a>
-        <p class="mb-0" th:text="${publicacion.comentariosPublicacion.}">@Usuario</p>
+        <p class="mb-0" th:text="${publicacion.getComentariosPublicacion().get(0).getUsuario().getNombreUsuario()}">@Usuario</p>
       </div>
       <div class="ms-auto d-flex me-3 align-items-center">
         <i class="bi bi-chat-dots-fill fs-4"></i>

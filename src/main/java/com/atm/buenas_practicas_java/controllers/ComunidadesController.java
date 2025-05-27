@@ -18,16 +18,13 @@ import java.util.List;
 @RequestMapping("/comunidades")
 public class ComunidadesController {
 
-    @Autowired
-    private ComentarioPublicacionService comPubService;
-    @Autowired
-    private UsuarioService usuarioService;
-    @Autowired
     private ComunidadService comunidadService;
-    @Autowired
-    private ObjetoService objetoService;
-    @Autowired
-    private PublicacionService pubService;
+    private PublicacionService publicacionService;
+
+    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService) {
+        this.comunidadService = comunidadService;
+        this.publicacionService = publicacionService;
+    }
 
     @GetMapping
     public String mostrarComunidades(Model model) {
@@ -38,8 +35,7 @@ public class ComunidadesController {
 
     @GetMapping("/{id}/temas")
     public String mostrarTemas(Model model, @PathVariable Long id) {
-        List<Publicacion> publicaciones = pubService.getPublicacionsByComunidad(comunidadService.findById(id));
-        List<Usuario> usuario = usuarioService.findUsuarioByPublicacion(publicaciones);
+        List<Publicacion> publicaciones = publicacionService.getPublicacionsByComunidad(comunidadService.findById(id));
         model.addAttribute("publicaciones", publicaciones);
         return "comunidad";
     }
