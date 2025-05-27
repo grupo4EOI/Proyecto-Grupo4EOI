@@ -324,6 +324,8 @@ public class LocalDataLoader {
         Publicacion publicacion1 = new Publicacion();
         publicacion1.setTitulo("Recomendaciones para ver la película _________ de harry potter");
 
+        Publicacion publicacion2 = new Publicacion();
+        publicacion2.setTitulo("Este es el título de prueba para la publicación 2 hecha pour un usuario random");
 
         Comunidad comunidad1 = new Comunidad();
         comunidad1.setNombreComunidad("Comunidad de Harry Potter");
@@ -335,7 +337,7 @@ public class LocalDataLoader {
         objeto.setComunidad(comunidad1);
 
         publicacion1.setComunidad(comunidad1);
-
+        publicacion2.setComunidad(comunidad1);
 
         ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
         comentarioPublicacion1.setPublicacion(publicacion1);
@@ -353,10 +355,25 @@ public class LocalDataLoader {
 
         publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
 
+        ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
+        comentarioPublicacion3.setPublicacion(publicacion2);
+        comentarioPublicacion3.setUsuario(usuario3);
+        comentarioPublicacion3.setContenido("Este es el primer comentario de la publicación 2. " +
+                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de las publicacioens" +
+                "asociadas a la comunidad.");
+
+        ComentarioPublicacion comentarioPublicacion4 = new ComentarioPublicacion();
+        comentarioPublicacion4.setPublicacion(publicacion2);
+        comentarioPublicacion4.setUsuario(usuario2);
+        comentarioPublicacion4.setContenido("Este es el segundo comentario de la publicación 1." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
+
+        publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion3, comentarioPublicacion4));
 
         comunidadRepository.saveAll(Arrays.asList(comunidad1));
-        publicacionRepository.save(publicacion1);
-        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+        publicacionRepository.saveAll(Arrays.asList(publicacion1, publicacion2));
+        comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2, comentarioPublicacion3, comentarioPublicacion4));
 
         objetoRepository.save(objeto);
 

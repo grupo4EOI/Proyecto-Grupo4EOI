@@ -295,11 +295,11 @@
 
     <!-- Apartado publicaciones-->
     <h3 class="col-12"><b>Publicaciones</b></h3>
-    <div class="row mx-3 my-3 gx-0">
-        <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador23142</div>
+    <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${publicaciones}">
+        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.getUsuario().getNombreUsuario()}"><i class="bi bi-person me-2"></i></div>
         <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
         <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
-        <div class="container" id="publicacion" th:each="publicacion : ${publicaciones}">
+        <div class="container" id="publicacion" >
             <div class="row">
                 <div class="col-12 mt-1 mb-2">
                     <b>Título de la publicación:</b> <span th:text="${publicacion.getPublicacion().getTitulo()}"></span>
