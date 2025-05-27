@@ -1,10 +1,9 @@
 package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.entities.Comunidad;
-import com.atm.buenas_practicas_java.services.ComentarioPublicacionService;
-import com.atm.buenas_practicas_java.services.ComunidadService;
-import com.atm.buenas_practicas_java.services.ObjetoService;
-import com.atm.buenas_practicas_java.services.UsuarioService;
+import com.atm.buenas_practicas_java.entities.Publicacion;
+import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,11 +26,21 @@ public class ComunidadesController {
     private ComunidadService comunidadService;
     @Autowired
     private ObjetoService objetoService;
+    @Autowired
+    private PublicacionService pubService;
 
     @GetMapping
     public String mostrarComunidades(Model model) {
         List<Comunidad> comunidades = comunidadService.findAll();
         model.addAttribute("comunidades", comunidades);
         return "comunidades";
+    }
+
+    @GetMapping("/{id}/temas")
+    public String mostrarTemas(Model model, @PathVariable Long id) {
+        List<Publicacion> publicaciones = pubService.getPublicacionsByComunidad(comunidadService.findById(id));
+        List<Usuario> usuario = usuarioService.findUsuarioByPublicacion(publicaciones);
+        model.addAttribute("publicaciones", publicaciones);
+        return "comunidad";
     }
 }

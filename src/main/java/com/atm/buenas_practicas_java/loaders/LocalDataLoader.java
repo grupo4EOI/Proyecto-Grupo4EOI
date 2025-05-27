@@ -207,6 +207,30 @@ public class LocalDataLoader {
         objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
         objeto.setFechaPublicacion(LocalDate.of(2001, 3, 01));
 
+        Objeto objeto2 = new Objeto();
+        objeto2.setTitulo("Interstellar");
+        objeto2.setDescripcion("Interstellar es una pelicula que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto2.setImagenUrl("https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
+        objeto2.setDuracionMinutos(169);
+        objeto2.setTipo(tipoPeliculas);
+        objeto2.setTrailerUrl("https://www.youtube.com/watch?v=UoSSbmD9vqc");
+        objeto2.setFechaPublicacion(LocalDate.of(2014, 11, 07));
+
+        Objeto objeto3 = new Objeto();
+        objeto3.setTitulo("The Gentlemen");
+        objeto3.setDescripcion("The Gentlemen es una pelicula que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto3.setImagenUrl("https://pics.filmaffinity.com/The_Gentlemen_Los_seanores_de_la_mafia-425828685-large.jpg");
+        objeto3.setDuracionMinutos(113);
+        objeto3.setTipo(tipoPeliculas);
+        objeto3.setTrailerUrl("https://www.youtube.com/watch?v=SywTszaosOo");
+        objeto3.setFechaPublicacion(LocalDate.of(2019, 12, 03));
+
         PersonaObjeto personaObjeto1 = new PersonaObjeto();
         personaObjeto1.setRol(false);
         personaObjeto1.setPersona(persona1);
@@ -243,7 +267,7 @@ public class LocalDataLoader {
 
         objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5)));
 
-        objetoRepository.save(objeto);
+        objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
 
         generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5));
 
@@ -323,19 +347,54 @@ public class LocalDataLoader {
 
         // Datos de prueba para las publicaciones, comunidades y comentarios
 
+        //Publicaciones de prueba
+
         Publicacion publicacion1 = new Publicacion();
         publicacion1.setTitulo("Recomendaciones para ver la película _________ de harry potter");
+
+        Publicacion publicacion2 = new Publicacion();
+        publicacion2.setTitulo("Vendo Opel Corsa 250mil KM como nuevo");
+
+        Publicacion publicacion3 = new Publicacion();
+        publicacion3.setTitulo("Ron estaba de relleno, no pinta nada en las pelis");
+
+        //Comunidades de prueba
 
         Comunidad comunidad1 = new Comunidad();
         comunidad1.setNombreComunidad("Comunidad de Harry Potter");
         comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad1.setObjetos(Arrays.asList(objeto));
-        comunidad1.setPublicaciones(Arrays.asList(publicacion1));
+        comunidad1.setPublicaciones(Arrays.asList(publicacion1, publicacion2, publicacion3));
+        comunidad1.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad1.setUrlImg("https://static.posters.cz/image/1300/104639.jpg");
+
+        Comunidad comunidad2 = new Comunidad();
+        comunidad2.setNombreComunidad("Comunidad de Interstellar");
+        comunidad2.setDescripcion("En la comunidad de Interstellar podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad2.setObjetos(Arrays.asList(objeto2));
+//        comunidad2.setPublicaciones(Arrays.asList(publicacion2));
+//        comunidad2.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad2.setUrlImg("https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
+
+        Comunidad comunidad3 = new Comunidad();
+        comunidad3.setNombreComunidad("Comunidad de The Gentlemen");
+        comunidad3.setDescripcion("En la comunidad de The Gentlemen podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad3.setObjetos(Arrays.asList(objeto3));
+//        comunidad3.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad3.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad3.setUrlImg("https://pics.filmaffinity.com/The_Gentlemen_Los_seanores_de_la_mafia-425828685-large.jpg");
 
         objeto.setComunidad(comunidad1);
+        objeto2.setComunidad(comunidad2);
+        objeto3.setComunidad(comunidad3);
+
 
         publicacion1.setComunidad(comunidad1);
+        publicacion2.setComunidad(comunidad1);
+        publicacion3.setComunidad(comunidad1);
 
 
         ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
@@ -358,10 +417,54 @@ public class LocalDataLoader {
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
 
-        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
+        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2, comentarioPublicacion3));
+
+        ComentarioPublicacion comentarioPublicacion4 = new ComentarioPublicacion();
+        comentarioPublicacion4.setPublicacion(publicacion2);
+        comentarioPublicacion4.setUsuario(usuario2);
+        comentarioPublicacion4.setContenido("Este es el primer comentario de la publicación 2." +
+                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
+                "las publicaciones asociadas a la comunidad.");
+
+        ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
+        comentarioPublicacion5.setPublicacion(publicacion2);
+        comentarioPublicacion5.setUsuario(usuario1);
+        comentarioPublicacion5.setContenido("Este es el segundo comentario de la publicación 2." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
+        ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
+        comentarioPublicacion6.setPublicacion(publicacion2);
+        comentarioPublicacion6.setUsuario(usuario3);
+        comentarioPublicacion6.setContenido("Este es el tercer comentario de la publicación 2." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
+
+        publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion4, comentarioPublicacion5, comentarioPublicacion6));
+
+        ComentarioPublicacion comentarioPublicacion7 = new ComentarioPublicacion();
+        comentarioPublicacion7.setPublicacion(publicacion3);
+        comentarioPublicacion7.setUsuario(usuario3);
+        comentarioPublicacion7.setContenido("Este es el primer comentario de la publicación 3." +
+                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
+                "las publicaciones asociadas a la comunidad.");
+
+        ComentarioPublicacion comentarioPublicacion8 = new ComentarioPublicacion();
+        comentarioPublicacion8.setPublicacion(publicacion3);
+        comentarioPublicacion8.setUsuario(usuario2);
+        comentarioPublicacion8.setContenido("Este es el segundo comentario de la publicación 3." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
+        ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
+        comentarioPublicacion9.setPublicacion(publicacion3);
+        comentarioPublicacion9.setUsuario(usuario1);
+        comentarioPublicacion9.setContenido("Este es el tercer comentario de la publicación 3." +
+                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
+                " las publicaciones asociadas a la comunidad.");
+
+        publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
 
 
-        comunidadRepository.saveAll(Arrays.asList(comunidad1));
+        comunidadRepository.saveAll(Arrays.asList(comunidad1, comunidad2, comunidad3));
         publicacionRepository.save(publicacion1);
         comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2));
 
