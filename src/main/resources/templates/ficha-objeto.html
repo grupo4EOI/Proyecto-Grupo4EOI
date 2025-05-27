@@ -182,50 +182,62 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="modalResena" tabindex="-1">
+            <!-- Modal -->
+            <div class="modal fade" id="modalResena" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Añadir Reseña</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
+                    <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+
+                        <!-- Encabezado -->
+                        <div class="modal-header bg-gradient text-white py-3">
+                            <h5 class="modal-title fw-bold" id="reviewModalLabel">📝 Añadir Reseña</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                         </div>
-                        <form th:action="@{/ficha-objeto/{id}/resenas(id=${objeto.idObjeto})}" method="post">
-                            <div class="modal-body">
-                                <!-- Puntuación con estrellas decimales -->
-                                <div class="form-group">
-                                    <label>Puntuación:</label>
-                                    <input
-                                            type="number"
-                                            name="puntuacion"
-                                            class="form-control"
-                                            min="0.0"
-                                            max="5.0"
-                                            step="0.1"
-                                            required
-                                    >
+
+                        <!-- Formulario -->
+                        <form th:action="@{/ficha-objeto/{id}(id=${objeto.idObjeto})}"
+                              th:object="${nuevaResena}"
+                              method="post">
+
+                            <div class="modal-body px-4 py-3">
+
+                                <!-- Puntuación numérica decimal -->
+                                <div class="mb-3">
+                                    <label for="rating" class="form-label">Puntuación (0.0 – 5.0)</label>
+                                    <input type="number"
+                                           class="form-control rounded-pill"
+                                           id="rating"
+                                           th:field="*{puntuacion}"
+                                           min="0" max="5"
+                                           step="0.1"
+                                           placeholder="Ej. 3.5" required />
                                 </div>
 
-                                <!-- Texto de la reseña -->
-                                <div class="form-group">
-                        <textarea
-                                class="form-control"
-                                name="texto"
-                                rows="5"
-                                placeholder="Escribe tu reseña..."
-                                required
-                        ></textarea>
+                                <!-- Texto reseña -->
+                                <div class="form-floating mb-3">
+            <textarea class="form-control rounded-3"
+                      placeholder="Escribe tu reseña..."
+                      id="text"
+                      style="height: 120px"
+                      th:field="*{contenido}"
+                      required></textarea>
+                                    <label for="text">Escribe tu reseña...</label>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Publicar</button>
+
+                            <!-- Footer con botones -->
+                            <div class="modal-footer bg-light border-0 px-4 py-3">
+                                <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                    Publicar
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
 
             <div class="etiqueta px-3 mb-2 mx-1">
                 <i class="bi bi-pencil mx-2"></i>
@@ -287,22 +299,15 @@
         <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-person me-2"></i>@MrReseñador23142</div>
         <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
         <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
-        <div class="container" id="publicacion">
+        <div class="container" id="publicacion" th:each="publicacion : ${publicaciones}">
             <div class="row">
                 <div class="col-12 mt-1 mb-2">
-                    <b>Título de la publicación:</b> <span>Recomendaciones antes de ver la película -------- antes de ver toda la saga</span>
+                    <b>Título de la publicación:</b> <span th:text="${publicacion.getPublicacion().getTitulo()}"></span>
                 </div>
-                <div class="col-12 mb-1">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi delectus, deleniti dolorem
-                    dolores
-                    ducimus eos ex facere laudantium magnam minus nihil odit quaerat quibusdam quisquam quos repellat
-                    sunt
-                    vitae.
-                </div>
+                <div class="col-12 mb-1" th:text="${publicacion.getContenido()}"></div>
             </div>
         </div>
         <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
-        <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-chat"></i> Comentarios</div>
     </div>
 
 </div>

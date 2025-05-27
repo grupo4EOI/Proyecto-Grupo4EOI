@@ -23,7 +23,7 @@ public class ComentarioPublicacion {
     @Column(columnDefinition = "TEXT")
     private String contenido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_publicacion")
     private Publicacion publicacion;
 

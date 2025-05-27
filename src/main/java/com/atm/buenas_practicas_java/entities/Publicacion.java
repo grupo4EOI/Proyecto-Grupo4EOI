@@ -23,7 +23,7 @@ public class Publicacion {
     @Column(columnDefinition = "VARCHAR(200)")
     private String titulo;
 
-    @OneToMany(mappedBy = "publicacion")
+    @OneToMany(mappedBy = "publicacion", fetch = FetchType.EAGER)
     private List<ComentarioPublicacion> comentariosPublicacion;
 
     @ManyToOne

@@ -39,4 +39,5 @@ public class ObjetoService {
     public int calcularNumeroResenas(Objeto objeto) {
         return resenaRepository.findResenasByObjeto(objeto).size();
     }
+
 }
