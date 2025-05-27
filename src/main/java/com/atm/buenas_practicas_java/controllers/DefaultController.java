@@ -126,11 +126,6 @@ public class DefaultController {
         return "/comunidad-harry-potter";
     }
 
-    @GetMapping("/comunidades")
-    public String mostrarComunidades() {
-        return "/comunidades";
-    }
-
     @GetMapping("/contacto")
     public String mostrarContacto() {
         return "/contacto";

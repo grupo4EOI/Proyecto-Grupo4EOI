@@ -56,13 +56,13 @@
 </div>
 <div class="row mt-4 ms-1 me-1 display-flex flex-wrap">
     <div class="col-md-2 col-comunidad mb-4 display-flex">
-        <div class="card h-100 w-100">
+        <div class="card h-100 w-100" th:each="comunidad : ${comunidades}">
             <img src="../static/images/comunidades/harrypotter.jpg" class="img-fluid card-img-top" alt="Imagen Harry Potter">
             <div class="card-body d-flex flex-column justify-content-between">
-                <h5 class="card-title" alt="Harry Potter">Harry Potter</h5>
-                <p class="card-text" alt="Descripción de la comunidad de Harry Potter">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
-                <p class="card-text" alt="Temas creados en la comunidad de Harry Potter"><i class="bi bi-envelope"> </i>1567 temas creados</p>
-                <p class="card-text" alt="Usuarios activos en la comunidad de Harry Potter"><i class="bi bi-people"> </i>69 usuarios activos</p>
+                <h5 class="card-title" th:alt="${comunidad.getNombreComunidad()}" th:text="${comunidad.getNombreComunidad()}">Harry Potter</h5>
+                <p class="card-text" alt="Descripción de la comunidad" th:text="${comunidad.getDescripcion()}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
+                <p class="card-text" alt="Temas creados en la comunidad" th:text="${#lists.size(comunidad.getPublicaciones())} + ' temas creados'"><i class="bi bi-envelope"> </i>1567 temas creados</p>
+                <p class="card-text" alt="Usuarios activos en la comunidad" th:text="${#lists.size(comunidad.getUsuarios())} + ' usuarios'"><i class="bi bi-people"> </i>69 usuarios activos</p>
                 <a href="comunidad-harry-potter.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad">Únete!</a>
             </div>
         </div>
