@@ -1,4 +1,10 @@
 package com.atm.buenas_practicas_java.dtos;
 
-public class ComentarioPublicacionDTO {
-}
+import java.util.List;
+
+public record ComentarioPublicacionDTO(
+        String contenido,
+        PublicacionDTO publicacion,
+        UsuarioDTO usuario,
+        List<ReaccionDTO> reacciones
+) { }

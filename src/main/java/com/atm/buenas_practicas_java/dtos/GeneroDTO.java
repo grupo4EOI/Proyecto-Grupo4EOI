@@ -1,5 +1,3 @@
 package com.atm.buenas_practicas_java.dtos;
 
-public class FichaObjetoDTO {
-
-}
+public record GeneroDTO(String nombre) { }
