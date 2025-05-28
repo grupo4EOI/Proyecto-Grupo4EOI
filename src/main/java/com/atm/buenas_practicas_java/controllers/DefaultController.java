@@ -161,11 +161,9 @@ public class DefaultController {
         return "/pagina-principal";
     }
 
-    /** TODO: Cambiar mapping cuando se hagan servicios y controladores */
-    @GetMapping("/perfil")
-    public String mostrarPerfil() {
-        return "/perfil";
-    }
+//    /** TODO: Cambiar mapping cuando se hagan servicios y controladores */
+//    @GetMapping("/perfil")
+//    public String mostrarPerfil() { return "/perfil"; }
 
     @GetMapping("/politica-privacidad")
     public String mostrarPoliticaPrivacidad() {

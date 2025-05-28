@@ -52,166 +52,159 @@
 
   <!--Información sobre el usuario-->
   <main class="flex-grow-1 bg-body-secondary py-4">
-    <div class="container">
-        <div class="row g-4 rounded align-items-start bg-white" id="ficha-principal-perfil">
-            <div class="col-12 col-md-4 text-center text-black">
-                <div class="imagen-circular mx-auto mb-3">
-                    <img src="./img/example.jpg" alt="img" class="img-fluid">
-                </div>
-                <a href="../../../../../../Desktop/pantallas%20a%20subir/ajustes_perfil.html" class="btn w-75 fs-5">Editar perfil</a>
-            </div>
-            
-            <div class="col-12 col-md-5 text-black text-center text-lg-start">
-                <h1 class="h3">Nombre de usuario</h1>
-                <p class=" fs-5 mb-1 text-muted">
-                    Estado / Descripción del usuario<a href="#" class="btn btn-sm" id="editar-estado">
-                        <i class="bi bi-pencil fs-6"></i>
-                    </a>
-                </p>
-                <hr>
-                <div class="mt-3 text-center text-lg-start">
-                    <p class="fw-bold fs-5">Géneros de películas favoritos</p>
-                    <div>
-                        <span class="badge border border-dark text-dark rounded-pill fs-6">#Acción</span>
-                        <span class="badge border border-dark text-dark rounded-pill fs-6">#Comedia</span>
-                        <span class="badge border border-dark text-dark rounded-pill fs-6">#Terror</span>
-                    </div>
-                </div>
-                <div class="mt-3 text-center text-lg-start">
-                    <p class="fw-bold fs-5">Géneros de series favoritos</p>
-                    <div>
-                        <span class="badge border border-dark text-dark rounded-pill fs-6">#Acción</span>
-                        <span class="badge border border-dark text-dark  rounded-pill fs-6">#Comedia</span>
-                        <span class="badge border border-dark text-dark  rounded-pill fs-6">#Terror</span>
-                    </div>
-                </div>
-                <div class="mt-3 text-center text-lg-start">
-                    <p class="fw-bold fs-5">Géneros de videojuegos favoritos</p>
-                    <div>
-                        <span class="badge border border-dark text-dark  rounded-pill fs-6">#Acción</span>
-                        <span class="badge border border-dark text-dark  rounded-pill fs-6">#Comedia</span>
-                        <span class="badge border border-dark text-dark  rounded-pill fs-6">#Terror</span>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+          <div class="row g-4 rounded align-items-start bg-white" id="ficha-principal-perfil">
+              <div class="col-12 col-md-4 text-center text-black">
+                  <div class="imagen-circular mx-auto mb-3">
+                      <img th:src="@{${usuario.imagenUrl}}" alt="img" class="img-fluid">
+                  </div>
+                  <a th:href="@{/ajustes_perfil}" class="btn w-75 fs-5">Editar perfil</a>
+              </div>
 
-            <!--Contenedor de datos en la ficha del perfil-->
-            <div class="col-12 col-md-3">
-                <div class="contenedor-datos-ficha-perfil mx-auto rounded p-3 shadow text-center d-flex flex-column justify-content-center align-items-center">
-                  
-                    <ul class="list-unstyled fs-5">
-                        <li class="mb-3">
-                            <a href="#" id="ver-resenas" class="text-decoration-none text-dark">
-                                ⭐ Reseñas (<span id="contador-resenas">0</span>)
-                            </a>
-                        </li>
-                        <li class="mb-3">
-                            <a href="#" id="ver-insignias" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalInsignias">
-                                🏆 Insignias (<span id="contador-insignias">0</span>)
-                            </a>
-                        </li>
-                        <li class="mb-3">
-                            <a href="#" id="ver-favoritos" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalFavoritos">
-                                ❤️ Favoritos (<span id="contador-favoritos">0</span>)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" id="ver-pendiente" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalPendiente">
-                                🎬 Pendiente (<span id="contador-pendiente">0</span>)
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+              <div class="col-12 col-md-5 text-black text-center text-lg-start">
+                  <h1 class="h3" th:text="${usuario.nombre}">Nombre de usuario</h1>
+                  <p class="fs-5 mb-1 text-muted">
+                      <span th:text="${usuario.estado}">Estado / Descripción del usuario</span>
+                      <a href="#" class="btn btn-sm" id="editar-estado">
+                          <i class="bi bi-pencil fs-6"></i>
+                      </a>
+                  </p>
+                  <hr>
 
-        <!--Contenido principal (reseñas, comentarios, me gusta)-->
-        <div class="row mt-5">
-            <div class="col-12 col-lg-9 mb-4 tabs-contenido-principal">
-                <div class="bg-light rounded shadow-sm p-3">
-                    <ul class="nav nav-tabs" id="tab-contenido-principal" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="link-resenas" data-bs-toggle="tab" href="#tab-resenas" role="tab">Reseñas</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="link-comentarios" data-bs-toggle="tab" href="#tab-comentarios" role="tab">Comentarios</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="link-megusta" data-bs-toggle="tab" href="#tab-megusta" role="tab">Me gusta</a>
-                        </li>
-                    </ul>
+                  <div class="mt-3 text-center text-lg-start">
+                      <p class="fw-bold fs-5">Géneros de películas favoritos</p>
+                      <div>
+                        <span th:each="genero : ${generosPeliculas}"
+                              th:text="'#' + ${genero}"
+                              class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
+                      </div>
+                  </div>
 
-                    <div class="tab-content mt-3">
-                        <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
-                            <div id="resenas-container">
-                                 <!--Aquí se muestran las reseñas-->
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-comentarios" role="tabpanel">
-                            <div id="comentarios-container">
-                                <!--Aquí se muestran los comentarios-->
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-megusta" role="tabpanel">
-                            <div id="megusta-container">
-                                <!--Aquí se muestran los me gusta-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  <div class="mt-3 text-center text-lg-start">
+                      <p class="fw-bold fs-5">Géneros de series favoritos</p>
+                      <div>
+                        <span th:each="genero : ${generosSeries}"
+                              th:text="'#' + ${genero}"
+                              class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
+                      </div>
+                  </div>
 
-            <!--Lista de amigos-->
-            <div class="contenedores-amigos-insignias col-12 col-lg-3 mx-auto mx-lg-0">
-                <div class="bg-light p-3 rounded shadow mb-4">
-                    <h5 class="fs-4 text-center">Lista de amigos</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-3 d-flex justify-content-between align-items-center">
-                            <span>#Usuario 1</span>
-                            <div>
-                                <button class="btn btn-sm btn-outline-secondary">Perfil</button>
-                                <button class="btn btn-sm btn-outline-primary">Chatear</button>
-                            </div>
-                        </li>
-                        <li class="mb-3 d-flex justify-content-between align-items-center">
-                            <span>#Usuario 2</span>
-                            <div>
-                                <button class="btn btn-sm btn-outline-secondary">Perfil</button>
-                                <button class="btn btn-sm btn-outline-primary">Chatear</button>
-                            </div>
-                        </li>
-                        <li class="mb-3 d-flex justify-content-between align-items-center">
-                            <span>#Usuario 3</span>
-                            <div>
-                                <button class="btn btn-sm btn-outline-secondary">Perfil</button>
-                                <button class="btn btn-sm btn-outline-primary">Chatear</button>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="text-center">
-                        <a href="#" class="text-decoration-none">Ver más</a>
-                    </div>
-                </div>
-                
-                <!--Insignias-->
-                <div class="bg-light p-3 rounded shadow">
-                    <h5 class="fs-4 text-center">Insignias</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-3 text-center">🏆 Insignia 1</li>
-                        <li class="mb-3 text-center">🏆 Insignia 2</li>
-                        <li class="mb-3 text-center">🏆 Insignia 3</li>
-                    </ul>
-                    <div class="text-center">
-                        <a href="#" class="text-decoration-none">Ver más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+                  <div class="mt-3 text-center text-lg-start">
+                      <p class="fw-bold fs-5">Géneros de videojuegos favoritos</p>
+                      <div>
+                        <span th:each="genero : ${generosVideojuegos}"
+                              th:text="'#' + ${genero}"
+                              class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-12 col-md-3">
+                  <div class="contenedor-datos-ficha-perfil mx-auto rounded p-3 shadow text-center d-flex flex-column justify-content-center align-items-center">
+                      <ul class="list-unstyled fs-5">
+                          <li class="mb-3">
+                              <a href="#" id="ver-resenas" class="text-decoration-none text-dark">
+                                  ⭐ Reseñas (<span th:text="${contadorResenas}">0</span>)
+                              </a>
+                          </li>
+                          <li class="mb-3">
+                              <a href="#" id="ver-insignias" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalInsignias">
+                                  🏆 Insignias (<span th:text="${contadorInsignias}">0</span>)
+                              </a>
+                          </li>
+                          <li class="mb-3">
+                              <a href="#" id="ver-favoritos" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalFavoritos">
+                                  ❤️ Favoritos (<span th:text="${contadorFavoritos}">0</span>)
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#" id="ver-pendiente" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalPendiente">
+                                  🎬 Pendiente (<span th:text="${contadorPendiente}">0</span>)
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <!--Contenido principal-->
+          <div class="row mt-5">
+              <div class="col-12 col-lg-9 mb-4 tabs-contenido-principal">
+                  <div class="bg-light rounded shadow-sm p-3">
+                      <ul class="nav nav-tabs" id="tab-contenido-principal" role="tablist">
+                          <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="link-resenas" data-bs-toggle="tab" href="#tab-resenas" role="tab">Reseñas</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="link-comentarios" data-bs-toggle="tab" href="#tab-comentarios" role="tab">Comentarios</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="link-megusta" data-bs-toggle="tab" href="#tab-megusta" role="tab">Me gusta</a>
+                          </li>
+                      </ul>
+
+                      <div class="tab-content mt-3">
+                          <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
+                              <div id="resenas-container">
+                                  <p th:if="${#lists.isEmpty(resenas)}">No hay reseñas aún.</p>
+                                  <div th:each="resena : ${resenas}">
+
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="tab-comentarios" role="tabpanel">
+                              <div id="comentarios-container">
+                                  <p th:if="${#lists.isEmpty(comentarios)}">No hay comentarios.</p>
+                                  <div th:each="comentario : ${comentarios}">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="tab-megusta" role="tabpanel">
+                              <div id="megusta-container">
+                                  <p th:if="${#lists.isEmpty(meGusta)}">No hay me gusta.</p>
+                                  <div th:each="item : ${meGusta}">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!--Lista de amigos-->
+              <div class="contenedores-amigos-insignias col-12 col-lg-3 mx-auto mx-lg-0">
+                  <div class="bg-light p-3 rounded shadow mb-4">
+                      <h5 class="fs-4 text-center">Lista de amigos</h5>
+                      <ul class="list-unstyled">
+                          <li th:each="amigo : ${amigos}" class="mb-3 d-flex justify-content-between align-items-center">
+                              <span th:text="${amigo.nombre}">#Usuario</span>
+                              <div>
+                                  <button class="btn btn-sm btn-outline-secondary">Perfil</button>
+                                  <button class="btn btn-sm btn-outline-primary">Chatear</button>
+                              </div>
+                          </li>
+                      </ul>
+                      <div class="text-center">
+                          <a href="#" class="text-decoration-none">Ver más</a>
+                      </div>
+                  </div>
+
+                  <!--Insignias-->
+                  <div class="bg-light p-3 rounded shadow">
+                      <h5 class="fs-4 text-center">Insignias</h5>
+                      <ul class="list-unstyled">
+                          <li th:each="insignia : ${insignias}" class="mb-3 text-center">🏆 <span th:text="${insignia}">Insignia</span></li>
+                      </ul>
+                      <div class="text-center">
+                          <a href="#" class="text-decoration-none">Ver más</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
 
 
-    <!--Footer-->
+  <!--Footer-->
     <footer class="bg-custom text-center py-3 mt-5">
          <div class="container">
             <div class="row">

@@ -141,7 +141,7 @@ img.rounded-circle {
     gap: 5px; 
 }
 
-#contenedor-menu-desplegable {
+.contenedor-menu-desplegable {
     display: flex;
     align-items: center;
     gap: 5px; 
