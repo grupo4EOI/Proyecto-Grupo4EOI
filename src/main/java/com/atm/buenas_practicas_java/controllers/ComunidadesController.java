@@ -1,5 +1,6 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
@@ -20,10 +21,12 @@ public class ComunidadesController {
 
     private ComunidadService comunidadService;
     private PublicacionService publicacionService;
+    private ComentarioPublicacionService comPubService;
 
-    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService) {
+    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService) {
         this.comunidadService = comunidadService;
         this.publicacionService = publicacionService;
+        this.comPubService = comPubService;
     }
 
     @GetMapping
@@ -39,4 +42,15 @@ public class ComunidadesController {
         model.addAttribute("publicaciones", publicaciones);
         return "comunidad";
     }
+
+    @GetMapping("/{idcom}/temas/{id}")
+    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id) {
+        Comunidad com = comunidadService.findById(idcom);
+        List<ComentarioPublicacion> comentarios = comPubService.getComentarioPublicacionByPublicacionId(id);
+        model.addAttribute("comunidad", com);
+        model.addAttribute("comentarios", comentarios);
+        return "ejemplo-tema";
+    }
+
+
 }

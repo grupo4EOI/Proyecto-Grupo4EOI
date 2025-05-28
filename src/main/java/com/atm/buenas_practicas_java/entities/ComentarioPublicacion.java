@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -19,6 +20,8 @@ public class ComentarioPublicacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INTEGER")
     private Long idComentarioPublicacion;
+
+    private LocalDateTime fecha;
 
     @Column(columnDefinition = "TEXT")
     private String contenido;

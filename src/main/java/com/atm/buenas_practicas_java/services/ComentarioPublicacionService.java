@@ -38,4 +38,8 @@ public class ComentarioPublicacionService {
         return comentarios;
     }
 
+    public List<ComentarioPublicacion> getComentarioPublicacionByPublicacionId(Long publicacionId){
+        return publicacionRepository.findById(publicacionId).get().getComentariosPublicacion();
+    }
+
 }

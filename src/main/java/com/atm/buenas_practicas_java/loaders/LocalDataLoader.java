@@ -403,6 +403,7 @@ public class LocalDataLoader {
         comentarioPublicacion1.setContenido("Este es el primer comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
                 "las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion1.setFecha(LocalDateTime.of(2025, 5, 25, 16, 32, 28));
 
         ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
         comentarioPublicacion2.setPublicacion(publicacion1);
@@ -410,12 +411,15 @@ public class LocalDataLoader {
         comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion2.setFecha(LocalDateTime.of(2025, 5, 25, 16, 39, 14));
+
         ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
         comentarioPublicacion3.setPublicacion(publicacion1);
         comentarioPublicacion3.setUsuario(usuario3);
         comentarioPublicacion3.setContenido("Este es el tercer comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion3.setFecha(LocalDateTime.of(2025, 5, 25, 16, 48, 54));
 
         publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2, comentarioPublicacion3));
 
@@ -425,6 +429,7 @@ public class LocalDataLoader {
         comentarioPublicacion4.setContenido("Este es el primer comentario de la publicación 2." +
                 " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
                 "las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion4.setFecha(LocalDateTime.of(2025, 5, 26, 18, 36, 32));
 
         ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
         comentarioPublicacion5.setPublicacion(publicacion2);
@@ -432,12 +437,15 @@ public class LocalDataLoader {
         comentarioPublicacion5.setContenido("Este es el segundo comentario de la publicación 2." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
+
         ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
         comentarioPublicacion6.setPublicacion(publicacion2);
         comentarioPublicacion6.setUsuario(usuario3);
         comentarioPublicacion6.setContenido("Este es el tercer comentario de la publicación 2." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion6.setFecha(LocalDateTime.of(2025, 5, 26, 19, 2, 12));
 
         publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion4, comentarioPublicacion5, comentarioPublicacion6));
 
@@ -447,6 +455,7 @@ public class LocalDataLoader {
         comentarioPublicacion7.setContenido("Este es el primer comentario de la publicación 3." +
                 " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
                 "las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion7.setFecha(LocalDateTime.of(2025, 5, 27, 13, 34, 51));
 
         ComentarioPublicacion comentarioPublicacion8 = new ComentarioPublicacion();
         comentarioPublicacion8.setPublicacion(publicacion3);
@@ -454,12 +463,15 @@ public class LocalDataLoader {
         comentarioPublicacion8.setContenido("Este es el segundo comentario de la publicación 3." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 2, 23));
+
         ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
         comentarioPublicacion9.setPublicacion(publicacion3);
         comentarioPublicacion9.setUsuario(usuario1);
         comentarioPublicacion9.setContenido("Este es el tercer comentario de la publicación 3." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
 
         publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
 
