@@ -31,17 +31,25 @@ public class ComentarioPublicacionService {
 
     /** Devuelve una lista de los primeros comentarios de cada publicación pertenecientes a la comunidad del objeto */
     public List<ComentarioPublicacionDTO> getPrimerosComentariosObjeto(Long idObjeto) {
-        Optional<Objeto> objeto = objetoRepository.findById(idObjeto);
-        List<ComentarioPublicacionDTO> comentarios = new ArrayList<>();
-        if (objeto.isPresent()) {
-            Comunidad comunidad = objeto.get().getComunidad();
-            List<Publicacion> publicaciones = publicacionRepository.getPublicacionsByComunidad(comunidad);
-            comentarios = publicaciones.stream()
-                    .map(publicacion -> comentarioPublicacionMapper.toDto(publicacion.getComentariosPublicacion().getFirst()))
-                    .toList();
-        }
+        return objetoRepository.findById(idObjeto)
+                .map(objeto -> {
+                    Comunidad comunidad = objeto.getComunidad();
+                    return publicacionRepository.getPublicacionsByComunidad(comunidad)
+                            .stream()
+                            .map(publicacion -> {
+                                ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();
+                                ComentarioPublicacionDTO dto = comentarioPublicacionMapper.toDto(comentario);
 
-        return comentarios;
+                                return new ComentarioPublicacionDTO(
+                                        publicacion.getTitulo(),
+                                        dto.contenido(),
+                                        dto.usuario(),
+                                        dto.reacciones()
+                                );
+                            })
+                            .toList();
+                })
+                .orElse(new ArrayList<>());
     }
 
 }
