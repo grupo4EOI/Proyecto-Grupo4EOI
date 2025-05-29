@@ -14,6 +14,4 @@ public interface ResenaMapper {
     ResenaDTO toDto(Resena resena);
 
     ComentarioResenaDTO comentarioToDTO(ComentarioResena comentarioResena);
-
-
 }

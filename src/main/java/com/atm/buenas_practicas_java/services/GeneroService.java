@@ -8,6 +8,7 @@ import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,10 +22,13 @@ public class GeneroService {
     }
 
     public List<Genero> obtenerGenerosPorObjeto(Long idObjeto) {
-        Objeto objeto = objetoRepository.findById(idObjeto)
-                .orElseThrow(() -> new RuntimeException("Objeto no encontrado con id: " + idObjeto));
+        Optional<Objeto> objeto = objetoRepository.findById(idObjeto);
 
-        List<GeneroObjeto> relaciones = generoObjetoRepository.findByObjeto(objeto);
+        if (objeto.isPresent()) {
+            List<GeneroObjeto> relaciones = generoObjetoRepository.findByObjeto(objeto);
+        }
+
+
 
         return relaciones.stream()
                 .map(GeneroObjeto::getGenero)

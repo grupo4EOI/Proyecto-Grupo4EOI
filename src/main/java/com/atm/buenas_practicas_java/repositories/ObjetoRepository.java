@@ -8,5 +8,4 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface ObjetoRepository extends JpaRepository<Objeto, Long> {
-    Objeto findObjetoByIdObjeto(Long idObjeto);
 }
