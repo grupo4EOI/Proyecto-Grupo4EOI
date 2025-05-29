@@ -48,8 +48,7 @@ public class ComentarioPublicacionService {
                                 );
                             })
                             .toList();
-                })
-                .orElse(new ArrayList<>());
+                }).orElseThrow(() -> new RuntimeException("No se encontró el objeto"));
     }
 
 }
