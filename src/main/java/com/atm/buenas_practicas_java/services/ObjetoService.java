@@ -2,6 +2,7 @@ package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
+import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,12 @@ public class ObjetoService {
 
     private final ObjetoRepository objetoRepository;
     private final ResenaRepository resenaRepository;
+    private final FichaObjetoMapper fichaObjetoMapper;
 
-    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository) {
+    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository, FichaObjetoMapper fichaObjetoMapper) {
         this.objetoRepository = objetoRepository;
         this.resenaRepository = resenaRepository;
+        this.fichaObjetoMapper = fichaObjetoMapper;
     }
 
     public Objeto save(Objeto objeto) {
@@ -40,5 +43,6 @@ public class ObjetoService {
     public int calcularNumeroResenas(Long idObjeto) {
         return resenaRepository.findResenasByObjeto_IdObjeto(idObjeto).size();
     }
+
 
 }

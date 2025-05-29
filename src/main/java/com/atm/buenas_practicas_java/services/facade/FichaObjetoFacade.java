@@ -1,6 +1,7 @@
 package com.atm.buenas_practicas_java.services.facade;
 
 import com.atm.buenas_practicas_java.dtos.FichaObjetoDTO;
+import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.services.*;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,12 @@ public class FichaObjetoFacade {
     }
 
     public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
-
+        Objeto objeto = objetoService.findById(idObjeto);
+        return new FichaObjetoDTO(
+                objeto.getTitulo(),
+                objeto.getDescripcion(),
+                objeto.get
+        )
     }
 
 

@@ -20,12 +20,12 @@ public class ResenaService {
         this.objetoRepository = objetoRepository;
     }
 
-    public List<Resena> findResenasByObjeto(Objeto objeto) {
-        return resenaRepository.findResenasByObjeto(objeto);
+    public List<Resena> findResenasByObjeto(Long idObjeto) {
+        return resenaRepository.findResenasByObjeto_IdObjeto(idObjeto);
     }
 
     public Resena nuevaResena(Long idObjeto, @ModelAttribute("nuevaResena") Resena resena) {
-        Objeto objeto = objetoRepository.findById(idObjeto).get();
+        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow();
         resena.setObjeto(objeto);
         return resenaRepository.save(resena);
     }

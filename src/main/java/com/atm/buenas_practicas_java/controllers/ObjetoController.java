@@ -46,7 +46,7 @@ public class ObjetoController {
         model.addAttribute("puntuacion", objetoService.calcularPuntuacionObjeto(id));
         model.addAttribute("listaGeneros", generoService.obtenerGenerosPorObjeto(id));
         model.addAttribute("numeroResenas", objetoService.calcularNumeroResenas(id));
-        model.addAttribute("listaResenas", resenaService.findResenasByObjeto(objeto));
+        model.addAttribute("listaResenas", resenaService.findResenasByObjeto(id));
         model.addAttribute("directores", personaService.getDirectoresByObjetoId(id));
         model.addAttribute("actores", personaService.getActoresByObjetoId(id));
         model.addAttribute("publicaciones", comentarioPublicacionService.getPrimerosComentariosObjeto(id));
