@@ -31,6 +31,6 @@ public class ComentarioPublicacion {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "comentarioPublicacion")
+    @OneToMany(mappedBy = "comentarioPublicacion", fetch = FetchType.EAGER)
     private List<Reaccion> reacciones;
 }

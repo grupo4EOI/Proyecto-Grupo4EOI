@@ -4,6 +4,5 @@ public record PersonaDTO(
         String nombreCompleto,
         String fechaNacimiento,
         String biografia,
-        String urlFoto,
-        Boolean rol
+        String fotoUrl
 ) { }

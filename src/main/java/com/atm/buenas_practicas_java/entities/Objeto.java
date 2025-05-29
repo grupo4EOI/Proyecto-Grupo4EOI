@@ -7,10 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -48,15 +46,20 @@ public class Objeto {
     private Set<ObjetoUsuario> usuarios;
 
     // Relacion 1:N de las tablas objetos y reseñas
-    @OneToMany(mappedBy = "objeto")
+    @OneToMany(mappedBy = "objeto", fetch = FetchType.EAGER)
     private List<Resena> resenas;
 
     // Relacion 1:N de las tablas objetos y personasObjetos
     @OneToMany(mappedBy = "objeto")
     private Set<PersonaObjeto> personasObjeto;
 
-    @OneToMany(mappedBy = "objeto")
-    private Set<GeneroObjeto> generosObjeto;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "generos_objetos",
+            joinColumns = @JoinColumn(name = "id_objeto"),
+            inverseJoinColumns = @JoinColumn(name = "id_genero")
+    )
+    private Set<Genero> generos;
 
     @ManyToOne
     @JoinColumn(name = "id_comunidad")
