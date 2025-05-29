@@ -4,5 +4,5 @@ import java.util.List;
 
 public record UsuarioDTO(
         String nombreUsuario,
-        String urlAvatar
+        String avatarUrl
 ) { }

@@ -28,5 +28,5 @@ public class Genero {
     private List<Objeto> objetos;
 
     @ManyToMany(mappedBy = "generos")
-    private Set<Genero> usuarios;
+    private Set<Usuario> usuarios;
 }

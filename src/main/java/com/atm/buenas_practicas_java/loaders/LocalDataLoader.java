@@ -58,7 +58,19 @@ public class LocalDataLoader {
      *                                Es utilizado para gestionar datos de la entidad hija y su relación con
      *                                la entidad padre.
      */
-    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository, GeneroRepository generoRepository, GeneroObjetoRepository generoObjetoRepository, ComentarioPublicacionRepository comentarioPublicacionRepository, PublicacionRepository publicacionRepository, ComunidadRepository comunidadRepository, ComentarioResenaRepository comentarioResenaRepository) {
+    public LocalDataLoader(EntidadPadreRepository repository,
+                           EntidadHijaRepository entidadHijaRepository,
+                           ObjetoRepository objetoRepository,
+                           PersonaRepository personaRepository,
+                           PersonaObjetoRepository personaObjetoRepository,
+                           UsuarioRepository usuarioRepository,
+                           ResenaRepository resenaRepository,
+                           TipoRepository tipoRepository,
+                           GeneroRepository generoRepository,
+                           ComentarioPublicacionRepository comentarioPublicacionRepository,
+                           PublicacionRepository publicacionRepository,
+                           ComunidadRepository comunidadRepository,
+                           ComentarioResenaRepository comentarioResenaRepository) {
         this.repository = repository;
         this.entidadHijaRepository = entidadHijaRepository;
         this.objetoRepository = objetoRepository;
@@ -68,7 +80,6 @@ public class LocalDataLoader {
         this.resenaRepository = resenaRepository;
         this.tipoRepository = tipoRepository;
         this.generoRepository = generoRepository;
-        this.generoObjetoRepository = generoObjetoRepository;
         this.comentarioPublicacionRepository = comentarioPublicacionRepository;
         this.publicacionRepository = publicacionRepository;
         this.comunidadRepository = comunidadRepository;
@@ -245,28 +256,12 @@ public class LocalDataLoader {
 
         objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3)));
 
-        GeneroObjeto generoObjeto1 = new GeneroObjeto();
-        generoObjeto1.setGenero(genero1);
-        generoObjeto1.setObjeto(objeto);
-        GeneroObjeto generoObjeto2 = new GeneroObjeto();
-        generoObjeto2.setGenero(genero2);
-        generoObjeto2.setObjeto(objeto);
-        GeneroObjeto generoObjeto3 = new GeneroObjeto();
-        generoObjeto3.setGenero(genero3);
-        generoObjeto3.setObjeto(objeto);
-        GeneroObjeto generoObjeto4 = new GeneroObjeto();
-        generoObjeto4.setGenero(genero4);
-        generoObjeto4.setObjeto(objeto);
-        GeneroObjeto generoObjeto5 = new GeneroObjeto();
-        generoObjeto5.setGenero(genero5);
-        generoObjeto5.setObjeto(objeto);
 
 
-        objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5)));
+        objeto.setGeneros(new HashSet<>(Arrays.asList(genero1, genero2, genero3, genero4, genero5)));
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
 
-        generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5));
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3));
 

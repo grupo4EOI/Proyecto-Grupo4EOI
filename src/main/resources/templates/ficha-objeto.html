@@ -183,24 +183,24 @@
 
             <!-- Modal -->
             <!-- Modal -->
+            <!--
             <div class="modal fade" id="modalResena" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
 
-                        <!-- Encabezado -->
+
                         <div class="modal-header bg-gradient text-white py-3">
                             <h5 class="modal-title fw-bold" id="reviewModalLabel">📝 Añadir Reseña</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                         </div>
 
-                        <!-- Formulario -->
-                        <form th:action="@{/ficha-objeto/{id}(id=${objeto.idObjeto})}"
-                              th:object="${nuevaResena}"
+
+                        <form
                               method="post">
 
                             <div class="modal-body px-4 py-3">
 
-                                <!-- Puntuación numérica decimal -->
+
                                 <div class="mb-3">
                                     <label for="rating" class="form-label">Puntuación (0.0 – 5.0)</label>
                                     <input type="number"
@@ -212,7 +212,7 @@
                                            placeholder="Ej. 3.5" required />
                                 </div>
 
-                                <!-- Texto reseña -->
+
                                 <div class="form-floating mb-3">
             <textarea class="form-control rounded-3"
                       placeholder="Escribe tu reseña..."
@@ -224,7 +224,7 @@
                                 </div>
                             </div>
 
-                            <!-- Footer con botones -->
+
                             <div class="modal-footer bg-light border-0 px-4 py-3">
                                 <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
                                     Cancelar
@@ -237,6 +237,7 @@
                     </div>
                 </div>
             </div>
+            -->
 
 
             <div class="etiqueta px-3 mb-2 mx-1">

@@ -6,7 +6,6 @@ public record ComentarioResenaDTO(
         String fecha,
         String contenido,
         UsuarioDTO usuario,
-        ResenaDTO resena,
         List<ReaccionDTO> reacciones
 ) {
 }

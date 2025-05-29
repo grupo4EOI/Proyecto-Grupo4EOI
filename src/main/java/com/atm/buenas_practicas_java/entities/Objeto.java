@@ -46,14 +46,14 @@ public class Objeto {
     private Set<ObjetoUsuario> usuarios;
 
     // Relacion 1:N de las tablas objetos y reseñas
-    @OneToMany(mappedBy = "objeto")
+    @OneToMany(mappedBy = "objeto", fetch = FetchType.EAGER)
     private List<Resena> resenas;
 
     // Relacion 1:N de las tablas objetos y personasObjetos
     @OneToMany(mappedBy = "objeto")
     private Set<PersonaObjeto> personasObjeto;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "generos_objetos",
             joinColumns = @JoinColumn(name = "id_objeto"),

@@ -7,11 +7,16 @@ import com.atm.buenas_practicas_java.entities.Resena;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {UsuarioMapper.class, ComentarioResenaMapper.class})
 public interface ResenaMapper {
 
-    @Mapping(target = "autor", source = "usuario")
+    @Mapping(source = "contenido", target = "contenido")
+    @Mapping(source = "puntuacion", target = "puntuacion")
+    @Mapping(source = "usuario", target = "autor")
+    @Mapping(source = "comentariosResena", target = "comentariosResena")
     ResenaDTO toDto(Resena resena);
 
-    ComentarioResenaDTO comentarioToDTO(ComentarioResena comentarioResena);
+    List<ResenaDTO> toDtoList(List<Resena> resenas);
 }
