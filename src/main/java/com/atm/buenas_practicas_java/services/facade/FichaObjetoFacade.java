@@ -53,7 +53,7 @@ public class FichaObjetoFacade {
                 dto.tipo(),
                 dto.generos(),
                 resenas,
-                primerasPublicaciones,  // TODO: revisar el metodo en el servicio para que incluya el titulo
+                primerasPublicaciones,
                 puntuacion,
                 numeroResenas,
                 directores,

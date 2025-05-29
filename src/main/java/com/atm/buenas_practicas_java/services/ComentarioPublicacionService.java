@@ -3,16 +3,15 @@ package com.atm.buenas_practicas_java.services;
 import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
-import com.atm.buenas_practicas_java.entities.Objeto;
-import com.atm.buenas_practicas_java.entities.Publicacion;
+
 import com.atm.buenas_practicas_java.mapper.ComentarioPublicacionMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ComentarioPublicacionService {
