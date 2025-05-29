@@ -65,20 +65,20 @@
     <div class="row gx-0">
 
         <!-- Titular y datos: año publicación y duración -->
-        <div class="col-12 mt-4"><h2 th:text="${objeto.getTitulo()}"></h2></div>
-        <div class="col-12 mt-2"><p th:text="'Año publicación: ' + ${objeto.getFechaPublicacion().getYear()} + ' - Duración: ' + ${objeto.getDuracionMinutos() + ' minutos'}">Año publicación: 1992 - Duración: 2h 7min</p></div>
+        <div class="col-12 mt-4"><h2 th:text="${fichaObjeto.titulo()}"></h2></div>
+        <div class="col-12 mt-2"><p th:text="${fichaObjeto.fechaYDuracion()}"></p></div>
 
         <!-- Imagen objeto -->
         <div class="image-container-ext">
             <div class="image-container col-xxl-3 col-xl-5 col-lg-12">
-                <img class="img-fluid" th:alt="'Cartel de ' + ${objeto.getTipo().getNombre()} + ': ' + ${objeto.getTitulo()}"
-                     th:src="${objeto.getImagenUrl()}">
+                <img class="img-fluid" th:alt="'Cartel de ' + ${fichaObjeto.tipo()} + ': ' + ${fichaObjeto.titulo()}"
+                     th:src="${fichaObjeto.imagenUrl()}">
                 <!-- Boton para acceder al trailer de una película / serie / videojuego -->
                 <button
                         class="trailer-button btn btn-primary video-btn"
                         data-bs-target="#modal-trailer"
                         data-bs-toggle="modal"
-                        th:data-src="${objeto.getTrailerUrl()}"
+                        th:data-src="${fichaObjeto.trailerUrl()}"
                         type="button">
                     <i class="bi bi-play-circle me-2"></i>Ver trailer
                 </button>
@@ -92,7 +92,7 @@
                                         type="button"></button>
                                 <div class="ratio ratio-16x9">
                                     <iframe allow="autoplay" class="embed-responsive-item" id="video"
-                                            th:src="${objeto.getTrailerUrl()}"></iframe>
+                                            th:src="${fichaObjeto.trailerUrl()}"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -106,28 +106,28 @@
             <div class="container">
                 <div class="row d-flex flex-column gap-2">
                     <div class="col-12">
-                        <p class="mb-2" th:text="'Puntuación: ' + ${puntuacion} + ' / 5'"></p>
+                        <p class="mb-2" th:text="'Puntuación: ' + ${fichaObjeto.puntuacion()} + ' / 5'"></p>
                     </div>
                     <div class="col-12">
-                        <p th:text="'Numero total reseñas: ' + ${numeroResenas}"></p>
+                        <p th:text="'Numero total reseñas: ' + ${fichaObjeto.numeroResenas()}"></p>
                     </div>
                     <hr class="hr mt-0">
                     <div class="col-12 d-flex align-items-center gap-2">
                         <span><b>Dirección:</b></span>
-                        <div th:each="director, iterStat : ${directores}">
+                        <div th:each="director, iterStat : ${fichaObjeto.directores()}">
                             <div class="etiqueta px-2" data-bs-toggle="modal" th:data-bs-target="'#modalDirector-' + ${iterStat.index}"><i class="bi bi-person me-2"></i>
-                                <span th:text="${director.getNombre() + ' ' + director.getApellido()}"></span>
+                                <span th:text="${director.nombreCompleto()}"></span>
                             </div>
                             <div class="modal fade" th:id="'modalDirector-' + ${iterStat.index}" tabindex="-1" aria-labelledby="modalDirectorLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-persona-dialog">
                                     <div class="modal-content modal-persona-content">
                                         <div class="modal-header modal-persona-header">
-                                            <h3 th:text="${director.getNombre() + ' ' + director.getApellido()}" class="modal-title modal-persona-title fs-5" id="modalDirectorLabel"></h3>
+                                            <h3 th:text="${director.nombreCompleto()}" class="modal-title modal-persona-title fs-5" id="modalDirectorLabel"></h3>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body modal-persona-body d-flex flex-column gap-2">
-                                            <img th:src="${director.getFotoUrl()}" class="img-fluid align-self-center modal-persona-img" alt="Responsive image">
-                                            <p th:text="${director.getBiografia()}"></p>
+                                            <img th:src="${director.fotoUrl()}" class="img-fluid align-self-center modal-persona-img" alt="Responsive image">
+                                            <p th:text="${director.biografia()}"></p>
                                         </div>
                                         <div class="modal-persona-footer">
                                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
@@ -139,20 +139,20 @@
                     </div>
                     <div class="col-12 d-flex align-items-center gap-2">
                       <span><b>Reparto:</b> </span>
-                      <div th:each="actor, iterStat : ${actores}">
+                      <div th:each="actor, iterStat : ${fichaObjeto.actores()}">
                           <div class="etiqueta px-2" data-bs-toggle="modal" th:data-bs-target="'#modalActor-' + ${iterStat.index}"><i class="bi bi-person me-2"></i>
-                              <span th:text="${actor.getNombre() + ' ' + actor.getApellido()}"></span>
+                              <span th:text="${actor.nombreCompleto()}"></span>
                           </div>
                           <div class="modal fade" th:id="'modalActor-' + ${iterStat.index}" tabindex="-1" aria-labelledby="modalActorLabel" aria-hidden="true">
                               <div class="modal-dialog modal-persona-dialog">
                                   <div class="modal-content modal-persona-content">
                                       <div class="modal-header modal-persona-header">
-                                          <h3 th:text="${actor.getNombre() + ' ' + actor.getApellido()}" class="modal-title modal-persona-title fs-5" id="modalActorLabel"></h3>
+                                          <h3 th:text="${actor.nombreCompleto()}" class="modal-title modal-persona-title fs-5" id="modalActorLabel"></h3>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body modal-persona-body d-flex flex-column gap-2">
-                                          <img th:src="${actor.getFotoUrl()}" class="img-fluid align-self-center modal-persona-img" alt="Responsive image">
-                                          <p th:text="${actor.getBiografia()}"></p>
+                                          <img th:src="${actor.fotoUrl()}" class="img-fluid align-self-center modal-persona-img" alt="Responsive image">
+                                          <p th:text="${actor.biografia()}"></p>
                                       </div>
                                       <div class="modal-persona-footer">
                                           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
@@ -164,13 +164,13 @@
                     </div>
                     <div class="col-12 mt-2 d-inline-flex flex-wrap">
                         <p><b>Descripción:</b>
-                            <span th:text="${objeto.getDescripcion()}"></span>
+                            <span th:text="${fichaObjeto.descripcion()}"></span>
                         </p>
                     </div>
                     <div class="col-12 mt-0 d-flex flex-wrap align-items-center gap-2">
                         <span><b>Géneros:</b> </span>
-                        <div class="etiqueta px-3" th:each="genero : ${listaGeneros}"
-                             th:text="${genero.getNombre()}"></div>
+                        <div class="etiqueta px-3" th:each="genero : ${fichaObjeto.generos()}"
+                             th:text="${genero}"></div>
                     </div>
                 </div>
             </div>
@@ -262,49 +262,49 @@
     <hr class="hr mt-3">
     <!-- Apartado reseñas -->
     <h3 class="col-12"><b>Reseñas</b></h3>
-    <div class="row mx-3 my-3 gx-0" th:each="resena, iterStat : ${listaResenas}">
-        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.getUsuario().getNombreUsuario()}"><i
+    <div class="row mx-3 my-3 gx-0" th:each="resena, iterStat : ${fichaObjeto.resenas()}">
+        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
                 class="bi bi-person me-2"></i>@MrReseñador
         </div>
         <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
         <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
         <div class="container" id="review">
             <div class="row">
-                <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.getPuntuacion()} + ' / 5'"></span>
+                <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
                 </div>
                 <div class="col-12 mb-2">
-                    <b>Título de la reseña: </b><span th:text="${resena.getTitulo()}"></span>
+                    <b>Título de la reseña: </b><span th:text="${resena.titulo()}"></span>
                 </div>
                 <div class="col-12 mb-1">
-                    <b>Contenido de la reseña: </b><span th:text="${resena.getContenido()}"></span>
+                    <b>Contenido de la reseña: </b><span th:text="${resena.contenido()}"></span>
                 </div>
             </div>
         </div>
         <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
         <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#comentarios-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat"></i> Comentarios</div>
-        <div class="row collapse mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.getComentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
-            <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.getUsuario().getNombreUsuario()}"><i
+        <div class="row collapse mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
+            <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
                     class="bi bi-person me-2"></i>@MrReseñador
             </div>
             <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
             <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
-            <p th:text="${comentario.getContenido()}"></p>
+            <p th:text="${comentario.contenido()}"></p>
         </div>
     </div>
     <hr class="hr mt-3">
 
     <!-- Apartado publicaciones-->
     <h3 class="col-12"><b>Publicaciones</b></h3>
-    <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${publicaciones}">
-        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.getUsuario().getNombreUsuario()}"><i class="bi bi-person me-2"></i></div>
+    <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${fichaObjeto.publicaciones()}">
+        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
         <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
         <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
         <div class="container" id="publicacion" >
             <div class="row">
                 <div class="col-12 mt-1 mb-2">
-                    <b>Título de la publicación:</b> <span th:text="${publicacion.getPublicacion().getTitulo()}"></span>
+                    <b>Título de la publicación:</b> <span th:text="${publicacion.titulo()}"></span>
                 </div>
-                <div class="col-12 mb-1" th:text="${publicacion.getContenido()}"></div>
+                <div class="col-12 mb-1" th:text="${publicacion.contenido()}"></div>
             </div>
         </div>
         <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
