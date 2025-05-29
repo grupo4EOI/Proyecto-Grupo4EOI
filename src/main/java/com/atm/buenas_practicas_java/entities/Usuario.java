@@ -68,6 +68,11 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private Set<ComentarioResena> comentariosResenas;
 
-    @OneToMany(mappedBy = "usuario")
-    private Set<GeneroUsuario> generosUsuario;
+    @ManyToMany
+    @JoinTable(
+            name = "generos_usuarios",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_genero")
+    )
+    private Set<Genero> generos;
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,9 +24,9 @@ public class Genero {
     private int idGenero;
     private String nombre;
 
-    @OneToMany(mappedBy = "genero")
-    private List<GeneroObjeto> generosObjetos;
+    @ManyToMany(mappedBy = "generos")
+    private List<Objeto> objetos;
 
-    @OneToMany(mappedBy = "genero")
-    private List<GeneroUsuario> generosUsuarios;
+    @ManyToMany(mappedBy = "generos")
+    private Set<Genero> usuarios;
 }

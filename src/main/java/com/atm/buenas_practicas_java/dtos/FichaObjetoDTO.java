@@ -9,8 +9,11 @@ public record FichaObjetoDTO(
         String imagenUrl,
         String trailerUrl,
         String tipo,
-        List<PersonaDTO> personas,
-        List<GeneroDTO> generos,
+        List<String> generos,
         List<ResenaDTO> resenas,
-        List<PublicacionDTO> publicaciones
+        List<ComentarioPublicacionDTO> publicaciones,
+        Double puntuacion,
+        Integer numeroResenas,
+        List<PersonaDTO> directores,
+        List<PersonaDTO> actores
 ) { }

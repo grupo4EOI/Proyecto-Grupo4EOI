@@ -15,12 +15,10 @@ public class ObjetoService {
 
     private final ObjetoRepository objetoRepository;
     private final ResenaRepository resenaRepository;
-    private final FichaObjetoMapper fichaObjetoMapper;
 
-    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository, FichaObjetoMapper fichaObjetoMapper) {
+    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository) {
         this.objetoRepository = objetoRepository;
         this.resenaRepository = resenaRepository;
-        this.fichaObjetoMapper = fichaObjetoMapper;
     }
 
     public Objeto save(Objeto objeto) {

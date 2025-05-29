@@ -53,8 +53,13 @@ public class Objeto {
     @OneToMany(mappedBy = "objeto")
     private Set<PersonaObjeto> personasObjeto;
 
-    @OneToMany(mappedBy = "objeto")
-    private Set<GeneroObjeto> generosObjeto;
+    @ManyToMany
+    @JoinTable(
+            name = "generos_objetos",
+            joinColumns = @JoinColumn(name = "id_objeto"),
+            inverseJoinColumns = @JoinColumn(name = "id_genero")
+    )
+    private Set<Genero> generos;
 
     @ManyToOne
     @JoinColumn(name = "id_comunidad")

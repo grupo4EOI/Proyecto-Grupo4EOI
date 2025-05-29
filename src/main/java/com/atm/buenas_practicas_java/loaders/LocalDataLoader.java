@@ -40,7 +40,6 @@ public class LocalDataLoader {
     private final ResenaRepository resenaRepository;
     private final TipoRepository tipoRepository;
     private final GeneroRepository generoRepository;
-    private final GeneroObjetoRepository generoObjetoRepository;
     private final ComentarioPublicacionRepository comentarioPublicacionRepository;
     private final PublicacionRepository publicacionRepository;
     private final ComunidadRepository comunidadRepository;
