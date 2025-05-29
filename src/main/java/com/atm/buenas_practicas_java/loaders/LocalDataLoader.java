@@ -361,7 +361,7 @@ public class LocalDataLoader {
         //Comunidades de prueba
 
         Comunidad comunidad1 = new Comunidad();
-        comunidad1.setNombreComunidad("Comunidad de Harry Potter");
+        comunidad1.setNombreComunidad("Harry Potter");
         comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad1.setObjetos(Arrays.asList(objeto));
@@ -370,7 +370,7 @@ public class LocalDataLoader {
         comunidad1.setUrlImg("https://static.posters.cz/image/1300/104639.jpg");
 
         Comunidad comunidad2 = new Comunidad();
-        comunidad2.setNombreComunidad("Comunidad de Interstellar");
+        comunidad2.setNombreComunidad("Interstellar");
         comunidad2.setDescripcion("En la comunidad de Interstellar podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad2.setObjetos(Arrays.asList(objeto2));
@@ -379,7 +379,7 @@ public class LocalDataLoader {
         comunidad2.setUrlImg("https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
 
         Comunidad comunidad3 = new Comunidad();
-        comunidad3.setNombreComunidad("Comunidad de The Gentlemen");
+        comunidad3.setNombreComunidad("The Gentlemen");
         comunidad3.setDescripcion("En la comunidad de The Gentlemen podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad3.setObjetos(Arrays.asList(objeto3));

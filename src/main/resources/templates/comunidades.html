@@ -63,7 +63,7 @@
                 <p class="card-text" th:text="${comunidad.descripcion}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
                 <p class="card-text" th:text="${#lists.size(comunidad.publicaciones)} + ' temas creados'"><i class="bi bi-envelope"> </i>1567 temas creados</p>
                 <p class="card-text" th:text="${#lists.size(comunidad.usuarios)} + ' usuarios'"><i class="bi bi-people"> </i>69 usuarios activos</p>
-                <a href="comunidad.html" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad">Únete!</a>
+                <a th:href="@{/comunidades/{id}/temas(id=${comunidad.idComunidad})}" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad">Únete!</a>
             </div>
         </div>
     </div>

@@ -54,8 +54,8 @@
     <!--Comunidad en la que estás y botón de nuevo tema-->
     <div class="bg-custom mt-4 mx-auto rounded-top p-3 w-75">
       <div class="d-flex justify-content-between align-items-center">
-        <h1>Harry Potter</h1>
-        <a type="button" class="btn btn-outline-light text-white" href="nuevo_tema/nuevo_tema.html">Nuevo tema <i class="bi bi-pencil"></i></a>
+        <h1 th:text="${comunidad.nombreComunidad}">Harry Potter</h1>
+        <a type="button" class="btn btn-outline-light text-white" th:href="@{/comunidades/{id}/temas/nuevo-tema(id=${comunidad.idComunidad})}">Nuevo tema <i class="bi bi-pencil"></i></a>
     </div>
     </div>
     <!--Separador con filtro-->
@@ -113,7 +113,7 @@
         <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
       </div>
       <div>
-        <a class="nav-link" href="temas_harry_potter/ejemplo_tema.html" th:text="${publicacion.titulo}"><h6 class="mb-1">Título de tema 1</h6></a>
+        <a class="nav-link" th:href="@{/comunidades/{idCom}/temas/{idPub}(idCom=${comunidad.idComunidad}, idPub=${publicacion.idPublicacion})}" th:text="${publicacion.titulo}"><h6 class="mb-1">Título de tema 1</h6></a>
         <p class="mb-0" th:text="${publicacion.getComentariosPublicacion().get(0).getUsuario().getNombreUsuario()}">@Usuario</p>
       </div>
       <div class="ms-auto d-flex me-3 align-items-center">

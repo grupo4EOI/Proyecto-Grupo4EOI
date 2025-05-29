@@ -39,7 +39,9 @@ public class ComunidadesController {
     @GetMapping("/{id}/temas")
     public String mostrarTemas(Model model, @PathVariable Long id) {
         List<Publicacion> publicaciones = publicacionService.getPublicacionsByComunidad(comunidadService.findById(id));
+        Comunidad comunidad = comunidadService.findById(id);
         model.addAttribute("publicaciones", publicaciones);
+        model.addAttribute("comunidad", comunidad);
         return "comunidad";
     }
 
@@ -52,5 +54,11 @@ public class ComunidadesController {
         return "ejemplo-tema";
     }
 
+    @GetMapping("/{id}/temas/nuevo-tema")
+    public String mostrarNuevoTema(Model model, @PathVariable Long id) {
+        Comunidad comunidad = comunidadService.findById(id);
+        model.addAttribute("comunidad", comunidad);
+        return "nuevo-tema";
+    }
 
 }
