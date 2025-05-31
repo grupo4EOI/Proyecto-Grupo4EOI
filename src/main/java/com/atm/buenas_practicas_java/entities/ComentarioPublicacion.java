@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -20,6 +21,8 @@ public class ComentarioPublicacion {
     @Column(columnDefinition = "INTEGER")
     private Long idComentarioPublicacion;
 
+    private LocalDateTime fecha;
+
     @Column(columnDefinition = "TEXT")
     private String contenido;
 
@@ -27,7 +30,7 @@ public class ComentarioPublicacion {
     @JoinColumn(name = "id_publicacion")
     private Publicacion publicacion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 

@@ -55,33 +55,33 @@
 
     <!--Banner título del tema-->
     <div class="bg-custom mt-4 mx-auto p-3 w-75" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
-        <h2>Título de ejemplo</h2>
+        <h2 th:text="${comentarios.get(0).getPublicacion().getTitulo()}">Título de ejemplo</h2>
     </div>
 
     <!--Mensaje del creador del tema-->
-    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2" th:each="comentario, stat : ${comentarios}">
       <!--Este div contiene la información del mensaje-->
       <div class="d-flex justify-content-between align-items-center">
         <!--Imagen de perfil-->
       <div class="border-right border-dark me-3">
-        <img class="avatar" src="../../img/avatar.jpg">
+        <img class="avatar" th:src="${comentario.getUsuario().getAvatarUrl()}">
       </div>
       <!--Usuario y rol-->
       <div class="ms-3">
-        <a class="nav-link" href="#"><h6 class="mb-1">Usuario1</h6></a>
-        <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
+        <a class="nav-link" href="#"><h6 class="mb-1" th:text="${comentario.getUsuario().getNombreUsuario()}">Usuario1</h6></a>
+        <p class="mb-0" style="font-size: 14px;" th:text="'Rol: ' + (${comentario.getUsuario().isEsAdministrador()} ? 'Admin' : 'Usuario')">Reseñas.com: Usuario</p>
       </div>
       <!--Fecha y número de mensaje-->
       <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
-        <p class="mb-0">Hoy XX:XX</p>
-        <p class="mb-0">#1</p>
+        <p class="mb-0" th:text="${#temporals.format(comentario.fecha, 'dd-MM-yyyy HH:mm')}">Hoy XX:XX</p>
+        <p class="mb-0">#<span th:text="${stat.count}"></span></p>
       </div>
     </div>
     <!--Línea de separación-->
   <hr class="w-75 mx-auto my-3 border-light">
       <!--Contenido del tema-->
     <div class="my-3 mx-3">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas euismod lorem accumsan placerat. Sed molestie nulla et nisl convallis venenatis. Nam auctor eros enim, in aliquam nibh tincidunt sed. Sed nec efficitur sapien. Cras eget venenatis nisi. Mauris porta tortor nibh, sit amet condimentum quam semper in. Morbi eu leo pretium arcu pellentesque pellentesque. Integer id libero eget sapien pulvinar mollis. Cras ac tincidunt sapien, id tincidunt ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam convallis bibendum neque, vel pellentesque ex ultrices in. Nullam nibh sem, volutpat at mi non, rhoncus egestas purus. Curabitur egestas, tellus quis consequat maximus, massa risus fermentum ante, quis cursus augue elit ac tortor.</p>
+    <p th:text="${comentario.contenido}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas euismod lorem accumsan placerat. Sed molestie nulla et nisl convallis venenatis. Nam auctor eros enim, in aliquam nibh tincidunt sed. Sed nec efficitur sapien. Cras eget venenatis nisi. Mauris porta tortor nibh, sit amet condimentum quam semper in. Morbi eu leo pretium arcu pellentesque pellentesque. Integer id libero eget sapien pulvinar mollis. Cras ac tincidunt sapien, id tincidunt ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam convallis bibendum neque, vel pellentesque ex ultrices in. Nullam nibh sem, volutpat at mi non, rhoncus egestas purus. Curabitur egestas, tellus quis consequat maximus, massa risus fermentum ante, quis cursus augue elit ac tortor.</p>
   </div>
   <!--Línea de separación-->
   <hr class="w-75 mx-auto my-3 border-light">
@@ -92,148 +92,6 @@
         <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
       </div>
   </div>
-
-  <!--Respuestas-->
-  <!--Div que engloba la respuesta 1-->
-  <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
-    <!--Este div contiene la información del mensaje-->
-    <div class="d-flex justify-content-between align-items-center">
-      <!--Imagen de perfil-->
-    <div class="border-right border-dark me-3">
-      <img class="avatar" src="../../img/avatar.jpg">
-    </div>
-    <!--Usuario y rol-->
-    <div class="ms-3">
-      <a class="nav-link" href="#"><h6 class="mb-1">Usuario2</h6></a>
-      <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
-    </div>
-    <!--Fecha y número de mensaje-->
-    <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
-      <p class="mb-0">Hoy XX:XX</p>
-      <p class="mb-0">#2</p>
-    </div>
-  </div>
-  <!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-    <!--Contenido de la respuesta-->
-  <div class="my-3 mx-3">
-  <p>In eget ultrices urna, a finibus metus. Sed ac efficitur nunc, nec facilisis odio.</p>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-    <!--Botones de reportar, citar y responder-->
-    <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
-      <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
-      <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
-      <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
-    </div>
-</div>
-
-<!--Div que engloba la respuesta 2-->
-<div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
-  <!--Este div contiene la información del mensaje-->
-  <div class="d-flex justify-content-between align-items-center">
-    <!--Imagen de perfil-->
-  <div class="border-right border-dark me-3">
-    <img class="avatar" src="../../img/avatar.jpg">
-  </div>
-  <!--Usuario y rol-->
-  <div class="ms-3">
-    <a class="nav-link" href="#"><h6 class="mb-1">Usuario3</h6></a>
-    <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
-  </div>
-  <!--Fecha y número de mensaje-->
-  <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
-    <p class="mb-0">Hoy XX:XX</p>
-    <p class="mb-0">#3</p>
-  </div>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-  <!--Contenido de la respuesta-->
-<div class="my-3 mx-3">
-<p>Mauris pellentesque massa nisi, in pulvinar turpis porta a. Nullam iaculis, purus non pulvinar sollicitudin, urna dui sodales diam, ut hendrerit lacus lectus in ligula.</p>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-  <!--Botones de reportar, citar y responder-->
-  <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
-    <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
-    <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
-    <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
-  </div>
-</div>
-
-<!--Div que engloba la respuesta 3-->
-<div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
-  <!--Este div contiene la información del mensaje-->
-  <div class="d-flex justify-content-between align-items-center">
-    <!--Imagen de perfil-->
-  <div class="border-right border-dark me-3">
-    <img class="avatar" src="../../img/avatar.jpg">
-  </div>
-  <!--Usuario y rol-->
-  <div class="ms-3">
-    <a class="nav-link" href="#"><h6 class="mb-1">Usuario4</h6></a>
-    <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
-  </div>
-  <!--Fecha y número de mensaje-->
-  <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
-    <p class="mb-0">Hoy XX:XX</p>
-    <p class="mb-0">#4</p>
-  </div>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-  <!--Contenido de la respuesta-->
-<div class="my-3 mx-3">
-<p>Vestibulum varius ac tortor sed ultrices. Fusce vulputate eleifend turpis at rhoncus.</p>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-  <!--Botones de reportar, citar y responder-->
-  <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
-    <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
-    <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
-    <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
-  </div>
-</div>
-
-<!--Div que engloba la respuesta 4-->
-<div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2">
-  <!--Este div contiene la información del mensaje-->
-  <div class="d-flex justify-content-between align-items-center">
-    <!--Imagen de perfil-->
-  <div class="border-right border-dark me-3">
-    <img class="avatar" src="../../img/avatar.jpg">
-  </div>
-  <!--Usuario y rol-->
-  <div class="ms-3">
-    <a class="nav-link" href="#"><h6 class="mb-1">Usuario5</h6></a>
-    <p class="mb-0" style="font-size: 14px;">Reseñas.com: Usuario</p>
-  </div>
-  <!--Fecha y número de mensaje-->
-  <div class="ms-auto me-3 align-items-center d-flex flex-column justify-content-center text-end">
-    <p class="mb-0">Hoy XX:XX</p>
-    <p class="mb-0">#5</p>
-  </div>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-  <!--Contenido de la respuesta-->
-<div class="my-3 mx-3">
-<p>Nulla pellentesque erat id dui porttitor cursus. Praesent lorem dui, vestibulum sed est et, lobortis malesuada erat.</p>
-</div>
-<!--Línea de separación-->
-<hr class="w-75 mx-auto my-3 border-light">
-  <!--Botones de reportar, citar y responder-->
-  <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
-    <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
-    <a class="nav-link"><i class="bi bi-chat-dots-fill fs-4"></i> Citar</a>
-    <a class="nav-link"><i class="bi bi-reply-fill fs-4"></i></a>
-  </div>
-</div>
-
 
     <!--Caja de edición de texto de respuesta-->
     <div class="bg-dark text-light mt-3 mx-auto p-2 w-75">
@@ -263,10 +121,12 @@
       </div>
       </div>
         <!--Caja de contenido de la respuesta-->
+        <form th:action="@{/comunidades/{idcom}/temas/{id}(idcom=${comunidad.idComunidad}, id=${comentarios.get(0).publicacion.idPublicacion})}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="mt-2">
-        <form>
-          <textarea type="text" id="contenido-tema" class="form-control" rows="5" placeholder="Escribe aquí tu respuesta"></textarea>
-        </form>
+
+          <textarea id="contenido-tema" name="contenido" class="form-control" rows="5" placeholder="Escribe aquí tu respuesta" required></textarea>
+
       </div>
       <!--Advertencia y Botón Enviar Respuesta-->
       <div class="mt-4 d-flex justify-content-between align-items-center">
@@ -275,8 +135,9 @@
           El contenido que publiques puede incumplir nuestras condiciones generales de uso o suponer una infracción del ordenamiento jurídico.
           Te recomendamos visitar nuestras <a href="#" class="condiciones">condiciones generales de uso</a> para conocer qué tipo de contenido no puedes publicar.
         </p>
-        <button type="button" class="btn btn-outline-light text-white" href="#">Enviar respuesta</button>
+        <button type="submit" class="btn btn-outline-light text-white">Enviar respuesta</button>
       </div>
+        </form>
     </div>
 
     <!--Footer-->

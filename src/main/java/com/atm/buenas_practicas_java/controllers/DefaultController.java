@@ -1,7 +1,6 @@
 package com.atm.buenas_practicas_java.controllers;
 
 
-import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.services.EntidadHijaService;
 import com.atm.buenas_practicas_java.services.EntidadPadreService;
 import com.atm.buenas_practicas_java.services.ObjetoService;
@@ -123,12 +122,7 @@ public class DefaultController {
     /** TODO: Añadir path variable cuando se hagan los serviicios y controladores */
     @GetMapping("/comunidad-harry-potter")
     public String mostrarComunidad() {
-        return "/comunidad-harry-potter";
-    }
-
-    @GetMapping("/comunidades")
-    public String mostrarComunidades() {
-        return "/comunidades";
+        return "comunidad";
     }
 
     @GetMapping("/contacto")

@@ -26,14 +26,15 @@ public class Comunidad {
     @Column(columnDefinition = "TEXT")
     private String urlImg;
 
-    // Relación con usuarios
+
+    // Relación con usuarios (tabla intermedia)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuarios_comunidades"
-            , joinColumns = @JoinColumn(name = "id_comunidad"),
-            inverseJoinColumns = @JoinColumn(name = "id_usuario"))
+    , joinColumns = @JoinColumn(name = "id_comunidad"),
+    inverseJoinColumns = @JoinColumn(name = "id_usuario"))
     private List<Usuario> usuarios;
 
-    @OneToMany(mappedBy = "comunidad")
+    @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
     private List<Publicacion> publicaciones;
 
     @OneToMany(mappedBy = "comunidad")

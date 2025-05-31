@@ -257,6 +257,8 @@ public class LocalDataLoader {
         objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3)));
 
 
+        objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
+
 
         objeto.setGeneros(new HashSet<>(Arrays.asList(genero1, genero2, genero3, genero4, genero5)));
 
@@ -339,6 +341,7 @@ public class LocalDataLoader {
 
         // Datos de prueba para las publicaciones, comunidades y comentarios
 
+
         //Publicaciones de prueba
 
         Publicacion publicacion1 = new Publicacion();
@@ -353,7 +356,7 @@ public class LocalDataLoader {
         //Comunidades de prueba
 
         Comunidad comunidad1 = new Comunidad();
-        comunidad1.setNombreComunidad("Comunidad de Harry Potter");
+        comunidad1.setNombreComunidad("Harry Potter");
         comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad1.setObjetos(Arrays.asList(objeto));
@@ -362,7 +365,7 @@ public class LocalDataLoader {
         comunidad1.setUrlImg("https://static.posters.cz/image/1300/104639.jpg");
 
         Comunidad comunidad2 = new Comunidad();
-        comunidad2.setNombreComunidad("Comunidad de Interstellar");
+        comunidad2.setNombreComunidad("Interstellar");
         comunidad2.setDescripcion("En la comunidad de Interstellar podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad2.setObjetos(Arrays.asList(objeto2));
@@ -371,7 +374,7 @@ public class LocalDataLoader {
         comunidad2.setUrlImg("https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
 
         Comunidad comunidad3 = new Comunidad();
-        comunidad3.setNombreComunidad("Comunidad de The Gentlemen");
+        comunidad3.setNombreComunidad("The Gentlemen");
         comunidad3.setDescripcion("En la comunidad de The Gentlemen podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad3.setObjetos(Arrays.asList(objeto3));
@@ -395,6 +398,7 @@ public class LocalDataLoader {
         comentarioPublicacion1.setContenido("Este es el primer comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
                 "las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion1.setFecha(LocalDateTime.of(2025, 5, 25, 16, 32, 28));
 
         ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
         comentarioPublicacion2.setPublicacion(publicacion1);
@@ -402,12 +406,15 @@ public class LocalDataLoader {
         comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion2.setFecha(LocalDateTime.of(2025, 5, 25, 16, 39, 14));
+
         ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
         comentarioPublicacion3.setPublicacion(publicacion1);
         comentarioPublicacion3.setUsuario(usuario3);
         comentarioPublicacion3.setContenido("Este es el tercer comentario de la publicación 1." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion3.setFecha(LocalDateTime.of(2025, 5, 25, 16, 48, 54));
 
         publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2, comentarioPublicacion3));
 
@@ -417,6 +424,7 @@ public class LocalDataLoader {
         comentarioPublicacion4.setContenido("Este es el primer comentario de la publicación 2." +
                 " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
                 "las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion4.setFecha(LocalDateTime.of(2025, 5, 26, 18, 36, 32));
 
         ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
         comentarioPublicacion5.setPublicacion(publicacion2);
@@ -424,12 +432,15 @@ public class LocalDataLoader {
         comentarioPublicacion5.setContenido("Este es el segundo comentario de la publicación 2." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
+
         ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
         comentarioPublicacion6.setPublicacion(publicacion2);
         comentarioPublicacion6.setUsuario(usuario3);
         comentarioPublicacion6.setContenido("Este es el tercer comentario de la publicación 2." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion6.setFecha(LocalDateTime.of(2025, 5, 26, 19, 2, 12));
 
         publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion4, comentarioPublicacion5, comentarioPublicacion6));
 
@@ -439,6 +450,7 @@ public class LocalDataLoader {
         comentarioPublicacion7.setContenido("Este es el primer comentario de la publicación 3." +
                 " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
                 "las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion7.setFecha(LocalDateTime.of(2025, 5, 27, 13, 34, 51));
 
         ComentarioPublicacion comentarioPublicacion8 = new ComentarioPublicacion();
         comentarioPublicacion8.setPublicacion(publicacion3);
@@ -446,12 +458,15 @@ public class LocalDataLoader {
         comentarioPublicacion8.setContenido("Este es el segundo comentario de la publicación 3." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 2, 23));
+
         ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
         comentarioPublicacion9.setPublicacion(publicacion3);
         comentarioPublicacion9.setUsuario(usuario1);
         comentarioPublicacion9.setContenido("Este es el tercer comentario de la publicación 3." +
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
+        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
 
         publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
 
@@ -463,6 +478,7 @@ public class LocalDataLoader {
                 comentarioPublicacion6, comentarioPublicacion7, comentarioPublicacion8));
 
         objetoRepository.save(objeto);
+
 
         log.info("Datos de entidades cargados correctamente.");
     }

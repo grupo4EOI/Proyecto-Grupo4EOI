@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Tema</title>
+    <title>Comunidad Harry potter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" th:href="@{/css/style-nuevo-tema.css}">
+    <link rel="stylesheet" th:href="@{/css/style-comunidad-harry-potter.css}">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!--Header-->
     <nav class="navbar navbar-expand-lg bg-custom">
         <div class="container-fluid">
@@ -30,7 +30,6 @@
               <li class="nav-item">
                 <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
               </li>
-            
             </ul>
             <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
               <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
@@ -52,64 +51,77 @@
       </nav>
 
     <!--Contenido de la página-->
-
-    <!--Banner Crear Nuevo Tema-->
-    <div class="bg-custom mt-4 mx-auto rounded-4 p-3 w-75">
+    <!--Comunidad en la que estás y botón de nuevo tema-->
+    <div class="bg-custom mt-4 mx-auto rounded-top p-3 w-75">
       <div class="d-flex justify-content-between align-items-center">
-        <h1>Crear Nuevo Tema</h1>
-        <button type="button" class="btn btn-outline-light text-white" href="#">Previsualizar <i class="bi bi-eye"></i></button>
+        <h1 th:text="${comunidad.nombreComunidad}">Harry Potter</h1>
+        <a type="button" class="btn btn-outline-light text-white" th:href="@{/comunidades/{id}/temas/nuevo-tema(id=${comunidad.idComunidad})}">Nuevo tema <i class="bi bi-pencil"></i></a>
     </div>
     </div>
-
-    <!--Caja de edición de texto-->
-    <div class="bg-custom mt-2 mx-auto rounded-4 p-4 w-75">
-        <!--Caja de título de tema-->
-        <form th:action="@{/comunidades/{id}/temas(id=${comunidad.idComunidad})}" method="post">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-            <input type="text" id="titulo-tema" name="titulo" class="form-control" placeholder="Escribe aquí el título" required>
-
-            <!--Iconos de edición de texto-->
-            <div class="mt-2 d-flex justify-content-center">
-                <div class="d-flex">
-                    <a class="nav-link"><i class="bi bi-type-bold fs-2"></i></a>
-                    <a class="nav-link"><i class="bi bi-type-italic fs-2"></i></a>
-                    <a class="nav-link"><i class="bi bi-type-underline fs-2"></i></a>
-                </div>
-                <div class="d-flex ms-4 iconos-alinear">
-                    <a class="nav-link"><i class="bi bi-text-left fs-2"></i></a>
-                    <a class="nav-link"><i class="bi bi-text-center fs-2"></i></a>
-                    <a class="nav-link"><i class="bi bi-text-right fs-2"></i></a>
-                </div>
-                <div class="d-flex ms-5 icono-olList">
-                    <a class="nav-link"><i class="bi bi-list-ol fs-2"></i></a>
-                </div>
-                <div class="d-flex ms-5 icono-ulList">
-                    <a class="nav-link"><i class="bi bi-list-ul fs-2"></i></a>
-                </div>
-                <div class="d-flex ms-5 icono-img">
-                    <a class="nav-link"><i class="bi bi-card-image fs-2"></i></a>
-                </div>
-            </div>
-            <!--Caja de contenido del hilo-->
-            <div class="mt-2">
-
-                <textarea id="contenido-tema" name="contenido" class="form-control" rows="10" placeholder="Escribe aquí el contenido"></textarea>
-
-            </div>
-            <!--Advertencia y Botón Crear Nuevo Tema-->
-            <div class="mt-4 d-flex justify-content-between align-items-center">
-                <p class="mb-0 w-75 opacity-50" style="font-size: 10px;">
-                    Te informamos que eres responsable del contenido ilícito que publiques.
-                    El contenido que publiques puede incumplir nuestras condiciones generales de uso o suponer una infracción del ordenamiento jurídico.
-                    Te recomendamos visitar nuestras <a href="#" class="condiciones">condiciones generales de uso</a> para conocer qué tipo de contenido no puedes publicar.
-                </p>
-                <button type="submit" class="btn btn-outline-light text-white">Crear Nuevo Tema</button>
-
+    <!--Separador con filtro-->
+    <div class="bg-dark text-light mt-2 mx-auto p-3 w-75">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>Temas</h3>
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-funnel-fill fs-3 filtro"></i>
+          </a>
+        
+          <ul class="dropdown-menu">
+            <!-- Filtro por categoría -->
+            <li><div class="dropdown-item">
+              <label for="categoryFilter">Clasificar por:</label>
+              <select id="categoryFilter" class="form-select">
+                <option value="categoria1">Título de tema</option>
+                <option value="categoria2">Último mensaje</option>
+                <option value="categoria3">Hora de inicio de tema</option>
+                <option value="categoria4">Número de respuestas</option>
+                <option value="categoria5">Autor</option>
+              </select>
+            </div></li>
+            <!-- Filtro por orden -->
+            <li><div class="dropdown-item">
+              <label for="orderFilter">Orden:</label>
+              <select id="orderFilter" class="form-select">
+                <option value="categoria1">Ascendente</option>
+                <option value="categoria2">Descendente</option>
+              </select>
+            </div></li>
+            <!-- Filtro por periodo -->
+            <li><div class="dropdown-item">
+              <label for="dateFilter">Desde:</label>
+              <select id="dateFilter" class="form-select">
+                <option value="categoria1">Último día</option>
+                <option value="categoria2">Última semana</option>
+                <option value="categoria3">Último mes</option>
+                <option value="categoria4">Último año</option>
+              </select>
+            </div></li>
+            <li>
+              <div class="dropdown-item">
+                <button class="btn" id="applyFiltersBtn">Aplicar filtros</button>
+              </div>
+            </li>
+          </ul>
+        </div>
     </div>
-        </form>
     </div>
-
+    <!--Temas-->
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mb-1" th:each="publicacion : ${publicaciones}">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" th:href="@{/comunidades/{idCom}/temas/{idPub}(idCom=${comunidad.idComunidad}, idPub=${publicacion.idPublicacion})}" th:text="${publicacion.titulo}"><h6 class="mb-1">Título de tema 1</h6></a>
+        <p class="mb-0" th:text="${publicacion.getComentariosPublicacion().get(0).getUsuario().getNombreUsuario()}">@Usuario</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <h6 class="ms-2 mb-0">XXX</h6>
+      </div>
+    </div>
+    </div>
     <!--Footer-->
     <footer class="bg-custom text-center py-3 mt-4">
          <div class="container">
@@ -143,21 +155,5 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script>
-      function filtrarTarjetas() {
-          let input = document.getElementById("filtro").value.toLowerCase();
-          let cards = document.querySelectorAll(".card");
-  
-          cards.forEach(card => {
-              let titulo = card.querySelector(".card-title").textContent.toLowerCase();
-  
-              if (titulo.includes(input)) {
-                  card.parentElement.style.display = "block"; // Muestra la card
-              } else {
-                  card.parentElement.style.display = "none"; // Oculta la card
-              }
-          });
-      }
-  </script>
-  </body>
+</body>
 </html>
