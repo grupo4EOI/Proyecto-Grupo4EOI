@@ -167,4 +167,9 @@ public class DefaultController {
     public String mostrarTerminosYCondiciones() {
         return "/terminos-y-condiciones";
     }
+
+    @GetMapping("/seccion")
+    public String mostrarSeccion() {
+        return "/seccion";
+    }
 }
