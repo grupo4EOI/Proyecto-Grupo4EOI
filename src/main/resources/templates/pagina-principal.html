@@ -61,221 +61,47 @@
 
 <!--Contenido de la página-->
 
-<div class="container text-center bg-warning">
-    <div class="row container-carousel-ext">
-        <h2 class="estrenos-title">Películas Destacadas</h2>
-
-        <div class="carousel-container">
-            <button class="carousel-btn left-btn" aria-label="Anterior">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            <div class="carousel">
-                <!-- Película 1 -->
-                <div class="movie" data-id="1">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="Stranger Worlds" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Stranger Worlds</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 8.2
+<div class="container h-100">
+    <div class="row container-estrenos p-3">
+        <!-- Imagen objeto -->
+        <h2 class="col-12 mb-3 h-100">Últimos estrenos</h2>
+        <div class="card-container d-flex flex-column gap-2 justify-content-center align-items-center ">
+            <div class="image-container-ext">
+                <div class="image-container col-xxl-3 col-xl-5 col-lg-12">
+                    <img class="img-fluid" alt="Cartel de"
+                         src="https://artesiete.es/Posters/harrypotterpiedra20.jpg">
+                    <!-- Boton para acceder al trailer de una película / serie / videojuego -->
+                    <button
+                            class="trailer-button btn btn-primary video-btn"
+                            data-bs-target="#modal-trailer"
+                            data-bs-toggle="modal"
+                            data-src=""
+                            type="button">
+                        <i class="bi bi-play-circle me-2"></i>Ver trailer
+                    </button>
+                    <!-- Modal que aparecerá en caso de que se clique el botón de trailer -->
+                    <div aria-hidden="true" aria-labelledby="modal-trailer" class="modal fade" id="modal-trailer" role="dialog"
+                         tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button aria-label="Cerrar" class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                    <div class="ratio ratio-16x9">
+                                        <iframe allow="autoplay" class="embed-responsive-item" id="video"
+                                                src=""></iframe>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  <!-- Fin imagen del objeto -->
 
-                <!-- Película 2 -->
-                <div class="movie" data-id="2">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg" alt="The Last Frontier" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Last Frontier</h3>
-                        <div class="movie-meta">
-                            <span>2022</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 7.9
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 3 -->
-                <div class="movie" data-id="3">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/9dKCd55IuTT5QRs989m9Qlb7d2B.jpg" alt="Midnight Run" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Midnight Run</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 8.5
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 4 -->
-                <div class="movie" data-id="4">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="Ocean's Legacy" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Ocean's Legacy</h3>
-                        <div class="movie-meta">
-                            <span>2022</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 7.7
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 5 -->
-                <div class="movie" data-id="5">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/2Jp2RIwJ3Dt7vamkTt7llVJ7uY.jpg" alt="Dark Matter" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Dark Matter</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 8.8
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 6 -->
-                <div class="movie" data-id="6">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/liLNnQKnDzaFvF5fO0xJJJc2u3d.jpg" alt="Eternal Sunshine" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Eternal Sunshine</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 8.1
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 7 -->
-                <div class="movie" data-id="7">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg" alt="Neon Dreams" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Neon Dreams</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 7.6
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 8 -->
-                <div class="movie" data-id="8">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg" alt="The Forgotten Kingdom" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Forgotten Kingdom</h3>
-                        <div class="movie-meta">
-                            <span>2022</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 8.4
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 9 -->
-                <div class="movie" data-id="9">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="Cyber Nexus" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Cyber Nexus</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 8.7
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Película 10 -->
-                <div class="movie" data-id="10">
-                    <div class="poster-container">
-                        <img src="https://image.tmdb.org/t/p/w500/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg" alt="Silent Echoes" class="movie-poster">
-                    </div>
-                    <div class="movie-info">
-                        <h3 class="movie-title">Silent Echoes</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 7.8
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <button class="carousel-btn right-btn" aria-label="Siguiente">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <div class="progress-dots">
-            <!-- Los puntos de progreso se generarán con JavaScript -->
+            <h3 class="pelicula-title align-text-center">Harry Potter</h3>
         </div>
     </div>
-
-    <!-- Columna Izquierda -->
-
-    <div class="row">
-        <!-- Columna Izquierda más pequeña -->
-        <div class="col-md-4 bg-light">
-            <div class="card mb-3 mt-4 bg-secondary rounded-3">
-                <div class="card-body">
-                    <h6 class="text-start">Últimas reseñas</h6>
-                    <div class="bg-light rounded-3">
-                        <p class="texto-tarjeta-izq">Jacoboom47</p>
-                        <p class="card-text">Texto de ejemplo para la columna izquierda.</p>
-                        <img src="https://placehold.co/200x200" class="card-img-top p-1 rounded-3" alt="...">
-                    </div>
-                </div>
-
-            </div>
-            <h3>Juego</h3>
-            <div class="card mb-4"> <!-- margen inferior -->
-                <img src="https://placehold.co/200x200" class="card-img-top" alt="...">
-            </div>
-        </div>
-
-        <!-- Columna Derecha más grande -->
-        <div class="col-md-8 d-flex flex-column">
-            <div class="card flex-fill mb-4">
-                <div class="card-body">
-                    <p>Contenido principal que se estira hasta el final.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
-
 
 <!--Footer-->
 <footer class="bg-custom text-center py-3 mt-auto">

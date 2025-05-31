@@ -36,231 +36,113 @@ body {
 }
 
 /*Carousel principal en construcción*/
-.container-carousel-ext {
-    max-width: 1400px;
-    width: 100%;
-    padding: 20px;
-}
-
-.estrenos-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    background: linear-gradient(45deg, #e50914, #ff6b6b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    padding: 0 10px;
-}
-
-.carousel-container {
+/* Estilos botón de trailer */
+.image-container {
     position: relative;
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    padding: 0;
+    display: inline-block;
+    width: 300px;
+    height: 400px;
 }
 
-.carousel {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-    gap: 20px;
-    padding: 10px 20px;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-}
-
-.movie {
-    flex: 0 0 auto;
-    min-width: calc(20% - 16px);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    scroll-snap-align: start;
-}
-
-.movie:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
-    z-index: 10;
-}
-
-/* Contenedor para mantener el aspect ratio */
-.poster-container {
-    position: relative;
-    width: 100%;
-    padding-top: 150%; /* Ratio 2:3 para posters */
-    overflow: hidden;
-    border-radius: 10px 10px 0 0;
-}
-
-.movie-poster {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.image-container > img {
+    display: block;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    width: 300px;
+    height: 400px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    max-width: 300px;
+    max-height: 400px;
 }
 
-.movie:hover .movie-poster {
-    transform: scale(1.05);
+.image-container:hover img {
+    opacity: 0.6;
 }
 
-.movie-info {
-    padding: 15px;
-    background: linear-gradient(to bottom, #2d2d2d, #1e1e1e);
-    border-radius: 0 0 10px 10px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.movie-title {
-    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-    font-weight: 600;
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.movie-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-    color: #bbb;
-    margin-top: auto;
-}
-
-.rating {
-    display: flex;
-    align-items: center;
-}
-
-.rating i {
-    color: #e50914;
-    margin-right: 5px;
-}
-
-.carousel-btn {
+.trailer-button {
     position: absolute;
-    top: calc(50% - 25px);
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #000000;
     border: none;
-    border-radius: 50%;
-    color: white;
-    font-size: 1.5rem;
+    border-radius: 5px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 20;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s ease;
+    z-index: 2;
+    font-weight: bold;
 }
 
-.carousel-btn:hover {
-    background: rgba(229, 9, 20, 0.8);
-    transform: translateY(-50%) scale(1.1);
+.image-container:hover .trailer-button {
+    opacity: 1;
+    transition: background-color 0.3s ease;
 }
 
-.carousel-btn.left-btn {
-    left: 10px;
-    display: none;
+.trailer-button:hover{
+    background-color: #f0f0f0;
 }
 
-.carousel-btn.right-btn {
-    right: 10px;
+/* Estilos para el modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 100px auto;
 }
 
-.carousel-btn i {
-    font-size: 1.2rem;
+.modal-body {
+    position: relative;
+    padding: 0px;
 }
 
-.progress-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    gap: 10px;
-    flex-wrap: wrap;
+.btn-close {
+    position: absolute;
+    right: -30px;
+    top: 0;
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #444;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Diseño imagen para vista menor que ordenador*/
+.image-container-ext {
+    width: 300px;
+    height: 400px;
 }
 
-.dot.active {
-    background-color: #e50914;
-    transform: scale(1.2);
-}
-
-/* Media queries fluidos */
-@media (max-width: 1400px) {
-    .movie {
-        min-width: calc(25% - 15px);
+@media screen and (max-width: 1200px) {
+    .image-container-ext {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
     }
 }
 
-@media (max-width: 1100px) {
-    .movie {
-        min-width: calc(33.333% - 13.333px);
+/* Diseño en vista más reducida de la columna derecha*/
+@media screen and (min-width: 1400px) {
+    #columna-derecha {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
     }
 }
 
-@media (max-width: 800px) {
-    .movie {
-        min-width: calc(50% - 10px);
+@media screen and (max-width: 1400px) {
+    #columna-derecha > .etiqueta {
+        width: auto;
+        flex: 0 0 auto;
     }
 
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@media (max-width: 500px) {
-    .movie {
-        min-width: calc(100% - 10px);
-    }
-
-    .carousel-container {
-        padding: 0 5px;
-    }
-
-    .carousel {
-        padding: 10px 5px;
-        gap: 10px;
-    }
-
-    .carousel-btn {
-        width: 35px;
-        height: 35px;
-        top: calc(50% - 17.5px);
+    #columna-derecha {
+        display: flex; !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 20px;
     }
 }
 
-/* Soporte para desplazamiento táctil */
-.carousel {
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
-
-.carousel::-webkit-scrollbar {
-    display: none; /* Chrome/Safari/Opera */
+.card-container {
+    width: auto;
+    height: auto;
 }
