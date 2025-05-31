@@ -19,4 +19,12 @@ public class PublicacionService {
     public List<Publicacion> getPublicacionsByComunidad(Comunidad comunidad) {
         return publicacionRepository.getPublicacionsByComunidad(comunidad);
     }
+
+    public Publicacion save(Publicacion publicacion) {
+        return publicacionRepository.save(publicacion);
+    }
+
+    public Publicacion findById(Long id) {
+        return publicacionRepository.findById(id).orElse(null);
+    }
 }

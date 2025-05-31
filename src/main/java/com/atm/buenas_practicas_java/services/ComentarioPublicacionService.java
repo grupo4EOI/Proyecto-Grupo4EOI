@@ -4,6 +4,7 @@ import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Publicacion;
+import com.atm.buenas_practicas_java.repositories.ComentarioPublicacionRepository;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,12 @@ public class ComentarioPublicacionService {
 
     private final ObjetoRepository objetoRepository;
     private final PublicacionRepository publicacionRepository;
+    private final ComentarioPublicacionRepository comPubRepository;
 
-    public ComentarioPublicacionService(ObjetoRepository objetoRepository, PublicacionRepository publicacionRepository) {
+    public ComentarioPublicacionService(ObjetoRepository objetoRepository, PublicacionRepository publicacionRepository, ComentarioPublicacionRepository comPubRepository) {
         this.objetoRepository = objetoRepository;
         this.publicacionRepository = publicacionRepository;
+        this.comPubRepository = comPubRepository;
     }
 
     /** Devuelve una lista de los primeros comentarios de cada publicación pertenecientes a la comunidad del objeto */
@@ -40,6 +43,10 @@ public class ComentarioPublicacionService {
 
     public List<ComentarioPublicacion> getComentarioPublicacionByPublicacionId(Long publicacionId){
         return publicacionRepository.findById(publicacionId).get().getComentariosPublicacion();
+    }
+
+    public ComentarioPublicacion save(ComentarioPublicacion comentarioPublicacion) {
+        return comPubRepository.save(comentarioPublicacion);
     }
 
 }
