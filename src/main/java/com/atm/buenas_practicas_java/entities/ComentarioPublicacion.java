@@ -26,7 +26,7 @@ public class ComentarioPublicacion {
     @Column(columnDefinition = "TEXT")
     private String contenido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_publicacion")
     private Publicacion publicacion;
 
@@ -34,6 +34,6 @@ public class ComentarioPublicacion {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "comentarioPublicacion")
+    @OneToMany(mappedBy = "comentarioPublicacion", fetch = FetchType.EAGER)
     private List<Reaccion> reacciones;
 }

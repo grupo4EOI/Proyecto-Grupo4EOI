@@ -26,6 +26,7 @@ public class Comunidad {
     @Column(columnDefinition = "TEXT")
     private String urlImg;
 
+
     // Relación con usuarios (tabla intermedia)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuarios_comunidades"

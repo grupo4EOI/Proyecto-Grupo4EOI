@@ -2,11 +2,13 @@ package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
+import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ObjetoService {
@@ -28,15 +30,17 @@ public class ObjetoService {
     }
 
     public Objeto findById(Long id) {
-        return objetoRepository.findObjetoByIdObjeto(id);
+        return objetoRepository.findById(id).orElseThrow(() -> new RuntimeException("Objeto no encontrado"));
     }
 
-    public Double calcularPuntuacionObjeto(Objeto objeto) {
-        List<Resena> resenas = resenaRepository.findResenasByObjeto(objeto);
+    public Double calcularPuntuacionObjeto(Long idObjeto) {
+        List<Resena> resenas = resenaRepository.findResenasByObjeto_IdObjeto(idObjeto);
         return resenas.stream().mapToDouble(Resena::getPuntuacion).sum() / (resenas.size());
     }
 
-    public int calcularNumeroResenas(Objeto objeto) {
-        return resenaRepository.findResenasByObjeto(objeto).size();
+    public int calcularNumeroResenas(Long idObjeto) {
+        return resenaRepository.findResenasByObjeto_IdObjeto(idObjeto).size();
     }
+
+
 }

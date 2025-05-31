@@ -6,10 +6,8 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -42,7 +40,6 @@ public class LocalDataLoader {
     private final ResenaRepository resenaRepository;
     private final TipoRepository tipoRepository;
     private final GeneroRepository generoRepository;
-    private final GeneroObjetoRepository generoObjetoRepository;
     private final ComentarioPublicacionRepository comentarioPublicacionRepository;
     private final PublicacionRepository publicacionRepository;
     private final ComunidadRepository comunidadRepository;
@@ -61,7 +58,19 @@ public class LocalDataLoader {
      *                                Es utilizado para gestionar datos de la entidad hija y su relación con
      *                                la entidad padre.
      */
-    public LocalDataLoader(EntidadPadreRepository repository, EntidadHijaRepository entidadHijaRepository, ObjetoRepository objetoRepository, PersonaRepository personaRepository, PersonaObjetoRepository personaObjetoRepository, UsuarioRepository usuarioRepository, ResenaRepository resenaRepository, TipoRepository tipoRepository, GeneroRepository generoRepository, GeneroObjetoRepository generoObjetoRepository, ComentarioPublicacionRepository comentarioPublicacionRepository, PublicacionRepository publicacionRepository, ComunidadRepository comunidadRepository, ComentarioResenaRepository comentarioResenaRepository) {
+    public LocalDataLoader(EntidadPadreRepository repository,
+                           EntidadHijaRepository entidadHijaRepository,
+                           ObjetoRepository objetoRepository,
+                           PersonaRepository personaRepository,
+                           PersonaObjetoRepository personaObjetoRepository,
+                           UsuarioRepository usuarioRepository,
+                           ResenaRepository resenaRepository,
+                           TipoRepository tipoRepository,
+                           GeneroRepository generoRepository,
+                           ComentarioPublicacionRepository comentarioPublicacionRepository,
+                           PublicacionRepository publicacionRepository,
+                           ComunidadRepository comunidadRepository,
+                           ComentarioResenaRepository comentarioResenaRepository) {
         this.repository = repository;
         this.entidadHijaRepository = entidadHijaRepository;
         this.objetoRepository = objetoRepository;
@@ -71,7 +80,6 @@ public class LocalDataLoader {
         this.resenaRepository = resenaRepository;
         this.tipoRepository = tipoRepository;
         this.generoRepository = generoRepository;
-        this.generoObjetoRepository = generoObjetoRepository;
         this.comentarioPublicacionRepository = comentarioPublicacionRepository;
         this.publicacionRepository = publicacionRepository;
         this.comunidadRepository = comunidadRepository;
@@ -201,7 +209,7 @@ public class LocalDataLoader {
                 " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
                 " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
                 " quibusdam quisquam quos repellat sunt vitae");
-        objeto.setImagenUrl("https://www.compraentradas.com/Carteles/piedrafilosofal.jpg");
+        objeto.setImagenUrl("https://artesiete.es/Posters/harrypotterpiedra20.jpg");
         objeto.setDuracionMinutos(123);
         objeto.setTipo(tipoPeliculas);
         objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
@@ -248,28 +256,14 @@ public class LocalDataLoader {
 
         objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3)));
 
-        GeneroObjeto generoObjeto1 = new GeneroObjeto();
-        generoObjeto1.setGenero(genero1);
-        generoObjeto1.setObjeto(objeto);
-        GeneroObjeto generoObjeto2 = new GeneroObjeto();
-        generoObjeto2.setGenero(genero2);
-        generoObjeto2.setObjeto(objeto);
-        GeneroObjeto generoObjeto3 = new GeneroObjeto();
-        generoObjeto3.setGenero(genero3);
-        generoObjeto3.setObjeto(objeto);
-        GeneroObjeto generoObjeto4 = new GeneroObjeto();
-        generoObjeto4.setGenero(genero4);
-        generoObjeto4.setObjeto(objeto);
-        GeneroObjeto generoObjeto5 = new GeneroObjeto();
-        generoObjeto5.setGenero(genero5);
-        generoObjeto5.setObjeto(objeto);
-
-
-        objeto.setGenerosObjeto(new HashSet<>(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5)));
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
 
-        generoObjetoRepository.saveAll(Arrays.asList(generoObjeto1, generoObjeto2, generoObjeto3, generoObjeto4, generoObjeto5));
+
+        objeto.setGeneros(new HashSet<>(Arrays.asList(genero1, genero2, genero3, genero4, genero5)));
+
+        objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
+
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3));
 
@@ -346,6 +340,7 @@ public class LocalDataLoader {
         comentarioResenaRepository.saveAll(Arrays.asList(comentarioResena1, comentarioResena2));
 
         // Datos de prueba para las publicaciones, comunidades y comentarios
+
 
         //Publicaciones de prueba
 
@@ -484,7 +479,7 @@ public class LocalDataLoader {
 
         objetoRepository.save(objeto);
 
-        log.info("Datos de entidades cargados correctamente.");
 
+        log.info("Datos de entidades cargados correctamente.");
     }
 }
