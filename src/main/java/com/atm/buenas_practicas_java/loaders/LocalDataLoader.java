@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -475,7 +476,7 @@ public class LocalDataLoader {
         publicacionRepository.saveAll(Arrays.asList(publicacion1, publicacion2, publicacion3));
         comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1,
                 comentarioPublicacion2, comentarioPublicacion3, comentarioPublicacion4, comentarioPublicacion5,
-                comentarioPublicacion6, comentarioPublicacion7, comentarioPublicacion8));
+                comentarioPublicacion6, comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
 
         objetoRepository.save(objeto);
 
