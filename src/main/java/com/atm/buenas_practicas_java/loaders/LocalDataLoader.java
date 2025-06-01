@@ -322,10 +322,18 @@ public class LocalDataLoader {
         generoEducativoV.setTipo(tipoVideojuegos);
 
 
-        generoRepository.saveAll(Arrays.asList(generoDramaP, generoRomanceP, generoComediaP, generoFiccionP, generoFantasiaP, generoAccionP, generoAventurasP,
-                generoAnimacionP, generoAnimeP, generoBelicoP, generoPoliciacaP, generoDocumentalP, generoDramaP, generoDramaS, generoRomanceS, generoComediaS,
-                generoFiccionS, generoFantasiaS, generoAccionS, generoAventurasS, generoAnimacionS, generoAnimeS, generoBelicoS, generoPoliciacaS, generoDocumentalS,
-                generoDramaS, generoAventuraV, generoAccionV, generoRPGV, generoEstrategiaV, generoDeportesV, generoCarrerasV, generoSimulacionV));
+        generoRepository.saveAll(Arrays.asList(generoDramaP, generoRomanceP, generoComediaP, generoFiccionP,
+                generoFantasiaP, generoAccionP, generoAventurasP, generoAnimacionP, generoAnimeP, generoBelicoP,
+                generoPoliciacaP, generoDocumentalP, generoFamiliarP, generoHistoriaP, generoMusicalP,
+                generoMisterioP, generoSuspenseP, generoTerrorP, generoDramaS, generoRomanceS, generoComediaS,
+                generoFiccionS, generoFantasiaS, generoAccionS, generoAventurasS, generoAnimacionS, generoAnimeS,
+                generoBelicoS, generoPoliciacaS, generoDocumentalS, generoFamiliarS, generoHistoriaS, generoMusicalS,
+                generoMisterioS, generoSuspenseS, generoTerrorS, generoAventuraV, generoAccionV,
+                generoRPGV, generoEstrategiaV, generoDeportesV, generoCarrerasV, generoSimulacionV, generoTerrorV,
+                generoLuchaV, generoPlataformasV, generoPuzlesV, generoAventuraGraficaV, generoSandboxV,
+                generoSupervicenciaV, generoMusicaV, generoBattleRoyaleV, generoTacticoV, generoMMOV,
+                generoMundoAbiertoV, generoJuegoCartasV, generoJuegoMesaV, generoRTSV, generoTBSV, generoSupervivenciaV,
+                generoEducativoV));
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
