@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,171 +14,91 @@
     <link rel="stylesheet" th:href="@{/css/style-pagina-principal.css}">
 
 </head>
-<body class="d-flex flex-column min-vh-100">
-<!--Header-->
-<!--Donde pone reseñas.com, notificaciones y perfil, debería ir la imagen correspondiente como en la imagen que
-        pasó Almudena por discord, pero para no liarla con las rutas, vamos a dejarlo ahora mismo así y más
-        adelante se cambia-->
 
-<nav class="navbar navbar-expand-lg bg-custom">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">Reseñas.com</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="cabecera">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="inicio" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="cine" href="#">Cine</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="series" href="#">Series</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="videojuegos" href="#">Videojuegos</a>
-                </li>
-
-            </ul>
-            <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
-                <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
-                <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
-            </form>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="inicio" href="#"><i class="bi bi-bell"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="perfil" href="#"><i class="bi bi-person"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="cerrar sesión" href="#">Cerrar sesión</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<div layout:fragment="content">
 <!--Contenido de la página-->
 
-<div class="container text-center bg-warning w-900">
-    <div class="row">
-        <div class="col-12 p-3 ">
-            <div id="CarouselFilms" class="carousel slide carousel-fade " data-bs-ride="carousel">
-                <div class="carousel-inner d-flex">
-                    <div class="carousel-item active">
-                        <picture>
-                            <source media="(max-width: 200px)" srcset="img/harry-potter-reliquias-1-poster-movil.jpg">
-                            <img src="img/harry-potter-reliquias-1-poster-pc.jpg" class="d-block w-100" alt="Poster de Harry Potter: Las Reliquias de la Muerte Parte 1">
-                        </picture>
+    <div class="container text-center bg-warning w-900">
+        <div class="row">
+            <div class="col-12 p-3 ">
+                <div id="CarouselFilms" class="carousel slide carousel-fade " data-bs-ride="carousel">
+                    <div class="carousel-inner d-flex">
+                        <div class="carousel-item active">
+                            <picture>
+                                <source media="(max-width: 200px)" srcset="img/harry-potter-reliquias-1-poster-movil.jpg">
+                                <img src="img/harry-potter-reliquias-1-poster-pc.jpg" class="d-block w-100" alt="Poster de Harry Potter: Las Reliquias de la Muerte Parte 1">
+                            </picture>
 
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Harry Potter: Las Reliquias de la Muerte. Parte 1</h5>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Harry Potter: Las Reliquias de la Muerte. Parte 1</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <picture>
+                                <source media="(max-width: 200px)" srcset="img/mad-max-poster-movil.jpg">
+                                <img src="img/mad-max-poster-pc.jpg" class="d-block w-100" alt="Poster de la película Mad Max: Furia en la Carretera">
+                            </picture>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Mad Max: Furia en la carretera</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <picture>
+                                <source media="(max-width: 200px)" srcset="img/thor-ragnarok-poster-movil.jpg">
+                                <img src="img/thor-ragnarok-poster-pc.jpg" class="d-block w-100" alt="Poster de la película Thor Ragnarok">
+                            </picture>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Thor: Ragnarok</h5>
+                            </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <picture>
-                            <source media="(max-width: 200px)" srcset="img/mad-max-poster-movil.jpg">
-                            <img src="img/mad-max-poster-pc.jpg" class="d-block w-100" alt="Poster de la película Mad Max: Furia en la Carretera">
-                        </picture>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Mad Max: Furia en la carretera</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <picture>
-                            <source media="(max-width: 200px)" srcset="img/thor-ragnarok-poster-movil.jpg">
-                            <img src="img/thor-ragnarok-poster-pc.jpg" class="d-block w-100" alt="Poster de la película Thor Ragnarok">
-                        </picture>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Thor: Ragnarok</h5>
-                        </div>
-                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#CarouselFilms" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#CarouselFilms" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#CarouselFilms" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#CarouselFilms" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
+
+
+        <!-- Columna Izquierda -->
+
+        <div class="row">
+            <!-- Columna Izquierda más pequeña -->
+            <div class="col-md-4 bg-light">
+                <div class="card mb-3 mt-4 bg-secondary rounded-3">
+                    <div class="card-body">
+                        <h6 class="text-start">Últimas reseñas</h6>
+                        <div class="bg-light rounded-3">
+                            <p class="texto-tarjeta-izq">Jacoboom47</p>
+                            <p class="card-text">Texto de ejemplo para la columna izquierda.</p>
+                            <img src="https://placehold.co/200x200" class="card-img-top p-1 rounded-3" alt="...">
+                        </div>
+                    </div>
+
+                </div>
+                <h3>Juego</h3>
+                <div class="card mb-4"> <!-- margen inferior -->
+                    <img src="https://placehold.co/200x200" class="card-img-top" alt="...">
+                </div>
+            </div>
+
+            <!-- Columna Derecha más grande -->
+            <div class="col-md-8 d-flex flex-column">
+                <div class="card flex-fill mb-4">
+                    <div class="card-body">
+                        <p>Contenido principal que se estira hasta el final.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
-    <!-- Columna Izquierda -->
-
-    <div class="row">
-        <!-- Columna Izquierda más pequeña -->
-        <div class="col-md-4 bg-light">
-            <div class="card mb-3 mt-4 bg-secondary rounded-3">
-                <div class="card-body">
-                    <h6 class="text-start">Últimas reseñas</h6>
-                    <div class="bg-light rounded-3">
-                        <p class="texto-tarjeta-izq">Jacoboom47</p>
-                        <p class="card-text">Texto de ejemplo para la columna izquierda.</p>
-                        <img src="https://placehold.co/200x200" class="card-img-top p-1 rounded-3" alt="...">
-                    </div>
-                </div>
-
-            </div>
-            <h3>Juego</h3>
-            <div class="card mb-4"> <!-- margen inferior -->
-                <img src="https://placehold.co/200x200" class="card-img-top" alt="...">
-            </div>
-        </div>
-
-        <!-- Columna Derecha más grande -->
-        <div class="col-md-8 d-flex flex-column">
-            <div class="card flex-fill mb-4">
-                <div class="card-body">
-                    <p>Contenido principal que se estira hasta el final.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
-
-<!--Footer-->
-<footer class="bg-custom text-center py-3 mt-auto">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Redes Sociales</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="redes"><i class="fa fa-facebook"></i> Facebook</a></li>
-                    <li><a href="#" class="redes"><i class="fa fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#" class="redes"><i class="fa fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#" class="redes"><i class="fa fa-youtube"></i> YouTube</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Soporte</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="soporte">FAQ</a></li>
-                    <li><a href="#" class="soporte">Contacto</a></li>
-                    <li><a href="#" class="soporte">Soporte Técnico</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Legal</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="legal">Términos y Condiciones</a></li>
-                    <li><a href="#" class="legal">Política de Privacidad</a></li>
-                </ul>
-            </div>
-        </div>
-        <p>&copy; <a class="text-decoration-none" href="pagina-principal.html">Reseñas.com</a>. Todos los derechos reservados 2025.</p>
-    </div>
-</footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-</body>
 </html>

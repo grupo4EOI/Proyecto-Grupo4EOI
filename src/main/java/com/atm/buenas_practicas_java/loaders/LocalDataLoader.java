@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -128,7 +129,7 @@ public class LocalDataLoader {
     public void loadDataLocal() {
 
         log.info("Iniciando la carga de datos para el perfil local");
-        int numeroEntidades = 100;
+        int numeroEntidades = 25;
         EntidadPadre[] entidades = new EntidadPadre[numeroEntidades];
         Arrays.setAll(entidades, i -> new EntidadPadre("Entidad-" + (Integer.valueOf(i)+1)));
         repository.saveAll(Arrays.asList(entidades));
