@@ -167,4 +167,5 @@ public class DefaultController {
     public String mostrarTerminosYCondiciones() {
         return "/terminos-y-condiciones";
     }
+
 }
