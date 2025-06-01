@@ -168,4 +168,15 @@ public class DefaultController {
         return "/terminos-y-condiciones";
     }
 
+
+    @GetMapping("/iniciar-sesion")
+    public String mostrarIniciarSesion() {
+        return "iniciar-sesion";
+    }
+
+    @GetMapping("/registro")
+    public String mostrarRegistro() {
+        return "registro";
+    }
+
 }

@@ -1,25 +1,3 @@
-a:hover, .nav-link:hover {
-    cursor: pointer;
-    color: #FF8C42 !important;
-}
-.redes, .soporte, .legal {
-    text-decoration: none;
-    color: inherit;
-}
-.redes:hover, .soporte:hover, .legal:hover {
-    color: #FF8C42;
-}
-.bg-custom{
-    background-color: #4E598C !important;
-    color: white !important;
-}
-.btn:hover {
-    background-color: #FF8C42 !important;
-}
-#barraDeBusqueda {
-    width:430px !important;
-}
-
 .contenido{
     width: 100%;
     background: #ffffff;
