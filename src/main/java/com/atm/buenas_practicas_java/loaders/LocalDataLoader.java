@@ -225,7 +225,7 @@ public class LocalDataLoader {
         objeto2.setImagenUrl("https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
         objeto2.setDuracionMinutos(169);
         objeto2.setTipo(tipoPeliculas);
-        objeto2.setTrailerUrl("https://www.youtube.com/watch?v=UoSSbmD9vqc");
+        objeto2.setTrailerUrl("https://www.youtube.com/embed/UoSSbmD9vqc");
         objeto2.setFechaPublicacion(LocalDate.of(2014, 11, 07));
 
         Objeto objeto3 = new Objeto();
