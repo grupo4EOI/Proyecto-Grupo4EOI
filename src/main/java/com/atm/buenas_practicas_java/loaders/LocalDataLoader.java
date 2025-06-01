@@ -469,6 +469,7 @@ public class LocalDataLoader {
         objeto23.setTipo(tipoVideojuegos);
         objeto23.setImagenUrl("https://static.wikia.nocookie.net/mario/images/2/20/Super_Mario_World_SFC_JAP.png/revision/latest?cb=20180531002139&path-prefix=es");
         objeto23.setTrailerUrl("https://www.youtube.com/embed/-WpgCFSLtLo");
+        objeto23.setFechaPublicacion(LocalDate.of(1990, 11, 21));
 
         PersonaObjeto personaObjeto1 = new PersonaObjeto();
         personaObjeto1.setRol(false);
