@@ -184,7 +184,9 @@ public class LocalDataLoader {
         Genero generoTerrorP = new Genero();
         generoTerrorP.setNombre("Terror");
         generoTerrorP.setTipo(tipoPeliculas);
-
+        Genero generoMafiaP = new Genero();
+        generoMafiaP.setNombre("Mafia");
+        generoMafiaP.setTipo(tipoPeliculas);
 
 
         /* GÉNEROS SERIES */
@@ -325,10 +327,10 @@ public class LocalDataLoader {
         generoRepository.saveAll(Arrays.asList(generoDramaP, generoRomanceP, generoComediaP, generoFiccionP,
                 generoFantasiaP, generoAccionP, generoAventurasP, generoAnimacionP, generoAnimeP, generoBelicoP,
                 generoPoliciacaP, generoDocumentalP, generoFamiliarP, generoHistoriaP, generoMusicalP,
-                generoMisterioP, generoSuspenseP, generoTerrorP, generoDramaS, generoRomanceS, generoComediaS,
-                generoFiccionS, generoFantasiaS, generoAccionS, generoAventurasS, generoAnimacionS, generoAnimeS,
-                generoBelicoS, generoPoliciacaS, generoDocumentalS, generoFamiliarS, generoHistoriaS, generoMusicalS,
-                generoMisterioS, generoSuspenseS, generoTerrorS, generoAventuraV, generoAccionV,
+                generoMisterioP, generoSuspenseP, generoTerrorP, generoMafiaP, generoDramaS, generoRomanceS,
+                generoComediaS, generoFiccionS, generoFantasiaS, generoAccionS, generoAventurasS, generoAnimacionS,
+                generoAnimeS,  generoBelicoS, generoPoliciacaS, generoDocumentalS, generoFamiliarS, generoHistoriaS,
+                generoMusicalS,  generoMisterioS, generoSuspenseS, generoTerrorS, generoAventuraV, generoAccionV,
                 generoRPGV, generoEstrategiaV, generoDeportesV, generoCarrerasV, generoSimulacionV, generoTerrorV,
                 generoLuchaV, generoPlataformasV, generoPuzlesV, generoAventuraGraficaV, generoSandboxV,
                 generoSupervicenciaV, generoMusicaV, generoBattleRoyaleV, generoTacticoV, generoMMOV,
@@ -403,7 +405,7 @@ public class LocalDataLoader {
         objeto2.setTrailerUrl("https://www.youtube.com/embed/UoSSbmD9vqc");
         objeto2.setFechaPublicacion(LocalDate.of(2014, 11, 07));
 
-
+        objeto2.setGeneros(new HashSet<>(Arrays.asList(generoFiccionP, generoAccionP, generoSuspenseP, generoDramaP)));
 
         Objeto objeto3 = new Objeto();
         objeto3.setTitulo("The Gentlemen");
@@ -417,6 +419,8 @@ public class LocalDataLoader {
         objeto3.setTrailerUrl("https://www.youtube.com/embed/SywTszaosOo");
         objeto3.setFechaPublicacion(LocalDate.of(2019, 12, 03));
 
+        objeto3.setGeneros(new HashSet<>(Arrays.asList(generoAccionP, generoDramaP, generoSuspenseP, generoPoliciacaP)));
+
         Objeto objeto4 = new Objeto();
         objeto4.setTitulo("Cadena Perpetua");
         objeto4.setDescripcion("Cadena perpetua es una pelicula que trata de " +
@@ -429,6 +433,8 @@ public class LocalDataLoader {
         objeto4.setTrailerUrl("https://www.youtube.com/embed/PLl99DlL6b4");
         objeto4.setFechaPublicacion(LocalDate.of(1995, 2, 24));
 
+        objeto4.setGeneros(new HashSet<>(Arrays.asList(generoSuspenseP, generoDramaP, generoMisterioP, generoPoliciacaP)));
+
         Objeto objeto5 = new Objeto();
         objeto5.setTitulo("El Padrino");
         objeto5.setDescripcion("El Padrino es una pelicula que trata de " +
@@ -439,6 +445,8 @@ public class LocalDataLoader {
         objeto5.setTipo(tipoPeliculas);
         objeto5.setImagenUrl("https://www.ecartelera.com/carteles/2500/2521/002.jpg");
         objeto5.setFechaPublicacion(LocalDate.of(1969, 3, 10));
+
+        objeto5.setGeneros(new HashSet<>(Arrays.asList(generoAccionP, generoMisterioP, generoDramaP, generoMafiaP)));
 
         Objeto objeto6 = new Objeto();
         objeto6.setTitulo("12 hombres sin piedad");
@@ -452,6 +460,8 @@ public class LocalDataLoader {
         objeto6.setTrailerUrl("https://www.youtube.com/embed/I0OPus5jM2w");
         objeto6.setFechaPublicacion(LocalDate.of(1958, 2, 3));
 
+        objeto6.setGeneros(new HashSet<>(Arrays.asList(generoDramaP, generoSuspenseP, generoMisterioP, generoPoliciacaP)));
+
         Objeto objeto7 = new Objeto();
         objeto7.setTitulo("La lista de Schindler");
         objeto7.setDescripcion("La lista de schindler es una película que trata de " +
@@ -463,6 +473,8 @@ public class LocalDataLoader {
         objeto7.setImagenUrl("https://pics.filmaffinity.com/schindler_s_list-473662617-large.jpg");
         objeto7.setTrailerUrl("https://www.youtube.com/embed/7q-ETFeMxwI");
         objeto7.setFechaPublicacion(LocalDate.of(1994, 3, 4));
+
+        objeto7.setGeneros(new HashSet<>(Arrays.asList(generoBelicoP, generoDramaP, generoHistoriaP)));
 
         Objeto objeto8 = new Objeto();
         objeto8.setTitulo("Pulp Fiction");
@@ -476,6 +488,8 @@ public class LocalDataLoader {
         objeto8.setTrailerUrl("https://www.youtube.com/embed/ZFYCXAG6fdo");
         objeto8.setFechaPublicacion(LocalDate.of(1995, 1, 13));
 
+        objeto8.setGeneros(new HashSet<>(Arrays.asList(generoComediaP, generoMafiaP, generoAccionP, generoSuspenseP)));
+
         Objeto objeto9 = new Objeto();
         objeto9.setTitulo("El club de la lucha");
         objeto9.setDescripcion("El club de la lucha es una película que trata de " +
@@ -487,6 +501,8 @@ public class LocalDataLoader {
         objeto9.setImagenUrl("https://www.cinepazmadrid.es/data/fotos/afiche5-elclubdelalucha.jpg");
         objeto9.setTrailerUrl("https://www.youtube.com/embed/iBsiL3NaqhE");
         objeto9.setFechaPublicacion(LocalDate.of(1999, 11, 5));
+
+        objeto9.setGeneros(new HashSet<>(Arrays.asList(generoAccionP, generoSuspenseP, generoDramaP)));
 
         Objeto objeto10 = new Objeto();
         objeto10.setTitulo("Misión: Imposible - Sentencia Final");
@@ -500,6 +516,8 @@ public class LocalDataLoader {
         objeto10.setTrailerUrl("https://www.youtube.com/embed/YqtdLeJSM6o");
         objeto10.setFechaPublicacion(LocalDate.of(2025, 5, 23));
 
+        objeto10.setGeneros(new HashSet<>(Arrays.asList(generoAccionP, generoAventurasP, generoSuspenseP, generoDramaP)));
+
         /* CAPITULOS DE SERIES */
         Objeto objeto11 = new Objeto();
         objeto11.setTitulo("The Last Of Us T1. E1 - When You're Lost in the Darkness");
@@ -511,6 +529,8 @@ public class LocalDataLoader {
         objeto11.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
         objeto11.setFechaPublicacion(LocalDate.of(2023, 1, 15));
 
+        objeto11.setGeneros(new HashSet<>(Arrays.asList(generoTerrorS, generoAccionP, generoFiccionP, generoMisterioP)));
+
         Objeto objeto12 = new Objeto();
         objeto12.setTitulo("The Last Of Us T1. E2 - Infected");
         objeto12.setDescripcion("Joel, Tess y Ellie atraviesan un hotel de Boston abandonado e inundado en su camino " +
@@ -520,6 +540,8 @@ public class LocalDataLoader {
         objeto12.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
         objeto12.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
         objeto12.setFechaPublicacion(LocalDate.of(2023, 1, 21));
+
+        objeto12.setGeneros(new HashSet<>(Arrays.asList(generoTerrorS, generoAccionP, generoFiccionP, generoMisterioP)));
 
         Objeto objeto13 = new Objeto();
         objeto13.setTitulo("The Last Of Us T1. E3 - Long, Long Time");
@@ -531,6 +553,8 @@ public class LocalDataLoader {
         objeto13.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
         objeto13.setFechaPublicacion(LocalDate.of(2023, 1, 28));
 
+        objeto13.setGeneros(new HashSet<>(Arrays.asList(generoTerrorS, generoAccionP, generoFiccionP, generoMisterioP)));
+
         Objeto objeto14 = new Objeto();
         objeto14.setTitulo("The Last Of Us T1. E4 - Please Hold to My Hand");
         objeto14.setDescripcion("Tras abandonar su vehículo en Kansas City, Joel y Ellie tratan de escapar sin " +
@@ -541,6 +565,8 @@ public class LocalDataLoader {
         objeto14.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
         objeto14.setFechaPublicacion(LocalDate.of(2023, 2, 4));
 
+        objeto14.setGeneros(new HashSet<>(Arrays.asList(generoTerrorS, generoAccionP, generoFiccionP, generoMisterioP)));
+
         Objeto objeto15 = new Objeto();
         objeto15.setTitulo("The Last Of Us T1. E5 - Endure and survive");
         objeto15.setDescripcion("Mientras intentan evadir a los rebeldes, Joel y Ellie se cruzan con el hombre " +
@@ -550,6 +576,8 @@ public class LocalDataLoader {
         objeto15.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
         objeto15.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
         objeto15.setFechaPublicacion(LocalDate.of(2023, 2, 10));
+
+        objeto15.setGeneros(new HashSet<>(Arrays.asList(generoTerrorS, generoAccionP, generoFiccionP, generoMisterioP)));
 
         Objeto objeto16 = new Objeto();
         objeto16.setTitulo("Breaking Bad T1. E1. - Pilot");
@@ -562,6 +590,8 @@ public class LocalDataLoader {
         objeto16.setTrailerUrl("https://www.youtube.com/embed/HhesaQXLuRY");
         objeto16.setFechaPublicacion(LocalDate.of(2008, 1, 20));
 
+        objeto16.setGeneros(new HashSet<>(Arrays.asList(generoDramaS, generoSuspenseP, generoPoliciacaP, generoComediaP)));
+
         Objeto objeto17 = new Objeto();
         objeto17.setTitulo("Breaking Bad T1. E2. - Cat's in the Bag...");
         objeto17.setDescripcion("Walter and Jesse scramble to deal with the consequences of their first cook, " +
@@ -572,6 +602,8 @@ public class LocalDataLoader {
         objeto17.setImagenUrl("https://es.web.img2.acsta.net/pictures/18/07/23/11/26/1237965.jpg");
         objeto17.setTrailerUrl("https://www.youtube.com/embed/HhesaQXLuRY");
         objeto17.setFechaPublicacion(LocalDate.of(2008, 1, 27));
+
+        objeto17.setGeneros(new HashSet<>(Arrays.asList(generoDramaS, generoSuspenseP, generoPoliciacaP, generoComediaP)));
 
         Objeto objeto18 = new Objeto();
         objeto18.setTitulo("Breaking Bad T1. E23. - ...And the Bag's in the River");
@@ -584,6 +616,7 @@ public class LocalDataLoader {
         objeto18.setTrailerUrl("https://www.youtube.com/embed/HhesaQXLuRY");
         objeto18.setFechaPublicacion(LocalDate.of(2008, 2, 10));
 
+        objeto18.setGeneros(new HashSet<>(Arrays.asList(generoDramaS, generoSuspenseP, generoPoliciacaP, generoComediaP)));
 
         /* VIDEOJUEGOS */
         Objeto objeto19 = new Objeto();
@@ -596,6 +629,8 @@ public class LocalDataLoader {
         objeto19.setImagenUrl("https://i.3djuegos.com/juegos/20132/fotos/ficha/-5938515.webp");
         objeto19.setTrailerUrl("https://www.youtube.com/embed/AWrXpJQBJF0");
         objeto19.setFechaPublicacion(LocalDate.of(2025, 5, 30));
+
+        objeto19.setGeneros(new HashSet<>(Arrays.asList(generoRPGV)));
 
         Objeto objeto20 = new Objeto();
         objeto20.setTitulo("Clair Obscur: Expedition 33");
@@ -610,6 +645,8 @@ public class LocalDataLoader {
         objeto20.setTrailerUrl("https://www.youtube.com/embed/wWGIakhqr5g");
         objeto20.setFechaPublicacion(LocalDate.of(2025, 4, 24));
 
+        objeto20.setGeneros(new HashSet<>(Arrays.asList(generoRPGV, generoTBSV, generoAventuraV)));
+
         Objeto objeto21 = new Objeto();
         objeto21.setTitulo("Assassin's Creed Shadows");
         objeto21.setDescripcion("Ambientado en el Japón del siglo XVI hacia el final del período Sengoku," +
@@ -623,6 +660,8 @@ public class LocalDataLoader {
         objeto21.setImagenUrl("https://i.3djuegos.com/juegos/18752/assassin__039_s_creed_codename_red/fotos/ficha/assassin__039_s_creed_codename_red-5904359.jpg");
         objeto21.setTrailerUrl("https://www.youtube.com/embed/vovkzbtYBC8");
         objeto21.setFechaPublicacion(LocalDate.of(2025, 3, 20));
+
+        objeto21.setGeneros(new HashSet<>(Arrays.asList(generoRPGV, generoAventuraV)));
 
         Objeto objeto22 = new Objeto();
         objeto22.setTitulo("The Legend of Zelda: Tears of the Kingdom");
@@ -640,6 +679,8 @@ public class LocalDataLoader {
         objeto22.setTrailerUrl("https://www.youtube.com/embed/gp9aY09li1s");
         objeto22.setFechaPublicacion(LocalDate.of(2023, 5, 12));
 
+        objeto22.setGeneros(new HashSet<>(Arrays.asList(generoRPGV, generoAventuraV)));
+
         Objeto objeto23 = new Objeto();
         objeto23.setTitulo("Super Mario World");
         objeto23.setDescripcion("Después de salvar el Reino Champiñón en Super Mario Bros. 3, los hermanos" +
@@ -655,6 +696,8 @@ public class LocalDataLoader {
         objeto23.setImagenUrl("https://static.wikia.nocookie.net/mario/images/2/20/Super_Mario_World_SFC_JAP.png/revision/latest?cb=20180531002139&path-prefix=es");
         objeto23.setTrailerUrl("https://www.youtube.com/embed/-WpgCFSLtLo");
         objeto23.setFechaPublicacion(LocalDate.of(1990, 11, 21));
+
+        objeto23.setGeneros(new HashSet<>(Arrays.asList(generoPlataformasV)));
 
         PersonaObjeto personaObjeto1 = new PersonaObjeto();
         personaObjeto1.setRol(false);
