@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -55,19 +55,19 @@
 
 <div class="container">
     <section class="row justify-content-center">
-        <h2 class="mt-2 mb-2">Películas recientemente añadidas</h2>
+        <h2 class="mt-2 mb-2"><span th:text="${seccion.tipo()}">Películas</span> recientemente añadidas</h2>
 
         <!-- Primera tarjeta -->
-        <div class="col-2 w-auto">
+        <div class="col-2 w-auto" th:each="objeto : ${seccion.objetosMasRecientes()}">
             <div class="card-container h-100 d-flex flex-column">
                 <div class="image-container-ext">
                     <div class="image-container">
                         <img class="img-fluid" alt="Cartel de Harry Potter"
-                             src="https://artesiete.es/Posters/harrypotterpiedra20.jpg">
+                             th:src="${objeto.imagenUrl()}">
                         <button class="trailer-button btn btn-primary video-btn"
                                 data-bs-target="#modal-trailer"
                                 data-bs-toggle="modal"
-                                data-src="https://www.youtube.com/embed/6T45PEo55Po"
+                                th:data-src="${objeto.trailerUrl()}"
                                 type="button">
                             <i class="bi bi-play-circle me-2"></i>Ver trailer
                         </button>
@@ -75,10 +75,13 @@
                 </div>
                 <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                 <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                    <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break">Harry potter y la piedra filosofal bsadadasdasdada</h2>
+                    <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" th:text="${objeto.titulo()}"></h2>
                     <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
-                        <p class="fecha">2020</p>
-                        <p class="puntuacion"><i class="bi bi-star-fill"></i> 4.7 / 5</p>
+                        <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
+                        <p class="puntuacion">
+                            <span th:text="'(' + ${objeto.numeroResenas()} + ' reseñas) '"></span>
+                            <i class="bi bi-star-fill"></i>
+                            <span th:text="${objeto.puntuacion()}">4.7</span> / 5</p>
                     </div>
                 </div>
             </div>
@@ -87,19 +90,19 @@
     </section>
 
     <section class="row justify-content-center">
-        <h2 class="mt-2 mb-2">Películas mejores valoradas</h2>
+        <h2 class="mt-2 mb-2"><span th:text="${seccion.tipo()}">Películas</span> mejores valoradas</h2>
 
         <!-- Primera tarjeta -->
-        <div class="col-2 w-auto">
+        <div class="col-2 w-auto" th:each="objeto : ${seccion.objetosMejorValorados()}">
             <div class="card-container h-100 d-flex flex-column">
                 <div class="image-container-ext">
                     <div class="image-container">
                         <img class="img-fluid" alt="Cartel de Harry Potter"
-                             src="https://artesiete.es/Posters/harrypotterpiedra20.jpg">
+                             th:src="${objeto.imagenUrl()}">
                         <button class="trailer-button btn btn-primary video-btn"
                                 data-bs-target="#modal-trailer"
                                 data-bs-toggle="modal"
-                                data-src="https://www.youtube.com/embed/6T45PEo55Po"
+                                th:data-src="${objeto.trailerUrl()}"
                                 type="button">
                             <i class="bi bi-play-circle me-2"></i>Ver trailer
                         </button>
@@ -107,10 +110,13 @@
                 </div>
                 <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                 <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                    <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break">Harry potter y la piedra filosofal bsadadasdasdada</h2>
+                    <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" th:text="${objeto.titulo()}"></h2>
                     <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
-                        <p class="fecha">2020</p>
-                        <p class="puntuacion"><i class="bi bi-star-fill"></i> 4.7 / 5</p>
+                        <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
+                        <p class="puntuacion">
+                            <span th:text="'(' + ${objeto.numeroResenas()} + ' reseñas) '"></span>
+                            <i class="bi bi-star-fill"></i>
+                            <span th:text="${objeto.puntuacion()}">4.7</span> / 5</p>
                     </div>
                 </div>
             </div>
