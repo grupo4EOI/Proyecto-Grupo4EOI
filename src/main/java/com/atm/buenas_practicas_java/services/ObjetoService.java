@@ -1,10 +1,16 @@
 package com.atm.buenas_practicas_java.services;
 
+import com.atm.buenas_practicas_java.dtos.ObjetoDTO;
+import com.atm.buenas_practicas_java.dtos.SeccionDTO;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
+import com.atm.buenas_practicas_java.entities.Tipo;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
+import com.atm.buenas_practicas_java.mapper.ObjetoMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
+import org.codehaus.plexus.util.StringUtils;
+import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +21,12 @@ public class ObjetoService {
 
     private final ObjetoRepository objetoRepository;
     private final ResenaRepository resenaRepository;
+    private final ObjetoMapper objetoMapper;
 
-    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository) {
+    public ObjetoService(ObjetoRepository objetoRepository, ResenaRepository resenaRepository, ObjetoMapper objetoMapper) {
         this.objetoRepository = objetoRepository;
         this.resenaRepository = resenaRepository;
+        this.objetoMapper = objetoMapper;
     }
 
     public Objeto save(Objeto objeto) {
@@ -35,6 +43,9 @@ public class ObjetoService {
 
     public Double calcularPuntuacionObjeto(Long idObjeto) {
         List<Resena> resenas = resenaRepository.findResenasByObjeto_IdObjeto(idObjeto);
+        if (resenas.isEmpty()) {
+            return 0.0;
+        }
         return resenas.stream().mapToDouble(Resena::getPuntuacion).sum() / (resenas.size());
     }
 
@@ -42,5 +53,45 @@ public class ObjetoService {
         return resenaRepository.findResenasByObjeto_IdObjeto(idObjeto).size();
     }
 
+    private List<ObjetoDTO> rellenarListaObjetosDTO(List<ObjetoDTO> objetosDTO) {
+        return objetosDTO.stream()
+                .map(objeto -> new ObjetoDTO(
+                        objeto.idObjeto(),
+                        objeto.titulo(),
+                        objeto.imagenUrl(),
+                        objeto.trailerUrl(),
+                        objeto.anoPublicacion(),
+                        calcularPuntuacionObjeto(objeto.idObjeto()),
+                        calcularNumeroResenas(objeto.idObjeto())
+                )).toList();
+    }
 
+    public List<ObjetoDTO> obtenerObjetosMasRecientesPorTipo(String tipo) {
+        List<Objeto> objetos = objetoRepository.findObjetosByTipo_NombreOrderByFechaPublicacionDesc(tipo, Limit.of(8));
+        List<ObjetoDTO> objetosMasRecientes = objetoMapper.toDtoList(objetos);
+        return rellenarListaObjetosDTO(objetosMasRecientes);
+    }
+
+    public List<ObjetoDTO> obtenerObjetosMejorValoradosPorTipo(String tipo) {
+        List<Objeto> objetos = objetoRepository.buscarListaObjetosMejorValoradosPorTipo(tipo, Limit.of(8));
+        List<ObjetoDTO> objetosMasValorados = objetoMapper.toDtoList(objetos);
+        return rellenarListaObjetosDTO(objetosMasValorados);
+    }
+
+    public SeccionDTO construirSeccionDTO(String tipo) {
+        String tipoSeccion = "";
+        if (tipo.equals("pelicula")) {
+            tipoSeccion = "Películas";
+        } else if (tipo.equals("serie")) {
+            tipoSeccion = "Series";
+        } else {
+            tipoSeccion = "Videojuegos";
+        }
+
+        return new SeccionDTO(
+                tipoSeccion,
+                obtenerObjetosMasRecientesPorTipo(tipo),
+                obtenerObjetosMejorValoradosPorTipo(tipo)
+        );
+    }
 }
