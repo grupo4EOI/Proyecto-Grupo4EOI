@@ -32,8 +32,6 @@ import java.util.*;
 @Profile("local")
 public class LocalDataLoader {
 
-    private final EntidadPadreRepository repository;
-    private final EntidadHijaRepository entidadHijaRepository;
     private final ObjetoRepository objetoRepository;
     private final PersonaRepository personaRepository;
     private final PersonaObjetoRepository personaObjetoRepository;
@@ -52,16 +50,8 @@ public class LocalDataLoader {
      * Inicializa un objeto {@code LocalDataLoader} configurado con los repositorios de las entidades,
      * proporcionando la capacidad de interactuar con estas entidades en la base de datos.
      *
-     * @param repository              El repositorio de la entidad padre {@code EntidadPadreRepository}.
-     *                                Se utiliza para realizar operaciones de persistencia, actualización,
-     *                                eliminación y consulta relacionadas con la entidad padre.
-     * @param entidadHijaRepository   El repositorio de la entidad hija {@code EntidadHijaRepository}.
-     *                                Es utilizado para gestionar datos de la entidad hija y su relación con
-     *                                la entidad padre.
      */
-    public LocalDataLoader(EntidadPadreRepository repository,
-                           EntidadHijaRepository entidadHijaRepository,
-                           ObjetoRepository objetoRepository,
+    public LocalDataLoader(ObjetoRepository objetoRepository,
                            PersonaRepository personaRepository,
                            PersonaObjetoRepository personaObjetoRepository,
                            UsuarioRepository usuarioRepository,
@@ -72,8 +62,6 @@ public class LocalDataLoader {
                            PublicacionRepository publicacionRepository,
                            ComunidadRepository comunidadRepository,
                            ComentarioResenaRepository comentarioResenaRepository) {
-        this.repository = repository;
-        this.entidadHijaRepository = entidadHijaRepository;
         this.objetoRepository = objetoRepository;
         this.personaRepository = personaRepository;
         this.personaObjetoRepository = personaObjetoRepository;
@@ -142,115 +130,202 @@ public class LocalDataLoader {
 
         // Géneros de prueba
         /* GÉNEROS PELÍCULAS */
-        Genero genero1 = new Genero();
-        genero1.setNombre("Drama");
-        genero1.setTipo(tipoPeliculas);
-        Genero genero2 = new Genero();
-        genero2.setNombre("Romance");
-        genero2.setTipo(tipoPeliculas);
-        Genero genero3 = new Genero();
-        genero3.setNombre("Comedia");
-        genero3.setTipo(tipoPeliculas);
-        Genero genero4 = new Genero();
-        genero4.setNombre("Ficción");
-        genero4.setTipo(tipoPeliculas);
-        Genero genero5 = new Genero();
-        genero5.setNombre("Fantasía");
-        genero5.setTipo(tipoPeliculas);
-        Genero genero6 = new Genero();
-        genero6.setNombre("Acción");
-        genero6.setTipo(tipoPeliculas);
-        Genero genero7 = new Genero();
-        genero7.setNombre("Aventuras");
-        genero7.setTipo(tipoPeliculas);
-        Genero genero8 = new Genero();
-        genero8.setNombre("Animación");
-        genero8.setTipo(tipoPeliculas);
-        Genero genero9 = new Genero();
-        genero9.setNombre("Anime");
-        genero9.setTipo(tipoPeliculas);
-        Genero genero10 = new Genero();
-        genero10.setNombre("Bélico");
-        genero10.setTipo(tipoPeliculas);
-        Genero genero11 = new Genero();
-        genero11.setNombre("Policiaca");
-        genero11.setTipo(tipoPeliculas);
-        Genero genero12 = new Genero();
-        genero12.setNombre("Documental");
-        genero12.setTipo(tipoPeliculas);
-        Genero genero13 = new Genero();
-        genero13.setNombre("Drama");
-        genero13.setTipo(tipoPeliculas);
+        Genero generoDramaP = new Genero();
+        generoDramaP.setNombre("Drama");
+        generoDramaP.setTipo(tipoPeliculas);
+        Genero generoRomanceP = new Genero();
+        generoRomanceP.setNombre("Romance");
+        generoRomanceP.setTipo(tipoPeliculas);
+        Genero generoComediaP = new Genero();
+        generoComediaP.setNombre("Comedia");
+        generoComediaP.setTipo(tipoPeliculas);
+        Genero generoFiccionP = new Genero();
+        generoFiccionP.setNombre("Ficción");
+        generoFiccionP.setTipo(tipoPeliculas);
+        Genero generoFantasiaP = new Genero();
+        generoFantasiaP.setNombre("Fantasía");
+        generoFantasiaP.setTipo(tipoPeliculas);
+        Genero generoAccionP = new Genero();
+        generoAccionP.setNombre("Acción");
+        generoAccionP.setTipo(tipoPeliculas);
+        Genero generoAventurasP = new Genero();
+        generoAventurasP.setNombre("Aventuras");
+        generoAventurasP.setTipo(tipoPeliculas);
+        Genero generoAnimacionP = new Genero();
+        generoAnimacionP.setNombre("Animación");
+        generoAnimacionP.setTipo(tipoPeliculas);
+        Genero generoAnimeP = new Genero();
+        generoAnimeP.setNombre("Anime");
+        generoAnimeP.setTipo(tipoPeliculas);
+        Genero generoBelicoP = new Genero();
+        generoBelicoP.setNombre("Bélico");
+        generoBelicoP.setTipo(tipoPeliculas);
+        Genero generoPoliciacaP = new Genero();
+        generoPoliciacaP.setNombre("Policiaca");
+        generoPoliciacaP.setTipo(tipoPeliculas);
+        Genero generoDocumentalP = new Genero();
+        generoDocumentalP.setNombre("Documental");
+        generoDocumentalP.setTipo(tipoPeliculas);
+        Genero generoFamiliarP = new Genero();
+        generoFamiliarP.setNombre("Familiar");
+        generoFamiliarP.setTipo(tipoPeliculas);
+        Genero generoHistoriaP = new Genero();
+        generoHistoriaP.setNombre("Historia");
+        generoHistoriaP.setTipo(tipoPeliculas);
+        Genero generoMusicalP = new Genero();
+        generoMusicalP.setNombre("Musical");
+        generoMusicalP.setTipo(tipoPeliculas);
+        Genero generoMisterioP = new Genero();
+        generoMisterioP.setNombre("Misterio");
+        generoMisterioP.setTipo(tipoPeliculas);
+        Genero generoSuspenseP = new Genero();
+        generoSuspenseP.setNombre("Suspense");
+        generoSuspenseP.setTipo(tipoPeliculas);
+        Genero generoTerrorP = new Genero();
+        generoTerrorP.setNombre("Terror");
+        generoTerrorP.setTipo(tipoPeliculas);
+
+
 
         /* GÉNEROS SERIES */
-        Genero genero14 = new Genero();
-        genero14.setNombre("Drama");
-        genero14.setTipo(tipoSeries);
-        Genero genero15 = new Genero();
-        genero15.setNombre("Romance");
-        genero15.setTipo(tipoSeries);
-        Genero genero16 = new Genero();
-        genero16.setNombre("Comedia");
-        genero16.setTipo(tipoSeries);
-        Genero genero17 = new Genero();
-        genero17.setNombre("Ficción");
-        genero17.setTipo(tipoSeries);
-        Genero genero18 = new Genero();
-        genero18.setNombre("Fantasía");
-        genero18.setTipo(tipoSeries);
-        Genero genero19 = new Genero();
-        genero19.setNombre("Acción");
-        genero19.setTipo(tipoSeries);
-        Genero genero20 = new Genero();
-        genero20.setNombre("Aventuras");
-        genero20.setTipo(tipoSeries);
-        Genero genero21 = new Genero();
-        genero21.setNombre("Animación");
-        genero21.setTipo(tipoSeries);
-        Genero genero22 = new Genero();
-        genero22.setNombre("Anime");
-        genero22.setTipo(tipoSeries);
-        Genero genero23 = new Genero();
-        genero23.setNombre("Bélico");
-        genero23.setTipo(tipoSeries);
-        Genero genero24 = new Genero();
-        genero24.setNombre("Policiaca");
-        genero24.setTipo(tipoSeries);
-        Genero genero25 = new Genero();
-        genero25.setNombre("Documental");
-        genero25.setTipo(tipoSeries);
-        Genero genero26 = new Genero();
-        genero26.setNombre("Drama");
-        genero26.setTipo(tipoSeries);
+        Genero generoDramaS = new Genero();
+        generoDramaS.setNombre("Drama");
+        generoDramaS.setTipo(tipoSeries);
+        Genero generoRomanceS = new Genero();
+        generoRomanceS.setNombre("Romance");
+        generoRomanceS.setTipo(tipoSeries);
+        Genero generoComediaS = new Genero();
+        generoComediaS.setNombre("Comedia");
+        generoComediaS.setTipo(tipoSeries);
+        Genero generoFiccionS = new Genero();
+        generoFiccionS.setNombre("Ficción");
+        generoFiccionS.setTipo(tipoSeries);
+        Genero generoFantasiaS = new Genero();
+        generoFantasiaS.setNombre("Fantasía");
+        generoFantasiaS.setTipo(tipoSeries);
+        Genero generoAccionS = new Genero();
+        generoAccionS.setNombre("Acción");
+        generoAccionS.setTipo(tipoSeries);
+        Genero generoAventurasS = new Genero();
+        generoAventurasS.setNombre("Aventuras");
+        generoAventurasS.setTipo(tipoSeries);
+        Genero generoAnimacionS = new Genero();
+        generoAnimacionS.setNombre("Animación");
+        generoAnimacionS.setTipo(tipoSeries);
+        Genero generoAnimeS = new Genero();
+        generoAnimeS.setNombre("Anime");
+        generoAnimeS.setTipo(tipoSeries);
+        Genero generoBelicoS = new Genero();
+        generoBelicoS.setNombre("Bélico");
+        generoBelicoS.setTipo(tipoSeries);
+        Genero generoPoliciacaS = new Genero();
+        generoPoliciacaS.setNombre("Policiaca");
+        generoPoliciacaS.setTipo(tipoSeries);
+        Genero generoDocumentalS = new Genero();
+        generoDocumentalS.setNombre("Documental");
+        generoDocumentalS.setTipo(tipoSeries);
+        Genero generoFamiliarS = new Genero();
+        generoFamiliarS.setNombre("Familiar");
+        generoFamiliarS.setTipo(tipoSeries);
+        Genero generoHistoriaS = new Genero();
+        generoHistoriaS.setNombre("Historia");
+        generoHistoriaS.setTipo(tipoSeries);
+        Genero generoMusicalS = new Genero();
+        generoMusicalS.setNombre("Musical");
+        generoMusicalS.setTipo(tipoSeries);
+        Genero generoMisterioS = new Genero();
+        generoMisterioS.setNombre("Misterio");
+        generoMisterioS.setTipo(tipoSeries);
+        Genero generoSuspenseS = new Genero();
+        generoSuspenseS.setNombre("Suspense");
+        generoSuspenseS.setTipo(tipoSeries);
+        Genero generoTerrorS = new Genero();
+        generoTerrorS.setNombre("Terror");
+        generoTerrorS.setTipo(tipoSeries);
+
 
         /* GÉNEROS VIDEOJUEGOS */
-        Genero genero27 = new Genero();
-        genero27.setNombre("Aventura");
-        genero27.setTipo(tipoVideojuegos);
-        Genero genero28 = new Genero();
-        genero28.setNombre("Acción");
-        genero28.setTipo(tipoVideojuegos);
-        Genero genero29 = new Genero();
-        genero29.setNombre("RPG");
-        genero29.setTipo(tipoVideojuegos);
-        Genero genero30 = new Genero();
-        genero30.setNombre("Estrategia");
-        genero30.setTipo(tipoVideojuegos);
-        Genero genero31 = new Genero();
-        genero31.setNombre("Deportes");
-        genero31.setTipo(tipoVideojuegos);
-        Genero genero32 = new Genero();
-        genero32.setNombre("Carreras");
-        genero32.setTipo(tipoVideojuegos);
-        Genero genero33 = new Genero();
-        genero33.setNombre("Simulación");
-        genero33.setTipo(tipoVideojuegos);
+        Genero generoAventuraV = new Genero();
+        generoAventuraV.setNombre("Aventura");
+        generoAventuraV.setTipo(tipoVideojuegos);
+        Genero generoAccionV = new Genero();
+        generoAccionV.setNombre("Acción");
+        generoAccionV.setTipo(tipoVideojuegos);
+        Genero generoRPGV = new Genero();
+        generoRPGV.setNombre("RPG");
+        generoRPGV.setTipo(tipoVideojuegos);
+        Genero generoEstrategiaV = new Genero();
+        generoEstrategiaV.setNombre("Estrategia");
+        generoEstrategiaV.setTipo(tipoVideojuegos);
+        Genero generoDeportesV = new Genero();
+        generoDeportesV.setNombre("Deportes");
+        generoDeportesV.setTipo(tipoVideojuegos);
+        Genero generoCarrerasV = new Genero();
+        generoCarrerasV.setNombre("Carreras");
+        generoCarrerasV.setTipo(tipoVideojuegos);
+        Genero generoSimulacionV = new Genero();
+        generoSimulacionV.setNombre("Simulación");
+        generoSimulacionV.setTipo(tipoVideojuegos);
+        Genero generoTerrorV = new Genero();
+        generoTerrorV.setNombre("Terror");
+        generoTerrorV.setTipo(tipoVideojuegos);
+        Genero generoLuchaV = new Genero();
+        generoLuchaV.setNombre("Lucha");
+        generoLuchaV.setTipo(tipoVideojuegos);
+        Genero generoPlataformasV = new Genero();
+        generoPlataformasV.setNombre("Plataformas");
+        generoPlataformasV.setTipo(tipoVideojuegos);
+        Genero generoPuzlesV = new Genero();
+        generoPuzlesV.setNombre("Puzles");
+        generoPuzlesV.setTipo(tipoVideojuegos);
+        Genero generoAventuraGraficaV = new Genero();
+        generoAventuraGraficaV.setNombre("Aventura gráfica");
+        generoAventuraGraficaV.setTipo(tipoVideojuegos);
+        Genero generoSandboxV = new Genero();
+        generoSandboxV.setNombre("Sandbox");
+        generoSandboxV.setTipo(tipoVideojuegos);
+        Genero generoSupervicenciaV = new Genero();
+        generoSupervicenciaV.setNombre("Supervicencia");
+        generoSupervicenciaV.setTipo(tipoVideojuegos);
+        Genero generoMusicaV = new Genero();
+        generoMusicaV.setNombre("Musica");
+        generoMusicaV.setTipo(tipoVideojuegos);
+        Genero generoBattleRoyaleV = new Genero();
+        generoBattleRoyaleV.setNombre("Battle Royale");
+        generoBattleRoyaleV.setTipo(tipoVideojuegos);
+        Genero generoTacticoV = new Genero();
+        generoTacticoV.setNombre("Táctico");
+        generoTacticoV.setTipo(tipoVideojuegos);
+        Genero generoMMOV = new Genero();
+        generoMMOV.setNombre("MMO");
+        generoMMOV.setTipo(tipoVideojuegos);
+        Genero generoMundoAbiertoV = new Genero();
+        generoMundoAbiertoV.setNombre("Mundo Abierto");
+        generoMundoAbiertoV.setTipo(tipoVideojuegos);
+        Genero generoJuegoCartasV = new Genero();
+        generoJuegoCartasV.setNombre("Juego de cartas");
+        generoJuegoCartasV.setTipo(tipoVideojuegos);
+        Genero generoJuegoMesaV = new Genero();
+        generoJuegoMesaV.setNombre("Juego de mesa");
+        generoJuegoMesaV.setTipo(tipoVideojuegos);
+        Genero generoRTSV = new Genero();
+        generoRTSV.setNombre("RTS");
+        generoRTSV.setTipo(tipoVideojuegos);
+        Genero generoTBSV = new Genero();
+        generoTBSV.setNombre("TBS");
+        generoTBSV.setTipo(tipoVideojuegos);
+        Genero generoSupervivenciaV = new Genero();
+        generoSupervivenciaV.setNombre("Supervivencia");
+        generoSupervivenciaV.setTipo(tipoVideojuegos);
+        Genero generoEducativoV = new Genero();
+        generoEducativoV.setNombre("Educativo");
+        generoEducativoV.setTipo(tipoVideojuegos);
 
 
-        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3, genero4, genero5, genero6, genero7,
-                genero8, genero9, genero10, genero11, genero12, genero13, genero14, genero15, genero16,
-                genero17, genero18, genero19, genero20, genero21, genero22, genero23, genero24, genero25,
-                genero26, genero27, genero28, genero29, genero30, genero31, genero32, genero33));
+        generoRepository.saveAll(Arrays.asList(generoDramaP, generoRomanceP, generoComediaP, generoFiccionP, generoFantasiaP, generoAccionP, generoAventurasP,
+                generoAnimacionP, generoAnimeP, generoBelicoP, generoPoliciacaP, generoDocumentalP, generoDramaP, generoDramaS, generoRomanceS, generoComediaS,
+                generoFiccionS, generoFantasiaS, generoAccionS, generoAventurasS, generoAnimacionS, generoAnimeS, generoBelicoS, generoPoliciacaS, generoDocumentalS,
+                generoDramaS, generoAventuraV, generoAccionV, generoRPGV, generoEstrategiaV, generoDeportesV, generoCarrerasV, generoSimulacionV));
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
@@ -306,6 +381,8 @@ public class LocalDataLoader {
         objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
         objeto.setFechaPublicacion(LocalDate.of(2001, 3, 01));
 
+        objeto.setGeneros(new HashSet<>(Arrays.asList(generoFantasiaP, generoFiccionP, generoAventurasP)));
+
         Objeto objeto2 = new Objeto();
         objeto2.setTitulo("Interstellar");
         objeto2.setDescripcion("Interstellar es una pelicula que trata de " +
@@ -317,6 +394,8 @@ public class LocalDataLoader {
         objeto2.setTipo(tipoPeliculas);
         objeto2.setTrailerUrl("https://www.youtube.com/embed/UoSSbmD9vqc");
         objeto2.setFechaPublicacion(LocalDate.of(2014, 11, 07));
+
+
 
         Objeto objeto3 = new Objeto();
         objeto3.setTitulo("The Gentlemen");
@@ -589,7 +668,7 @@ public class LocalDataLoader {
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
 
-        objeto.setGeneros(new HashSet<>(Arrays.asList(genero1, genero2, genero3, genero4, genero5)));
+
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3, objeto4, objeto5, objeto6, objeto7,
                 objeto8, objeto9, objeto10, objeto11, objeto12, objeto13, objeto14, objeto15, objeto16,
