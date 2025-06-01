@@ -141,18 +141,116 @@ public class LocalDataLoader {
         tipoRepository.saveAll(Arrays.asList(tipoPeliculas, tipoSeries, tipoVideojuegos));
 
         // Géneros de prueba
+        /* GÉNEROS PELÍCULAS */
         Genero genero1 = new Genero();
         genero1.setNombre("Drama");
+        genero1.setTipo(tipoPeliculas);
         Genero genero2 = new Genero();
         genero2.setNombre("Romance");
+        genero2.setTipo(tipoPeliculas);
         Genero genero3 = new Genero();
         genero3.setNombre("Comedia");
+        genero3.setTipo(tipoPeliculas);
         Genero genero4 = new Genero();
         genero4.setNombre("Ficción");
+        genero4.setTipo(tipoPeliculas);
         Genero genero5 = new Genero();
         genero5.setNombre("Fantasía");
+        genero5.setTipo(tipoPeliculas);
+        Genero genero6 = new Genero();
+        genero6.setNombre("Acción");
+        genero6.setTipo(tipoPeliculas);
+        Genero genero7 = new Genero();
+        genero7.setNombre("Aventuras");
+        genero7.setTipo(tipoPeliculas);
+        Genero genero8 = new Genero();
+        genero8.setNombre("Animación");
+        genero8.setTipo(tipoPeliculas);
+        Genero genero9 = new Genero();
+        genero9.setNombre("Anime");
+        genero9.setTipo(tipoPeliculas);
+        Genero genero10 = new Genero();
+        genero10.setNombre("Bélico");
+        genero10.setTipo(tipoPeliculas);
+        Genero genero11 = new Genero();
+        genero11.setNombre("Policiaca");
+        genero11.setTipo(tipoPeliculas);
+        Genero genero12 = new Genero();
+        genero12.setNombre("Documental");
+        genero12.setTipo(tipoPeliculas);
+        Genero genero13 = new Genero();
+        genero13.setNombre("Drama");
+        genero13.setTipo(tipoPeliculas);
 
-        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3, genero4, genero5));
+        /* GÉNEROS SERIES */
+        Genero genero14 = new Genero();
+        genero14.setNombre("Drama");
+        genero14.setTipo(tipoSeries);
+        Genero genero15 = new Genero();
+        genero15.setNombre("Romance");
+        genero15.setTipo(tipoSeries);
+        Genero genero16 = new Genero();
+        genero16.setNombre("Comedia");
+        genero16.setTipo(tipoSeries);
+        Genero genero17 = new Genero();
+        genero17.setNombre("Ficción");
+        genero17.setTipo(tipoSeries);
+        Genero genero18 = new Genero();
+        genero18.setNombre("Fantasía");
+        genero18.setTipo(tipoSeries);
+        Genero genero19 = new Genero();
+        genero19.setNombre("Acción");
+        genero19.setTipo(tipoSeries);
+        Genero genero20 = new Genero();
+        genero20.setNombre("Aventuras");
+        genero20.setTipo(tipoSeries);
+        Genero genero21 = new Genero();
+        genero21.setNombre("Animación");
+        genero21.setTipo(tipoSeries);
+        Genero genero22 = new Genero();
+        genero22.setNombre("Anime");
+        genero22.setTipo(tipoSeries);
+        Genero genero23 = new Genero();
+        genero23.setNombre("Bélico");
+        genero23.setTipo(tipoSeries);
+        Genero genero24 = new Genero();
+        genero24.setNombre("Policiaca");
+        genero24.setTipo(tipoSeries);
+        Genero genero25 = new Genero();
+        genero25.setNombre("Documental");
+        genero25.setTipo(tipoSeries);
+        Genero genero26 = new Genero();
+        genero26.setNombre("Drama");
+        genero26.setTipo(tipoSeries);
+
+        /* GÉNEROS VIDEOJUEGOS */
+        Genero genero27 = new Genero();
+        genero27.setNombre("Aventura");
+        genero27.setTipo(tipoVideojuegos);
+        Genero genero28 = new Genero();
+        genero28.setNombre("Acción");
+        genero28.setTipo(tipoVideojuegos);
+        Genero genero29 = new Genero();
+        genero29.setNombre("RPG");
+        genero29.setTipo(tipoVideojuegos);
+        Genero genero30 = new Genero();
+        genero30.setNombre("Estrategia");
+        genero30.setTipo(tipoVideojuegos);
+        Genero genero31 = new Genero();
+        genero31.setNombre("Deportes");
+        genero31.setTipo(tipoVideojuegos);
+        Genero genero32 = new Genero();
+        genero32.setNombre("Carreras");
+        genero32.setTipo(tipoVideojuegos);
+        Genero genero33 = new Genero();
+        genero33.setNombre("Simulación");
+        genero33.setTipo(tipoVideojuegos);
+
+
+        generoRepository.saveAll(Arrays.asList(genero1, genero2, genero3, genero4, genero5, genero6, genero7,
+                genero8, genero9, genero10, genero11, genero12, genero13, genero14, genero15, genero16,
+                genero17, genero18, genero19, genero20, genero21, genero22, genero23, genero24, genero25,
+                genero26, genero27, genero28, genero29, genero30, genero31, genero32, genero33));
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
@@ -491,10 +589,11 @@ public class LocalDataLoader {
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
 
-
         objeto.setGeneros(new HashSet<>(Arrays.asList(genero1, genero2, genero3, genero4, genero5)));
 
-        objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
+        objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3, objeto4, objeto5, objeto6, objeto7,
+                objeto8, objeto9, objeto10, objeto11, objeto12, objeto13, objeto14, objeto15, objeto16,
+                objeto17, objeto18, objeto19, objeto20, objeto21, objeto22, objeto23));
 
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3));
