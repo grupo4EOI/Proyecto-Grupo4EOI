@@ -168,8 +168,4 @@ public class DefaultController {
         return "/terminos-y-condiciones";
     }
 
-    @GetMapping("/seccion")
-    public String mostrarSeccion() {
-        return "/seccion";
-    }
 }
