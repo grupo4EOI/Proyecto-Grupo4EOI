@@ -129,15 +129,6 @@ public class LocalDataLoader {
     public void loadDataLocal() {
 
         log.info("Iniciando la carga de datos para el perfil local");
-        int numeroEntidades = 100;
-        EntidadPadre[] entidades = new EntidadPadre[numeroEntidades];
-        Arrays.setAll(entidades, i -> new EntidadPadre("Entidad-" + (Integer.valueOf(i)+1)));
-        repository.saveAll(Arrays.asList(entidades));
-        for (EntidadPadre entidadPadre : entidades) {
-            EntidadHija entidadHija = new EntidadHija("Hija de " + entidadPadre.getNombre());
-            entidadHija.setEntidadPadre(entidadPadre);
-            entidadHijaRepository.save(entidadHija);
-        }
 
         // Tipos de objeto
         Tipo tipoPeliculas = new Tipo();
@@ -204,6 +195,7 @@ public class LocalDataLoader {
         personaRepository.saveAll(Arrays.asList(persona1, persona2, persona3));
 
         // Objeto de prueba
+        // PELÍCULAS
         Objeto objeto = new Objeto();
         objeto.setTitulo("Harry Potter");
         objeto.setDescripcion("Harry Potter es una pelicula que trata de " +
@@ -237,8 +229,246 @@ public class LocalDataLoader {
         objeto3.setImagenUrl("https://pics.filmaffinity.com/The_Gentlemen_Los_seanores_de_la_mafia-425828685-large.jpg");
         objeto3.setDuracionMinutos(113);
         objeto3.setTipo(tipoPeliculas);
-        objeto3.setTrailerUrl("https://www.youtube.com/watch?v=SywTszaosOo");
+        objeto3.setTrailerUrl("https://www.youtube.com/embed/SywTszaosOo");
         objeto3.setFechaPublicacion(LocalDate.of(2019, 12, 03));
+
+        Objeto objeto4 = new Objeto();
+        objeto4.setTitulo("Cadena Perpetua");
+        objeto4.setDescripcion("Cadena perpetua es una pelicula que trata de " +
+                        " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                        " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                        " quibusdam quisquam quos repellat sunt vitae");
+        objeto4.setImagenUrl("https://www.ecartelera.com/carteles/5600/5676/003_m.jpg");
+        objeto4.setDuracionMinutos(142);
+        objeto4.setTipo(tipoPeliculas);
+        objeto4.setTrailerUrl("https://www.youtube.com/embed/PLl99DlL6b4");
+        objeto4.setFechaPublicacion(LocalDate.of(1995, 2, 24));
+
+        Objeto objeto5 = new Objeto();
+        objeto5.setTitulo("El Padrino");
+        objeto5.setDescripcion("El Padrino es una pelicula que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto5.setDuracionMinutos(175);
+        objeto5.setTipo(tipoPeliculas);
+        objeto5.setImagenUrl("https://www.ecartelera.com/carteles/2500/2521/002.jpg");
+        objeto5.setFechaPublicacion(LocalDate.of(1969, 3, 10));
+
+        Objeto objeto6 = new Objeto();
+        objeto6.setTitulo("12 hombres sin piedad");
+        objeto6.setDescripcion("12 hombres sin piedad es una película que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto6.setDuracionMinutos(96);
+        objeto6.setTipo(tipoPeliculas);
+        objeto6.setImagenUrl("https://cinesembajadores.es/wp-content/uploads/2025/01/12-hombres-sin-piedad-cartel.jpeg");
+        objeto6.setTrailerUrl("https://www.youtube.com/embed/I0OPus5jM2w");
+        objeto6.setFechaPublicacion(LocalDate.of(1958, 2, 3));
+
+        Objeto objeto7 = new Objeto();
+        objeto7.setTitulo("La lista de Schindler");
+        objeto7.setDescripcion("La lista de schindler es una película que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto7.setDuracionMinutos(195);
+        objeto7.setTipo(tipoPeliculas);
+        objeto7.setImagenUrl("https://pics.filmaffinity.com/schindler_s_list-473662617-large.jpg");
+        objeto7.setTrailerUrl("https://www.youtube.com/embed/7q-ETFeMxwI");
+        objeto7.setFechaPublicacion(LocalDate.of(1994, 3, 4));
+
+        Objeto objeto8 = new Objeto();
+        objeto8.setTitulo("Pulp Fiction");
+        objeto8.setDescripcion("Pulp fiction es una película que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto8.setDuracionMinutos(154);
+        objeto8.setTipo(tipoPeliculas);
+        objeto8.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1cYyaS50kL0g7JCqP8Dd3-T1NFmcVoFbQcQ&s");
+        objeto8.setTrailerUrl("https://www.youtube.com/embed/ZFYCXAG6fdo");
+        objeto8.setFechaPublicacion(LocalDate.of(1995, 1, 13));
+
+        Objeto objeto9 = new Objeto();
+        objeto9.setTitulo("El club de la lucha");
+        objeto9.setDescripcion("El club de la lucha es una película que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto9.setDuracionMinutos(139);
+        objeto9.setTipo(tipoPeliculas);
+        objeto9.setImagenUrl("https://www.cinepazmadrid.es/data/fotos/afiche5-elclubdelalucha.jpg");
+        objeto9.setTrailerUrl("https://www.youtube.com/embed/iBsiL3NaqhE");
+        objeto9.setFechaPublicacion(LocalDate.of(1999, 11, 5));
+
+        Objeto objeto10 = new Objeto();
+        objeto10.setTitulo("Misión: Imposible - Sentencia Final");
+        objeto10.setDescripcion("Misión: Imposible - Sentencia Final es una película que trata de " +
+                " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
+                " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
+                " quibusdam quisquam quos repellat sunt vitae");
+        objeto10.setDuracionMinutos(169);
+        objeto10.setTipo(tipoPeliculas);
+        objeto10.setImagenUrl("https://pics.filmaffinity.com/Misiaon_imposible_Sentencia_final-784079226-large.jpg");
+        objeto10.setTrailerUrl("https://www.youtube.com/embed/YqtdLeJSM6o");
+        objeto10.setFechaPublicacion(LocalDate.of(2025, 5, 23));
+
+        /* CAPITULOS DE SERIES */
+        Objeto objeto11 = new Objeto();
+        objeto11.setTitulo("The Last Of Us T1. E1 - When You're Lost in the Darkness");
+        objeto11.setDescripcion("Este capítulo trata sobre: La vida de Joel da un giro dramático " +
+                "en mitad del pánico provocado por eventos apocalípticos.");
+        objeto11.setDuracionMinutos(81);
+        objeto11.setTipo(tipoSeries);
+        objeto11.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
+        objeto11.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
+        objeto11.setFechaPublicacion(LocalDate.of(2023, 1, 15));
+
+        Objeto objeto12 = new Objeto();
+        objeto12.setTitulo("The Last Of Us T1. E2 - Infected");
+        objeto12.setDescripcion("Joel, Tess y Ellie atraviesan un hotel de Boston abandonado e inundado en su camino " +
+                "para dejar a Ellie con un grupo de luciérnagas.");
+        objeto12.setDuracionMinutos(53);
+        objeto12.setTipo(tipoSeries);
+        objeto12.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
+        objeto12.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
+        objeto12.setFechaPublicacion(LocalDate.of(2023, 1, 21));
+
+        Objeto objeto13 = new Objeto();
+        objeto13.setTitulo("The Last Of Us T1. E3 - Long, Long Time");
+        objeto13.setDescripcion("Cuando una persona desconocida se acerca a su complejo, el superviviente Bill " +
+                "forja una conexión poco probable. Más tarde, Joel y Ellie buscan la guía de Bill.");
+        objeto13.setDuracionMinutos(76);
+        objeto13.setTipo(tipoSeries);
+        objeto13.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
+        objeto13.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
+        objeto13.setFechaPublicacion(LocalDate.of(2023, 1, 28));
+
+        Objeto objeto14 = new Objeto();
+        objeto14.setTitulo("The Last Of Us T1. E4 - Please Hold to My Hand");
+        objeto14.setDescripcion("Tras abandonar su vehículo en Kansas City, Joel y Ellie tratan de escapar sin " +
+                "atraer la atención de un grupo rebelde vengativo.");
+        objeto14.setDuracionMinutos(46);
+        objeto14.setTipo(tipoSeries);
+        objeto14.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
+        objeto14.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
+        objeto14.setFechaPublicacion(LocalDate.of(2023, 2, 4));
+
+        Objeto objeto15 = new Objeto();
+        objeto15.setTitulo("The Last Of Us T1. E5 - Endure and survive");
+        objeto15.setDescripcion("Mientras intentan evadir a los rebeldes, Joel y Ellie se cruzan con el hombre " +
+                "más buscado en Kansas City. Kathleen continúa su cacería.");
+        objeto15.setDuracionMinutos(60);
+        objeto15.setTipo(tipoSeries);
+        objeto15.setImagenUrl("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
+        objeto15.setTrailerUrl("https://www.youtube.com/embed/yyGetSp7CIc");
+        objeto15.setFechaPublicacion(LocalDate.of(2023, 2, 10));
+
+        Objeto objeto16 = new Objeto();
+        objeto16.setTitulo("Breaking Bad T1. E1. - Pilot");
+        objeto16.setDescripcion("After being diagnosed with terminal lung cancer, a struggling high school " +
+                "chemistry teacher makes a drastic choice to secure his family's future--turning to the" +
+                " drug trade with a former student.");
+        objeto16.setDuracionMinutos(58);
+        objeto16.setTipo(tipoSeries);
+        objeto16.setImagenUrl("https://es.web.img2.acsta.net/pictures/18/07/23/11/26/1237965.jpg");
+        objeto16.setTrailerUrl("https://www.youtube.com/embed/HhesaQXLuRY");
+        objeto16.setFechaPublicacion(LocalDate.of(2008, 1, 20));
+
+        Objeto objeto17 = new Objeto();
+        objeto17.setTitulo("Breaking Bad T1. E2. - Cat's in the Bag...");
+        objeto17.setDescripcion("Walter and Jesse scramble to deal with the consequences of their first cook, " +
+                "leading to a tense and unexpected dilemma. Meanwhile, Skyler grows suspicious of Walter's" +
+                " strange behavior.");
+        objeto17.setDuracionMinutos(48);
+        objeto17.setTipo(tipoSeries);
+        objeto17.setImagenUrl("https://es.web.img2.acsta.net/pictures/18/07/23/11/26/1237965.jpg");
+        objeto17.setTrailerUrl("https://www.youtube.com/embed/HhesaQXLuRY");
+        objeto17.setFechaPublicacion(LocalDate.of(2008, 1, 27));
+
+        Objeto objeto18 = new Objeto();
+        objeto18.setTitulo("Breaking Bad T1. E23. - ...And the Bag's in the River");
+        objeto18.setDescripcion("Walter is forced to make a life-altering decision as he and Jesse deal with the " +
+                "fallout of their actions. Meanwhile, Skyler's suspicions continue to grow, and Hank begins to " +
+                "take notice of Walter's unusual behavior.");
+        objeto18.setDuracionMinutos(48);
+        objeto18.setTipo(tipoSeries);
+        objeto18.setImagenUrl("https://es.web.img2.acsta.net/pictures/18/07/23/11/26/1237965.jpg");
+        objeto18.setTrailerUrl("https://www.youtube.com/embed/HhesaQXLuRY");
+        objeto18.setFechaPublicacion(LocalDate.of(2008, 2, 10));
+
+
+        /* VIDEOJUEGOS */
+        Objeto objeto19 = new Objeto();
+        objeto19.setTitulo("Elden Ring: Nightreign");
+        objeto19.setDescripcion("Elden Ring Nightreign es un videojuego de rol de acción, soulslike y roguelike, " +
+                "desarrollado por FromSoftware y distribuido por Bandai Namco Entertainment. Se reveló en los " +
+                "The Game Awards 2024 como un spin-off de Elden Ring.");
+        objeto19.setDuracionMinutos(0);
+        objeto19.setTipo(tipoVideojuegos);
+        objeto19.setImagenUrl("https://i.3djuegos.com/juegos/20132/fotos/ficha/-5938515.webp");
+        objeto19.setTrailerUrl("https://www.youtube.com/embed/AWrXpJQBJF0");
+        objeto19.setFechaPublicacion(LocalDate.of(2025, 5, 30));
+
+        Objeto objeto20 = new Objeto();
+        objeto20.setTitulo("Clair Obscur: Expedition 33");
+        objeto20.setDescripcion("Clair Obscur se desarrolla en un entorno inspirado en la Belle Époque. " +
+                "Los protagonistas Gustave (Charlie Cox), Maelle (Jennifer English), Lune (Kirsty Rider), " +
+                "Sciel (Shala Nyx) y Verso (Ben Starr) intentan detener a la Pintora, una diosa cuyos poderes " +
+                "divinos matan a cada persona de una determinada edad que dibuja en el cielo. En este caso, " +
+                "dibujó el número 33. ");
+        objeto20.setDuracionMinutos(0);
+        objeto20.setTipo(tipoVideojuegos);
+        objeto20.setImagenUrl("https://i.3djuegos.com/juegos/19783/clair_obscur_expedition_33/fotos/ficha/clair_obscur_expedition_33-5897212.webp");
+        objeto20.setTrailerUrl("https://www.youtube.com/embed/wWGIakhqr5g");
+        objeto20.setFechaPublicacion(LocalDate.of(2025, 4, 24));
+
+        Objeto objeto21 = new Objeto();
+        objeto21.setTitulo("Assassin's Creed Shadows");
+        objeto21.setDescripcion("Ambientado en el Japón del siglo XVI hacia el final del período Sengoku," +
+                " el juego se centra en la lucha milenaria entre la Hermandad de Asesinos, que lucha por la paz " +
+                "y la libertad, y la Orden de los Templarios, que desea la paz a través del control, desde la " +
+                "perspectiva de dos protagonistas: Fujibayashi Naoe, una kunoichi (una shinobi femenina), y Yasuke, " +
+                "un samurái africano inspirado en la figura histórica del mismo nombre. Los dos personajes tienen " +
+                "un estilo de juego diferente, lo que permite abordar las misiones de múltiples maneras. ");
+        objeto21.setDuracionMinutos(0);
+        objeto21.setTipo(tipoVideojuegos);
+        objeto21.setImagenUrl("https://i.3djuegos.com/juegos/18752/assassin__039_s_creed_codename_red/fotos/ficha/assassin__039_s_creed_codename_red-5904359.jpg");
+        objeto21.setTrailerUrl("https://www.youtube.com/embed/vovkzbtYBC8");
+        objeto21.setFechaPublicacion(LocalDate.of(2025, 3, 20));
+
+        Objeto objeto22 = new Objeto();
+        objeto22.setTitulo("The Legend of Zelda: Tears of the Kingdom");
+        objeto22.setDescripcion("Tras los acontecimientos de The Legend of Zelda: Breath of the Wild, " +
+                "la princesa Zelda junto a Link exploran los cimientos del castillo de Hyrule, en el que " +
+                "encuentran una sala donde reposa un cadáver momificado. Después de que el cadáver tome vida " +
+                "y se levante, ataca a Zelda y Link, dejando a este último malherido y rompiendo el filo de su " +
+                "Espada Maestra. Tras ello desata su poder rompiendo el sello que lo mantenía retenido y se eleva " +
+                "el castillo de Hyrule. Zelda sufre una caída mientras el sitio se derrumba y desaparece " +
+                "mágicamente. Link deberá encontrar a la princesa Zelda por cielo, tierra y subsuelo y " +
+                "así salvar al reino de Hyrule del resurgido Ganondorf, el rey demonio.");
+        objeto22.setDuracionMinutos(0);
+        objeto22.setTipo(tipoVideojuegos);
+        objeto22.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoeTQgBfKZev-V2Z2chfc604vTI2hxHRv57g&s");
+        objeto22.setTrailerUrl("https://www.youtube.com/embed/gp9aY09li1s");
+        objeto22.setFechaPublicacion(LocalDate.of(2023, 5, 12));
+
+        Objeto objeto23 = new Objeto();
+        objeto23.setTitulo("Super Mario World");
+        objeto23.setDescripcion("Después de salvar el Reino Champiñón en Super Mario Bros. 3, los hermanos" +
+                " Mario y Luigi acuerdan irse de vacaciones con la Princesa Toadstool a un lugar llamado" +
+                " «Dinosaur Land», un mundo de temática prehistórica donde habitan diversos tipos de dinosaurios" +
+                " y otros enemigos. Mientras descansaban en la playa, la princesa es capturada por Bowser. " +
+                "Cuando ambos se despiertan, ellos intentan encontrarla, y después de horas de búsqueda, " +
+                "se topan con un huevo gigante que yacía en un bosque. De repente, este eclosiona y de él sale " +
+                "un joven dinosaurio llamado Yoshi, quien les dice que han encerrados a sus amigos dentro de" +
+                " embriones por los hijos de Bowser, los malvados «Koopalings»");
+        objeto23.setDuracionMinutos(0);
+        objeto23.setTipo(tipoVideojuegos);
+        objeto23.setImagenUrl("https://static.wikia.nocookie.net/mario/images/2/20/Super_Mario_World_SFC_JAP.png/revision/latest?cb=20180531002139&path-prefix=es");
+        objeto23.setTrailerUrl("https://www.youtube.com/embed/-WpgCFSLtLo");
 
         PersonaObjeto personaObjeto1 = new PersonaObjeto();
         personaObjeto1.setRol(false);
