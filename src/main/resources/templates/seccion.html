@@ -54,7 +54,48 @@
 </nav>
 
 <div class="container">
-    Holaaa
+    <section class="row">
+        <h2 class="mt-2 mb-2">Películas recientemente añadidas</h2>
+        <div class="card-container w-auto h-100 col-2 d-flex flex-column justify-content-center">
+            <!-- Imagen objeto -->
+            <div class="image-container-ext">
+                <div class="image-container col-xxl-3 col-xl-5 col-lg-12">
+                    <img class="img-fluid" alt="'Cartel de ' + ${fichaObjeto.tipo()} + ': ' + ${fichaObjeto.titulo()}"
+                         src="https://artesiete.es/Posters/harrypotterpiedra20.jpg">
+                    <!-- Boton para acceder al trailer de una película / serie / videojuego -->
+                    <button
+                            class="trailer-button btn btn-primary video-btn"
+                            data-bs-target="#modal-trailer"
+                            data-bs-toggle="modal"
+                            data-src="https://www.youtube.com/embed/6T45PEo55Po"
+                            type="button">
+                        <i class="bi bi-play-circle me-2"></i>Ver trailer
+                    </button>
+                    <!-- Modal que aparecerá en caso de que se clique el botón de trailer -->
+                    <div aria-hidden="true" aria-labelledby="modal-trailer" class="modal fade" id="modal-trailer" role="dialog"
+                         tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button aria-label="Cerrar" class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                    <div class="ratio ratio-16x9">
+                                        <iframe allow="autoplay" class="embed-responsive-item" id="video"
+                                                src="${fichaObjeto.trailerUrl()}"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  <!-- Fin imagen del objeto -->
+            </div>
+            <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break">Harry potter y la piedra filosofal blablalbla</h2>
+            <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
+                <p class="fecha">2020</p>
+                <p class="puntuacion">4.7 / 5</p>
+            </div>
+        </div>
+    </section>
 </div>
 
 

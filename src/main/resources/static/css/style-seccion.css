@@ -29,3 +29,88 @@ a:hover, .nav-link:hover {
 .condiciones:hover {
     color:#914f27 !important;
 }
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 400px;
+}
+
+.image-container > img {
+    display: block;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    max-width: 300px;
+    max-height: 400px;
+}
+
+.image-container:hover img {
+    opacity: 0.6;
+}
+
+.trailer-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s ease;
+    z-index: 2;
+    font-weight: bold;
+}
+
+.image-container:hover .trailer-button {
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
+
+.trailer-button:hover{
+    background-color: #f0f0f0;
+}
+
+/* Estilos para el modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 100px auto;
+}
+
+.modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+.btn-close {
+    position: absolute;
+    right: -30px;
+    top: 0;
+}
+
+/* Diseño imagen para vista menor que ordenador*/
+.image-container-ext {
+    width: 300px;
+    height: 400px;
+}
+
+@media screen and (max-width: 1200px) {
+    .image-container-ext {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+}
+
+.titulo-objeto {
+    max-width: 300px;
+}
