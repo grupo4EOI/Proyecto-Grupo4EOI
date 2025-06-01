@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ObjetoMapper {
 
-    @Mapping(target = "anoPublicacion", expression = "java(anoPublicacion(objeto)")
+    @Mapping(target = "anoPublicacion", expression = "java(anoPublicacion(objeto))")
     @Mapping(target = "puntuacion", ignore = true)
     @Mapping(target = "numeroResenas", ignore = true)
     ObjetoDTO toDto(Objeto objeto);
