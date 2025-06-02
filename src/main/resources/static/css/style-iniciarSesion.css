@@ -63,7 +63,8 @@ input:focus {
 
 .btn:hover {
     /*background-color: #ffa5a5;*/
-    border: 2px solid #ff8c42;
+    border: 2px solid #000000;
+    color: #ffffff !important;
 }
 
 .login-link {

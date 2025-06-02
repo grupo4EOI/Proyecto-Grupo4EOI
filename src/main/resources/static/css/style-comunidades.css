@@ -1,3 +1,6 @@
+.btn:hover {
+    color: black !important;
+}
 .card {
     background-color: #4E598C !important;
 }
