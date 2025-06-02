@@ -843,9 +843,155 @@ public class LocalDataLoader {
 //        comunidad3.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
         comunidad3.setUrlImg("https://pics.filmaffinity.com/The_Gentlemen_Los_seanores_de_la_mafia-425828685-large.jpg");
 
+        Comunidad comunidad4 = new Comunidad();
+        comunidad4.setNombreComunidad("Misión Imposible");
+        comunidad4.setDescripcion("En la comunidad de Misión Imposible podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad4.setObjetos(Arrays.asList(objeto10));
+//        comunidad4.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad4.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad4.setUrlImg("https://pics.filmaffinity.com/Misiaon_imposible_Sentencia_final-784079226-large.jpg");
+
+        Comunidad comunidad5 = new Comunidad();
+        comunidad5.setNombreComunidad("El club de la lucha");
+        comunidad5.setDescripcion("En la comunidad de El club de la lucha podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad5.setObjetos(Arrays.asList(objeto9));
+//        comunidad5.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad5.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad5.setUrlImg("https://www.cinepazmadrid.es/data/fotos/afiche5-elclubdelalucha.jpg");
+
+        Comunidad comunidad6 = new Comunidad();
+        comunidad6.setNombreComunidad("Cadena Perpetua");
+        comunidad6.setDescripcion("En la comunidad de Cadena Perpetua podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad6.setObjetos(Arrays.asList(objeto4));
+//        comunidad6.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad6.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad6.setUrlImg("https://www.ecartelera.com/carteles/5600/5676/003_m.jpg");
+
+        Comunidad comunidad7 = new Comunidad();
+        comunidad7.setNombreComunidad("El Padrino");
+        comunidad7.setDescripcion("En la comunidad de El Padrino podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad7.setObjetos(Arrays.asList(objeto5));
+//        comunidad7.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad7.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad7.setUrlImg("https://www.ecartelera.com/carteles/2500/2521/002.jpg");
+
+        Comunidad comunidad8 = new Comunidad();
+        comunidad8.setNombreComunidad("Pulp Fiction");
+        comunidad8.setDescripcion("En la comunidad de Pulp Fiction podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad8.setObjetos(Arrays.asList(objeto8));
+//        comunidad8.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad8.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad8.setUrlImg("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1cYyaS50kL0g7JCqP8Dd3-T1NFmcVoFbQcQ&s");
+
+        Comunidad comunidad9 = new Comunidad();
+        comunidad9.setNombreComunidad("La lista de Schindler");
+        comunidad9.setDescripcion("En la comunidad de La lista de Schindler podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad9.setObjetos(Arrays.asList(objeto7));
+//        comunidad9.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad9.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad9.setUrlImg("https://pics.filmaffinity.com/schindler_s_list-473662617-large.jpg");
+
+        Comunidad comunidad10 = new Comunidad();
+        comunidad10.setNombreComunidad("12 hombres sin piedad");
+        comunidad10.setDescripcion("En la comunidad de 12 hombres sin piedad podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad10.setObjetos(Arrays.asList(objeto6));
+//        comunidad10.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad10.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad10.setUrlImg("https://cinesembajadores.es/wp-content/uploads/2025/01/12-hombres-sin-piedad-cartel.jpeg");
+
+        Comunidad comunidad11 = new Comunidad();
+        comunidad11.setNombreComunidad("The Last Of Us");
+        comunidad11.setDescripcion("En la comunidad de The Last Of Us podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad11.setObjetos(Arrays.asList(objeto11, objeto12, objeto13, objeto14, objeto15));
+//        comunidad11.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad11.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad11.setUrlImg("https://www.movistarplus.es/recorte/n/caratula5/F4174243?od[]=Z1V:HBOMAX_V");
+
+        Comunidad comunidad12 = new Comunidad();
+        comunidad12.setNombreComunidad("Breaking Bad");
+        comunidad12.setDescripcion("En la comunidad de Breaking Bad podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad12.setObjetos(Arrays.asList(objeto16, objeto17, objeto18));
+//        comunidad12.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad12.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad12.setUrlImg("https://es.web.img2.acsta.net/pictures/18/07/23/11/26/1237965.jpg");
+
+        Comunidad comunidad13 = new Comunidad();
+        comunidad13.setNombreComunidad("Elden Ring: Nightreign");
+        comunidad13.setDescripcion("En la comunidad de Elden Ring: Nightreign podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad13.setObjetos(Arrays.asList(objeto19));
+//        comunidad13.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad13.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad13.setUrlImg("https://i.3djuegos.com/juegos/20132/fotos/ficha/-5938515.webp");
+
+        Comunidad comunidad14 = new Comunidad();
+        comunidad14.setNombreComunidad("Clair Obscur: Expedition 33");
+        comunidad14.setDescripcion("En la comunidad de Clair Obscur: Expedition 33 podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad14.setObjetos(Arrays.asList(objeto20));
+//        comunidad14.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad14.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad14.setUrlImg("https://i.3djuegos.com/juegos/19783/clair_obscur_expedition_33/fotos/ficha/clair_obscur_expedition_33-5897212.webp");
+
+        Comunidad comunidad15 = new Comunidad();
+        comunidad15.setNombreComunidad("Assassin's Creed Shadows");
+        comunidad15.setDescripcion("En la comunidad de Assassin's Creed Shadows podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad15.setObjetos(Arrays.asList(objeto21));
+//        comunidad15.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad15.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad15.setUrlImg("https://i.3djuegos.com/juegos/18752/assassin__039_s_creed_codename_red/fotos/ficha/assassin__039_s_creed_codename_red-5904359.jpg");
+
+        Comunidad comunidad16 = new Comunidad();
+        comunidad16.setNombreComunidad("The Legend of Zelda: Tears of the Kingdom");
+        comunidad16.setDescripcion("En la comunidad de The Legend of Zelda: Tears of the Kingdom podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad16.setObjetos(Arrays.asList(objeto22));
+//        comunidad16.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad16.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad16.setUrlImg("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoeTQgBfKZev-V2Z2chfc604vTI2hxHRv57g&s");
+
+        Comunidad comunidad17 = new Comunidad();
+        comunidad17.setNombreComunidad("Super Mario World");
+        comunidad17.setDescripcion("En la comunidad de Super Mario World podrás hablar de todas " +
+                "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad17.setObjetos(Arrays.asList(objeto23));
+//        comunidad17.setPublicaciones(Arrays.asList(publicacion1));
+//        comunidad17.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad17.setUrlImg("https://static.wikia.nocookie.net/mario/images/2/20/Super_Mario_World_SFC_JAP.png/revision/latest?cb=20180531002139&path-prefix=es");
+
         objeto.setComunidad(comunidad1);
         objeto2.setComunidad(comunidad2);
         objeto3.setComunidad(comunidad3);
+        objeto10.setComunidad(comunidad4);
+        objeto9.setComunidad(comunidad5);
+        objeto4.setComunidad(comunidad6);
+        objeto5.setComunidad(comunidad7);
+        objeto8.setComunidad(comunidad8);
+        objeto7.setComunidad(comunidad9);
+        objeto6.setComunidad(comunidad10);
+        objeto11.setComunidad(comunidad11);
+        objeto12.setComunidad(comunidad11);
+        objeto13.setComunidad(comunidad11);
+        objeto14.setComunidad(comunidad11);
+        objeto15.setComunidad(comunidad11);
+        objeto16.setComunidad(comunidad12);
+        objeto17.setComunidad(comunidad12);
+        objeto18.setComunidad(comunidad12);
+        objeto19.setComunidad(comunidad13);
+        objeto20.setComunidad(comunidad14);
+        objeto21.setComunidad(comunidad15);
+        objeto22.setComunidad(comunidad16);
+        objeto23.setComunidad(comunidad17);
 
 
         publicacion1.setComunidad(comunidad1);
@@ -932,7 +1078,8 @@ public class LocalDataLoader {
         publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
 
 
-        comunidadRepository.saveAll(Arrays.asList(comunidad1, comunidad2, comunidad3));
+        comunidadRepository.saveAll(Arrays.asList(comunidad1, comunidad2, comunidad3, comunidad4, comunidad5, comunidad6,
+                comunidad7, comunidad8, comunidad9, comunidad10, comunidad11, comunidad12, comunidad13, comunidad14, comunidad15, comunidad16, comunidad17));
         publicacionRepository.saveAll(Arrays.asList(publicacion1, publicacion2, publicacion3));
         comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1,
                 comentarioPublicacion2, comentarioPublicacion3, comentarioPublicacion4, comentarioPublicacion5,
