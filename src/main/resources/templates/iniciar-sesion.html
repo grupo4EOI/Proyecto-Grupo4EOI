@@ -19,21 +19,29 @@
                 <h1>Bienvenido!!</h1>
             </div>
 
-            <div class="login-form">
+            <form class="login-form" th:action="@{/registro}" method="post">
+                <div th:if="${param.error}">
+                    <span>Invalid Email and Password.</span>
+                </div>
+
                 <div class="control-group">
-                    <input type="text" class="login-field"  name="username" value="" placeholder="usuario" id="login-name">
+                    <input type="text" class="login-field" name="username" placeholder="usuario" id="login-name">
                     <label class="login-field-icon fui-user" for="login-name"></label>
                 </div>
 
                 <div class="control-group">
-                    <input type="password" class="login-field" name="password" value="" placeholder="contraseña" id="login-pass">
+                    <input type="email" class="login-field" name="email" placeholder="email" id="login-email">
+                    <label class="login-field-icon fui-lock" for="login-email"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="password" class="login-field" name="password" placeholder="contraseña" id="login-pass">
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <a class="btn btn-large btn-block" href="#">Iniciar Sesion</a>
-                <a class="login-link" href="#">¿Has olvidado tu contraseña?</a>
-                <a class="login-link" href="/registro">¿No estas registrado? REGISTRATE AQUÍ</a>
-            </div>
+                <button type="submit" class="btn btn-large btn-block">Registrarse</button>
+                <a class="login-link" href="/iniciar-sesion">¿Ya tienes cuenta? Iniciar Sesión</a>
+
         </div>
     </div>
    </div>

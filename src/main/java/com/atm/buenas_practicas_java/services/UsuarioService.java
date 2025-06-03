@@ -2,6 +2,7 @@ package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Publicacion;
+import com.atm.buenas_practicas_java.entities.UserForm;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
 import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
@@ -45,8 +46,15 @@ public class UsuarioService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository.findByNombreUsuario(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+    public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
+        return usuarioRepository.findByNombreUsuario(nombreUsuario)
+                .orElseThrow(() -> new UsernameNotFoundException("Email " +
+                        nombreUsuario + " not found"));
     }
+
+    public void registerUser(UserForm userForm) {
+        Usuario usuario = userForm.toUser(userForm);
+        usuarioRepository.save(usuario);
+    }
+
 }

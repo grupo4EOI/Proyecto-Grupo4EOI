@@ -1,5 +1,6 @@
 package com.atm.buenas_practicas_java.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -87,24 +88,28 @@ public class SecurityConfig {
      * @Author No se especificó autor.
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(Customizer.withDefaults()) // deshabilitado para pruebas o APIs
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(form -> form.loginPage("/iniciar-sesion")
-                        .permitAll())
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/iniciar-sesion")
+                        .defaultSuccessUrl("/pagina-principal")
+                        .failureUrl("/iniciar-sesion")
+                        .permitAll()
+                )
+
                 .logout(logout -> logout
                         .logoutSuccessUrl("/pagina-principal")
                         .permitAll()
                 )
+
+
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/iniciar-sesion").permitAll()
+                        .requestMatchers("/registro").permitAll()
                         .requestMatchers("/pagina-principal").permitAll()
-                        .requestMatchers("/contacto").permitAll()
-                        .requestMatchers("/quienes-somos").permitAll()
-                        .requestMatchers("/politica-privacidad").permitAll()
-                        .requestMatchers("/ficha-objeto").permitAll()
                         .requestMatchers("/entities").permitAll()
                         .requestMatchers("/entities/*").permitAll()
                         .requestMatchers("/static/*").permitAll()
@@ -114,6 +119,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/entidades/deleteHija/*").authenticated()
                         .anyRequest().authenticated()
                 );
+
 
         return http.build();
     }

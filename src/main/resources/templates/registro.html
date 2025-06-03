@@ -19,23 +19,29 @@
                     <h1>Registrate</h1>
                 </div>
 
-                <div class="login-form">
-                    <div class="control-group">
-                        <input type="text" class="login-field" value=""  placeholder="usuario" id="login-name">
-                        <label class="login-field-icon fui-user" name="username" for="login-name"></label>
-                    </div>
-                    <div class="control-group">
-                        <input type="email" class="login-field" value="" placeholder="email" id="login-email">
-                        <label class="login-field-icon fui-lock" for="login-email"></label>
-                    </div>
-                    <div class="control-group">
-                        <input type="password" class="login-field"  value="" placeholder="contraseña" id="login-pass">
-                        <label class="login-field-icon fui-lock"  for="login-pass"></label>
+                <form class="login-form" th:action="@{/registro}" method="post">
+                    <div th:if="${param.error}">
+                        <span>Invalid Email and Password.</span>
                     </div>
 
-                    <a class="btn btn-large btn-block" href="#">Registrarse</a>
-                    <a class="login-link" href="/iniciar-sesion">¿Ya tienes cuenta? Iniciar Sesion</a>
-                </div>
+                    <div class="control-group">
+                        <input type="text" class="login-field" name="username" placeholder="usuario" id="login-name">
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="control-group">
+                        <input type="email" class="login-field" name="email" placeholder="email" id="login-email">
+                        <label class="login-field-icon fui-lock" for="login-email"></label>
+                    </div>
+
+                    <div class="control-group">
+                        <input type="password" class="login-field" name="password" placeholder="contraseña" id="login-pass">
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-large btn-block">Registrarse</button>
+                    <a class="login-link" href="/iniciar-sesion">¿Ya tienes cuenta? Iniciar Sesión</a>
+                </form>
             </div>
         </div>
     </div>

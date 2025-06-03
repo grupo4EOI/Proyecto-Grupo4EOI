@@ -177,15 +177,15 @@ public class DefaultController {
     }
 
 
-    @GetMapping("/iniciar-sesion")
-    public String mostrarIniciarSesion() {
-        return "/iniciar-sesion";
-    }
+//    @GetMapping("/iniciar-sesion")
+//    public String mostrarIniciarSesion() {
+//        return "/iniciar-sesion";
+//    }
 
-    @GetMapping("/registro")
-    public String mostrarRegistro() {
-        return "registro";
-    }
+//    @GetMapping("/registro")
+//    public String mostrarRegistro() {
+//        return "registro";
+//    }
 
     @GetMapping("/admin")
     public String mostrarAdmin(Model model) {

@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
@@ -28,9 +29,9 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INTEGER")
     private Long idUsuario;
-    @NotNull
+    @Column(unique = true, nullable = false)
     private String nombreUsuario;
-    @NotNull
+    @Column(unique = true, nullable = false)
     private String email;
     @NotNull
     private String contrasena;
@@ -38,8 +39,8 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private String avatarUrl;
     private String biografia;
     private LocalDateTime ultimaConexion;
-    @Column(columnDefinition = "BOOLEAN default false")
-    private boolean esAdministrador;
+    @Column(nullable = false)
+    private String role;
 
     // Relación 1:N con reseñas
     @OneToMany(mappedBy = "usuario")
@@ -82,7 +83,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override

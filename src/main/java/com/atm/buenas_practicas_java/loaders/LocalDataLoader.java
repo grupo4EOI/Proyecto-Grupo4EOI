@@ -692,16 +692,19 @@ public class LocalDataLoader {
         usuario1.setNombreUsuario("Usuario1");
         usuario1.setEmail("hola@gmail.com");
         usuario1.setContrasena("1234");
+        usuario1.setRole("USER");
 
         Usuario usuario2 = new Usuario();
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
         usuario2.setContrasena("4321");
+        usuario2.setRole("USER");
 
         Usuario usuario3 = new Usuario();
         usuario3.setNombreUsuario("Usuario3");
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
+        usuario3.setRole("ADMIN");
 
         usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
 
