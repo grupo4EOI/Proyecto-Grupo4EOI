@@ -12,6 +12,11 @@
     <link rel="stylesheet" th:href="@{/css/style-iniciarSesion.css}">
 </head>
 <div layout:fragment="content">
+
+    <div th:if="${error != null}" class="error">[[${error}]]</div>
+
+    <div th:if="${param.registroExitoso != null}" class="success">¡Registro exitoso! Por favor inicia sesión</div>
+
    <div class="container1">
     <div class="login">
         <div class="login-screen">
@@ -19,7 +24,8 @@
                 <h1>Bienvenido!!</h1>
             </div>
 
-            <form class="login-form" th:action="@{/registro}" method="post">
+
+            <form class="login-form" th:action="@{/procesar-login}" method="post">
                 <div th:if="${param.error}">
                     <span>Invalid Email and Password.</span>
                 </div>
@@ -39,8 +45,8 @@
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <button type="submit" class="btn btn-large btn-block">Registrarse</button>
-                <a class="login-link" href="/iniciar-sesion">¿Ya tienes cuenta? Iniciar Sesión</a>
+                <button type="submit" class="btn btn-large btn-block">Iniciar sesión</button>
+                <a class="login-link" href="/registro">¿Todavía no tienes cuenta? Regístrate</a>
 
         </div>
     </div>

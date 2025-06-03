@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
 @NoArgsConstructor
@@ -17,12 +18,12 @@ public class UserForm {
     @NotBlank
     private String contrasena;
 
-    public Usuario toUser(UserForm userForm) {
-        Usuario user = new Usuario();
-        user.setEmail(userForm.getEmail());
-        user.setNombreUsuario(userForm.getNombreUsuario());
-        user.setContrasena(userForm.getContrasena());
-        user.setRole("USER");
-        return user;
+    public Usuario toUserWithPassword(PasswordEncoder passwordEncoder) { // Eliminar parámetro
+        return Usuario.builder()
+                .email(this.email)
+                .nombreUsuario(this.nombreUsuario)
+                .contrasena(passwordEncoder.encode(this.contrasena))
+                .role("USER")
+                .build();
     }
 }
