@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class AdminServiceFacade {
 
     private final ResenaService resenaService;
+    private final ComentarioResenaService comentarioResenaService;
 
     public AdminServiceFacade(ResenaService resenaService) {
         this.resenaService = resenaService;
