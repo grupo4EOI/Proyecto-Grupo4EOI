@@ -1,20 +1,16 @@
 package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.dtos.ObjetoDTO;
-import com.atm.buenas_practicas_java.dtos.SeccionDTO;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.SeccionDTO;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
-import com.atm.buenas_practicas_java.entities.Tipo;
-import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.mapper.ObjetoMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
-import org.codehaus.plexus.util.StringUtils;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ObjetoService {

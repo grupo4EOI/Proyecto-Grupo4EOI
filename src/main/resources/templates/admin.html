@@ -14,7 +14,79 @@
 
 <div layout:fragment="content">
     <div class="container">
-
+        <h2 class="col-12">Reseñas a revisar</h2>
+        <hr>
+        <div class="resenas-container col-12">
+            <div class="row mx-3 my-3 gx-0" th:each="">
+                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
+                        class="bi bi-person me-2"></i>
+                </div>
+                <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
+                <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
+                <div class="container" id="review">
+                    <div class="row">
+                        <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <b>Título de la reseña: </b><span th:text="${resena.titulo()}"></span>
+                        </div>
+                        <div class="col-12 mb-1">
+                            <b>Contenido de la reseña: </b><span th:text="${resena.contenido()}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
+        </div>
+        <hr>
+        <h2 class="col-12">Comentarios de reseñas a revisar</h2>
+        <hr>
+        <div class="comentarios-resenas-container">
+            <div class="row mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
+                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
+                        class="bi bi-person me-2"></i>@MrReseñador
+                </div>
+                <p th:text="${comentario.contenido()}"></p>
+            </div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
+        </div>
+        <hr>
+        <h2 class="col-12">Publicaciones a revisar</h2>
+        <hr>
+        <div class="publicaciones-container col-12">
+            <div class="mx-3 my-3 gx-0" th:each="publicacion : ${fichaObjeto.publicaciones()}">
+                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
+                <div class="container" id="publicacion" >
+                    <div class="row">
+                        <div class="col-12 mt-1 mb-2">
+                            <b>Título de la publicación:</b> <span th:text="${publicacion.titulo()}"></span>
+                        </div>
+                        <div class="col-12 mb-1" th:text="${publicacion.contenido()}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
+        </div>
+        <hr>
+        <h2 class="col-12">Comentarios de publicaciones a revisar</h2>
+        <hr>
+        <div class="col-12 comentarios-publicaciones-container">
+            <div class="row mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
+                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
+                        class="bi bi-person me-2"></i>@MrReseñador
+                </div>
+                <p th:text="${comentario.contenido()}"></p>
+            </div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
+        </div>
     </div>
 </div>
 
