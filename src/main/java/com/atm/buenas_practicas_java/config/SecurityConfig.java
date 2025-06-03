@@ -91,7 +91,12 @@ public class SecurityConfig {
         http
                 .csrf(Customizer.withDefaults()) // deshabilitado para pruebas o APIs
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(form -> form.loginPage("/iniciar-sesion").permitAll())
+                .formLogin(form -> form.loginPage("/iniciar-sesion")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/pagina-principal")
+                        .permitAll()
+                )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/iniciar-sesion").permitAll()

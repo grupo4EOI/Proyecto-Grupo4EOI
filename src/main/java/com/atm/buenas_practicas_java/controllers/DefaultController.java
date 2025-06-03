@@ -4,11 +4,19 @@ package com.atm.buenas_practicas_java.controllers;
 import com.atm.buenas_practicas_java.services.EntidadHijaService;
 import com.atm.buenas_practicas_java.services.EntidadPadreService;
 import com.atm.buenas_practicas_java.services.ObjetoService;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+
+import java.util.Collection;
 
 /**
  * Controlador encargado de manejar las solicitudes relacionadas con la entidad principal.
@@ -179,4 +187,14 @@ public class DefaultController {
         return "registro";
     }
 
+    @GetMapping("/admin")
+    public String mostrarAdmin(Model model) {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        String username = authentication.getName();
+        Object principal = authentication.getPrincipal();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+        return "/admin";
+    }
 }
