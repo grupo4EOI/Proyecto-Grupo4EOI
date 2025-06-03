@@ -20,8 +20,6 @@ services:
       timeout: 10s
       retries: 5
     restart: always
-    expose:
-      - "8080"
 
   db:
     image: postgres:latest
