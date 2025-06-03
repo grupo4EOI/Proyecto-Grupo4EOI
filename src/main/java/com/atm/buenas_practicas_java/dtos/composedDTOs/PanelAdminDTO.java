@@ -7,9 +7,9 @@ import com.atm.buenas_practicas_java.dtos.ResenaDTO;
 import java.util.List;
 
 public record PanelAdminDTO(
-        List<ResenaDTO> resenasARevisar,
-        List<ComentarioResenaDTO> comentariosResenasARevisar,
-        List<ComentarioPublicacionDTO> publicacionARevisar,
-        List<ComentarioPublicacionDTO> comentariosPublicacionARevisar
+        List<ResenaDTO> resenas,
+        List<ComentarioResenaDTO> comentariosResenas,
+        List<ComentarioPublicacionDTO> publicaciones,
+        List<ComentarioPublicacionDTO> comentariosPublicaciones
 ) {
 }
