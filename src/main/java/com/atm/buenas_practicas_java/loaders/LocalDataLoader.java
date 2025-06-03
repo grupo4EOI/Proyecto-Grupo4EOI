@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,13 +45,7 @@ public class LocalDataLoader {
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
 
-    /**
-     * Constructor de la clase {@code LocalDataLoader}.
-     *
-     * Inicializa un objeto {@code LocalDataLoader} configurado con los repositorios de las entidades,
-     * proporcionando la capacidad de interactuar con estas entidades en la base de datos.
-     *
-     */
+
     public LocalDataLoader(ObjetoRepository objetoRepository,
                            PersonaRepository personaRepository,
                            PersonaObjetoRepository personaObjetoRepository,
@@ -75,46 +70,10 @@ public class LocalDataLoader {
         this.comentarioResenaRepository = comentarioResenaRepository;
     }
 
-    /**
-     * Método anotado con {@code @PostConstruct} que inicializa datos de prueba en
-     * los repositorios para entornos locales. Este método se ejecuta automáticamente
-     * después de la inicialización del bean y antes de que esté disponible para uso,
-     * permitiendo cargar datos iniciales necesarios para el perfil local.
-     *
-     * Funcionalidad:
-     * - Crea 10 instancias de la entidad `EntidadPadre` con nombres predefinidos.
-     * - Guarda las instancias de `EntidadPadre` en el repositorio correspondiente.
-     * - Para cada instancia de `EntidadPadre`, crea una entidad relacionada de tipo
-     *   `EntidadHija` con un nombre identificativo, y la asocia a la entidad padre
-     *   pertinente.
-     * - Guarda las entidades hijas en el repositorio `entidadHijaRepository`.
-     * - Registra mensajes informativos en el log sobre el inicio y finalización del proceso.
-     *
-     * Proceso:
-     * 1. Se define un número fijo de entidades padre (10).
-     * 2. Se utiliza un array para almacenar las instancias y se inicializa con un nombre
-     *    único para cada entidad padre.
-     * 3. Todas las entidades padre se guardan de forma simultánea utilizando
-     *    {@code repository.saveAll}.
-     * 4. Para cada entidad padre, se crea una instancia de la entidad hija, se establece
-     *    la relación con el padre y se guarda en el repositorio correspondiente.
-     * 5. Se registran logs informativos sobre el estado del proceso.
-     *
-     * Dependencias principales:
-     * - `repository`: {@code EntidadPadreRepository}, usado para almacenar las entidades padre.
-     * - `entidadHijaRepository`: {@code EntidadHijaRepository}, usado para guardar las entidades hijas.
-     *
-     * Importante:
-     * - Este método está diseñado específicamente para ser utilizado en entornos con
-     *   el perfil local activo.
-     * - No debe usarse en entornos de producción, ya que sobrescribirá datos existentes.
-     *
-     * Logs:
-     * - Mensaje al inicio del proceso: "Iniciando la carga de datos para el perfil local".
-     * - Mensaje exitoso al finalizar: "Datos de entidades cargados correctamente."
-     */
     @PostConstruct
     public void loadDataLocal() {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         log.info("Iniciando la carga de datos para el perfil local");
 
@@ -389,7 +348,7 @@ public class LocalDataLoader {
         objeto.setDuracionMinutos(123);
         objeto.setTipo(tipoPeliculas);
         objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
-        objeto.setFechaPublicacion(LocalDate.of(2001, 3, 01));
+        objeto.setFechaPublicacion(LocalDate.of(2001, 3, 1));
 
         objeto.setGeneros(new HashSet<>(Arrays.asList(generoFantasiaP, generoFiccionP, generoAventurasP)));
 

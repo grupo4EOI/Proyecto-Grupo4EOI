@@ -142,7 +142,7 @@ public class DefaultController {
         return "/nuevo-tema";
     }
 
-    @GetMapping("/pagina-principal")
+    @GetMapping({"/", "/pagina-principal"})
     public String mostrarPaginaPrincipal() {
         return "/pagina-principal";
     }
@@ -171,7 +171,7 @@ public class DefaultController {
 
     @GetMapping("/iniciar-sesion")
     public String mostrarIniciarSesion() {
-        return "iniciar-sesion";
+        return "/iniciar-sesion";
     }
 
     @GetMapping("/registro")
