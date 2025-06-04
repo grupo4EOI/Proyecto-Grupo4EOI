@@ -76,7 +76,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(Customizer.withDefaults()) // deshabilitado para pruebas o APIs
+                .csrf(Customizer.withDefaults())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/iniciar-sesion")
                         .loginProcessingUrl("/procesar-login")
@@ -84,16 +84,13 @@ public class SecurityConfig {
                         .failureUrl("/iniciar-sesion?error")
                         .permitAll()
                 )
-
                 .logout(logout -> logout
-                        .logoutUrl("/logout") // URL explícita para logout
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/pagina-principal")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
-
-
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/",
                                 "/iniciar-sesion",
