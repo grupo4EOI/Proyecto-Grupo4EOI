@@ -60,13 +60,13 @@
                 </ul>
 
                 <ul sec:authorize="isAuthenticated()">
-                    <li class="nav-item">
+                    <li class="nav-item me-2 d-flex align-items-center justify-content-center">
                      <a class="nav-link active text-white" href="/perfil" sec:authentication="name">@Usuario</a>
-
-                    <form th:action="@{/logout}" method="post">
-                        <button class="btn btn-outline-light text-white" type="submit">Logout</button>
-                    </form>
+                    </li>
                 </ul>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                    <button class="btn btn-outline-light text-white" type="submit">Logout</button>
+                </form>
 
 
             </div>
