@@ -1,4 +1,4 @@
 package com.atm.buenas_practicas_java.entities;
 
-public @interface Email {
-}
+//public @interface Email {
+//}

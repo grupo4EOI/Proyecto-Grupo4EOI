@@ -102,7 +102,7 @@ public class SecurityConfig {
                                 "/static/**",
                                 "/css/**",
                                 "/images/**",
-                                "js/**"
+                                "/js/**"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/registro").permitAll()
                         .requestMatchers(HttpMethod.POST, "/iniciar-sesion").permitAll()

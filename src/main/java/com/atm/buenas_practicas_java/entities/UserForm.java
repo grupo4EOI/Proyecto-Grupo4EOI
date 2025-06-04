@@ -1,5 +1,7 @@
 package com.atm.buenas_practicas_java.entities;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +20,7 @@ public class UserForm {
     @NotBlank
     private String contrasena;
 
-    public Usuario toUserWithPassword(PasswordEncoder passwordEncoder) { // Eliminar parámetro
+    public Usuario toUserWithPassword(PasswordEncoder passwordEncoder) {
         return Usuario.builder()
                 .email(this.email)
                 .nombreUsuario(this.nombreUsuario)

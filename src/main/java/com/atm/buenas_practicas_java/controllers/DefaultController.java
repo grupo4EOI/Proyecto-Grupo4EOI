@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
+import java.security.Principal;
 import java.util.Collection;
 
 /**
@@ -151,7 +152,12 @@ public class DefaultController {
     }
 
     @GetMapping({"/", "/pagina-principal"})
-    public String mostrarPaginaPrincipal() {
+    public String mostrarPaginaPrincipal(Principal principal, Model model) {
+        if (principal != null) {
+            String name = principal.getName();
+            model.addAttribute("nombreUsuario", name);
+        }
+
         return "/pagina-principal";
     }
 
