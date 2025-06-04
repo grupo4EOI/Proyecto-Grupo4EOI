@@ -59,8 +59,8 @@
                     </li>
                 </ul>
 
-                <ul sec:authorize="isAuthenticated()">
-                    <li class="nav-item me-2 d-flex align-items-center justify-content-center">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
                      <a class="nav-link active text-white" href="/perfil" sec:authentication="name">@Usuario</a>
                     </li>
                 </ul>
