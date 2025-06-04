@@ -20,7 +20,7 @@
     <!--Donde pone reseñas.com, notificaciones y perfil, debería ir la imagen correspondiente como en la imagen que
             pasó Almudena por discord, pero para no liarla con las rutas, vamos a dejarlo ahora mismo así y más
             adelante se cambia-->
-<header th:fragment="header">
+<header>
     <nav class="navbar navbar-expand-lg bg-custom">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="/pagina-principal">Reseñas.com</a>
@@ -59,8 +59,8 @@
                     </li>
                 </ul>
 
-                <ul sec:authorize="isAuthenticated()">
-                    <li class="nav-item me-2 d-flex align-items-center justify-content-center">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
                      <a class="nav-link active text-white" href="/perfil" sec:authentication="name">@Usuario</a>
                     </li>
                 </ul>
@@ -82,7 +82,7 @@
 
 
 <!--Footer-->
-<footer th:fragment="footer" class="bg-custom text-center py-3 mt-auto">
+<footer class="bg-custom text-center py-3 mt-auto">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
