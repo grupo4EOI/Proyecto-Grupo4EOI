@@ -744,7 +744,97 @@ public class LocalDataLoader {
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
 
-        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
+        Usuario usuario4 = new Usuario();
+        usuario4.setNombreUsuario("OpelCorsa99");
+        usuario4.setEmail("corsita@forocoches.com");
+        usuario4.setContrasena("opelpower");
+
+        Usuario usuario5 = new Usuario();
+        usuario5.setNombreUsuario("DNIroto");
+        usuario5.setEmail("sinpapeles@forochapa.net");
+        usuario5.setContrasena("cuñadismo123");
+
+        Usuario usuario6 = new Usuario();
+        usuario6.setNombreUsuario("Turbodiesel92");
+        usuario6.setEmail("motorz@torquemax.org");
+        usuario6.setContrasena("torque+ps");
+
+        Usuario usuario7 = new Usuario();
+        usuario7.setNombreUsuario("Forero69");
+        usuario7.setEmail("estoydentro@foro.com");
+        usuario7.setContrasena("s3cret0");
+
+        Usuario usuario8 = new Usuario();
+        usuario8.setNombreUsuario("AntiMultas3000");
+        usuario8.setEmail("legalhacks@caminoalbania.ru");
+        usuario8.setContrasena("radardetect");
+
+        Usuario usuario9 = new Usuario();
+        usuario9.setNombreUsuario("PikachuEnZanini");
+        usuario9.setEmail("pokemon@electrotuneo.com");
+        usuario9.setContrasena("pika-pika");
+
+        Usuario usuario10 = new Usuario();
+        usuario10.setNombreUsuario("JoseAntonio88");
+        usuario10.setEmail("falcon@españa.es");
+        usuario10.setContrasena("vivaespaña");
+
+        Usuario usuario11 = new Usuario();
+        usuario11.setNombreUsuario("MiVecinoMataGatos");
+        usuario11.setEmail("denuncia@callejonoscuro.com");
+        usuario11.setContrasena("michisno");
+
+        Usuario usuario12 = new Usuario();
+        usuario12.setNombreUsuario("Tronchamozas");
+        usuario12.setEmail("ligon@foropub.com");
+        usuario12.setContrasena("musculitos");
+
+        Usuario usuario13 = new Usuario();
+        usuario13.setNombreUsuario("CanelitaEnMoto");
+        usuario13.setEmail("flamenco@dosruedas.com");
+        usuario13.setContrasena("ole1234");
+
+        Usuario usuario14 = new Usuario();
+        usuario14.setNombreUsuario("BocachanclaPro");
+        usuario14.setEmail("chismes@lavozdelbarrio.org");
+        usuario14.setContrasena("cotilleoON");
+
+        Usuario usuario15 = new Usuario();
+        usuario15.setNombreUsuario("Mecanicor");
+        usuario15.setEmail("grasa@talleresmanolo.com");
+        usuario15.setContrasena("aceite5w30");
+
+        Usuario usuario16 = new Usuario();
+        usuario16.setNombreUsuario("Ibizilla_1.9TDI");
+        usuario16.setEmail("seatpower@vaggroup.org");
+        usuario16.setContrasena("smokeyboi");
+
+        Usuario usuario17 = new Usuario();
+        usuario17.setNombreUsuario("PaKeKieresSaberEso");
+        usuario17.setEmail("respuestaobvia@forocuñado.com");
+        usuario17.setContrasena("nopreguntes");
+
+        Usuario usuario18 = new Usuario();
+        usuario18.setNombreUsuario("DamePermisoAdmin");
+        usuario18.setEmail("banme@modmail.com");
+        usuario18.setContrasena("permabanpls");
+
+        Usuario usuario19 = new Usuario();
+        usuario19.setNombreUsuario("KebabDeRes");
+        usuario19.setEmail("nocheloca@4AM.com");
+        usuario19.setContrasena("ajiquemepica");
+
+        Usuario usuario20 = new Usuario();
+        usuario20.setNombreUsuario("TorettoDelPoli");
+        usuario20.setEmail("familia@racinglife.com");
+        usuario20.setContrasena("fastnfurious");
+
+        usuarioRepository.saveAll(Arrays.asList(
+                usuario1, usuario2, usuario3, usuario4, usuario5,
+                usuario6, usuario7, usuario8, usuario9, usuario10,
+                usuario11, usuario12, usuario13, usuario14, usuario15,
+                usuario16, usuario17, usuario18, usuario19, usuario20
+        ));
 
         // Reseñas de prueba
         Resena resena1 = new Resena();
@@ -805,14 +895,416 @@ public class LocalDataLoader {
 
         //Publicaciones de prueba
 
+        //Publicaciones en la comunidad de Harry Potter
+
         Publicacion publicacion1 = new Publicacion();
-        publicacion1.setTitulo("Recomendaciones para ver la película _________ de harry potter");
+        publicacion1.setTitulo("Recomendaciones para ver la última película de harry potter");
+
+        //Comentarios de la publicacion 1:
+
+        ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
+        comentarioPublicacion1.setPublicacion(publicacion1);
+        comentarioPublicacion1.setUsuario(usuario1);
+        comentarioPublicacion1.setContenido("Pues eso, a parte de ponerme el pijama y tumbarme en la cama para estar preparado para la peli, " +
+                "me recomendais algo más??");
+        comentarioPublicacion1.setFecha(LocalDateTime.of(2025, 5, 25, 16, 32, 28));
+
+        ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
+        comentarioPublicacion2.setPublicacion(publicacion1);
+        comentarioPublicacion2.setUsuario(usuario2);
+        comentarioPublicacion2.setContenido("Tómate una dormidina");
+        comentarioPublicacion2.setFecha(LocalDateTime.of(2025, 5, 25, 16, 39, 14));
+
+        ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
+        comentarioPublicacion3.setPublicacion(publicacion1);
+        comentarioPublicacion3.setUsuario(usuario3);
+        comentarioPublicacion3.setContenido("Pon la peli con la tele apagada");
+        comentarioPublicacion3.setFecha(LocalDateTime.of(2025, 5, 25, 16, 48, 54));
+
+        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2, comentarioPublicacion3));
+
+        //--------------------------------------------------------------
 
         Publicacion publicacion2 = new Publicacion();
         publicacion2.setTitulo("Vendo Opel Corsa 250mil KM como nuevo");
 
+        //Comentarios de la publicacion 2:
+
+        ComentarioPublicacion comentarioPublicacion4 = new ComentarioPublicacion();
+        comentarioPublicacion4.setPublicacion(publicacion2);
+        comentarioPublicacion4.setUsuario(usuario2);
+        comentarioPublicacion4.setContenido("Pues eso, escuho ofertas");
+        comentarioPublicacion4.setFecha(LocalDateTime.of(2025, 5, 26, 18, 36, 32));
+
+        ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
+        comentarioPublicacion5.setPublicacion(publicacion2);
+        comentarioPublicacion5.setUsuario(usuario1);
+        comentarioPublicacion5.setContenido("Mi oferta es que lo lleves al desguace");
+        comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
+
+        ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
+        comentarioPublicacion6.setPublicacion(publicacion2);
+        comentarioPublicacion6.setUsuario(usuario3);
+        comentarioPublicacion6.setContenido("Te lo cambio por mi seat ibiza del 97 con 300k Km");
+        comentarioPublicacion6.setFecha(LocalDateTime.of(2025, 5, 26, 19, 2, 12));
+
+        publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion4, comentarioPublicacion5, comentarioPublicacion6));
+
+        //--------------------------------------------------------------
+
         Publicacion publicacion3 = new Publicacion();
         publicacion3.setTitulo("Ron estaba de relleno, no pinta nada en las pelis");
+
+        //Comentarios de la publicacion 3:
+
+        ComentarioPublicacion comentarioPublicacion7 = new ComentarioPublicacion();
+        comentarioPublicacion7.setPublicacion(publicacion3);
+        comentarioPublicacion7.setUsuario(usuario3);
+        comentarioPublicacion7.setContenido("Cojo palomitas");
+        comentarioPublicacion7.setFecha(LocalDateTime.of(2025, 5, 27, 13, 34, 51));
+
+        ComentarioPublicacion comentarioPublicacion8 = new ComentarioPublicacion();
+        comentarioPublicacion8.setPublicacion(publicacion3);
+        comentarioPublicacion8.setUsuario(usuario2);
+        comentarioPublicacion8.setContenido("Al zanahorio que le den por culo jajajajaja");
+        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 2, 23));
+
+        ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
+        comentarioPublicacion9.setPublicacion(publicacion3);
+        comentarioPublicacion9.setUsuario(usuario1);
+        comentarioPublicacion9.setContenido("Pero qué dices?? Sin el no hay peli");
+        comentarioPublicacion9.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
+
+        publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
+
+        //--------------------------------------------------------------
+
+        Publicacion publicacion4 = new Publicacion();
+        publicacion4.setTitulo("Mi perro se parece a Dobby");
+
+        //Comentarios de la publicacion 4:
+
+        ComentarioPublicacion comentarioPublicacion10 = new ComentarioPublicacion();
+        comentarioPublicacion10.setPublicacion(publicacion4);
+        comentarioPublicacion10.setUsuario(usuario5);
+        comentarioPublicacion10.setContenido("Es igual de feo");
+        comentarioPublicacion10.setFecha(LocalDateTime.of(2025, 5, 27, 15, 12, 10));
+
+        ComentarioPublicacion comentarioPublicacion11 = new ComentarioPublicacion();
+        comentarioPublicacion11.setPublicacion(publicacion4);
+        comentarioPublicacion11.setUsuario(usuario8);
+        comentarioPublicacion11.setContenido("Sube foto o fake");
+        comentarioPublicacion11.setFecha(LocalDateTime.of(2025, 5, 27, 15, 15, 47));
+
+        ComentarioPublicacion comentarioPublicacion12 = new ComentarioPublicacion();
+        comentarioPublicacion12.setPublicacion(publicacion4);
+        comentarioPublicacion12.setUsuario(usuario4);
+        comentarioPublicacion12.setContenido("JAJAJAJA mi gato parece Voldemort");
+        comentarioPublicacion12.setFecha(LocalDateTime.of(2025, 5, 27, 15, 20, 5));
+
+        ComentarioPublicacion comentarioPublicacion13 = new ComentarioPublicacion();
+        comentarioPublicacion13.setPublicacion(publicacion4);
+        comentarioPublicacion13.setUsuario(usuario6);
+        comentarioPublicacion13.setContenido("Dobby libre, pero tu perro tiene cara de preso");
+        comentarioPublicacion13.setFecha(LocalDateTime.of(2025, 5, 27, 15, 23, 33));
+
+        ComentarioPublicacion comentarioPublicacion14 = new ComentarioPublicacion();
+        comentarioPublicacion14.setPublicacion(publicacion4);
+        comentarioPublicacion14.setUsuario(usuario7);
+        comentarioPublicacion14.setContenido("Denunciado por maltrato psicológico a Dobby");
+        comentarioPublicacion14.setFecha(LocalDateTime.of(2025, 5, 27, 15, 28, 14));
+
+        ComentarioPublicacion comentarioPublicacion15 = new ComentarioPublicacion();
+        comentarioPublicacion15.setPublicacion(publicacion4);
+        comentarioPublicacion15.setUsuario(usuario9);
+        comentarioPublicacion15.setContenido("Lo importante: ¿le das calcetines?");
+        comentarioPublicacion15.setFecha(LocalDateTime.of(2025, 5, 27, 15, 32, 45));
+
+        ComentarioPublicacion comentarioPublicacion16 = new ComentarioPublicacion();
+        comentarioPublicacion16.setPublicacion(publicacion4);
+        comentarioPublicacion16.setUsuario(usuario10);
+        comentarioPublicacion16.setContenido("Dale una capa y llévalo a Hogwarts ya");
+        comentarioPublicacion16.setFecha(LocalDateTime.of(2025, 5, 27, 15, 35, 51));
+
+        publicacion4.setComentariosPublicacion(Arrays.asList(
+                comentarioPublicacion10,
+                comentarioPublicacion11,
+                comentarioPublicacion12,
+                comentarioPublicacion13,
+                comentarioPublicacion14,
+                comentarioPublicacion15,
+                comentarioPublicacion16
+        ));
+
+        //--------------------------------------------------------------
+
+        Publicacion publicacion5 = new Publicacion();
+        publicacion5.setTitulo("¿Alguien entiende por qué Voldemort no usaba una pistola?");
+
+        //Comentarios de la publicacion 5:
+
+        ComentarioPublicacion comentarioPublicacion17 = new ComentarioPublicacion();
+        comentarioPublicacion17.setPublicacion(publicacion5);
+        comentarioPublicacion17.setUsuario(usuario11);
+        comentarioPublicacion17.setContenido("Un AK-47 y se acababa Harry Potter en el primer libro.");
+        comentarioPublicacion17.setFecha(LocalDateTime.of(2025, 5, 28, 11, 10, 5));
+
+        ComentarioPublicacion comentarioPublicacion18 = new ComentarioPublicacion();
+        comentarioPublicacion18.setPublicacion(publicacion5);
+        comentarioPublicacion18.setUsuario(usuario12);
+        comentarioPublicacion18.setContenido("Imagínatelo sacando la Glock de la túnica JAJA");
+        comentarioPublicacion18.setFecha(LocalDateTime.of(2025, 5, 28, 11, 14, 22));
+
+        ComentarioPublicacion comentarioPublicacion19 = new ComentarioPublicacion();
+        comentarioPublicacion19.setPublicacion(publicacion5);
+        comentarioPublicacion19.setUsuario(usuario13);
+        comentarioPublicacion19.setContenido("Porque el .45 no mata horrocruxes");
+        comentarioPublicacion19.setFecha(LocalDateTime.of(2025, 5, 28, 11, 19, 38));
+
+        ComentarioPublicacion comentarioPublicacion20 = new ComentarioPublicacion();
+        comentarioPublicacion20.setPublicacion(publicacion5);
+        comentarioPublicacion20.setUsuario(usuario14);
+        comentarioPublicacion20.setContenido("Porque no tenía licencia de armas, bro");
+        comentarioPublicacion20.setFecha(LocalDateTime.of(2025, 5, 28, 11, 22, 9));
+
+        ComentarioPublicacion comentarioPublicacion21 = new ComentarioPublicacion();
+        comentarioPublicacion21.setPublicacion(publicacion5);
+        comentarioPublicacion21.setUsuario(usuario15);
+        comentarioPublicacion21.setContenido("Harry sería 'el niño que esquivó balas'");
+        comentarioPublicacion21.setFecha(LocalDateTime.of(2025, 5, 28, 11, 24, 44));
+
+        ComentarioPublicacion comentarioPublicacion22 = new ComentarioPublicacion();
+        comentarioPublicacion22.setPublicacion(publicacion5);
+        comentarioPublicacion22.setUsuario(usuario16);
+        comentarioPublicacion22.setContenido("Expelliarmus no funciona contra balas");
+        comentarioPublicacion22.setFecha(LocalDateTime.of(2025, 5, 28, 11, 27, 16));
+
+        ComentarioPublicacion comentarioPublicacion23 = new ComentarioPublicacion();
+        comentarioPublicacion23.setPublicacion(publicacion5);
+        comentarioPublicacion23.setUsuario(usuario17);
+        comentarioPublicacion23.setContenido("Los muggles lo tenían todo pensado");
+        comentarioPublicacion23.setFecha(LocalDateTime.of(2025, 5, 28, 11, 30, 59));
+
+        publicacion5.setComentariosPublicacion(Arrays.asList(
+                comentarioPublicacion17,
+                comentarioPublicacion18,
+                comentarioPublicacion19,
+                comentarioPublicacion20,
+                comentarioPublicacion21,
+                comentarioPublicacion22,
+                comentarioPublicacion23
+        ));
+
+        //--------------------------------------------------------------
+
+        Publicacion publicacion6 = new Publicacion();
+        publicacion6.setTitulo("¿Qué casa de Hogwarts es la más chusta?");
+
+        //Comentarios de la publicacion 6:
+
+        ComentarioPublicacion comentarioPublicacion24 = new ComentarioPublicacion();
+        comentarioPublicacion24.setPublicacion(publicacion6);
+        comentarioPublicacion24.setUsuario(usuario7);
+        comentarioPublicacion24.setContenido("Hufflepuff es literalmente la casa de relleno");
+        comentarioPublicacion24.setFecha(LocalDateTime.of(2025, 5, 28, 13, 10, 0));
+
+        ComentarioPublicacion comentarioPublicacion25 = new ComentarioPublicacion();
+        comentarioPublicacion25.setPublicacion(publicacion6);
+        comentarioPublicacion25.setUsuario(usuario12);
+        comentarioPublicacion25.setContenido("Ravenclaw y su elitismo random, meh");
+        comentarioPublicacion25.setFecha(LocalDateTime.of(2025, 5, 28, 13, 12, 45));
+
+        ComentarioPublicacion comentarioPublicacion26 = new ComentarioPublicacion();
+        comentarioPublicacion26.setPublicacion(publicacion6);
+        comentarioPublicacion26.setUsuario(usuario3);
+        comentarioPublicacion26.setContenido("Todos querían ser Gryffindor hasta que salieron los cringe");
+        comentarioPublicacion26.setFecha(LocalDateTime.of(2025, 5, 28, 13, 15, 12));
+
+        ComentarioPublicacion comentarioPublicacion27 = new ComentarioPublicacion();
+        comentarioPublicacion27.setPublicacion(publicacion6);
+        comentarioPublicacion27.setUsuario(usuario18);
+        comentarioPublicacion27.setContenido("Yo soy Slytherin pero no soy mala persona, lo juro");
+        comentarioPublicacion27.setFecha(LocalDateTime.of(2025, 5, 28, 13, 17, 8));
+
+        ComentarioPublicacion comentarioPublicacion28 = new ComentarioPublicacion();
+        comentarioPublicacion28.setPublicacion(publicacion6);
+        comentarioPublicacion28.setUsuario(usuario2);
+        comentarioPublicacion28.setContenido("Hufflepuff suena a marca de cereales rancios");
+        comentarioPublicacion28.setFecha(LocalDateTime.of(2025, 5, 28, 13, 20, 33));
+
+        ComentarioPublicacion comentarioPublicacion29 = new ComentarioPublicacion();
+        comentarioPublicacion29.setPublicacion(publicacion6);
+        comentarioPublicacion29.setUsuario(usuario15);
+        comentarioPublicacion29.setContenido("Gryffindor = casa de flipados. Lo tenía que decir");
+        comentarioPublicacion29.setFecha(LocalDateTime.of(2025, 5, 28, 13, 23, 17));
+
+        ComentarioPublicacion comentarioPublicacion30 = new ComentarioPublicacion();
+        comentarioPublicacion30.setPublicacion(publicacion6);
+        comentarioPublicacion30.setUsuario(usuario5);
+        comentarioPublicacion30.setContenido("En Hufflepuff te meten si no saben dónde meterte");
+        comentarioPublicacion30.setFecha(LocalDateTime.of(2025, 5, 28, 13, 26, 40));
+
+        ComentarioPublicacion comentarioPublicacion31 = new ComentarioPublicacion();
+        comentarioPublicacion31.setPublicacion(publicacion6);
+        comentarioPublicacion31.setUsuario(usuario20);
+        comentarioPublicacion31.setContenido("Ravenclaw es solo para los que no ligan ni con poción de amor");
+        comentarioPublicacion31.setFecha(LocalDateTime.of(2025, 5, 28, 13, 29, 55));
+
+        ComentarioPublicacion comentarioPublicacion32 = new ComentarioPublicacion();
+        comentarioPublicacion32.setPublicacion(publicacion6);
+        comentarioPublicacion32.setUsuario(usuario9);
+        comentarioPublicacion32.setContenido("Slytherin ganaría Eurovisión, fijo");
+        comentarioPublicacion32.setFecha(LocalDateTime.of(2025, 5, 28, 13, 31, 29));
+
+        ComentarioPublicacion comentarioPublicacion33 = new ComentarioPublicacion();
+        comentarioPublicacion33.setPublicacion(publicacion6);
+        comentarioPublicacion33.setUsuario(usuario14);
+        comentarioPublicacion33.setContenido("Los de Gryffindor viven del cuento de Harry, nada más");
+        comentarioPublicacion33.setFecha(LocalDateTime.of(2025, 5, 28, 13, 34, 10));
+
+        ComentarioPublicacion comentarioPublicacion34 = new ComentarioPublicacion();
+        comentarioPublicacion34.setPublicacion(publicacion6);
+        comentarioPublicacion34.setUsuario(usuario6);
+        comentarioPublicacion34.setContenido("Yo estuve en Hufflepuff... y aún no sé por qué");
+        comentarioPublicacion34.setFecha(LocalDateTime.of(2025, 5, 28, 13, 37, 5));
+
+        ComentarioPublicacion comentarioPublicacion35 = new ComentarioPublicacion();
+        comentarioPublicacion35.setPublicacion(publicacion6);
+        comentarioPublicacion35.setUsuario(usuario11);
+        comentarioPublicacion35.setContenido("Ravenclaw son empollones sin alma, lo sabéis");
+        comentarioPublicacion35.setFecha(LocalDateTime.of(2025, 5, 28, 13, 40, 22));
+
+        ComentarioPublicacion comentarioPublicacion36 = new ComentarioPublicacion();
+        comentarioPublicacion36.setPublicacion(publicacion6);
+        comentarioPublicacion36.setUsuario(usuario17);
+        comentarioPublicacion36.setContenido("Hufflepuff tiene nombre de Pokémon, no me jodáis");
+        comentarioPublicacion36.setFecha(LocalDateTime.of(2025, 5, 28, 13, 43, 59));
+
+        publicacion6.setComentariosPublicacion(Arrays.asList(
+                comentarioPublicacion24,
+                comentarioPublicacion25,
+                comentarioPublicacion26,
+                comentarioPublicacion27,
+                comentarioPublicacion28,
+                comentarioPublicacion29,
+                comentarioPublicacion30,
+                comentarioPublicacion31,
+                comentarioPublicacion32,
+                comentarioPublicacion33,
+                comentarioPublicacion34,
+                comentarioPublicacion35,
+                comentarioPublicacion36
+        ));
+
+        //--------------------------------------------------------------
+
+        Publicacion publicacion7 = new Publicacion();
+        publicacion7.setTitulo("¿Por qué los videojuegos antiguos de Harry Potter molaban más?");
+
+        //Comentarios de la publicacion 7:
+
+        ComentarioPublicacion comentarioPublicacion37 = new ComentarioPublicacion();
+        comentarioPublicacion37.setPublicacion(publicacion7);
+        comentarioPublicacion37.setUsuario(usuario4);
+        comentarioPublicacion37.setContenido("Molaba cuando en el minijuego de tirar elfos-bomba decían Mbappé todo el rato");
+        comentarioPublicacion37.setFecha(LocalDateTime.of(2025, 5, 28, 16, 2, 12));
+
+        ComentarioPublicacion comentarioPublicacion38 = new ComentarioPublicacion();
+        comentarioPublicacion38.setPublicacion(publicacion7);
+        comentarioPublicacion38.setUsuario(usuario16);
+        comentarioPublicacion38.setContenido("Nada como lanzar Flipendo en bucle al pobre Neville.");
+        comentarioPublicacion38.setFecha(LocalDateTime.of(2025, 5, 28, 16, 5, 33));
+
+        ComentarioPublicacion comentarioPublicacion39 = new ComentarioPublicacion();
+        comentarioPublicacion39.setPublicacion(publicacion7);
+        comentarioPublicacion39.setUsuario(usuario9);
+        comentarioPublicacion39.setContenido("El de PS1 era tan feo que daba miedo, arte puro.");
+        comentarioPublicacion39.setFecha(LocalDateTime.of(2025, 5, 28, 16, 8, 57));
+
+        ComentarioPublicacion comentarioPublicacion40 = new ComentarioPublicacion();
+        comentarioPublicacion40.setPublicacion(publicacion7);
+        comentarioPublicacion40.setUsuario(usuario1);
+        comentarioPublicacion40.setContenido("Porque eran cutres pero con alma, como tu ex.");
+        comentarioPublicacion40.setFecha(LocalDateTime.of(2025, 5, 28, 16, 12, 21));
+
+        ComentarioPublicacion comentarioPublicacion41 = new ComentarioPublicacion();
+        comentarioPublicacion41.setPublicacion(publicacion7);
+        comentarioPublicacion41.setUsuario(usuario20);
+        comentarioPublicacion41.setContenido("Porque ahora todo es mundo abierto y microtransacciones.");
+        comentarioPublicacion41.setFecha(LocalDateTime.of(2025, 5, 28, 16, 15, 11));
+
+        ComentarioPublicacion comentarioPublicacion42 = new ComentarioPublicacion();
+        comentarioPublicacion42.setPublicacion(publicacion7);
+        comentarioPublicacion42.setUsuario(usuario11);
+        comentarioPublicacion42.setContenido("¿Alguien más se perdía en Hogwarts en el de PC? Yo aún estoy atrapado.");
+        comentarioPublicacion42.setFecha(LocalDateTime.of(2025, 5, 28, 16, 17, 42));
+
+        ComentarioPublicacion comentarioPublicacion43 = new ComentarioPublicacion();
+        comentarioPublicacion43.setPublicacion(publicacion7);
+        comentarioPublicacion43.setUsuario(usuario6);
+        comentarioPublicacion43.setContenido("Flipendo tenía más peso argumental que Voldemort.");
+        comentarioPublicacion43.setFecha(LocalDateTime.of(2025, 5, 28, 16, 20, 31));
+
+        ComentarioPublicacion comentarioPublicacion44 = new ComentarioPublicacion();
+        comentarioPublicacion44.setPublicacion(publicacion7);
+        comentarioPublicacion44.setUsuario(usuario13);
+        comentarioPublicacion44.setContenido("El doblaje en latino era oro puro, no acepto debate.");
+        comentarioPublicacion44.setFecha(LocalDateTime.of(2025, 5, 28, 16, 23, 59));
+
+        ComentarioPublicacion comentarioPublicacion45 = new ComentarioPublicacion();
+        comentarioPublicacion45.setPublicacion(publicacion7);
+        comentarioPublicacion45.setUsuario(usuario3);
+        comentarioPublicacion45.setContenido("Lo retro siempre gana. Hasta con gráficos de PS1 fundida.");
+        comentarioPublicacion45.setFecha(LocalDateTime.of(2025, 5, 28, 16, 27, 6));
+
+        ComentarioPublicacion comentarioPublicacion46 = new ComentarioPublicacion();
+        comentarioPublicacion46.setPublicacion(publicacion7);
+        comentarioPublicacion46.setUsuario(usuario18);
+        comentarioPublicacion46.setContenido("El juego nuevo es bonito, pero no tiene alma. Como tu currículum.");
+        comentarioPublicacion46.setFecha(LocalDateTime.of(2025, 5, 28, 16, 30, 42));
+
+        ComentarioPublicacion comentarioPublicacion47 = new ComentarioPublicacion();
+        comentarioPublicacion47.setPublicacion(publicacion7);
+        comentarioPublicacion47.setUsuario(usuario10);
+        comentarioPublicacion47.setContenido("La cámara del juego era una maldición imperdonable.");
+        comentarioPublicacion47.setFecha(LocalDateTime.of(2025, 5, 28, 16, 33, 19));
+
+        ComentarioPublicacion comentarioPublicacion48 = new ComentarioPublicacion();
+        comentarioPublicacion48.setPublicacion(publicacion7);
+        comentarioPublicacion48.setUsuario(usuario8);
+        comentarioPublicacion48.setContenido("Flipendo >>>> cualquier spell de Hogwarts Legacy.");
+        comentarioPublicacion48.setFecha(LocalDateTime.of(2025, 5, 28, 16, 36, 2));
+
+        ComentarioPublicacion comentarioPublicacion49 = new ComentarioPublicacion();
+        comentarioPublicacion49.setPublicacion(publicacion7);
+        comentarioPublicacion49.setUsuario(usuario17);
+        comentarioPublicacion49.setContenido("No había DLCs ni pases de batalla. Eras libre.");
+        comentarioPublicacion49.setFecha(LocalDateTime.of(2025, 5, 28, 16, 39, 38));
+
+        ComentarioPublicacion comentarioPublicacion50 = new ComentarioPublicacion();
+        comentarioPublicacion50.setPublicacion(publicacion7);
+        comentarioPublicacion50.setUsuario(usuario5);
+        comentarioPublicacion50.setContenido("Porque los hacían con amor, no con IA.");
+        comentarioPublicacion50.setFecha(LocalDateTime.of(2025, 5, 28, 16, 42, 50));
+
+        publicacion7.setComentariosPublicacion(Arrays.asList(
+                comentarioPublicacion37,
+                comentarioPublicacion38,
+                comentarioPublicacion39,
+                comentarioPublicacion40,
+                comentarioPublicacion41,
+                comentarioPublicacion42,
+                comentarioPublicacion43,
+                comentarioPublicacion44,
+                comentarioPublicacion45,
+                comentarioPublicacion46,
+                comentarioPublicacion47,
+                comentarioPublicacion48,
+                comentarioPublicacion49,
+                comentarioPublicacion50
+        ));
+
+        //Publicaciones de la comunidad de Interstellar
 
         //Comunidades de prueba
 
@@ -821,8 +1313,11 @@ public class LocalDataLoader {
         comunidad1.setDescripcion("En la comunidad de Harry Potter podrás hablar de todas " +
                 "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
         comunidad1.setObjetos(Arrays.asList(objeto));
-        comunidad1.setPublicaciones(Arrays.asList(publicacion1, publicacion2, publicacion3));
-        comunidad1.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
+        comunidad1.setPublicaciones(Arrays.asList(publicacion1, publicacion2, publicacion3, publicacion4, publicacion5, publicacion6, publicacion7));
+        comunidad1.setUsuarios(Arrays.asList(usuario1,
+                usuario2, usuario3, usuario4, usuario5, usuario6, usuario7,
+                usuario8, usuario9, usuario10, usuario11, usuario12, usuario13,
+                usuario14, usuario15, usuario16, usuario17, usuario18, usuario20));
         comunidad1.setUrlImg("https://static.posters.cz/image/1300/104639.jpg");
 
         Comunidad comunidad2 = new Comunidad();
@@ -997,95 +1492,36 @@ public class LocalDataLoader {
         publicacion1.setComunidad(comunidad1);
         publicacion2.setComunidad(comunidad1);
         publicacion3.setComunidad(comunidad1);
-
-
-        ComentarioPublicacion comentarioPublicacion1 = new ComentarioPublicacion();
-        comentarioPublicacion1.setPublicacion(publicacion1);
-        comentarioPublicacion1.setUsuario(usuario1);
-        comentarioPublicacion1.setContenido("Este es el primer comentario de la publicación 1." +
-                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
-                "las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion1.setFecha(LocalDateTime.of(2025, 5, 25, 16, 32, 28));
-
-        ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
-        comentarioPublicacion2.setPublicacion(publicacion1);
-        comentarioPublicacion2.setUsuario(usuario2);
-        comentarioPublicacion2.setContenido("Este es el segundo comentario de la publicación 1." +
-                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-                " las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion2.setFecha(LocalDateTime.of(2025, 5, 25, 16, 39, 14));
-
-        ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
-        comentarioPublicacion3.setPublicacion(publicacion1);
-        comentarioPublicacion3.setUsuario(usuario3);
-        comentarioPublicacion3.setContenido("Este es el tercer comentario de la publicación 1." +
-                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-                " las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion3.setFecha(LocalDateTime.of(2025, 5, 25, 16, 48, 54));
-
-        publicacion1.setComentariosPublicacion(Arrays.asList(comentarioPublicacion1, comentarioPublicacion2, comentarioPublicacion3));
-
-        ComentarioPublicacion comentarioPublicacion4 = new ComentarioPublicacion();
-        comentarioPublicacion4.setPublicacion(publicacion2);
-        comentarioPublicacion4.setUsuario(usuario2);
-        comentarioPublicacion4.setContenido("Este es el primer comentario de la publicación 2." +
-                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
-                "las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion4.setFecha(LocalDateTime.of(2025, 5, 26, 18, 36, 32));
-
-        ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
-        comentarioPublicacion5.setPublicacion(publicacion2);
-        comentarioPublicacion5.setUsuario(usuario1);
-        comentarioPublicacion5.setContenido("Este es el segundo comentario de la publicación 2." +
-                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-                " las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
-
-        ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
-        comentarioPublicacion6.setPublicacion(publicacion2);
-        comentarioPublicacion6.setUsuario(usuario3);
-        comentarioPublicacion6.setContenido("Este es el tercer comentario de la publicación 2." +
-                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-                " las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion6.setFecha(LocalDateTime.of(2025, 5, 26, 19, 2, 12));
-
-        publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion4, comentarioPublicacion5, comentarioPublicacion6));
-
-        ComentarioPublicacion comentarioPublicacion7 = new ComentarioPublicacion();
-        comentarioPublicacion7.setPublicacion(publicacion3);
-        comentarioPublicacion7.setUsuario(usuario3);
-        comentarioPublicacion7.setContenido("Este es el primer comentario de la publicación 3." +
-                " Prueba para ver si sólo sale el primero de todos los comentarios de cada una de" +
-                "las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion7.setFecha(LocalDateTime.of(2025, 5, 27, 13, 34, 51));
-
-        ComentarioPublicacion comentarioPublicacion8 = new ComentarioPublicacion();
-        comentarioPublicacion8.setPublicacion(publicacion3);
-        comentarioPublicacion8.setUsuario(usuario2);
-        comentarioPublicacion8.setContenido("Este es el segundo comentario de la publicación 3." +
-                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-                " las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 2, 23));
-
-        ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
-        comentarioPublicacion9.setPublicacion(publicacion3);
-        comentarioPublicacion9.setUsuario(usuario1);
-        comentarioPublicacion9.setContenido("Este es el tercer comentario de la publicación 3." +
-                " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
-                " las publicaciones asociadas a la comunidad.");
-        comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
-
-        publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
-
+        publicacion4.setComunidad(comunidad1);
+        publicacion5.setComunidad(comunidad1);
+        publicacion6.setComunidad(comunidad1);
+        publicacion7.setComunidad(comunidad1);
 
         comunidadRepository.saveAll(Arrays.asList(comunidad1, comunidad2, comunidad3, comunidad4, comunidad5, comunidad6,
                 comunidad7, comunidad8, comunidad9, comunidad10, comunidad11, comunidad12, comunidad13, comunidad14, comunidad15, comunidad16, comunidad17));
-        publicacionRepository.saveAll(Arrays.asList(publicacion1, publicacion2, publicacion3));
+        publicacionRepository.saveAll(Arrays.asList(publicacion1, publicacion2, publicacion3, publicacion4, publicacion5, publicacion6, publicacion7));
         comentarioPublicacionRepository.saveAll(Arrays.asList(comentarioPublicacion1,
                 comentarioPublicacion2, comentarioPublicacion3, comentarioPublicacion4, comentarioPublicacion5,
-                comentarioPublicacion6, comentarioPublicacion7, comentarioPublicacion8));
+                comentarioPublicacion6, comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9,
+                comentarioPublicacion10, comentarioPublicacion11,
+                comentarioPublicacion12, comentarioPublicacion13, comentarioPublicacion14, comentarioPublicacion15,
+                comentarioPublicacion16, comentarioPublicacion17, comentarioPublicacion18, comentarioPublicacion19,
+                comentarioPublicacion20, comentarioPublicacion21,
+                comentarioPublicacion22, comentarioPublicacion23, comentarioPublicacion24, comentarioPublicacion25,
+                comentarioPublicacion26, comentarioPublicacion27, comentarioPublicacion28, comentarioPublicacion29,
+                comentarioPublicacion30, comentarioPublicacion31,
+                comentarioPublicacion32, comentarioPublicacion33, comentarioPublicacion34, comentarioPublicacion35,
+                comentarioPublicacion36, comentarioPublicacion37, comentarioPublicacion38, comentarioPublicacion39,
+                comentarioPublicacion40, comentarioPublicacion41,
+                comentarioPublicacion42, comentarioPublicacion43, comentarioPublicacion44, comentarioPublicacion45,
+                comentarioPublicacion46, comentarioPublicacion47, comentarioPublicacion48, comentarioPublicacion49,
+                comentarioPublicacion50));
 
-        objetoRepository.save(objeto);
+        objetoRepository.saveAll(Arrays.asList(objeto,
+                objeto2, objeto3, objeto4, objeto5, objeto6, objeto7,
+                objeto8, objeto9, objeto10, objeto11, objeto12, objeto13,
+                objeto14, objeto15, objeto16, objeto17, objeto18, objeto19,
+                objeto20, objeto21, objeto22, objeto23));
 
 
         log.info("Datos de entidades cargados correctamente.");
