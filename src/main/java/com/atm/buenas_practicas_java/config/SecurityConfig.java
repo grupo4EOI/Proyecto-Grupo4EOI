@@ -96,6 +96,8 @@ public class SecurityConfig {
                                 "/iniciar-sesion",
                                 "/registro",
                                 "/pagina-principal",
+                                "/seccion/**",
+                                "/comunidades/**",
                                 "/static/**",
                                 "/css/**",
                                 "/images/**",
