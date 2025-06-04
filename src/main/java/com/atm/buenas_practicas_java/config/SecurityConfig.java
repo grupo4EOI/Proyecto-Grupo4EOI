@@ -98,6 +98,7 @@ public class SecurityConfig {
                                 "/pagina-principal",
                                 "/seccion/**",
                                 "/comunidades/**",
+                                "/ficha-objeto/**",
                                 "/static/**",
                                 "/css/**",
                                 "/images/**",
