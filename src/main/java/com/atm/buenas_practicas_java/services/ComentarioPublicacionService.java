@@ -22,15 +22,17 @@ public class ComentarioPublicacionService {
     private final PublicacionRepository publicacionRepository;
     private final ComentarioPublicacionRepository comPubRepository;
     private final ComentarioPublicacionMapper comentarioPublicacionMapper;
+    private final ComentarioPublicacionRepository comentarioPublicacionRepository;
 
     public ComentarioPublicacionService(ObjetoRepository objetoRepository,
                                         PublicacionRepository publicacionRepository,
                                         ComentarioPublicacionMapper comentarioPublicacionMapper,
-                                       ComentarioPublicacionRepository comPubRepository) {
+                                        ComentarioPublicacionRepository comPubRepository, ComentarioPublicacionRepository comentarioPublicacionRepository) {
         this.objetoRepository = objetoRepository;
         this.publicacionRepository = publicacionRepository;
         this.comentarioPublicacionMapper = comentarioPublicacionMapper;
-      this.comPubRepository = comPubRepository;
+        this.comPubRepository = comPubRepository;
+        this.comentarioPublicacionRepository = comentarioPublicacionRepository;
     }
 
     /** Devuelve una lista de los primeros comentarios de cada publicación pertenecientes a la comunidad del objeto */
@@ -59,8 +61,23 @@ public class ComentarioPublicacionService {
         return publicacionRepository.findById(publicacionId).get().getComentariosPublicacion();
     }
 
+    public List<ComentarioPublicacionDTO> buscarComentariosPublicacionConAbuso() {
+        List<ComentarioPublicacion> publicaciones = comentarioPublicacionRepository.findComentarioPublicacionsByAbusoEquals(true);
+        return publicaciones.stream()
+                .map(comentario -> {
+                    String titulo = comentario.getPublicacion().getTitulo();
+                    ComentarioPublicacionDTO comentarioDTO = comentarioPublicacionMapper.toDto(comentario);
+                    return new ComentarioPublicacionDTO(
+                            titulo,
+                            comentarioDTO.contenido(),
+                            comentarioDTO.usuario(),
+                            comentarioDTO.reacciones()
+                    );
+                })
+                .toList();
+    }
+
     public ComentarioPublicacion save(ComentarioPublicacion comentarioPublicacion) {
         return comPubRepository.save(comentarioPublicacion);
     }
-
 }

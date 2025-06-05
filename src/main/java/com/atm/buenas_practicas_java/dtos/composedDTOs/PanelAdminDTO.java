@@ -9,7 +9,6 @@ import java.util.List;
 public record PanelAdminDTO(
         List<ResenaDTO> resenas,
         List<ComentarioResenaDTO> comentariosResenas,
-        List<ComentarioPublicacionDTO> publicaciones,
         List<ComentarioPublicacionDTO> comentariosPublicaciones
 ) {
 }
