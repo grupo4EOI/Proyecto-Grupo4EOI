@@ -3,6 +3,7 @@ package com.atm.buenas_practicas_java.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,6 +31,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @Column(unique = true, nullable = false)
     private String nombreUsuario;
     @Column(unique = true, nullable = false)
+    @NaturalId(mutable = true)
     private String email;
     @NotNull
     private String contrasena;
