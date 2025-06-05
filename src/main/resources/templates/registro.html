@@ -19,23 +19,26 @@
                     <h1>Registrate</h1>
                 </div>
 
-                <div class="login-form">
+                <form class="login-form" th:action="@{/registro}" method="post">
+
                     <div class="control-group">
-                        <input type="text" class="login-field" value="" placeholder="usuario" id="login-name">
+                        <input type="text" class="login-field" name="nombreUsuario" placeholder="usuario" id="login-name" required>
                         <label class="login-field-icon fui-user" for="login-name"></label>
                     </div>
+
                     <div class="control-group">
-                        <input type="email" class="login-field" value="" placeholder="email" id="login-email">
+                        <input type="email" class="login-field" name="email" placeholder="email" id="login-email" required>
                         <label class="login-field-icon fui-lock" for="login-email"></label>
                     </div>
+
                     <div class="control-group">
-                        <input type="password" class="login-field" value="" placeholder="contraseña" id="login-pass">
+                        <input type="password" class="login-field" name="contrasena" placeholder="contraseña" id="login-pass" required>
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
                     </div>
 
-                    <a class="btn btn-large btn-block" href="#">Registrarse</a>
-                    <a class="login-link" href="/iniciar-sesion">¿Ya tienes cuenta? Iniciar Sesion</a>
-                </div>
+                    <button type="submit" class="btn btn-large btn-block">Registrarse</button>
+                    <a class="login-link" href="/iniciar-sesion">¿Ya tienes cuenta? Iniciar Sesión</a>
+                </form>
             </div>
         </div>
     </div>

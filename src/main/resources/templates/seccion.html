@@ -12,6 +12,7 @@
     <link rel="stylesheet" th:href="@{/css/style-seccion.css}">
 </head>
 
+
 <div layout:fragment="content">
     <div class="container">
         <section class="row justify-content-center">
@@ -22,7 +23,7 @@
                 <div class="card-container h-100 d-flex flex-column">
                     <div class="image-container-ext">
                         <div class="image-container">
-                            <img class="img-fluid" alt="Cartel de Harry Potter"
+                            <img class="img-fluid imagen-objeto" alt="Cartel de Harry Potter"
                                  th:src="${objeto.imagenUrl()}">
                             <button class="trailer-button btn btn-primary video-btn"
                                     data-bs-target="#modal-trailer"
@@ -35,7 +36,11 @@
                     </div>
                     <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                     <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" th:text="${objeto.titulo()}"></h2>
+                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" >
+                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none  text-dark">
+                                <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                            </a>
+                        </h2>
                         <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
                             <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
                             <p class="puntuacion">
@@ -70,7 +75,11 @@
                     </div>
                     <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                     <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" th:text="${objeto.titulo()}"></h2>
+                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break">
+                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none text-dark">
+                                <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                            </a>
+                        </h2>
                         <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
                             <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
                             <p class="puntuacion">
@@ -103,7 +112,6 @@
     <script th:src="@{/js/trailer.js}"></script>
 
 </div>
-
 
 
 

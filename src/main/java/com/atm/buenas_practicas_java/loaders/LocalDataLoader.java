@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,13 +45,7 @@ public class LocalDataLoader {
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
 
-    /**
-     * Constructor de la clase {@code LocalDataLoader}.
-     *
-     * Inicializa un objeto {@code LocalDataLoader} configurado con los repositorios de las entidades,
-     * proporcionando la capacidad de interactuar con estas entidades en la base de datos.
-     *
-     */
+
     public LocalDataLoader(ObjetoRepository objetoRepository,
                            PersonaRepository personaRepository,
                            PersonaObjetoRepository personaObjetoRepository,
@@ -75,46 +70,10 @@ public class LocalDataLoader {
         this.comentarioResenaRepository = comentarioResenaRepository;
     }
 
-    /**
-     * Método anotado con {@code @PostConstruct} que inicializa datos de prueba en
-     * los repositorios para entornos locales. Este método se ejecuta automáticamente
-     * después de la inicialización del bean y antes de que esté disponible para uso,
-     * permitiendo cargar datos iniciales necesarios para el perfil local.
-     *
-     * Funcionalidad:
-     * - Crea 10 instancias de la entidad `EntidadPadre` con nombres predefinidos.
-     * - Guarda las instancias de `EntidadPadre` en el repositorio correspondiente.
-     * - Para cada instancia de `EntidadPadre`, crea una entidad relacionada de tipo
-     *   `EntidadHija` con un nombre identificativo, y la asocia a la entidad padre
-     *   pertinente.
-     * - Guarda las entidades hijas en el repositorio `entidadHijaRepository`.
-     * - Registra mensajes informativos en el log sobre el inicio y finalización del proceso.
-     *
-     * Proceso:
-     * 1. Se define un número fijo de entidades padre (10).
-     * 2. Se utiliza un array para almacenar las instancias y se inicializa con un nombre
-     *    único para cada entidad padre.
-     * 3. Todas las entidades padre se guardan de forma simultánea utilizando
-     *    {@code repository.saveAll}.
-     * 4. Para cada entidad padre, se crea una instancia de la entidad hija, se establece
-     *    la relación con el padre y se guarda en el repositorio correspondiente.
-     * 5. Se registran logs informativos sobre el estado del proceso.
-     *
-     * Dependencias principales:
-     * - `repository`: {@code EntidadPadreRepository}, usado para almacenar las entidades padre.
-     * - `entidadHijaRepository`: {@code EntidadHijaRepository}, usado para guardar las entidades hijas.
-     *
-     * Importante:
-     * - Este método está diseñado específicamente para ser utilizado en entornos con
-     *   el perfil local activo.
-     * - No debe usarse en entornos de producción, ya que sobrescribirá datos existentes.
-     *
-     * Logs:
-     * - Mensaje al inicio del proceso: "Iniciando la carga de datos para el perfil local".
-     * - Mensaje exitoso al finalizar: "Datos de entidades cargados correctamente."
-     */
     @PostConstruct
     public void loadDataLocal() {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         log.info("Iniciando la carga de datos para el perfil local");
 
@@ -389,7 +348,7 @@ public class LocalDataLoader {
         objeto.setDuracionMinutos(123);
         objeto.setTipo(tipoPeliculas);
         objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
-        objeto.setFechaPublicacion(LocalDate.of(2001, 3, 01));
+        objeto.setFechaPublicacion(LocalDate.of(2001, 3, 1));
 
         objeto.setGeneros(new HashSet<>(Arrays.asList(generoFantasiaP, generoFiccionP, generoAventurasP)));
 
@@ -716,15 +675,11 @@ public class LocalDataLoader {
 
         objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3)));
 
-
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
-
-
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3, objeto4, objeto5, objeto6, objeto7,
                 objeto8, objeto9, objeto10, objeto11, objeto12, objeto13, objeto14, objeto15, objeto16,
                 objeto17, objeto18, objeto19, objeto20, objeto21, objeto22, objeto23));
-
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3));
 
@@ -733,16 +688,19 @@ public class LocalDataLoader {
         usuario1.setNombreUsuario("Usuario1");
         usuario1.setEmail("hola@gmail.com");
         usuario1.setContrasena("1234");
+        usuario1.setRole("USER");
 
         Usuario usuario2 = new Usuario();
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
         usuario2.setContrasena("4321");
+        usuario2.setRole("USER");
 
         Usuario usuario3 = new Usuario();
         usuario3.setNombreUsuario("Usuario3");
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
+        usuario3.setRole("ADMIN");
 
         Usuario usuario4 = new Usuario();
         usuario4.setNombreUsuario("OpelCorsa99");
@@ -857,6 +815,7 @@ public class LocalDataLoader {
         resena1.setSpoiler(false);
         resena1.setUsuario(usuario1);
         resena1.setObjeto(objeto);
+        resena1.setAbuso(true);
 
         ComentarioResena comentarioResena1 = new ComentarioResena();
         comentarioResena1.setResena(resena1);
@@ -865,11 +824,13 @@ public class LocalDataLoader {
                 " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi\" +\n" +
                 "                \" delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat\" +\n" +
                 "                \" quibusdam quisquam quos repellat sunt vitae.");
+        comentarioResena1.setAbuso(true);
 
         ComentarioResena comentarioResena2 = new ComentarioResena();
         comentarioResena2.setResena(resena1);
         comentarioResena2.setUsuario(usuario3);
         comentarioResena2.setContenido("Me ha gustao mucho tu reseña, mi pana. Ánimo con lo tuyo.");
+        comentarioResena2.setAbuso(true);
 
         resena1.setComentariosResena(new HashSet<>(Arrays.asList(comentarioResena1, comentarioResena2)));
 
@@ -884,6 +845,7 @@ public class LocalDataLoader {
         resena2.setSpoiler(false);
         resena2.setUsuario(usuario2);
         resena2.setObjeto(objeto);
+        resena2.setAbuso(true);
 
 
         resenaRepository.saveAll(Arrays.asList(resena1, resena2));
@@ -916,6 +878,7 @@ public class LocalDataLoader {
         comentarioPublicacion2.setUsuario(usuario2);
         comentarioPublicacion2.setContenido("Tómate una dormidina");
         comentarioPublicacion2.setFecha(LocalDateTime.of(2025, 5, 25, 16, 39, 14));
+        comentarioPublicacion2.setAbuso(true);
 
         ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
         comentarioPublicacion3.setPublicacion(publicacion1);
@@ -943,6 +906,7 @@ public class LocalDataLoader {
         comentarioPublicacion5.setUsuario(usuario1);
         comentarioPublicacion5.setContenido("Mi oferta es que lo lleves al desguace");
         comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
+        comentarioPublicacion5.setAbuso(true);
 
         ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
         comentarioPublicacion6.setPublicacion(publicacion2);

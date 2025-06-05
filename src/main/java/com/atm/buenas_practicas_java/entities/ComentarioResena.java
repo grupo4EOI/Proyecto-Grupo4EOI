@@ -24,6 +24,7 @@ public class ComentarioResena {
     private LocalDateTime fecha;
     @Column(columnDefinition = "TEXT")
     private String contenido;
+    private Boolean abuso = false;
 
     @NotNull
     @ManyToOne(optional = false)

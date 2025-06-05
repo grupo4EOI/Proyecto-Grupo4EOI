@@ -14,7 +14,7 @@ a:hover, .nav-link:hover {
     color: white !important;
 }
 .btn:hover {
-    background-color: #FF8C42;
+    background-color: #FF8C42 !important;
 }
 #barraDeBusqueda {
     width:430px !important;

@@ -1,5 +1,6 @@
 package com.atm.buenas_practicas_java.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -9,8 +10,11 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -50,61 +54,65 @@ public class SecurityConfig {
      *
      * @Author No se especificó autor.
      */
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        String name = environment.getProperty("spring.security.user.name", "user");
+//        String password = environment.getProperty("spring.security.user.password", "password");
+//
+//        var user = User.withUsername(name)
+//                .password("{noop}" + password) // {noop} indica que no se usa encoder para simplificar (solo pruebas)
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
+
     @Bean
-    public UserDetailsService userDetailsService() {
-        String name = environment.getProperty("spring.security.user.name", "user");
-        String password = environment.getProperty("spring.security.user.password", "password");
-
-        var user = User.withUsername(name)
-                .password("{noop}" + password) // {noop} indica que no se usa encoder para simplificar (solo pruebas)
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-    /**
-     * Configura una cadena de filtros de seguridad para gestionar la seguridad HTTP de la aplicación.
-     * Permite personalizar los comportamientos de seguridad como protección CSRF, autenticación básica,
-     * inicio de sesión con formulario y control de acceso a las solicitudes HTTP.
-     *
-     * <p>Este método define, entre otras configuraciones:
-     * <ul>
-     *   <li>Deshabilitar la protección CSRF, comúnmente usado en entornos de pruebas o para APIs REST.</li>
-     *   <li>Autenticación HTTP básica y a través de formulario por defecto.</li>
-     *   <li>Permitir el acceso público a ciertas rutas específicas, mientras que otras rutas
-     *       requieren autenticación.</li>
-     * </ul>
-     * </p>
-     *
-     * @param http Objeto {@link HttpSecurity} provisto por Spring Security, utilizado para personalizar
-     *             la configuración de seguridad web.
-     * @return Un objeto {@link SecurityFilterChain} que representa la configuración de seguridad
-     *         HTTP personalizada.
-     * @throws Exception En caso de que ocurra algún error durante la configuración.
-     *
-     * @Author No se especificó autor.
-     */
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(Customizer.withDefaults()) // deshabilitado para pruebas o APIs
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
+                .csrf(Customizer.withDefaults())
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/iniciar-sesion")
+                        .loginProcessingUrl("/procesar-login")
+                        .defaultSuccessUrl("/pagina-principal")
+                        .failureUrl("/iniciar-sesion?error")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/pagina-principal")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/contacto").permitAll()
-                        .requestMatchers("/quienes-somos").permitAll()
-                        .requestMatchers("/politica-privacidad").permitAll()
-                        .requestMatchers("/ficha-objeto").permitAll()
-                        .requestMatchers("/entities").permitAll()
-                        .requestMatchers("/entities/*").permitAll()
-                        .requestMatchers("/static/*").permitAll()
-                        .requestMatchers("/css/*").permitAll()
-                        .requestMatchers("/images/*").permitAll()
-                        .requestMatchers("/js/*").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/entidades/deleteHija/*").authenticated()
+                        .requestMatchers("/",
+                                "/iniciar-sesion",
+                                "/registro",
+                                "/pagina-principal",
+                                "/seccion/**",
+                                "/comunidades/**",
+                                "/ficha-objeto/**",
+                                "/static/**",
+                                "/css/**",
+                                "/images/**",
+                                "/js/**"
+                        ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/registro").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/iniciar-sesion").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/iniciar-sesion").permitAll()
                         .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
+
 
         return http.build();
     }
@@ -131,5 +139,4 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
-
 }

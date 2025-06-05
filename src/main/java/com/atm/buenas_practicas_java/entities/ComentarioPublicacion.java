@@ -26,6 +26,8 @@ public class ComentarioPublicacion {
     @Column(columnDefinition = "TEXT")
     private String contenido;
 
+    private Boolean abuso = false;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_publicacion")
     private Publicacion publicacion;

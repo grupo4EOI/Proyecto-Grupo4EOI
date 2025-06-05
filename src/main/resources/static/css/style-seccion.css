@@ -101,6 +101,11 @@ a:hover, .nav-link:hover {
     height: 400px;
 }
 
+.imagen-objeto {
+    width: 300px;
+    height: 400px;
+}
+
 @media screen and (max-width: 1200px) {
     .image-container-ext {
         display: flex;
@@ -113,4 +118,13 @@ a:hover, .nav-link:hover {
 
 .titulo-objeto {
     max-width: 300px;
+}
+
+.enlace-tit{
+    transition: color 0.6s ease, text-shadow 0.6s ease, transform 0.6s ease;
+}
+
+.enlace-tit:hover {
+    color: #ff8c42; /* Azul Bootstrap */
+    transform: scale(1.03);
 }

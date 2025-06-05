@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ComentarioResenaRepository extends JpaRepository<ComentarioResena, Long> {
     List<ComentarioResena> getComentarioResenasByResena_IdResena(Long resenaIdResena);
+
+    List<ComentarioResena> findComentarioResenasByAbusoEquals(boolean b);
 }

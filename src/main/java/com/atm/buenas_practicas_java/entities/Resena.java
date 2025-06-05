@@ -26,6 +26,7 @@ public class Resena {
     private String contenido;
     private Double puntuacion;
     private boolean spoiler;
+    private Boolean abuso = false;
 
     @NotNull
     @ManyToOne(optional = false)
