@@ -193,14 +193,4 @@ public class DefaultController {
 //        return "registro";
 //    }
 
-    @GetMapping("/admin")
-    public String mostrarAdmin(Model model) {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        String username = authentication.getName();
-        Object principal = authentication.getPrincipal();
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-        return "/admin";
-    }
 }
