@@ -1,12 +1,14 @@
 package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
+import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
 import com.atm.buenas_practicas_java.services.*;
+import com.atm.buenas_practicas_java.services.facade.ComunidadServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +24,20 @@ import java.util.List;
 @RequestMapping("/comunidades")
 public class ComunidadesController {
 
+    private final ComunidadServiceFacade comunidadServiceFacade;
+
+//    public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade) {
+//        this.comunidadServiceFacade = comunidadServiceFacade;
+//    }
+
     private ComunidadService comunidadService;
     private PublicacionService publicacionService;
     private ComentarioPublicacionService comPubService;
     private UsuarioService usuarioService;
     private ComunidadMapper comunidadMapper;
 
-    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService, UsuarioService usuarioService, ComunidadMapper comunidadMapper) {
+    public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade, ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService, UsuarioService usuarioService, ComunidadMapper comunidadMapper) {
+        this.comunidadServiceFacade = comunidadServiceFacade;
         this.comunidadService = comunidadService;
         this.publicacionService = publicacionService;
         this.comPubService = comPubService;
@@ -38,7 +47,7 @@ public class ComunidadesController {
 
     @GetMapping
     public String mostrarComunidades(Model model) {
-        List<ComunidadDTO> comunidades = comunidadMapper.toDTO(comunidadService.findAll());
+        List<ComunidadDTO> comunidades = comunidadServiceFacade.buscarComunidades();
         model.addAttribute("comunidades", comunidades);
         return "comunidades";
     }
@@ -46,7 +55,8 @@ public class ComunidadesController {
     @GetMapping("/{id}/temas")
     public String mostrarTemas(Model model, @PathVariable Long id) {
         List<Publicacion> publicaciones = publicacionService.getPublicacionsByComunidad(comunidadService.findById(id));
-        Comunidad comunidad = comunidadService.findById(id);
+        ComunidadDTO comunidad = comunidadServiceFacade.buscarComunidades(id);
+        List<PublicacionDTO> publicaciones = comunidadServiceFacade.buscarPublicaciones(id);
         model.addAttribute("publicaciones", publicaciones);
         model.addAttribute("comunidad", comunidad);
         return "comunidad";

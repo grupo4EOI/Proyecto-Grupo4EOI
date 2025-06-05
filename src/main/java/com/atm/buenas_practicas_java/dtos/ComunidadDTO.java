@@ -5,8 +5,8 @@ public record ComunidadDTO (
         String nombreComunidad,
         String descripcion,
         String urlImg,
-        Long numPublicaciones,
-        Long numUsuarios
+        int numPublicaciones,
+        int numUsuarios
 ) {
 
 }

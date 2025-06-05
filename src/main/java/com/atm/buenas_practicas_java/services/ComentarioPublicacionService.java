@@ -50,7 +50,8 @@ public class ComentarioPublicacionService {
                                         publicacion.getTitulo(),
                                         dto.contenido(),
                                         dto.usuario(),
-                                        dto.reacciones()
+                                        dto.reacciones(),
+                                        dto.fecha()
                                 );
                             })
                             .toList();
@@ -71,7 +72,8 @@ public class ComentarioPublicacionService {
                             titulo,
                             comentarioDTO.contenido(),
                             comentarioDTO.usuario(),
-                            comentarioDTO.reacciones()
+                            comentarioDTO.reacciones(),
+                            comentarioDTO.fecha()
                     );
                 })
                 .toList();
