@@ -2,6 +2,7 @@ package com.atm.buenas_practicas_java.services.facade;
 
 import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
 import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
+import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.mapper.ComentarioPublicacionMapper;
 import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
@@ -38,4 +39,8 @@ public class ComunidadServiceFacade {
 
     public List<ComunidadDTO> buscarComunidades() {return comunidadService.buscarComunidades();}
     public ComunidadSimpleDTO findByID(Long id) { return comunidadService.findByID(id);}
+
+    public List<PublicacionDTO> buscarPublicacionesPorComunidad(Long idComunidad) {
+        return publicacionService.buscarPublicacionesPorComunidad(idComunidad);
+    }
 }

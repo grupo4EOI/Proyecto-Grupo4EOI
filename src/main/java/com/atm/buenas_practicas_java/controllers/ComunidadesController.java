@@ -1,6 +1,7 @@
 package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
+import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
@@ -54,11 +55,10 @@ public class ComunidadesController {
 
     @GetMapping("/{id}/temas")
     public String mostrarTemas(Model model, @PathVariable Long id) {
-        List<Publicacion> publicaciones = publicacionService.getPublicacionsByComunidad(comunidadService.findById(id));
-        ComunidadDTO comunidad = comunidadServiceFacade.buscarComunidades(id);
-        List<PublicacionDTO> publicaciones = comunidadServiceFacade.buscarPublicaciones(id);
-        model.addAttribute("publicaciones", publicaciones);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        List<PublicacionDTO> publicaciones = comunidadServiceFacade.buscarPublicacionesPorComunidad(id);
         model.addAttribute("comunidad", comunidad);
+        model.addAttribute("publicaciones", publicaciones);
         return "comunidad";
     }
 

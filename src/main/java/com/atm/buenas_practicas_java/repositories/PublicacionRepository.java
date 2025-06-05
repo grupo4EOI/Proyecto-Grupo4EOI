@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface PublicacionRepository extends JpaRepository<Publicacion, Long> {
     List<Publicacion> getPublicacionsByComunidad(Comunidad comunidad);
+
+    List<Publicacion> findPublicacionsByComunidad_IdComunidad(Long idComunidad);
 }
