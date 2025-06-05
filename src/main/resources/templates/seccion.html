@@ -36,7 +36,11 @@
                     </div>
                     <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                     <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" th:text="${objeto.titulo()}"></h2>
+                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" >
+                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none  text-dark">
+                                <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                            </a>
+                        </h2>
                         <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
                             <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
                             <p class="puntuacion">
@@ -71,7 +75,11 @@
                     </div>
                     <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                     <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" th:text="${objeto.titulo()}"></h2>
+                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break">
+                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none text-dark">
+                                <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                            </a>
+                        </h2>
                         <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
                             <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
                             <p class="puntuacion">
