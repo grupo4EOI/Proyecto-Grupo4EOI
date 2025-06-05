@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaConchaCrítica - Panel administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/css/style-admin.css}">
 </head>
 <body>
@@ -16,13 +16,11 @@
     <div class="container">
         <h2 class="col-12">Reseñas a revisar</h2>
         <hr>
-        <div class="resenas-container col-12">
-            <div class="row mx-3 my-3 gx-0" th:each="">
+        <div class="resenas-container col-12 mb-3" th:each="resena : ${panelAdmin.resenas()}">
+            <div class="row mx-3 my-3 gx-0">
                 <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
                         class="bi bi-person me-2"></i>
                 </div>
-                <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
-                <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
                 <div class="container" id="review">
                     <div class="row">
                         <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
@@ -36,30 +34,36 @@
                     </div>
                 </div>
             </div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
+            <div class="d-flex gx-2">
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"></i> Banear usuario</div>
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hand-thumbs-up"></i> Aprobar</div>
+            </div>
         </div>
         <hr>
         <h2 class="col-12">Comentarios de reseñas a revisar</h2>
         <hr>
-        <div class="comentarios-resenas-container">
-            <div class="row mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
-                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
+        <div class="comentarios-resenas-container mb-3" th:each="comentario : ${panelAdmin.comentariosResenas()}">
+            <div class="row my-3 mx-3 gx-0 comentarios" >
+                <div class="etiqueta px-2 mb-2 mt-2 ms-2 me-3 w-auto " th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
                         class="bi bi-person me-2"></i>@MrReseñador
                 </div>
-                <p th:text="${comentario.contenido()}"></p>
+                <p class="mx-2" th:text="${comentario.contenido()}"></p>
             </div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
+            <div class="d-flex gx-2">
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"></i> Banear usuario</div>
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hand-thumbs-up"></i> Aprobar</div>
+            </div>
         </div>
         <hr>
         <h2 class="col-12">Publicaciones a revisar</h2>
         <hr>
-        <div class="publicaciones-container col-12">
-            <div class="mx-3 my-3 gx-0" th:each="publicacion : ${fichaObjeto.publicaciones()}">
-                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
+        <div class="publicaciones-container mb-3 col-12" th:each="publicacion : ${panelAdmin.comentariosPublicaciones()}">
+            <div class="row mx-3 my-3 gx-0">
+                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}">
+                    <i class="bi bi-person me-2"></i>
+                </div>
                 <div class="container" id="publicacion" >
                     <div class="row">
                         <div class="col-12 mt-1 mb-2">
@@ -69,23 +73,11 @@
                     </div>
                 </div>
             </div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"> Banear usuario</i></div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
-        </div>
-        <hr>
-        <h2 class="col-12">Comentarios de publicaciones a revisar</h2>
-        <hr>
-        <div class="col-12 comentarios-publicaciones-container">
-            <div class="row mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
-                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
-                        class="bi bi-person me-2"></i>@MrReseñador
-                </div>
-                <p th:text="${comentario.contenido()}"></p>
+            <div class="d-flex gx-2">
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"></i> Banear usuario</div>
+                <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hand-thumbs-up"></i> Aprobar</div>
             </div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-trash"></i> Eliminar</div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-ban"></i> Banear usuario</div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-hands-thumbs-up"></i> Aprobar</div>
         </div>
     </div>
 </div>

@@ -18,6 +18,7 @@ public class AdminController {
 
     @GetMapping
     public String mostrarPanelAdmin(Model model) {
+        model.addAttribute("panelAdmin", adminService.crearPanelAdminDTO());
         return "/admin";
     }
 }
