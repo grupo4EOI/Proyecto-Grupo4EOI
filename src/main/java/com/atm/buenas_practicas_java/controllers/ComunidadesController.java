@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -77,7 +78,7 @@ public class ComunidadesController {
         Publicacion publicacion = new Publicacion();
         publicacion.setTitulo(titulo);
         publicacion.setComunidad(comunidad);
-        publicacion = publicacionService.save(publicacion);
+
 
         Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
 
@@ -87,7 +88,13 @@ public class ComunidadesController {
         comentario.setPublicacion(publicacion);
         comentario.setUsuario(usuario);
 
+        publicacion.setComentariosPublicacion(Arrays.asList(comentario));
+
+        publicacionService.save(publicacion);
+
         comPubService.save(comentario);
+
+
 
         return "redirect:/comunidades/" + id + "/temas/" + publicacion.getIdPublicacion();
     }
