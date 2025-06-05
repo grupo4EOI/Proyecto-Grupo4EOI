@@ -101,6 +101,11 @@ a:hover, .nav-link:hover {
     height: 400px;
 }
 
+.imagen-objeto {
+    width: 300px;
+    height: 400px;
+}
+
 @media screen and (max-width: 1200px) {
     .image-container-ext {
         display: flex;

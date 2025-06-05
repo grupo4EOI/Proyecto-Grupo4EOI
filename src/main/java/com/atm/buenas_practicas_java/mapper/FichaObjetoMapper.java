@@ -1,7 +1,6 @@
 package com.atm.buenas_practicas_java.mapper;
 
-import com.atm.buenas_practicas_java.dtos.FichaObjetoDTO;
-import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.FichaObjetoDTO;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Tipo;

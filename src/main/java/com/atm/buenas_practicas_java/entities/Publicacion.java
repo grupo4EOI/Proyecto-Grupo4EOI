@@ -23,6 +23,8 @@ public class Publicacion {
     @Column(columnDefinition = "VARCHAR(200)")
     private String titulo;
 
+    private Boolean abuso = false;
+
     @OneToMany(mappedBy = "publicacion", fetch = FetchType.EAGER)
     private List<ComentarioPublicacion> comentariosPublicacion;
 

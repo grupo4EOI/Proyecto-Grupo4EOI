@@ -16,5 +16,5 @@ public interface ComentarioResenaMapper {
     @Mapping(source = "usuario", target = "usuario")
     ComentarioResenaDTO toDto(ComentarioResena comentarioResena);
 
-    List<ComentarioResenaDTO> toDtoList(Set<ComentarioResena> comentarios);
+    List<ComentarioResenaDTO> toDtoList(List<ComentarioResena> comentarios);
 }

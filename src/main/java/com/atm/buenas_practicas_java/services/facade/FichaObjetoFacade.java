@@ -1,7 +1,7 @@
 package com.atm.buenas_practicas_java.services.facade;
 
 import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
-import com.atm.buenas_practicas_java.dtos.FichaObjetoDTO;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.FichaObjetoDTO;
 import com.atm.buenas_practicas_java.dtos.PersonaDTO;
 import com.atm.buenas_practicas_java.dtos.ResenaDTO;
 import com.atm.buenas_practicas_java.entities.Objeto;

@@ -675,15 +675,11 @@ public class LocalDataLoader {
 
         objeto.setPersonasObjeto(new HashSet<>(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3)));
 
-
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3));
-
-
 
         objetoRepository.saveAll(Arrays.asList(objeto, objeto2, objeto3, objeto4, objeto5, objeto6, objeto7,
                 objeto8, objeto9, objeto10, objeto11, objeto12, objeto13, objeto14, objeto15, objeto16,
                 objeto17, objeto18, objeto19, objeto20, objeto21, objeto22, objeto23));
-
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3));
 
@@ -729,6 +725,7 @@ public class LocalDataLoader {
         resena1.setSpoiler(false);
         resena1.setUsuario(usuario1);
         resena1.setObjeto(objeto);
+        resena1.setAbuso(true);
 
         ComentarioResena comentarioResena1 = new ComentarioResena();
         comentarioResena1.setResena(resena1);
@@ -737,11 +734,13 @@ public class LocalDataLoader {
                 " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi\" +\n" +
                 "                \" delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat\" +\n" +
                 "                \" quibusdam quisquam quos repellat sunt vitae.");
+        comentarioResena1.setAbuso(true);
 
         ComentarioResena comentarioResena2 = new ComentarioResena();
         comentarioResena2.setResena(resena1);
         comentarioResena2.setUsuario(usuario3);
         comentarioResena2.setContenido("Me ha gustao mucho tu reseña, mi pana. Ánimo con lo tuyo.");
+        comentarioResena2.setAbuso(true);
 
         resena1.setComentariosResena(new HashSet<>(Arrays.asList(comentarioResena1, comentarioResena2)));
 
@@ -756,6 +755,7 @@ public class LocalDataLoader {
         resena2.setSpoiler(false);
         resena2.setUsuario(usuario2);
         resena2.setObjeto(objeto);
+        resena2.setAbuso(true);
 
 
         resenaRepository.saveAll(Arrays.asList(resena1, resena2));
@@ -830,6 +830,7 @@ public class LocalDataLoader {
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
         comentarioPublicacion2.setFecha(LocalDateTime.of(2025, 5, 25, 16, 39, 14));
+        comentarioPublicacion2.setAbuso(true);
 
         ComentarioPublicacion comentarioPublicacion3 = new ComentarioPublicacion();
         comentarioPublicacion3.setPublicacion(publicacion1);
@@ -856,6 +857,7 @@ public class LocalDataLoader {
                 " Prueba para ver si sólo sale el primero de todos lso comentarios de cada una de" +
                 " las publicaciones asociadas a la comunidad.");
         comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
+        comentarioPublicacion5.setAbuso(true);
 
         ComentarioPublicacion comentarioPublicacion6 = new ComentarioPublicacion();
         comentarioPublicacion6.setPublicacion(publicacion2);

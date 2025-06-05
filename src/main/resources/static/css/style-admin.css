@@ -1,0 +1,18 @@
+.etiqueta {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: #F9C784;
+}
+
+.etiqueta:hover {
+    transition: background-color 0.3s ease;
+    background-color: #FF8C42;
+    cursor: pointer;
+}
+
+/* Estilo para las reseñas */
+#review, #publicacion, .comentarios {
+    border: 2px solid black;
+    border-radius: 8px;
+}
