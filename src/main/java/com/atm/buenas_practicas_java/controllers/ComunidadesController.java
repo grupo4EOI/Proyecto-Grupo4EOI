@@ -1,9 +1,11 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
 import com.atm.buenas_practicas_java.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,17 +26,19 @@ public class ComunidadesController {
     private PublicacionService publicacionService;
     private ComentarioPublicacionService comPubService;
     private UsuarioService usuarioService;
+    private ComunidadMapper comunidadMapper;
 
-    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService, UsuarioService usuarioService) {
+    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService, UsuarioService usuarioService, ComunidadMapper comunidadMapper) {
         this.comunidadService = comunidadService;
         this.publicacionService = publicacionService;
         this.comPubService = comPubService;
         this.usuarioService = usuarioService;
+        this.comunidadMapper = comunidadMapper;
     }
 
     @GetMapping
     public String mostrarComunidades(Model model) {
-        List<Comunidad> comunidades = comunidadService.findAll();
+        List<ComunidadDTO> comunidades = comunidadMapper.toDTO(comunidadService.findAll());
         model.addAttribute("comunidades", comunidades);
         return "comunidades";
     }

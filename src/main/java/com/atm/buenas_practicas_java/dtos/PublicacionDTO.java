@@ -4,6 +4,7 @@ import java.util.List;
 
 public record PublicacionDTO(
         String titulo,
-        List<ComentarioPublicacionDTO> comentarios
+        Long numComentarios,
+        String nombreUsuario
 ) {
 }
