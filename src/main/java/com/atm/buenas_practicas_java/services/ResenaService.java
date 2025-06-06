@@ -40,8 +40,8 @@ public class ResenaService {
         return resenaMapper.toDtoList(resenasReportadas);
     }
 
-    public List<ResenaDTO> obtenerUltimasResenas() {
-        List<Resena> ultimasResenas = resenaRepository.findTop2ByOrderByFechaPublicacionDesc();
-        return resenaMapper.toDtoList(ultimasResenas);
+    public ResenaDTO obtenerUltimaResena() {
+        Resena ultimaResena = resenaRepository.findTopByOrderByFechaPublicacionDesc();
+        return resenaMapper.toDto(ultimaResena);
     }
 }
