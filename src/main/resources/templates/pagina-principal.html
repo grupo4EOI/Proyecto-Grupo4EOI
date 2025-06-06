@@ -19,11 +19,48 @@
 <!--Contenido de la página-->
 
     <div class="container">
-        <section class="row justify-content-center">
-            <h2 class="mt-2 mb-2"><span th:text="${seccion.tipo()}">Películas</span> recientemente añadidas</h2>
+        <section class="row">
+            <h2 class="mt-2 mb-2">Películas recientemente añadidas</h2>
 
             <!-- Primera tarjeta -->
-            <div class="col-2 w-auto" th:each="objeto : ${seccion.objetosMasRecientes()}">
+            <div class="col-2 w-auto" th:each="objeto : ${paginaPrincipal.peliculasRecientes()}">
+                <div class="card-container h-100 d-flex flex-column">
+                    <div class="image-container-ext">
+                        <div class="image-container">
+                            <img class="img-fluid imagen-objeto" alt="Cartel de Harry Potter"
+                                 th:src="${objeto.imagenUrl()}">
+                            <button class="trailer-button btn btn-primary video-btn"
+                                    data-bs-target="#modal-trailer"
+                                    data-bs-toggle="modal"
+                                    th:data-src="${objeto.trailerUrl()}"
+                                    type="button">
+                                <i class="bi bi-play-circle me-2"></i>Ver trailer
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
+                    <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
+                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" >
+                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none  text-dark">
+                                <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                            </a>
+                        </h2>
+                        <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
+                            <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
+                            <p class="puntuacion">
+                                <span th:text="'(' + ${objeto.numeroResenas()} + ' reseñas) '"></span>
+                                <i class="bi bi-star-fill"></i>
+                                <span th:text="${objeto.puntuacion()}">4.7</span> / 5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="row">
+            <h2 class="mt-2 mb-2">Videojuegos más populares</h2>
+
+            <!-- Primera tarjeta -->
+            <div class="col-2 w-auto" th:each="objeto : ${paginaPrincipal.videojuegosPopulares()}">
                 <div class="card-container h-100 d-flex flex-column">
                     <div class="image-container-ext">
                         <div class="image-container">

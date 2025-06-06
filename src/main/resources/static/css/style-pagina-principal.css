@@ -2,51 +2,105 @@
     background-color: #FF8C42 !important;
 }
 
-/*Carousel principal en construcción*/
 
-.carousel-inner {
-    display: flex; /* Asegura que los elementos se alineen horizontalmente */
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 400px;
 }
 
-.carousel-item {
-    flex: 0 0 auto; /* Evita que los elementos se reduzcan */
-    width: 100%; /* Ajusta el ancho al contenedor */
+.image-container > img {
+    display: block;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    max-width: 300px;
+    max-height: 400px;
 }
 
-.carousel-item img {
-    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
-    height: 500px; /* Establece una altura fija para pantallas grandes */
+.image-container:hover img {
+    opacity: 0.6;
 }
 
-@media (max-width: 200px) {
-    .carousel-item img {
-        height: auto; /* Ajusta automáticamente la altura en pantallas pequeñas */
-    }
-}
-.carousel-caption {
+.trailer-button {
     position: absolute;
-    bottom: 10%;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-    color: white;
-    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s ease;
+    z-index: 2;
+    font-weight: bold;
 }
 
-.carousel-caption h5 {
-    font-size: 1.2rem;
-    margin: 0;
+.image-container:hover .trailer-button {
+    opacity: 1;
+    transition: background-color 0.3s ease;
 }
 
-@media (max-width: 1200px) {
-    .carousel-caption {
-        bottom: 5%;
-        padding: 5px;
-    }
-    .carousel-caption h5 {
-        font-size: 0.9rem; /* Texto más pequeño en móviles */
+.trailer-button:hover{
+    background-color: #f0f0f0;
+}
+
+/* Estilos para el modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 100px auto;
+}
+
+.modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+.btn-close {
+    position: absolute;
+    right: -30px;
+    top: 0;
+}
+
+/* Diseño imagen para vista menor que ordenador*/
+.image-container-ext {
+    width: 300px;
+    height: 400px;
+}
+
+.imagen-objeto {
+    width: 300px;
+    height: 400px;
+}
+
+@media screen and (max-width: 1200px) {
+    .image-container-ext {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
     }
 }
+
+.titulo-objeto {
+    max-width: 300px;
+}
+
+.enlace-tit{
+    transition: color 0.6s ease, text-shadow 0.6s ease, transform 0.6s ease;
+}
+
+.enlace-tit:hover {
+    color: #ff8c42; /* Azul Bootstrap */
+    transform: scale(1.03);
+}
+
 
 

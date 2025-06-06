@@ -1,6 +1,8 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.services.facade.PaginaPrincipalServiceFacade;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,8 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping({"/", "/pagina-principal"})
 public class PaginaPrincipalController {
 
+    private final PaginaPrincipalServiceFacade paginaPrincipalService;
+
+    public PaginaPrincipalController(PaginaPrincipalServiceFacade paginaPrincipalService) {
+        this.paginaPrincipalService = paginaPrincipalService;
+    }
+
     @GetMapping
-    public String mostrarPaginaPrincipal() {
+    public String mostrarPaginaPrincipal(Model model) {
+        model.addAttribute("paginaPrincipal", paginaPrincipalService.construirDTOPaginaPrincipal());
         return "/pagina-principal";
     }
 }

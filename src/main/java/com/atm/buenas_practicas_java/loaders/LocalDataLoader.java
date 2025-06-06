@@ -44,6 +44,7 @@ public class LocalDataLoader {
     private final PublicacionRepository publicacionRepository;
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
+    private final ObjetoUsuarioRepository objetoUsuarioRepository;
 
 
     public LocalDataLoader(ObjetoRepository objetoRepository,
@@ -56,7 +57,8 @@ public class LocalDataLoader {
                            ComentarioPublicacionRepository comentarioPublicacionRepository,
                            PublicacionRepository publicacionRepository,
                            ComunidadRepository comunidadRepository,
-                           ComentarioResenaRepository comentarioResenaRepository) {
+                           ComentarioResenaRepository comentarioResenaRepository,
+                           ObjetoUsuarioRepository objetoUsuarioRepository) {
         this.objetoRepository = objetoRepository;
         this.personaRepository = personaRepository;
         this.personaObjetoRepository = personaObjetoRepository;
@@ -68,6 +70,7 @@ public class LocalDataLoader {
         this.publicacionRepository = publicacionRepository;
         this.comunidadRepository = comunidadRepository;
         this.comentarioResenaRepository = comentarioResenaRepository;
+        this.objetoUsuarioRepository = objetoUsuarioRepository;
     }
 
     @PostConstruct
@@ -804,12 +807,44 @@ public class LocalDataLoader {
         usuario20.setContrasena("fastnfurious");
         usuario20.setRole("USER");
 
+        ObjetoUsuario objetoUsuario1 = new ObjetoUsuario();
+        objetoUsuario1.setEstado(true);
+        objetoUsuario1.setUsuario(usuario1);
+        objetoUsuario1.setFavorito(true);
+        objetoUsuario1.setObjeto(objeto23);
+
+        ObjetoUsuario objetoUsuario2 = new ObjetoUsuario();
+        objetoUsuario2.setEstado(true);
+        objetoUsuario2.setUsuario(usuario1);
+        objetoUsuario2.setFavorito(true);
+        objetoUsuario2.setObjeto(objeto22);
+
+        ObjetoUsuario objetoUsuario3 = new ObjetoUsuario();
+        objetoUsuario3.setEstado(true);
+        objetoUsuario3.setUsuario(usuario1);
+        objetoUsuario3.setFavorito(true);
+        objetoUsuario3.setObjeto(objeto21);
+
+        ObjetoUsuario objetoUsuario4 = new ObjetoUsuario();
+        objetoUsuario4.setEstado(true);
+        objetoUsuario4.setUsuario(usuario1);
+        objetoUsuario4.setFavorito(true);
+        objetoUsuario4.setObjeto(objeto20);
+
+        ObjetoUsuario objetoUsuario5 = new ObjetoUsuario();
+        objetoUsuario5.setEstado(true);
+        objetoUsuario5.setUsuario(usuario1);
+        objetoUsuario5.setFavorito(true);
+        objetoUsuario5.setObjeto(objeto19);
+
         usuarioRepository.saveAll(Arrays.asList(
                 usuario1, usuario2, usuario3, usuario4, usuario5,
                 usuario6, usuario7, usuario8, usuario9, usuario10,
                 usuario11, usuario12, usuario13, usuario14, usuario15,
                 usuario16, usuario17, usuario18, usuario19, usuario20
         ));
+
+        objetoUsuarioRepository.saveAll(Arrays.asList(objetoUsuario1, objetoUsuario2, objetoUsuario3, objetoUsuario4, objetoUsuario5));
 
         // Reseñas de prueba
         Resena resena1 = new Resena();
