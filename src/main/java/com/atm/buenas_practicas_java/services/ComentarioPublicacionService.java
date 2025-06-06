@@ -63,7 +63,15 @@ public class ComentarioPublicacionService {
     }
 
     public List<ComentarioPublicacionSimpleDTO> getComentarioPublicacionByPublicacionId(Long publicacionId){
-        return comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacion(publicacionId));
+        List<ComentarioPublicacionSimpleDTO> comPubSimpleDTO = comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacion(publicacionId));
+        return comPubSimpleDTO.stream()
+                .map(comentario -> new ComentarioPublicacionSimpleDTO(
+                        comentario.publicacion(),
+                        comentario.contenido(),
+                        comentario.usuario(),
+                        comentario.fecha()
+                        )
+                    ).toList();
     }
 
     public List<ComentarioPublicacionDTO> buscarComentariosPublicacionConAbuso() {

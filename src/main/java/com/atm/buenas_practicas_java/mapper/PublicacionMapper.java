@@ -20,7 +20,8 @@ public interface PublicacionMapper {
         ComentarioPublicacion primerComentario = publicacion.getComentariosPublicacion().get(0);
         return new UsuarioDTO(
                 primerComentario.getUsuario().getNombreUsuario(),
-                primerComentario.getUsuario().getAvatarUrl()
+                primerComentario.getUsuario().getAvatarUrl(),
+                primerComentario.getUsuario().getRole()
         );
     }
 

@@ -74,7 +74,7 @@ public class ComunidadesController {
 
     @GetMapping("/{id}/temas/nuevo-tema")
     public String mostrarNuevoTema(Model model, @PathVariable Long id) {
-        Comunidad comunidad = comunidadService.findById(id);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
         model.addAttribute("comunidad", comunidad);
         return "nuevo-tema";
     }
