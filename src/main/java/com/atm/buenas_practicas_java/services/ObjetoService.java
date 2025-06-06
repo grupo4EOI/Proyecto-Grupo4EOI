@@ -62,16 +62,22 @@ public class ObjetoService {
                 )).toList();
     }
 
-    public List<ObjetoDTO> obtenerObjetosMasRecientesPorTipo(String tipo) {
-        List<Objeto> objetos = objetoRepository.findObjetosByTipo_NombreOrderByFechaPublicacionDesc(tipo, Limit.of(8));
+    public List<ObjetoDTO> obtenerObjetosMasRecientesPorTipo(String tipo, Limit limit) {
+        List<Objeto> objetos = objetoRepository.findObjetosByTipo_NombreOrderByFechaPublicacionDesc(tipo, limit);
         List<ObjetoDTO> objetosMasRecientes = objetoMapper.toDtoList(objetos);
         return rellenarListaObjetosDTO(objetosMasRecientes);
     }
 
-    public List<ObjetoDTO> obtenerObjetosMejorValoradosPorTipo(String tipo) {
-        List<Objeto> objetos = objetoRepository.buscarListaObjetosMejorValoradosPorTipo(tipo, Limit.of(8));
+    public List<ObjetoDTO> obtenerObjetosMejorValoradosPorTipo(String tipo, Limit limit) {
+        List<Objeto> objetos = objetoRepository.buscarListaObjetosMejorValoradosPorTipo(tipo, limit);
         List<ObjetoDTO> objetosMasValorados = objetoMapper.toDtoList(objetos);
         return rellenarListaObjetosDTO(objetosMasValorados);
+    }
+
+    public List<ObjetoDTO> obtenerObjetosMasPopularesPorTipo(String tipo, Limit limit) {
+        List<Objeto> objetos = objetoRepository.buscarListaObjetosMasPopularesPorTipo(tipo, limit);
+        List<ObjetoDTO> objetosMasVistos = objetoMapper.toDtoList(objetos);
+        return rellenarListaObjetosDTO(objetosMasVistos);
     }
 
     public SeccionDTO construirSeccionDTO(String tipo) {
@@ -86,8 +92,8 @@ public class ObjetoService {
 
         return new SeccionDTO(
                 tipoSeccion,
-                obtenerObjetosMasRecientesPorTipo(tipo),
-                obtenerObjetosMejorValoradosPorTipo(tipo)
+                obtenerObjetosMasRecientesPorTipo(tipo, Limit.of(8)),
+                obtenerObjetosMejorValoradosPorTipo(tipo, Limit.of(8))
         );
     }
 }

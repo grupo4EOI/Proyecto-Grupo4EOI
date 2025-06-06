@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class Resena {
     @Column(name = "id_resena", columnDefinition = "INTEGER")
     private int idResena;
     private String titulo;
+    private LocalDateTime fechaPublicacion;
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Double puntuacion;
