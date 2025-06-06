@@ -1,5 +1,6 @@
 package com.atm.buenas_practicas_java.services.facade;
 
+import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
 import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
@@ -42,5 +43,10 @@ public class ComunidadServiceFacade {
 
     public List<PublicacionDTO> buscarPublicacionesPorComunidad(Long idComunidad) {
         return publicacionService.buscarPublicacionesPorComunidad(idComunidad);
+    }
+
+    public List<ComentarioPublicacionSimpleDTO> buscarComentariosPorPublicacion(Long idPublicacion) {
+        return comPubService.getComentarioPublicacionByPublicacionId(idPublicacion);
+
     }
 }

@@ -35,7 +35,4 @@ public class ComentarioPublicacion {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
-
-    @OneToMany(mappedBy = "comentarioPublicacion", fetch = FetchType.EAGER)
-    private List<Reaccion> reacciones;
 }

@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface ComentarioPublicacionRepository extends JpaRepository<ComentarioPublicacion, Long> {
     List<ComentarioPublicacion> findComentarioPublicacionsByAbusoEquals(boolean b);
+    List<ComentarioPublicacion> findComentarioPublicacionsByPublicacion_IdPublicacion(Long idPublicacion);
 }

@@ -1,5 +1,6 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
 import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
@@ -64,9 +65,9 @@ public class ComunidadesController {
 
     @GetMapping("/{idcom}/temas/{id}")
     public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id) {
-        Comunidad com = comunidadService.findById(idcom);
-        List<ComentarioPublicacion> comentarios = comPubService.getComentarioPublicacionByPublicacionId(id);
-        model.addAttribute("comunidad", com);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(idcom);
+        List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
+        model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
         return "ejemplo-tema";
     }

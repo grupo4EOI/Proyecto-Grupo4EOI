@@ -1,10 +1,12 @@
 package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
+import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionSimpleDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Publicacion;
+import com.atm.buenas_practicas_java.mapper.ComentarioPublicacionSimpleMapper;
 import com.atm.buenas_practicas_java.repositories.ComentarioPublicacionRepository;
 import com.atm.buenas_practicas_java.mapper.ComentarioPublicacionMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
@@ -23,16 +25,19 @@ public class ComentarioPublicacionService {
     private final ComentarioPublicacionRepository comPubRepository;
     private final ComentarioPublicacionMapper comentarioPublicacionMapper;
     private final ComentarioPublicacionRepository comentarioPublicacionRepository;
+    private final ComentarioPublicacionSimpleMapper comPubSimpleMapper;
 
     public ComentarioPublicacionService(ObjetoRepository objetoRepository,
                                         PublicacionRepository publicacionRepository,
                                         ComentarioPublicacionMapper comentarioPublicacionMapper,
-                                        ComentarioPublicacionRepository comPubRepository, ComentarioPublicacionRepository comentarioPublicacionRepository) {
+                                        ComentarioPublicacionRepository comPubRepository, ComentarioPublicacionRepository comentarioPublicacionRepository,
+                                        ComentarioPublicacionSimpleMapper comentarioPublicacionSimpleMapper) {
         this.objetoRepository = objetoRepository;
         this.publicacionRepository = publicacionRepository;
         this.comentarioPublicacionMapper = comentarioPublicacionMapper;
         this.comPubRepository = comPubRepository;
         this.comentarioPublicacionRepository = comentarioPublicacionRepository;
+        this.comPubSimpleMapper = comentarioPublicacionSimpleMapper;
     }
 
     /** Devuelve una lista de los primeros comentarios de cada publicación pertenecientes a la comunidad del objeto */
@@ -50,7 +55,6 @@ public class ComentarioPublicacionService {
                                         publicacion.getTitulo(),
                                         dto.contenido(),
                                         dto.usuario(),
-                                        dto.reacciones(),
                                         dto.fecha()
                                 );
                             })
@@ -58,8 +62,8 @@ public class ComentarioPublicacionService {
                 }).orElseThrow(() -> new RuntimeException("No se encontró el objeto"));
     }
 
-    public List<ComentarioPublicacion> getComentarioPublicacionByPublicacionId(Long publicacionId){
-        return publicacionRepository.findById(publicacionId).get().getComentariosPublicacion();
+    public List<ComentarioPublicacionSimpleDTO> getComentarioPublicacionByPublicacionId(Long publicacionId){
+        return comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacion(publicacionId));
     }
 
     public List<ComentarioPublicacionDTO> buscarComentariosPublicacionConAbuso() {
@@ -72,7 +76,6 @@ public class ComentarioPublicacionService {
                             titulo,
                             comentarioDTO.contenido(),
                             comentarioDTO.usuario(),
-                            comentarioDTO.reacciones(),
                             comentarioDTO.fecha()
                     );
                 })
