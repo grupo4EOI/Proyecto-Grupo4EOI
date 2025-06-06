@@ -778,6 +778,7 @@ public class LocalDataLoader {
         usuario16.setNombreUsuario("Ibizilla_1.9TDI");
         usuario16.setEmail("seatpower@vaggroup.org");
         usuario16.setContrasena("smokeyboi");
+        usuario16.setRole("USER");
 
         Usuario usuario17 = new Usuario();
         usuario17.setNombreUsuario("PaKeKieresSaberEso");
