@@ -706,61 +706,73 @@ public class LocalDataLoader {
         usuario4.setNombreUsuario("OpelCorsa99");
         usuario4.setEmail("corsita@forocoches.com");
         usuario4.setContrasena("opelpower");
+        usuario4.setRole("USER");
 
         Usuario usuario5 = new Usuario();
         usuario5.setNombreUsuario("DNIroto");
         usuario5.setEmail("sinpapeles@forochapa.net");
         usuario5.setContrasena("cuñadismo123");
+        usuario5.setRole("USER");
 
         Usuario usuario6 = new Usuario();
         usuario6.setNombreUsuario("Turbodiesel92");
         usuario6.setEmail("motorz@torquemax.org");
         usuario6.setContrasena("torque+ps");
+        usuario6.setRole("USER");
 
         Usuario usuario7 = new Usuario();
         usuario7.setNombreUsuario("Forero69");
         usuario7.setEmail("estoydentro@foro.com");
         usuario7.setContrasena("s3cret0");
+        usuario7.setRole("USER");
 
         Usuario usuario8 = new Usuario();
         usuario8.setNombreUsuario("AntiMultas3000");
         usuario8.setEmail("legalhacks@caminoalbania.ru");
         usuario8.setContrasena("radardetect");
+        usuario8.setRole("USER");
 
         Usuario usuario9 = new Usuario();
         usuario9.setNombreUsuario("PikachuEnZanini");
         usuario9.setEmail("pokemon@electrotuneo.com");
         usuario9.setContrasena("pika-pika");
+        usuario9.setRole("USER");
 
         Usuario usuario10 = new Usuario();
         usuario10.setNombreUsuario("JoseAntonio88");
         usuario10.setEmail("falcon@españa.es");
         usuario10.setContrasena("vivaespaña");
+        usuario10.setRole("USER");
 
         Usuario usuario11 = new Usuario();
         usuario11.setNombreUsuario("MiVecinoMataGatos");
         usuario11.setEmail("denuncia@callejonoscuro.com");
         usuario11.setContrasena("michisno");
+        usuario11.setRole("USER");
 
         Usuario usuario12 = new Usuario();
         usuario12.setNombreUsuario("Tronchamozas");
         usuario12.setEmail("ligon@foropub.com");
         usuario12.setContrasena("musculitos");
+        usuario12.setRole("USER");
 
         Usuario usuario13 = new Usuario();
         usuario13.setNombreUsuario("CanelitaEnMoto");
         usuario13.setEmail("flamenco@dosruedas.com");
         usuario13.setContrasena("ole1234");
+        usuario13.setRole("USER");
 
         Usuario usuario14 = new Usuario();
         usuario14.setNombreUsuario("BocachanclaPro");
         usuario14.setEmail("chismes@lavozdelbarrio.org");
         usuario14.setContrasena("cotilleoON");
+        usuario14.setRole("USER");
 
         Usuario usuario15 = new Usuario();
         usuario15.setNombreUsuario("Mecanicor");
         usuario15.setEmail("grasa@talleresmanolo.com");
         usuario15.setContrasena("aceite5w30");
+        usuario15.setRole("USER");
 
         Usuario usuario16 = new Usuario();
         usuario16.setNombreUsuario("Ibizilla_1.9TDI");
@@ -771,21 +783,25 @@ public class LocalDataLoader {
         usuario17.setNombreUsuario("PaKeKieresSaberEso");
         usuario17.setEmail("respuestaobvia@forocuñado.com");
         usuario17.setContrasena("nopreguntes");
+        usuario17.setRole("USER");
 
         Usuario usuario18 = new Usuario();
         usuario18.setNombreUsuario("DamePermisoAdmin");
         usuario18.setEmail("banme@modmail.com");
         usuario18.setContrasena("permabanpls");
+        usuario18.setRole("USER");
 
         Usuario usuario19 = new Usuario();
         usuario19.setNombreUsuario("KebabDeRes");
         usuario19.setEmail("nocheloca@4AM.com");
         usuario19.setContrasena("ajiquemepica");
+        usuario19.setRole("USER");
 
         Usuario usuario20 = new Usuario();
         usuario20.setNombreUsuario("TorettoDelPoli");
         usuario20.setEmail("familia@racinglife.com");
         usuario20.setContrasena("fastnfurious");
+        usuario20.setRole("USER");
 
         usuarioRepository.saveAll(Arrays.asList(
                 usuario1, usuario2, usuario3, usuario4, usuario5,
