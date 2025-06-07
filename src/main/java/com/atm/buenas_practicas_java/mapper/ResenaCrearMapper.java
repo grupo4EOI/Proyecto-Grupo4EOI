@@ -23,6 +23,6 @@ public interface ResenaCrearMapper {
     @Mapping(target = "comentariosResena", ignore = true)
     @Mapping(target = "usuario", ignore = true)
     @Mapping(target = "abuso", ignore = true)
-    Resena toEntity(ResenaCrearDTO resenaDTO);
+    Resena toEntity(ResenaDTO resenaDTO);
 }
 

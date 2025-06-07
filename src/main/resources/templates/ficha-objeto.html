@@ -252,11 +252,11 @@
             </div>
             <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
             <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#comentarios-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat"></i> Comentarios</div>
-            <div class="row collapse mt-3" th:id="'comentarios-' + ${iterStat.index}">
-                <div class="card card-body p-3">
-                    <form th:action="@{/ficha-objeto/{objId}/resena/{resenaId}/comentar(objId=${fichaObjeto.idObjeto()}, resenaId=${resena.})})"
-                </div>
-            </div>
+<!--            <div class="row collapse mt-3" th:id="'comentarios-' + ${iterStat.index}">-->
+<!--                <div class="card card-body p-3">-->
+<!--                    <form th:action="@{/ficha-objeto/{objId}/resena/{resenaId}/comentar(objId=${fichaObjeto.idObjeto()}, resenaId=${resena.})})"-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="row collapse mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
                 <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
                         class="bi bi-person me-2"></i>@MrReseñador

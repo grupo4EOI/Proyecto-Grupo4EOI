@@ -339,7 +339,7 @@ public class LocalDataLoader {
         // Objeto de prueba
         // PELÍCULAS
         Objeto objeto = new Objeto();
-        objeto.setTitulo("Harry Potter");
+        objeto.setTitulo("Harry Potterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         objeto.setDescripcion("Harry Potter es una pelicula que trata de " +
                 " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
                 " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
