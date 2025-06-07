@@ -97,17 +97,27 @@ public class ComunidadesController {
 
         Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
 
+        if (!usuario.getComunidades().contains(comunidad)) {
+            usuario.getComunidades().add(comunidad);
+            usuarioService.save(usuario);
+        }
+
+
         ComentarioPublicacion comentario = new ComentarioPublicacion();
         comentario.setContenido(contenido);
         comentario.setFecha(LocalDateTime.now());
         comentario.setPublicacion(publicacion);
         comentario.setUsuario(usuario);
 
+
+
         publicacion.setComentariosPublicacion(Arrays.asList(comentario));
 
         publicacionService.save(publicacion);
 
         comPubService.save(comentario);
+
+
 
 
 
@@ -132,6 +142,11 @@ public class ComunidadesController {
 
         Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
 
+        if (!usuario.getComunidades().contains(comunidad)) {
+            usuario.getComunidades().add(comunidad);
+            usuarioService.save(usuario);
+        }
+
         ComentarioPublicacion comentario = new ComentarioPublicacion();
         comentario.setContenido(contenido);
         comentario.setFecha(LocalDateTime.now());
@@ -139,6 +154,8 @@ public class ComunidadesController {
         comentario.setUsuario(usuario);
 
         comPubService.save(comentario);
+
+
 
         return "redirect:/comunidades/" + idcom + "/temas/" + id;
     }

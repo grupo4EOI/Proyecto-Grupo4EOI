@@ -67,6 +67,7 @@ public class ComentarioPublicacionService {
         return comPubSimpleDTO.stream()
                 .map(comentario -> new ComentarioPublicacionSimpleDTO(
                         comentario.publicacion(),
+                        comentario.idComentarioPublicacion(),
                         comentario.contenido(),
                         comentario.usuario(),
                         comentario.fecha()
