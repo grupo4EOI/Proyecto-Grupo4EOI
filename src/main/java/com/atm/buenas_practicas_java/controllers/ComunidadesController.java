@@ -1,9 +1,6 @@
 package com.atm.buenas_practicas_java.controllers;
 
-import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionSimpleDTO;
-import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
-import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
-import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
+import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
@@ -75,53 +72,15 @@ public class ComunidadesController {
     @GetMapping("/{id}/temas/nuevo-tema")
     public String mostrarNuevoTema(Model model, @PathVariable Long id) {
         ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        model.addAttribute("nuevoTema", new PublicacionCrearDTO(null, "", ""));
         model.addAttribute("comunidad", comunidad);
         return "nuevo-tema";
     }
 
     @PostMapping("/{id}/temas")
-    public String crearNuevoTema(@PathVariable Long id,
-                                 @RequestParam String titulo,
-                                 @RequestParam String contenido,
-                                 Principal principal) {
-
-        Comunidad comunidad = comunidadService.findById(id);
-        if (comunidad == null) {
-            return "redirect:/error";
-        }
-
-        Publicacion publicacion = new Publicacion();
-        publicacion.setTitulo(titulo);
-        publicacion.setComunidad(comunidad);
-
-
-        Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
-
-        if (!usuario.getComunidades().contains(comunidad)) {
-            usuario.getComunidades().add(comunidad);
-            usuarioService.save(usuario);
-        }
-
-
-        ComentarioPublicacion comentario = new ComentarioPublicacion();
-        comentario.setContenido(contenido);
-        comentario.setFecha(LocalDateTime.now());
-        comentario.setPublicacion(publicacion);
-        comentario.setUsuario(usuario);
-
-
-
-        publicacion.setComentariosPublicacion(Arrays.asList(comentario));
-
-        publicacionService.save(publicacion);
-
-        comPubService.save(comentario);
-
-
-
-
-
-        return "redirect:/comunidades/" + id + "/temas/" + publicacion.getIdPublicacion();
+    public String crearNuevoTema(@PathVariable Long id, @ModelAttribute("nuevoTema") PublicacionCrearDTO publicacion, Principal principal) {
+        PublicacionCrearDTO publicacionDTO = comunidadServiceFacade.nuevaPublicacion(id, publicacion, principal.getName());
+        return String.format("redirect:/comunidades/%d/temas/%d", id, publicacionDTO.idPublicacion());
     }
 
     @PostMapping("/{idcom}/temas/{id}")

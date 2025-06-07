@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ComentarioPublicacion {
     @Column(columnDefinition = "INTEGER")
     private Long idComentarioPublicacion;
 
-    private LocalDateTime fecha;
+    private LocalDateTime fecha = LocalDateTime.now();
 
     @Column(columnDefinition = "TEXT")
     private String contenido;
