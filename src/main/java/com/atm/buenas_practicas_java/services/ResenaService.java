@@ -39,4 +39,8 @@ public class ResenaService {
         List<Resena> resenas = resenaRepository.findResenasByAbusoEquals(true);
         return resenaMapper.toDtoList(resenas);
     }
+
+    public Resena guardarResena(Resena resena) {
+        return resenaRepository.save(resena);
+    }
 }

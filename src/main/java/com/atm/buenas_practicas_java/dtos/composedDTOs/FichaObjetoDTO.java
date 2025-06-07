@@ -7,6 +7,7 @@ import com.atm.buenas_practicas_java.dtos.ResenaDTO;
 import java.util.List;
 
 public record FichaObjetoDTO(
+        Long idObjeto,
         String titulo,
         String descripcion,
         String fechaYDuracion,

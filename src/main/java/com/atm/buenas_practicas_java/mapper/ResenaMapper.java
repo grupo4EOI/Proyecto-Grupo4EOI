@@ -19,4 +19,12 @@ public interface ResenaMapper {
     ResenaDTO toDto(Resena resena);
 
     List<ResenaDTO> toDtoList(List<Resena> resenas);
+
+    @Mapping(target = "idResena", ignore = true)
+    @Mapping(target = "objeto", ignore = true)
+    @Mapping(target = "reacciones", ignore = true)
+    @Mapping(target = "comentariosResena", ignore = true)
+    @Mapping(target = "usuario", ignore = true)
+    @Mapping(target = "abuso", ignore = true)
+    Resena toEntity(ResenaDTO resenaDTO);
 }
