@@ -75,11 +75,10 @@ public class FichaObjetoFacade {
         );
     }
 
-    public ResenaDTO agregarResena(Long idObjeto, ResenaDTO resenaDTO, String nombreUsuario) {
+    public void agregarResena(Long idObjeto, ResenaDTO resenaDTO, String nombreUsuario) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
         UsuarioDTO autorDTO = new UsuarioDTO(usuario.getNombreUsuario(), usuario.getAvatarUrl());
         ResenaDTO nuevaResena = new ResenaDTO(
-                null,
                 resenaDTO.titulo(),
                 resenaDTO.contenido(),
                 resenaDTO.puntuacion(),
@@ -97,7 +96,6 @@ public class FichaObjetoFacade {
         objeto.getResenas().add(entidadResena);
         usuario.getResenas().add(entidadResena);
 
-        Resena resenaGuardada = resenaRepository.save(entidadResena);
-        return resenaMapper.toDto(resenaGuardada);
+        resenaRepository.save(entidadResena);
     }
 }
