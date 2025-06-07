@@ -1,7 +1,5 @@
 package com.atm.buenas_practicas_java.repositories;
 
-import com.atm.buenas_practicas_java.dtos.ResenaDTO;
-import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
 import org.springframework.data.jpa.repository.JpaRepository;
 

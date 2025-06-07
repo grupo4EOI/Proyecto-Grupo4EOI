@@ -8,11 +8,10 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {UsuarioMapper.class, ComentarioResenaMapper.class})
-public interface ResenaMapper {
+public interface ResenaCrearMapper {
 
     @Mapping(source = "contenido", target = "contenido")
     @Mapping(source = "puntuacion", target = "puntuacion")
-    @Mapping(source = "usuario", target = "autor")
     @Mapping(source = "comentariosResena", target = "comentariosResena")
     ResenaDTO toDto(Resena resena);
 
@@ -24,5 +23,6 @@ public interface ResenaMapper {
     @Mapping(target = "comentariosResena", ignore = true)
     @Mapping(target = "usuario", ignore = true)
     @Mapping(target = "abuso", ignore = true)
-    Resena toEntity(ResenaDTO resenaDTO);
+    Resena toEntity(ResenaCrearDTO resenaDTO);
 }
+

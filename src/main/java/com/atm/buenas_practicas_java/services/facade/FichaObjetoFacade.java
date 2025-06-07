@@ -1,14 +1,12 @@
 package com.atm.buenas_practicas_java.services.facade;
 
-import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
-import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
+import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.FichaObjetoDTO;
-import com.atm.buenas_practicas_java.dtos.PersonaDTO;
-import com.atm.buenas_practicas_java.dtos.ResenaDTO;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
+import com.atm.buenas_practicas_java.mapper.ResenaCrearMapper;
 import com.atm.buenas_practicas_java.mapper.ResenaMapper;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import com.atm.buenas_practicas_java.services.*;
@@ -27,6 +25,7 @@ public class FichaObjetoFacade {
     private final ResenaMapper resenaMapper;
     private final UsuarioService usuarioService;
     private final ResenaRepository resenaRepository;
+    private final ResenaCrearMapper resenaCrearMapper;
 
     public FichaObjetoFacade(ObjetoService objetoService,
                              ResenaService resenaService,
@@ -34,7 +33,9 @@ public class FichaObjetoFacade {
                              ComentarioPublicacionService comentarioPublicacionService,
                              FichaObjetoMapper fichaObjetoMapper,
                              ResenaMapper resenaMapper,
-                             UsuarioService usuarioService, ResenaRepository resenaRepository) {
+                             UsuarioService usuarioService,
+                             ResenaRepository resenaRepository,
+                             ResenaCrearMapper resenaCrearMapper) {
         this.objetoService = objetoService;
         this.resenaService = resenaService;
         this.personaService = personaService;
@@ -43,6 +44,7 @@ public class FichaObjetoFacade {
         this.resenaMapper = resenaMapper;
         this.usuarioService = usuarioService;
         this.resenaRepository = resenaRepository;
+        this.resenaCrearMapper = resenaCrearMapper;
     }
 
     public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
@@ -75,21 +77,18 @@ public class FichaObjetoFacade {
         );
     }
 
-    public void agregarResena(Long idObjeto, ResenaDTO resenaDTO, String nombreUsuario) {
+    public void agregarResena(Long idObjeto, ResenaCrearDTO resenaDTO, String nombreUsuario) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
-        UsuarioDTO autorDTO = new UsuarioDTO(usuario.getNombreUsuario(), usuario.getAvatarUrl());
-        ResenaDTO nuevaResena = new ResenaDTO(
+        ResenaCrearDTO nuevaResena = new ResenaCrearDTO(
                 resenaDTO.titulo(),
                 resenaDTO.contenido(),
                 resenaDTO.puntuacion(),
-                resenaDTO.spoiler(),
-                autorDTO,
-                List.of()
+                resenaDTO.spoiler()
         );
 
         Objeto objeto = objetoService.findById(idObjeto);
 
-        Resena entidadResena = resenaMapper.toEntity(nuevaResena);
+        Resena entidadResena = resenaCrearMapper.toEntity(nuevaResena);
         entidadResena.setUsuario(usuario);
         entidadResena.setObjeto(objeto);
 
