@@ -29,16 +29,14 @@ public class ObjetoController {
         this.fichaObjetoFacade = fichaObjetoFacade;
     }
 
-    // TODO: Revisar los métodos en los servicios que tomen como parámetro el objeto entero. Cambiar por idObjeto.
     @GetMapping("/ficha-objeto/{id}")
     public String mostrarFichaObjeto(Model model, @PathVariable Long id) {
         model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(id));
-        model.addAttribute("nuevaResena", new ResenaDTO(null, null, null, false, null, List.of()));
+        model.addAttribute("nuevaResena", new ResenaDTO( "", "", 0.0, false, null, List.of()));
 
         return "/ficha-objeto";
     }
 
-    // TODO: Revisar cómo implementarlo en el facade
     @PostMapping("/ficha-objeto/{id}")
     public String nuevaResena(@PathVariable Long id, @ModelAttribute("nuevaResena") ResenaDTO resena, @AuthenticationPrincipal UserDetails usuario, RedirectAttributes attrs) {
         fichaObjetoFacade.agregarResena(id, resena, usuario.getUsername());

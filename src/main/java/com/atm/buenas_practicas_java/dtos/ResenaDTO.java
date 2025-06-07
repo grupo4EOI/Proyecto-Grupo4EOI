@@ -7,10 +7,10 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public record ResenaDTO(
-    @NotBlank String titulo,
-    @NotBlank String contenido,
-    @DecimalMin("0.0") @DecimalMax("5.0") Double puntuacion,
-    boolean spoiler,
-    UsuarioDTO autor,
-    List<ComentarioResenaDTO> comentariosResena
+        @NotBlank String titulo,
+        @NotBlank String contenido,
+        @DecimalMin("0.0") @DecimalMax("5.0") Double puntuacion,
+        boolean spoiler,
+        UsuarioDTO autor,
+        List<ComentarioResenaDTO> comentariosResena
 ) { }
