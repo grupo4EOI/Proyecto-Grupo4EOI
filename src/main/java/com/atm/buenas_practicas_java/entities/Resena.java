@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
@@ -45,6 +46,6 @@ public class Resena {
     private List<Reaccion> reacciones;
 
     @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER)
-    private Set<ComentarioResena> comentariosResena;
+    private List<ComentarioResena> comentariosResena;
 
 }

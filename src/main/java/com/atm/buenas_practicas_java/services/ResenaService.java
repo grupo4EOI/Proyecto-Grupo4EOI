@@ -24,6 +24,10 @@ public class ResenaService {
         this.resenaMapper = resenaMapper;
     }
 
+    public Resena findById(Long idResena) {
+        return resenaRepository.findById(idResena).orElseThrow();
+    }
+
     public List<ResenaDTO> findResenasByObjeto(Long idObjeto) {
         return resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjetoOrderByFechaPublicacionDesc(idObjeto));
     }

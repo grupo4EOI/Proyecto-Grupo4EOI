@@ -2,9 +2,11 @@ package com.atm.buenas_practicas_java.services.facade;
 
 import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.FichaObjetoDTO;
+import com.atm.buenas_practicas_java.entities.ComentarioResena;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
 import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.mapper.ComentarioResenaMapper;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.mapper.ResenaCrearMapper;
 import com.atm.buenas_practicas_java.mapper.ResenaMapper;
@@ -29,6 +31,8 @@ public class FichaObjetoFacade {
     private final UsuarioService usuarioService;
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
+    private final ComentarioResenaMapper comentarioResenaMapper;
+    private final ComentarioResenaService comentarioResenaService;
 
     public FichaObjetoFacade(ObjetoService objetoService,
                              ResenaService resenaService,
@@ -36,7 +40,7 @@ public class FichaObjetoFacade {
                              ComentarioPublicacionService comentarioPublicacionService,
                              FichaObjetoMapper fichaObjetoMapper,
                              UsuarioService usuarioService,
-                             ResenaCrearMapper resenaCrearMapper) {
+                             ResenaCrearMapper resenaCrearMapper, ComentarioResenaMapper comentarioResenaMapper, ComentarioResenaService comentarioResenaService) {
         this.objetoService = objetoService;
         this.resenaService = resenaService;
         this.personaService = personaService;
@@ -44,6 +48,8 @@ public class FichaObjetoFacade {
         this.fichaObjetoMapper = fichaObjetoMapper;
         this.usuarioService = usuarioService;
         this.resenaCrearMapper = resenaCrearMapper;
+        this.comentarioResenaMapper = comentarioResenaMapper;
+        this.comentarioResenaService = comentarioResenaService;
     }
 
     public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
@@ -86,7 +92,7 @@ public class FichaObjetoFacade {
         entidadResena.setUsuario(usuario);
         entidadResena.setObjeto(objeto);
         entidadResena.setReacciones(new ArrayList<>());
-        entidadResena.setComentariosResena(new HashSet<>());
+        entidadResena.setComentariosResena(new ArrayList<>());
 
         objeto.getResenas().add(entidadResena);
         usuario.getResenas().add(entidadResena);
@@ -94,5 +100,19 @@ public class FichaObjetoFacade {
         objetoService.save(objeto);
         usuarioService.save(usuario);
         resenaService.save(entidadResena);
+    }
+
+    public void agregarComentarioResena(Long idResena, ComentarioResenaDTO comentarioResenaDTO, String nombreUsuario) {
+        Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
+        Resena resena = resenaService.findById(idResena);
+
+        ComentarioResena comentarioEntidad = comentarioResenaMapper.toEntity(comentarioResenaDTO);
+        comentarioEntidad.setUsuario(usuario);
+        comentarioEntidad.setResena(resena);
+
+        resena.getComentariosResena().add(comentarioEntidad);
+
+        comentarioResenaService.save(comentarioEntidad);
+        resenaService.save(resena);
     }
 }

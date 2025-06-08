@@ -22,6 +22,10 @@ public class ComentarioResenaService {
         this.comentarioResenaMapper = comentarioResenaMapper;
     }
 
+    public void save(ComentarioResena comentarioResena) {
+        comentarioResenaRepository.save(comentarioResena);
+    }
+
     public List<ComentarioResenaDTO> obtenerComentariosResenasConAbuso() {
         List<ComentarioResena> comentarios = comentarioResenaRepository.findComentarioResenasByAbusoEquals(true);
         return comentarioResenaMapper.toDtoList(comentarios);

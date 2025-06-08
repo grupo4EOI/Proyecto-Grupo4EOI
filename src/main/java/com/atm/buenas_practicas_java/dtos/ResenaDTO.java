@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record ResenaDTO(
+        Long idResena,
         String titulo,
         String contenido,
         Double puntuacion,
