@@ -25,7 +25,7 @@ public class ResenaService {
     }
 
     public List<ResenaDTO> findResenasByObjeto(Long idObjeto) {
-        return resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjeto(idObjeto));
+        return resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjetoOrderByFechaPublicacionDesc(idObjeto));
     }
 
     public Resena nuevaResena(Long idObjeto, @ModelAttribute("nuevaResena") Resena resena) {
@@ -39,7 +39,7 @@ public class ResenaService {
         return resenaMapper.toDtoList(resenas);
     }
 
-    public Resena guardarResena(Resena resena) {
+    public Resena save(Resena resena) {
         return resenaRepository.save(resena);
     }
 }

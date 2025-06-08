@@ -30,6 +30,10 @@ public class UsuarioService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public void save(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+
     public Usuario findUsuarioByPublicacion(Long idPublicacion) {
         Publicacion publicacion = publicacionRepository.findById(idPublicacion).get();
         ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();

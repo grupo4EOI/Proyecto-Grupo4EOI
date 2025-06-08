@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,8 @@ public class Resena {
     private Double puntuacion;
     private boolean spoiler;
     private Boolean abuso = false;
+
+    private LocalDateTime fechaPublicacion = LocalDateTime.now();
 
     @NotNull
     @ManyToOne(optional = false)
