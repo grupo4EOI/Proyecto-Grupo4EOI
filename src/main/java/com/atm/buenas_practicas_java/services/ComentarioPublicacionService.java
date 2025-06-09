@@ -83,7 +83,7 @@ public class ComentarioPublicacionService {
                 ultimaPublicacion.getTitulo(),
                 primerComentarioDTO.contenido(),
                 primerComentarioDTO.usuario(),
-                primerComentarioDTO.reacciones()
+                primerComentarioDTO.fecha()
         );
     }
 
