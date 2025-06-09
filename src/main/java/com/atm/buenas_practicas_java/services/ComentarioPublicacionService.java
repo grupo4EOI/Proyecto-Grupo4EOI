@@ -99,4 +99,8 @@ public class ComentarioPublicacionService {
     public ComentarioPublicacion findById(Long id) {
         return comPubRepository.findById(id).orElse(null);
     }
+
+    public void reportar(Long idComentarioPublicacion) {
+        comPubRepository.reportar(idComentarioPublicacion);
+    }
 }

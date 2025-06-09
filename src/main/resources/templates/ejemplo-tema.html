@@ -57,7 +57,11 @@
   <hr class="w-75 mx-auto my-3 border-light">
       <!--Botones de reportar, citar y responder-->
       <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
-        <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
+          <form id="reportForm123" th:action="@{/comunidades/{idcom}/temas/{id}(idcom = ${comunidad.idComunidad()}, id = ${comentarios.get(0).publicacion().idPublicacion()})}" method="post" style="display:none;">
+              <input type="hidden" name="_method" value="put"/>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          </form>
+        <a class="nav-link" type="submit" onclick="document.getElementById('reportForm123').submit(); return false;"><i class="bi bi-exclamation-diamond fs-4"></i></a>
           <a class="nav-link citar-mensaje"
              href="#destino"
              th:data-id="${comentario.idComentarioPublicacion()}"

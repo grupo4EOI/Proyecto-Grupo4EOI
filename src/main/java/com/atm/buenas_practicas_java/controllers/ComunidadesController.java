@@ -92,41 +92,18 @@ public class ComunidadesController {
     @PostMapping("/{idcom}/temas/{id}")
     public String crearComentario(@PathVariable Long idcom,
                                   @PathVariable Long id,
-                                  @RequestParam String contenido,
-                                  @RequestParam(value = "comentarioCitadoId", required = false) Long citadoId, // MODIFICACIÓN
+                                  @ModelAttribute("comentario") ComentarioPublicacionCrearDTO comentario,
                                   Principal principal) {
+        ComentarioPublicacionCrearDTO comentarioDTO = comunidadServiceFacade.nuevoComentario(idcom,comentario, principal.getName(), id);
+        return String.format("redirect:/comunidades/%d/temas/%d", idcom, comentarioDTO.publicacion().idPublicacion());
+    }
 
-        Comunidad comunidad = comunidadService.findById(idcom);
-        if (comunidad == null) {
-            return "redirect:/error";
-        }
-
-        Publicacion publicacion = publicacionService.findById(id);
-        if (publicacion == null) {
-            return "redirect:/error";
-        }
-
-        Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
-
-        if (!usuario.getComunidades().contains(comunidad)) {
-            usuario.getComunidades().add(comunidad);
-            usuarioService.save(usuario);
-        }
-
-        ComentarioPublicacion comentario = new ComentarioPublicacion();
-        comentario.setContenido(contenido);
-        comentario.setFecha(LocalDateTime.now());
-        comentario.setPublicacion(publicacion);
-        comentario.setUsuario(usuario);
-
-        if (citadoId != null) { // MODIFICACIÓN
-            ComentarioPublicacion citado = comPubService.findById(citadoId); // Asegúrate de tener este método
-            comentario.setComentarioCitado(citado); // Esto requiere una relación @ManyToOne en tu entidad ComentarioPublicacion
-        }
-
-        comPubService.save(comentario);
-
-        return "redirect:/comunidades/" + idcom + "/temas/" + id;
+    @PutMapping("/{idcom}/temas/{id}")
+    public String reportarComentario(@PathVariable Long idcom,
+                                     @PathVariable Long id,
+                                     Long idComentarioPublicacion){
+        comunidadServiceFacade.reportarComentarioPublicacion(idComentarioPublicacion);
+        return String.format("redirect:/comunidades/%d/temas/%d", idcom, id);
     }
 
 

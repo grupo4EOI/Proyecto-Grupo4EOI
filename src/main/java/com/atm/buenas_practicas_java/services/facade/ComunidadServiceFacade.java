@@ -5,16 +5,14 @@ import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
-import com.atm.buenas_practicas_java.mapper.ComentarioPublicacionMapper;
-import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
-import com.atm.buenas_practicas_java.mapper.PublicacionCrearMapper;
-import com.atm.buenas_practicas_java.mapper.PublicacionMapper;
+import com.atm.buenas_practicas_java.mapper.*;
 import com.atm.buenas_practicas_java.services.ComentarioPublicacionService;
 import com.atm.buenas_practicas_java.services.ComunidadService;
 import com.atm.buenas_practicas_java.services.PublicacionService;
 import com.atm.buenas_practicas_java.services.UsuarioService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +20,7 @@ import java.util.List;
 @Service
 public class ComunidadServiceFacade {
     private final ComentarioPublicacionService comentarioPublicacionService;
+    private final ComentarioPublicacionCrearMapper comentarioPublicacionCrearMapper;
     private ComunidadService comunidadService;
     private PublicacionService publicacionService;
     private ComentarioPublicacionService comPubService;
@@ -38,7 +37,9 @@ public class ComunidadServiceFacade {
                                   ComunidadMapper comunidadMapper,
                                   PublicacionMapper publicacionMapper,
                                   ComentarioPublicacionMapper comPubMapper,
-                                  PublicacionCrearMapper publicacionCrearMapper, ComentarioPublicacionService comentarioPublicacionService) {
+                                  PublicacionCrearMapper publicacionCrearMapper,
+                                  ComentarioPublicacionService comentarioPublicacionService,
+                                  ComentarioPublicacionCrearMapper comentarioPublicacionCrearMapper) {
         this.comunidadService = comunidadService;
         this.publicacionService = publicacionService;
         this.comPubService = comPubService;
@@ -48,6 +49,7 @@ public class ComunidadServiceFacade {
         this.comPubMapper = comPubMapper;
         this.publicacionCrearMapper = publicacionCrearMapper;
         this.comentarioPublicacionService = comentarioPublicacionService;
+        this.comentarioPublicacionCrearMapper = comentarioPublicacionCrearMapper;
     }
 
     public List<ComunidadDTO> buscarComunidades() {return comunidadService.buscarComunidades();}
@@ -90,5 +92,30 @@ public class ComunidadServiceFacade {
 
 
         return publicacionCrearMapper.toDto(publicacionGuardada);
+    }
+
+    public ComentarioPublicacionCrearDTO nuevoComentario(Long idComunidad, ComentarioPublicacionCrearDTO comentarioDTO, String nombreUsuario, Long idPublicacion) {
+        Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
+        Comunidad comunidad = comunidadService.findById(idComunidad);
+        Publicacion publicacion = publicacionService.findById(idPublicacion);
+        ComentarioPublicacion comentarioPublicacion = comentarioPublicacionCrearMapper.toEntity(comentarioDTO);
+
+        comentarioPublicacion.setContenido(comentarioDTO.contenido());
+        comentarioPublicacion.setUsuario(usuario);
+        comentarioPublicacion.setPublicacion(publicacion);
+        comentarioPublicacion.setFecha(LocalDateTime.now());
+
+        comunidad.getUsuarios().add(usuario);
+        usuario.getComunidades().add(comunidad);
+
+        usuarioService.save(usuario);
+        comunidadService.save(comunidad);
+        ComentarioPublicacion comentarioGuardado = comentarioPublicacionService.save(comentarioPublicacion);
+
+        return comentarioPublicacionCrearMapper.toDto(comentarioGuardado);
+    }
+
+    public void reportarComentarioPublicacion(Long idComentarioPublicacion) {
+        comentarioPublicacionService.reportar(idComentarioPublicacion);
     }
 }
