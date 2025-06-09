@@ -10,6 +10,7 @@ import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Service
@@ -50,6 +51,7 @@ public class ObjetoService {
     }
 
     private List<ObjetoDTO> rellenarListaObjetosDTO(List<ObjetoDTO> objetosDTO) {
+        DecimalFormat df = new DecimalFormat("#.##");
         return objetosDTO.stream()
                 .map(objeto -> new ObjetoDTO(
                         objeto.idObjeto(),
@@ -57,7 +59,7 @@ public class ObjetoService {
                         objeto.imagenUrl(),
                         objeto.trailerUrl(),
                         objeto.anoPublicacion(),
-                        calcularPuntuacionObjeto(objeto.idObjeto()),
+                        df.format(calcularPuntuacionObjeto(objeto.idObjeto())),
                         calcularNumeroResenas(objeto.idObjeto())
                 )).toList();
     }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,8 @@ public class Resena {
     private boolean spoiler;
     private Boolean abuso = false;
 
+    private LocalDateTime fechaPublicacion = LocalDateTime.now();
+
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
@@ -43,7 +46,7 @@ public class Resena {
     @OneToMany(mappedBy = "resena")
     private List<Reaccion> reacciones;
 
-    @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER)
-    private Set<ComentarioResena> comentariosResena;
+    @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<ComentarioResena> comentariosResena;
 
 }
