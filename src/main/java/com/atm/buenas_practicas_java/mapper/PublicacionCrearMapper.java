@@ -15,5 +15,4 @@ public interface PublicacionCrearMapper {
     @Mapping(target = "comentariosPublicacion", ignore = true)
     @Mapping(target = "comunidad", ignore = true)
     Publicacion toEntity(PublicacionCrearDTO publicacionDTO);
-
 }

@@ -61,11 +61,17 @@ public class ComunidadesController {
     }
 
     @GetMapping("/{idcom}/temas/{id}")
-    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id) {
+    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @RequestParam(value = "citar", required = false) Long comentarioCitadoId) {
         ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(idcom);
         List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
+
+        if (comentarioCitadoId != null) { // MODIFICACIÓN
+            ComentarioPublicacion comentarioCitado = comPubService.findById(comentarioCitadoId); // Asume que tienes este método
+            model.addAttribute("comentarioCitado", comentarioCitado); // MODIFICACIÓN
+        }
+
         return "ejemplo-tema";
     }
 
@@ -87,6 +93,7 @@ public class ComunidadesController {
     public String crearComentario(@PathVariable Long idcom,
                                   @PathVariable Long id,
                                   @RequestParam String contenido,
+                                  @RequestParam(value = "comentarioCitadoId", required = false) Long citadoId, // MODIFICACIÓN
                                   Principal principal) {
 
         Comunidad comunidad = comunidadService.findById(idcom);
@@ -112,11 +119,15 @@ public class ComunidadesController {
         comentario.setPublicacion(publicacion);
         comentario.setUsuario(usuario);
 
+        if (citadoId != null) { // MODIFICACIÓN
+            ComentarioPublicacion citado = comPubService.findById(citadoId); // Asegúrate de tener este método
+            comentario.setComentarioCitado(citado); // Esto requiere una relación @ManyToOne en tu entidad ComentarioPublicacion
+        }
+
         comPubService.save(comentario);
-
-
 
         return "redirect:/comunidades/" + idcom + "/temas/" + id;
     }
+
 
 }

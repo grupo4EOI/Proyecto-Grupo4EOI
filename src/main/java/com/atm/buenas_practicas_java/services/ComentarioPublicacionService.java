@@ -70,7 +70,8 @@ public class ComentarioPublicacionService {
                         comentario.idComentarioPublicacion(),
                         comentario.contenido(),
                         comentario.usuario(),
-                        comentario.fecha()
+                        comentario.fecha(),
+                        comentario.comentarioCitado()
                         )
                     ).toList();
     }
@@ -93,5 +94,9 @@ public class ComentarioPublicacionService {
 
     public ComentarioPublicacion save(ComentarioPublicacion comentarioPublicacion) {
         return comPubRepository.save(comentarioPublicacion);
+    }
+
+    public ComentarioPublicacion findById(Long id) {
+        return comPubRepository.findById(id).orElse(null);
     }
 }

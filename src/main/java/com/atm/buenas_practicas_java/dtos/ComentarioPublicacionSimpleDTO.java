@@ -7,6 +7,7 @@ public record ComentarioPublicacionSimpleDTO(
         Long idComentarioPublicacion,
         String contenido,
         UsuarioDTO usuario,
-        LocalDateTime fecha
+        LocalDateTime fecha,
+        ComentarioPublicacionSimpleDTO comentarioCitado
 ) {
 }

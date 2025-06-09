@@ -40,9 +40,18 @@
     </div>
     <!--Línea de separación-->
   <hr class="w-75 mx-auto my-3 border-light">
+        <div th:if="${comentario.comentarioCitado() != null}" class="border-start ps-3 border-info border-4 bg-dark mb-3 py-2 px-3 rounded"> <!-- MODIFICACIÓN -->
+            <div class="d-flex align-items-center">
+                <small class="text-info">Cita de <b th:text="${comentario.comentarioCitado().usuario().nombreUsuario()}">Usuario</b></small>
+                <a th:href="@{'/comentario/' + ${comentario.comentarioCitado().idComentarioPublicacion()}}" class="ms-2">
+                    <i class="bi bi-reply-fill fs-6" style="transform: scaleX(-1); display: inline-block;"></i>
+                </a>
+            </div>
+            <p class="text-white-50 m-0 pt-2" th:text="${comentario.comentarioCitado().contenido()}">Texto citado...</p>
+        </div>
       <!--Contenido del tema-->
     <div class="my-3 mx-3">
-    <p th:text="${comentario.contenido}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas euismod lorem accumsan placerat. Sed molestie nulla et nisl convallis venenatis. Nam auctor eros enim, in aliquam nibh tincidunt sed. Sed nec efficitur sapien. Cras eget venenatis nisi. Mauris porta tortor nibh, sit amet condimentum quam semper in. Morbi eu leo pretium arcu pellentesque pellentesque. Integer id libero eget sapien pulvinar mollis. Cras ac tincidunt sapien, id tincidunt ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam convallis bibendum neque, vel pellentesque ex ultrices in. Nullam nibh sem, volutpat at mi non, rhoncus egestas purus. Curabitur egestas, tellus quis consequat maximus, massa risus fermentum ante, quis cursus augue elit ac tortor.</p>
+    <p class="text-break" th:text="${comentario.contenido}" style="white-space: pre-wrap;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas euismod lorem accumsan placerat. Sed molestie nulla et nisl convallis venenatis. Nam auctor eros enim, in aliquam nibh tincidunt sed. Sed nec efficitur sapien. Cras eget venenatis nisi. Mauris porta tortor nibh, sit amet condimentum quam semper in. Morbi eu leo pretium arcu pellentesque pellentesque. Integer id libero eget sapien pulvinar mollis. Cras ac tincidunt sapien, id tincidunt ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam convallis bibendum neque, vel pellentesque ex ultrices in. Nullam nibh sem, volutpat at mi non, rhoncus egestas purus. Curabitur egestas, tellus quis consequat maximus, massa risus fermentum ante, quis cursus augue elit ac tortor.</p>
   </div>
   <!--Línea de separación-->
   <hr class="w-75 mx-auto my-3 border-light">
@@ -51,13 +60,14 @@
         <a class="nav-link"><i class="bi bi-exclamation-diamond fs-4"></i></a>
           <a class="nav-link citar-mensaje"
              href="#destino"
-             th:attr="data-id=${comentario.idComentarioPublicacion()},
-                data-autor=${comentario.usuario().nombreUsuario()},
-                data-contenido=${comentario.contenido},
-                data-link=@{'/comentario/' + ${comentario.idComentarioPublicacion()}}">
+             th:data-id="${comentario.idComentarioPublicacion()}"
+             th:data-autor="${comentario.usuario().nombreUsuario()}"
+             th:data-contenido="${comentario.contenido}"
+             th:data-link="@{/comentario/{id}(id=${comentario.idComentarioPublicacion()})}">
               <i class="bi bi-chat-dots-fill fs-4"></i> Citar
           </a>
-        <a class="nav-link" href="#destino"><i class="bi bi-reply-fill fs-4"></i></a>
+
+          <a class="nav-link" href="#destino"><i class="bi bi-reply-fill fs-4"></i></a>
       </div>
   </div>
 
@@ -93,20 +103,29 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="mt-2">
 
-            <div id="mensaje-citado-preview" class="mensaje-citado px-3 py-2 d-none">
-                <div class="d-flex align-items-center">
-                    <h6 class="m-0 mb-1">Cita de <b id="nombre-autor-cita">Usuario</b></h6>
-                    <a href="#" class="ir-a-mensaje-citado ms-2" id="link-mensaje-citado">
-                        <i class="bi bi-reply-fill fs-4" style="transform: scaleX(-1); display: inline-block;"></i>
-                    </a>
-                </div>
-                <p class="m-0 pt-2" id="contenido-cita">Contenido...</p>
+            <div id="mensaje-citado-preview"
+                 class="mensaje-citado px-3 py-2 [[${comentarioCitado} != null ? '' : 'd-none']]" th:if="${comentarioCitado != null}"> <!-- MODIFICACIÓN -->
+
+            <div class="d-flex align-items-center">
+                <h6 class="m-0 mb-1">
+                    Cita de <b id="nombre-autor-cita" th:text="${comentarioCitado.usuario.nombreUsuario}">Usuario</b>
+                </h6>
+                <a th:href="@{'/comentario/' + ${comentarioCitado.idComentarioPublicacion}}" class="ir-a-mensaje-citado ms-2" id="link-mensaje-citado">
+                    <i class="bi bi-reply-fill fs-4" style="transform: scaleX(-1); display: inline-block;"></i>
+                </a>
             </div>
+            <p class="m-0 pt-2" id="contenido-cita" th:text="${comentarioCitado.contenido}">Contenido...</p>
+        </div>
+
 
             <!-- Campo oculto con el ID del comentario citado -->
-            <input type="hidden" name="mensajeCitadoId" id="mensajeCitadoId" />
+            <input type="hidden" name="comentarioCitadoId" id="mensajeCitadoId"
+                   th:value="${comentarioCitado != null} ? ${comentarioCitado.idComentarioPublicacion} : ''" />
 
-          <textarea id="contenido-tema" name="contenido" class="form-control" rows="5" placeholder="Escribe aquí tu respuesta" required></textarea>
+            <!-- MODIFICACIÓN -->
+
+
+            <textarea id="contenido-tema" name="contenido" class="form-control" rows="5" placeholder="Escribe aquí tu respuesta" required></textarea>
 
       </div>
       <!--Advertencia y Botón Enviar Respuesta-->

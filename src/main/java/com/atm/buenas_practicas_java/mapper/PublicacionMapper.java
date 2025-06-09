@@ -1,8 +1,10 @@
 package com.atm.buenas_practicas_java.mapper;
 
+import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
 import com.atm.buenas_practicas_java.dtos.PublicacionDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
+import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

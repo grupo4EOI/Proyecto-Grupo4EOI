@@ -54,7 +54,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
 
     // Relación con comunidad
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
-    private List<Comunidad> comunidades;
+    private Set<Comunidad> comunidades;
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)
     @OneToMany
