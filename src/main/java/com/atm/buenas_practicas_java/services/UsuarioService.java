@@ -72,8 +72,4 @@ public class UsuarioService implements UserDetailsService {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario save(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
-
 }
