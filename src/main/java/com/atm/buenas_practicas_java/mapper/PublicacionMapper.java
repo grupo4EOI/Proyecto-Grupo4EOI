@@ -21,6 +21,7 @@ public interface PublicacionMapper {
     default UsuarioDTO mapUsuario(Publicacion publicacion) {
         ComentarioPublicacion primerComentario = publicacion.getComentariosPublicacion().get(0);
         return new UsuarioDTO(
+                primerComentario.getUsuario().getIdUsuario(),
                 primerComentario.getUsuario().getNombreUsuario(),
                 primerComentario.getUsuario().getAvatarUrl(),
                 primerComentario.getUsuario().getRole()

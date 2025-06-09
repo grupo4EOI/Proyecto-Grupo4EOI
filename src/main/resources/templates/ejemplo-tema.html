@@ -29,7 +29,7 @@
       </div>
       <!--Usuario y rol-->
       <div class="ms-3">
-        <a class="nav-link" href="#"><h6 class="mb-1" th:text="${comentario.usuario().nombreUsuario()}">Usuario1</h6></a>
+        <a class="nav-link" th:href="'/perfil/' + ${comentario.usuario().idUsuario()}"><h6 class="mb-1" th:text="${comentario.usuario().nombreUsuario()}">Usuario1</h6></a>
         <p class="mb-0" style="font-size: 14px;" th:text="'Rol: ' + ${comentario.usuario().role()}">Reseñas.com: Usuario</p>
       </div>
       <!--Fecha y número de mensaje-->
@@ -61,7 +61,7 @@
               <input type="hidden" th:name="_method" th:value="put"/>
               <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
               <input type="hidden" th:name="idComentarioPublicacion" th:value="${comentario.idComentarioPublicacion}"/>
-              <button type="submit" th:name="accion" th:value="reportarComentario"><i class="bi bi-exclamation-diamond fs-4"></i></button>
+              <button class="nav-link" type="submit" th:name="accion" th:value="reportarComentario" style="background-color: transparent; border: none;"><i class="bi bi-exclamation-diamond fs-4"></i></button>
           </form>
           <a class="nav-link citar-mensaje"
              href="#destino"
@@ -108,19 +108,19 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="mt-2">
 
-            <div id="mensaje-citado-preview"
-                 class="mensaje-citado px-3 py-2 [[${comentarioCitado} != null ? '' : 'd-none']]" th:if="${comentarioCitado != null}"> <!-- MODIFICACIÓN -->
+<!--            <div id="mensaje-citado-preview"-->
+<!--                 class="mensaje-citado px-3 py-2 [[${comentarioCitado} != null ? '' : 'd-none']]" th:if="${comentarioCitado != null}"> &lt;!&ndash; MODIFICACIÓN &ndash;&gt;-->
 
-            <div class="d-flex align-items-center">
-                <h6 class="m-0 mb-1">
-                    Cita de <b id="nombre-autor-cita" th:text="${comentarioCitado.usuario.nombreUsuario}">Usuario</b>
-                </h6>
-                <a th:href="@{'/comentario/' + ${comentarioCitado.idComentarioPublicacion}}" class="ir-a-mensaje-citado ms-2" id="link-mensaje-citado">
-                    <i class="bi bi-reply-fill fs-4" style="transform: scaleX(-1); display: inline-block;"></i>
-                </a>
-            </div>
-            <p class="m-0 pt-2" id="contenido-cita" th:text="${comentarioCitado.contenido}">Contenido...</p>
-        </div>
+<!--            <div class="d-flex align-items-center">-->
+<!--                <h6 class="m-0 mb-1">-->
+<!--                    Cita de <b id="nombre-autor-cita" th:text="${comentarioCitado.usuario.nombreUsuario}">Usuario</b>-->
+<!--                </h6>-->
+<!--                <a th:href="@{'/comentario/' + ${comentarioCitado.idComentarioPublicacion}}" class="ir-a-mensaje-citado ms-2" id="link-mensaje-citado">-->
+<!--                    <i class="bi bi-reply-fill fs-4" style="transform: scaleX(-1); display: inline-block;"></i>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <p class="m-0 pt-2" id="contenido-cita" th:text="${comentarioCitado.contenido}">Contenido...</p>-->
+<!--        </div>-->
 
 
             <!-- Campo oculto con el ID del comentario citado -->

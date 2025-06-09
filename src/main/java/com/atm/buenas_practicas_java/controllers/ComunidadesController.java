@@ -25,23 +25,8 @@ public class ComunidadesController {
 
     private final ComunidadServiceFacade comunidadServiceFacade;
 
-//    public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade) {
-//        this.comunidadServiceFacade = comunidadServiceFacade;
-//    }
-
-    private ComunidadService comunidadService;
-    private PublicacionService publicacionService;
-    private ComentarioPublicacionService comPubService;
-    private UsuarioService usuarioService;
-    private ComunidadMapper comunidadMapper;
-
-    public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade, ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService, UsuarioService usuarioService, ComunidadMapper comunidadMapper) {
+    public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade) {
         this.comunidadServiceFacade = comunidadServiceFacade;
-        this.comunidadService = comunidadService;
-        this.publicacionService = publicacionService;
-        this.comPubService = comPubService;
-        this.usuarioService = usuarioService;
-        this.comunidadMapper = comunidadMapper;
     }
 
     @GetMapping
@@ -66,11 +51,6 @@ public class ComunidadesController {
         List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
-
-        if (comentarioCitadoId != null) { // MODIFICACIÓN
-            ComentarioPublicacion comentarioCitado = comPubService.findById(comentarioCitadoId); // Asume que tienes este método
-            model.addAttribute("comentarioCitado", comentarioCitado); // MODIFICACIÓN
-        }
 
         return "ejemplo-tema";
     }

@@ -26,17 +26,12 @@ public class ComunidadServiceFacade {
     private ComentarioPublicacionService comPubService;
     private UsuarioService usuarioService;
     private final PublicacionCrearMapper publicacionCrearMapper;
-    private ComunidadMapper comunidadMapper;
-    private PublicacionMapper publicacionMapper;
-    private ComentarioPublicacionMapper comPubMapper;
+
 
     public ComunidadServiceFacade(ComunidadService comunidadService,
                                   PublicacionService publicacionService,
                                   ComentarioPublicacionService comPubService,
                                   UsuarioService usuarioService,
-                                  ComunidadMapper comunidadMapper,
-                                  PublicacionMapper publicacionMapper,
-                                  ComentarioPublicacionMapper comPubMapper,
                                   PublicacionCrearMapper publicacionCrearMapper,
                                   ComentarioPublicacionService comentarioPublicacionService,
                                   ComentarioPublicacionCrearMapper comentarioPublicacionCrearMapper) {
@@ -44,9 +39,6 @@ public class ComunidadServiceFacade {
         this.publicacionService = publicacionService;
         this.comPubService = comPubService;
         this.usuarioService = usuarioService;
-        this.comunidadMapper = comunidadMapper;
-        this.publicacionMapper = publicacionMapper;
-        this.comPubMapper = comPubMapper;
         this.publicacionCrearMapper = publicacionCrearMapper;
         this.comentarioPublicacionService = comentarioPublicacionService;
         this.comentarioPublicacionCrearMapper = comentarioPublicacionCrearMapper;
