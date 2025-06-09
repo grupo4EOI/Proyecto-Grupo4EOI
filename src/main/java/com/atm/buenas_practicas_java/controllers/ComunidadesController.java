@@ -89,7 +89,7 @@ public class ComunidadesController {
         return String.format("redirect:/comunidades/%d/temas/%d", id, publicacionDTO.idPublicacion());
     }
 
-    @PostMapping("/{idcom}/temas/{id}")
+    @PostMapping(value = "/{idcom}/temas/{id}", params = "accion=nuevoComentario")
     public String crearComentario(@PathVariable Long idcom,
                                   @PathVariable Long id,
                                   @ModelAttribute("comentario") ComentarioPublicacionCrearDTO comentario,
@@ -98,10 +98,10 @@ public class ComunidadesController {
         return String.format("redirect:/comunidades/%d/temas/%d", idcom, comentarioDTO.publicacion().idPublicacion());
     }
 
-    @PutMapping("/{idcom}/temas/{id}")
+    @PutMapping(value = "/{idcom}/temas/{id}", params = "accion=reportarComentario")
     public String reportarComentario(@PathVariable Long idcom,
                                      @PathVariable Long id,
-                                     Long idComentarioPublicacion){
+                                     @RequestParam("idComentarioPublicacion") Long idComentarioPublicacion){
         comunidadServiceFacade.reportarComentarioPublicacion(idComentarioPublicacion);
         return String.format("redirect:/comunidades/%d/temas/%d", idcom, id);
     }

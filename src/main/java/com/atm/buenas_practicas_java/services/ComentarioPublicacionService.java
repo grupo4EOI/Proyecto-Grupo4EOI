@@ -63,7 +63,7 @@ public class ComentarioPublicacionService {
     }
 
     public List<ComentarioPublicacionSimpleDTO> getComentarioPublicacionByPublicacionId(Long publicacionId){
-        List<ComentarioPublicacionSimpleDTO> comPubSimpleDTO = comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacion(publicacionId));
+        List<ComentarioPublicacionSimpleDTO> comPubSimpleDTO = comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacionOrderByIdComentarioPublicacion(publicacionId));
         return comPubSimpleDTO.stream()
                 .map(comentario -> new ComentarioPublicacionSimpleDTO(
                         comentario.publicacion(),
