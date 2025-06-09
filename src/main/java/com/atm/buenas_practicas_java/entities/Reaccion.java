@@ -28,10 +28,6 @@ public class Reaccion {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "id_comentario_publicacion")
-    private ComentarioPublicacion comentarioPublicacion;
-
-    @ManyToOne
     @JoinColumn(name = "id_resena")
     private Resena resena;
 

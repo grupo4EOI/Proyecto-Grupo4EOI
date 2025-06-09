@@ -17,17 +17,18 @@
     <div class="bg-custom mt-4 mx-auto rounded-4 p-3 w-75">
       <div class="d-flex justify-content-between align-items-center">
         <h1>Crear Nuevo Tema</h1>
-        <button type="button" class="btn btn-outline-light text-white" href="#">Previsualizar <i class="bi bi-eye"></i></button>
+<!--       <button type="button" class="btn btn-outline-light text-white" href="#">Previsualizar <i class="bi bi-eye"></i></button>-->
     </div>
     </div>
 
     <!--Caja de edición de texto-->
     <div class="bg-custom mt-2 mx-auto rounded-4 p-4 w-75">
         <!--Caja de título de tema-->
-        <form th:action="@{/comunidades/{id}/temas(id=${comunidad.idComunidad})}" method="post">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <form th:action="@{/comunidades/{id}/temas(id=${comunidad.idComunidad})}"
+              th:object="${nuevoTema}"
+              method="post">
 
-            <input type="text" id="titulo-tema" name="titulo" class="form-control" placeholder="Escribe aquí el título" required>
+            <input type="text" th:field="*{titulo}" id="titulo-tema" name="titulo" class="form-control" placeholder="Escribe aquí el título" required>
 
             <!--Iconos de edición de texto-->
             <div class="mt-2 d-flex justify-content-center">
@@ -53,16 +54,14 @@
             </div>
             <!--Caja de contenido del hilo-->
             <div class="mt-2">
-
-                <textarea id="contenido-tema" name="contenido" class="form-control" rows="10" placeholder="Escribe aquí el contenido"></textarea>
-
+                <textarea id="contenido-tema" th:field="*{contenido}" name="contenido" class="form-control" rows="10" placeholder="Escribe aquí el contenido"></textarea>
             </div>
             <!--Advertencia y Botón Crear Nuevo Tema-->
             <div class="mt-4 d-flex justify-content-between align-items-center">
                 <p class="mb-0 w-75 opacity-50" style="font-size: 10px;">
                     Te informamos que eres responsable del contenido ilícito que publiques.
                     El contenido que publiques puede incumplir nuestras condiciones generales de uso o suponer una infracción del ordenamiento jurídico.
-                    Te recomendamos visitar nuestras <a href="#" class="condiciones">condiciones generales de uso</a> para conocer qué tipo de contenido no puedes publicar.
+                    Te recomendamos visitar nuestras <a href="/terminos-y-condiciones" class="condiciones">condiciones generales de uso</a> para conocer qué tipo de contenido no puedes publicar.
                 </p>
                 <button type="submit" class="btn btn-outline-light text-white">Crear Nuevo Tema</button>
 
