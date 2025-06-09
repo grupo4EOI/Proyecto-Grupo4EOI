@@ -1,7 +1,13 @@
-.fondo-columna {
-    background-color: #FF8C42 !important;
+.card {
+    background-color: #4E598C !important;
 }
-
+.condiciones {
+    text-decoration: none;
+    color: #FF8C42 !important;
+}
+.condiciones:hover {
+    color:#914f27 !important;
+}
 
 .image-container {
     position: relative;
@@ -104,3 +110,321 @@
 
 
 
+/* Contenedor principal */
+.container-head-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 72px;
+}
+
+/* Header izquierdo (texto) */
+.header-left {
+    padding: 1rem;
+}
+
+.header-main {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    color: #1F2937;
+    line-height: 1.2;
+}
+
+.header-secondary {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: #4B5563;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Grupo de botones */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.header-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #FF8C42;
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex: 1 1 150px;
+}
+
+.header-button:hover {
+    border-color: #000;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen placeholder */
+.placeholder-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(104, 102, 102);
+}
+
+ /*Media Queries para responsividad */
+@media (max-width: 991.98px) {
+    .container-head-bottom {
+        text-align: center;
+    }
+
+    .header-left {
+        padding: 1.5rem 0;
+    }
+
+    .button-group {
+        justify-content: center;
+    }
+
+    .header-button {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header-main {
+        margin-bottom: 1rem;
+    }
+
+    .header-secondary {
+        margin-bottom: 1.5rem;
+    }
+
+    .placeholder-img {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .header-button {
+        width: 100%;
+    }
+}
+
+.main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 50px 100px;
+}
+
+.main-info-title {
+    color: #1F2937;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.main-info-boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    border-radius: 8px;
+    width: 350px;
+    height: 350px;
+    padding: 32px;
+}
+
+.placeholder-img-box {
+    height: 200px;
+    width: 200px;
+    border: 8px solid #1F2937;
+    border-radius: 8px;
+}
+
+.info-text {
+    color: #1F2937;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.main-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*padding: 100px 300px;*/
+    /*background-color: #E5E7EB;*/
+    gap: 12px;
+    /*height: 500px;*/
+    height: auto; /* Elimina altura fija */
+    padding: 2rem 1rem; /* Reduce padding en móviles */
+    margin: 2rem 0; /* Espaciado vertical */
+}
+
+.quote-text {
+    color: #1F2937;
+    font-size: 36px;
+    font-weight: lighter;
+}
+
+.quote-author {
+    color: #1F2937;
+    font-size: 24px;
+    font-weight: 900;
+    align-self: end;
+}
+
+.main-cta {
+    display: flex;
+    gap: 128px;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 300px;
+    background-color: #3882F6;
+    border-radius: 8px;
+    height: 200px;
+}
+
+.cta-title {
+    color: #F9FAF8;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.cta-text {
+    color: #F9FAF8;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.cta-button {
+    width: 100px;
+    height: 40px;
+    background-color: #3882F6;
+    border-radius: 8px;
+    border: 2px solid #F9FAF8;
+    color: #F9FAF8;
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background-color: #F9FAF8;
+    color: #3882F6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Estilo para las reseñas */
+#review, #publicacion, .comentarios {
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+
+/* Ajustes para las tarjetas en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .card-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .image-container-ext, .image-container, .imagen-objeto {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .trailer-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .objeto-info {
+        padding: 10px;
+    }
+
+    .titulo-objeto {
+        font-size: 16px !important;
+    }
+
+    .meta-info-objeto {
+        font-size: 14px;
+    }
+}
+
+/* Ajustes para el modal en pantallas pequeñas */
+@media screen and (max-width: 576px) {
+    .modal-dialog {
+        max-width: 95%;
+        margin: 20px auto;
+    }
+
+    .btn-close {
+        right: -10px;
+        top: -10px;
+    }
+}
+
+/* Ajustes para la sección de última reseña */
+@media screen and (max-width: 768px) {
+    .main-quote {
+        padding: 50px 20px;
+        height: auto;
+    }
+
+    #review {
+        padding: 10px;
+    }
+
+    .etiqueta {
+        font-size: 14px;
+    }
+}
+
+/* Ajustes para los botones de inicio de sesión y registro */
+@media screen and (max-width: 576px) {
+    .header-button {
+        padding: 0.5rem 1rem;
+        font-size: 14px;
+    }
+}
+
+/* Ajustes para el contenedor principal */
+@media screen and (max-width: 768px) {
+    .container-head-bottom {
+        flex-direction: column;
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .header-left {
+        order: 2;
+        text-align: center;
+    }
+
+    .placeholder-img {
+        order: 1;
+    }
+}
