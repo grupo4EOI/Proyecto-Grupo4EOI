@@ -21,3 +21,4 @@ function actualizarContadorEstado() {
 }
 //Actualiza al recargar la página.
 document.addEventListener("DOMContentLoaded", actualizarContadorEstado);
+

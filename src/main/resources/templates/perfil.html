@@ -56,23 +56,38 @@
         <div class="row g-4 rounded align-items-start bg-white" id="ficha-principal-perfil">
             <div class="col-12 col-md-4 text-center text-black">
                 <div class="imagen-circular mx-auto mb-3">
-                    <img th:if="${Usuario != null}" th:src="@{/images/profilepic.png}" alt="Imagen Usuario" />
+                    <img th:if="${perfil.avatarUrl != null}"
+                         th:src="@{/uploads/{nombre}(nombre=${perfil.avatarUrl})}"
+                         alt="Imagen de usuario nueva no encontrada."
+                         class="rounded-circle" />
 
+                    <img th:if="${perfil.avatarUrl == null}"
+                         th:src="@{/images/profilepic.png}"
+                         alt="Imagen de usuario por defecto."
+                         class="rounded-circle" />
                 </div>
-                <a th:href="@{/ajustes_perfil}" class="btn w-75 fs-5">Editar perfil</a>
+
+                <a th:href="@{/ajustes-perfil/{id}(id=${perfil.idUsuario()})}" class="btn w-75 fs-5">Editar perfil</a>
             </div>
 
             <div class="col-12 col-md-5 text-black text-center text-lg-start">
-                <h1 class="h3" th:text="${Usuario.nombreUsuario}">Nombre de usuario</h1>
+                <p id="nombreUsuario" class="h3 d-flex align-items-center justify-content-center justify-content-lg-start">
+                    <span th:text="${perfil.nombreUsuario}">Nombre de usuario</span>
+                    <img id="iconoAdministrador" th:if="${perfil.esAdministrador}"
+                         th:src="@{/images/iconoAdministrador.png}"
+                         alt="Administrador"
+                         class="ms-2"
+                         title="Administrador"/>
+                </p>
                 <p class="fs-5 mb-1 text-muted">
-                    <span th:text="${Usuario.biografia}">Estado / Descripción del usuario</span>
+                    <span id="biografiam" th:text="${perfil.biografia}">Estado / Descripción del usuario</span>
                     <a href="javascript:void(0);" class="btn btn-sm" id="editar-estado" onclick="mostrarFormularioBiografia()">
                         <i class="bi bi-pencil fs-6"></i>
                     </a>
                 </p>
 
                 <!--Formulario para editar biografía-->
-                <form th:action="@{/perfil/editarBiografia}" th:object="${Usuario}" method="post" id="form-biografia" style="display:none;">
+                <form th:action="@{/perfil/editarBiografia}" th:object="${perfil}" method="post" id="form-biografia" style="display:none;">
                     <input type="hidden" th:field="*{idUsuario}" />
                     <textarea th:field="*{biografia}" maxlength="255" rows="3" cols="50"></textarea>
                     <p id="contador">0 / 255</p>
@@ -85,7 +100,7 @@
                 <div class="mt-3 text-center text-lg-start">
                     <p class="fw-bold fs-5">Géneros de películas favoritos</p>
                     <div>
-                        <span th:each="genero : ${generosPeliculas}"
+                        <span th:each="genero : ${perfil.generosPeliculas}"
                         th:text="'#' + ${genero.nombre}"
                         class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
                     </div>
@@ -95,7 +110,7 @@
                 <div class="mt-3 text-center text-lg-start">
                     <p class="fw-bold fs-5">Géneros de series favoritos</p>
                     <div>
-        <span th:each="genero : ${generosSeries}"
+        <span th:each="genero : ${perfil.generosSeries}"
               th:text="'#' + ${genero.nombre}"
               class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
                     </div>
@@ -105,7 +120,7 @@
                 <div class="mt-3 text-center text-lg-start">
                     <p class="fw-bold fs-5">Géneros de videojuegos favoritos</p>
                     <div>
-        <span th:each="genero : ${generosVideojuegos}"
+        <span th:each="genero : ${perfil.generosVideojuegos}"
               th:text="'#' + ${genero.nombre}"
               class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
                     </div>
@@ -185,8 +200,8 @@
                         <div class="tab-content mt-3">
                             <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
                                 <div id="resenas-container">
-                                    <p th:if="${#lists.isEmpty(Usuario.resenas)}">No hay reseñas aún.</p>
-                                    <div th:each="resena : ${Usuario.resenas}">
+                                    <p th:if="${#lists.isEmpty(perfil.resenas)}">No hay reseñas aún.</p>
+                                    <div th:each="resena : ${perfil.resenas}">
                                         <div class="card mb-3">
                                             <div class="card-body">
                                                 <h5 class="card-title" th:text="${resena.titulo}">Título de la reseña</h5>
@@ -230,7 +245,7 @@
                 <div class="bg-light p-3 rounded shadow mb-4">
                     <h5 class="fs-4 text-center">Lista de amigos</h5>
                     <ul class="list-unstyled">
-                        <li th:each="amistad : ${Usuario.amigos}" class="mb-3 d-flex justify-content-between align-items-center">
+                        <li th:each="amistad : ${perfil.amigos}" class="mb-3 d-flex justify-content-between align-items-center">
                             <span th:text="${amistad.amigo.nombreUsuario}">#Usuario</span>
                             <div>
                                 <button class="btn btn-sm btn-outline-secondary">Perfil</button>
@@ -247,7 +262,7 @@
                 <div class="bg-light p-3 rounded shadow">
                     <h5 class="fs-4 text-center">Insignias</h5>
                     <ul class="list-unstyled">
-                        <li th:each="insignia : ${insignias}" class="mb-3 text-center">🏆 <span th:text="${insignia}">Insignia</span></li>
+                        <li th:each="insignia : ${perfil.amigos}" class="mb-3 text-center">🏆 <span th:text="${insignia}">Insignia</span></li>
                     </ul>
                     <div class="text-center">
                         <a href="#" class="text-decoration-none">Ver más</a>
@@ -255,7 +270,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </main>
 
 

@@ -736,6 +736,7 @@ public class LocalDataLoader {
         usuario1.setEmail("hola@gmail.com");
         usuario1.setContrasena("1234");
         usuario1.setBiografia("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        usuario1.setEsAdministrador(true);
 
         Set<Genero> generosFavoritos = new HashSet<>();
         generosFavoritos.add(generoAccionS);
@@ -758,6 +759,7 @@ public class LocalDataLoader {
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
         usuario2.setContrasena("4321");
+        usuario2.setEsAdministrador(false);
 
         Usuario usuario3 = new Usuario();
         usuario3.setNombreUsuario("Usuario3");

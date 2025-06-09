@@ -27,11 +27,36 @@ main {
     background-color: #b9c1e2;
 }
 
+#nombreUsuario{
+    font-size: 28px;
+}
+
+#iconoAdministrador{
+    width: 53px;
+    height: 38px;
+    vertical-align: middle;
+}
+
+#biografiam{
+   white-space: pre-wrap;
+   word-break: break-word;
+}
+
 #ficha-principal-perfil {
     margin-top: 2%;
     padding: 20px;
     width: 100%;
     padding-bottom: 40px;
+}
+
+.btn-editar-estado:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-editar-perfil:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 
