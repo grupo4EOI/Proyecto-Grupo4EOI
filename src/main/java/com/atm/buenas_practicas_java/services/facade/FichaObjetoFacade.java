@@ -9,49 +9,32 @@ import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.ComentarioResenaMapper;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.mapper.ResenaCrearMapper;
-import com.atm.buenas_practicas_java.mapper.ResenaMapper;
-import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
-import com.atm.buenas_practicas_java.repositories.ResenaRepository;
-import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
 import com.atm.buenas_practicas_java.services.*;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FichaObjetoFacade {
 
     private final ObjetoService objetoService;
-    private final ResenaService resenaService;
     private final PersonaService personaService;
-    private final ComentarioPublicacionService comentarioPublicacionService;
     private final UsuarioService usuarioService;
+    private final ResenaService resenaService;
+    private final ComentarioResenaService comentarioResenaService;
+    private final ComentarioPublicacionService comentarioPublicacionService;
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
     private final ComentarioResenaMapper comentarioResenaMapper;
-    private final ComentarioResenaService comentarioResenaService;
 
-    public FichaObjetoFacade(ObjetoService objetoService,
-                             ResenaService resenaService,
-                             PersonaService personaService,
-                             ComentarioPublicacionService comentarioPublicacionService,
-                             FichaObjetoMapper fichaObjetoMapper,
-                             UsuarioService usuarioService,
-                             ResenaCrearMapper resenaCrearMapper, ComentarioResenaMapper comentarioResenaMapper, ComentarioResenaService comentarioResenaService) {
-        this.objetoService = objetoService;
-        this.resenaService = resenaService;
-        this.personaService = personaService;
-        this.comentarioPublicacionService = comentarioPublicacionService;
-        this.fichaObjetoMapper = fichaObjetoMapper;
-        this.usuarioService = usuarioService;
-        this.resenaCrearMapper = resenaCrearMapper;
-        this.comentarioResenaMapper = comentarioResenaMapper;
-        this.comentarioResenaService = comentarioResenaService;
-    }
 
+    // Metodo para el GetMapping de la ficha de objeto entera
     public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
         Objeto objeto = objetoService.findById(idObjeto);
 
@@ -84,6 +67,7 @@ public class FichaObjetoFacade {
         );
     }
 
+    // Metodo para el PostMapping de nueva reseña
     public void agregarResena(Long idObjeto, ResenaCrearDTO resenaDTO, String nombreUsuario) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
         Objeto objeto = objetoService.findById(idObjeto);
@@ -102,6 +86,8 @@ public class FichaObjetoFacade {
         resenaService.save(entidadResena);
     }
 
+    // Metodo para el PostMapping de nuevo comentario reseña
+    @Transactional
     public void agregarComentarioResena(Long idResena, ComentarioResenaDTO comentarioResenaDTO, String nombreUsuario) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
         Resena resena = resenaService.findById(idResena);
@@ -109,10 +95,14 @@ public class FichaObjetoFacade {
         ComentarioResena comentarioEntidad = comentarioResenaMapper.toEntity(comentarioResenaDTO);
         comentarioEntidad.setUsuario(usuario);
         comentarioEntidad.setResena(resena);
-
+        comentarioEntidad.setFecha(LocalDateTime.now());
         resena.getComentariosResena().add(comentarioEntidad);
 
         comentarioResenaService.save(comentarioEntidad);
         resenaService.save(resena);
     }
+
+    // TODO: Metodos para postmapping de reacciones para reseña y comentario reseña
+
+
 }

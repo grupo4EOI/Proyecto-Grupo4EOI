@@ -22,7 +22,9 @@ public class ComentarioResena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INTEGER")
     private Long idComentarioResena;
+
     private LocalDateTime fecha = LocalDateTime.now();
+
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Boolean abuso = false;

@@ -6,6 +6,7 @@ import com.atm.buenas_practicas_java.entities.Resena;
 import com.atm.buenas_practicas_java.mapper.ComentarioResenaMapper;
 import com.atm.buenas_practicas_java.repositories.ComentarioResenaRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class ComentarioResenaService {
         this.comentarioResenaMapper = comentarioResenaMapper;
     }
 
+    @Transactional
     public void save(ComentarioResena comentarioResena) {
         comentarioResenaRepository.save(comentarioResena);
     }

@@ -238,7 +238,7 @@
             </div>
             <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
             <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
-            <p th:text="${resena.fechaPublicacion()}"></p>
+            <p th:text="${#temporals.format(resena.fechaPublicacion(), 'dd-MM-yyyy HH:mm')}"></p>
             <div class="container" id="review">
                 <div class="row">
                     <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
@@ -286,7 +286,7 @@
                 <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
                 <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
                 <div class="w-auto">
-                    <p th:text="${comentario.fecha()}"></p>
+                    <p th:text="${#temporals.format(comentario.fecha(), 'dd-MM-yyyy HH:mm')}"></p>
                 </div>
                 <p th:text="${comentario.contenido()}"></p>
             </div>

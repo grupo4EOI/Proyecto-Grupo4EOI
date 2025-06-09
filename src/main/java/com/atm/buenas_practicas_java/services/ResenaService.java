@@ -32,12 +32,6 @@ public class ResenaService {
         return resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjetoOrderByFechaPublicacionDesc(idObjeto));
     }
 
-    public Resena nuevaResena(Long idObjeto, @ModelAttribute("nuevaResena") Resena resena) {
-        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow();
-        resena.setObjeto(objeto);
-        return resenaRepository.save(resena);
-    }
-
     public List<ResenaDTO> obtenerResenasConAbuso() {
         List<Resena> resenas = resenaRepository.findResenasByAbusoEquals(true);
         return resenaMapper.toDtoList(resenas);
