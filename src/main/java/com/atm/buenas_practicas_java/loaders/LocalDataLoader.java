@@ -339,7 +339,7 @@ public class LocalDataLoader {
         // Objeto de prueba
         // PELÍCULAS
         Objeto objeto = new Objeto();
-        objeto.setTitulo("Harry Potter");
+        objeto.setTitulo("Harry Potterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         objeto.setDescripcion("Harry Potter es una pelicula que trata de " +
                 " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
                 " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
@@ -842,14 +842,16 @@ public class LocalDataLoader {
                 "                \" delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat\" +\n" +
                 "                \" quibusdam quisquam quos repellat sunt vitae.");
         comentarioResena1.setAbuso(true);
+        comentarioResena1.setFecha(LocalDateTime.now());
 
         ComentarioResena comentarioResena2 = new ComentarioResena();
         comentarioResena2.setResena(resena1);
         comentarioResena2.setUsuario(usuario3);
         comentarioResena2.setContenido("Me ha gustao mucho tu reseña, mi pana. Ánimo con lo tuyo.");
         comentarioResena2.setAbuso(true);
+        comentarioResena2.setFecha(LocalDateTime.now());
 
-        resena1.setComentariosResena(new HashSet<>(Arrays.asList(comentarioResena1, comentarioResena2)));
+        resena1.setComentariosResena(Arrays.asList(comentarioResena1, comentarioResena2));
 
 
 

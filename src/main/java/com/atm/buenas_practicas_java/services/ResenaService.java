@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ResenaService {
@@ -25,18 +24,20 @@ public class ResenaService {
         this.resenaMapper = resenaMapper;
     }
 
-    public List<ResenaDTO> findResenasByObjeto(Long idObjeto) {
-        return resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjeto(idObjeto));
+    public Resena findById(Long idResena) {
+        return resenaRepository.findById(idResena).orElseThrow();
     }
 
-    public Resena nuevaResena(Long idObjeto, @ModelAttribute("nuevaResena") Resena resena) {
-        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow();
-        resena.setObjeto(objeto);
-        return resenaRepository.save(resena);
+    public List<ResenaDTO> findResenasByObjeto(Long idObjeto) {
+        return resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjetoOrderByFechaPublicacionDesc(idObjeto));
     }
 
     public List<ResenaDTO> obtenerResenasConAbuso() {
         List<Resena> resenas = resenaRepository.findResenasByAbusoEquals(true);
         return resenaMapper.toDtoList(resenas);
+    }
+
+    public Resena save(Resena resena) {
+        return resenaRepository.save(resena);
     }
 }
