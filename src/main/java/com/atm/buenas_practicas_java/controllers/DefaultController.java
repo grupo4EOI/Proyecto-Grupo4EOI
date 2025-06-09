@@ -151,16 +151,6 @@ public class DefaultController {
         return "/nuevo-tema";
     }
 
-    @GetMapping({"/", "/pagina-principal"})
-    public String mostrarPaginaPrincipal(Principal principal, Model model) {
-        if (principal != null) {
-            String name = principal.getName();
-            model.addAttribute("nombreUsuario", name);
-        }
-
-        return "/pagina-principal";
-    }
-
     /** TODO: Cambiar mapping cuando se hagan servicios y controladores */
     @GetMapping("/perfil")
     public String mostrarPerfil() {

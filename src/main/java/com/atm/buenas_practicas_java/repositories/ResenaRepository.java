@@ -11,4 +11,6 @@ public interface ResenaRepository extends JpaRepository<Resena, Long> {
     List<Resena> findResenasByObjeto_IdObjeto(Long idObjeto);
 
     List<Resena> findResenasByAbusoEquals(Boolean abuso);
+
+    Resena findTopByOrderByFechaPublicacionDesc();
 }

@@ -33,8 +33,13 @@ public class ResenaService {
     }
 
     public List<ResenaDTO> obtenerResenasConAbuso() {
-        List<Resena> resenas = resenaRepository.findResenasByAbusoEquals(true);
-        return resenaMapper.toDtoList(resenas);
+        List<Resena> resenasReportadas = resenaRepository.findResenasByAbusoEquals(true);
+        return resenaMapper.toDtoList(resenasReportadas);
+    }
+
+    public ResenaDTO obtenerUltimaResena() {
+        Resena ultimaResena = resenaRepository.findTopByOrderByFechaPublicacionDesc();
+        return resenaMapper.toDto(ultimaResena);
     }
 
     public Resena save(Resena resena) {
