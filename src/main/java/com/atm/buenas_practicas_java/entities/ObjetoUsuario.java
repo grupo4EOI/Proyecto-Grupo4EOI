@@ -20,7 +20,7 @@ public class ObjetoUsuario {
     @Column(name = "id_objeto_usuario", columnDefinition = "INTEGER")
     private Long idObjetoUsuario;
     private boolean favorito;
-    private boolean estado;
+    private boolean estado = false;
 
     // Relación M:N entre la tabla usuario y objeto
     @ManyToOne

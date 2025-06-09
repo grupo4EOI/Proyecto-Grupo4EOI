@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ public class Resena {
     @Column(name = "id_resena", columnDefinition = "INTEGER")
     private int idResena;
     private String titulo;
+    private LocalDateTime fechaPublicacion = LocalDateTime.now();
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Double puntuacion;
@@ -41,7 +44,7 @@ public class Resena {
     @OneToMany(mappedBy = "resena")
     private List<Reaccion> reacciones;
 
-    @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER)
-    private Set<ComentarioResena> comentariosResena;
+    @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<ComentarioResena> comentariosResena;
 
 }

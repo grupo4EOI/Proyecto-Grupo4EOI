@@ -24,3 +24,7 @@ body {
     background: rgb(255,255,255);
     background: linear-gradient(90deg, rgba(255,255,255,0.3024859602043942) 46%, rgba(252,175,88,0.6330181730895483) 100%);
 }
+
+.logo{
+    height: 45px;
+}

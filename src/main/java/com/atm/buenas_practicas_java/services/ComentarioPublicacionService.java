@@ -76,6 +76,17 @@ public class ComentarioPublicacionService {
                     ).toList();
     }
 
+    public ComentarioPublicacionDTO buscarPrimerComentarioUltimaPublicacion() {
+        Publicacion ultimaPublicacion = publicacionRepository.findAll().getLast();
+        ComentarioPublicacionDTO primerComentarioDTO = comentarioPublicacionMapper.toDto(ultimaPublicacion.getComentariosPublicacion().getFirst());
+        return new ComentarioPublicacionDTO(
+                ultimaPublicacion.getTitulo(),
+                primerComentarioDTO.contenido(),
+                primerComentarioDTO.usuario(),
+                primerComentarioDTO.reacciones()
+        );
+    }
+
     public List<ComentarioPublicacionDTO> buscarComentariosPublicacionConAbuso() {
         List<ComentarioPublicacion> publicaciones = comentarioPublicacionRepository.findComentarioPublicacionsByAbusoEquals(true);
         return publicaciones.stream()

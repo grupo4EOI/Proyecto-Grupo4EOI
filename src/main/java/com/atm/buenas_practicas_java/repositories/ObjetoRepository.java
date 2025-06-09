@@ -25,4 +25,14 @@ public interface ObjetoRepository extends JpaRepository<Objeto, Long> {
             ) DESC
     """)
     List<Objeto> buscarListaObjetosMejorValoradosPorTipo(@Param("tipo") String tipo, Limit limit);
+
+    @Query("""
+        SELECT o FROM Objeto o
+            JOIN o.usuarios ou
+            WHERE o.tipo.nombre = :tipo
+            AND ou.estado = true
+            GROUP BY o
+            ORDER BY COUNT(ou) DESC
+    """)
+    List<Objeto> buscarListaObjetosMasPopularesPorTipo(@Param("tipo") String tipo, Limit limit);
 }

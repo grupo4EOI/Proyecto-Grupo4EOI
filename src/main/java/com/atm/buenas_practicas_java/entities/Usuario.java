@@ -41,7 +41,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private String role;
 
     // Relación 1:N con reseñas
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private List<Resena> resenas;
 
     // Relación M:N entre las tablas objetos y usuarios
