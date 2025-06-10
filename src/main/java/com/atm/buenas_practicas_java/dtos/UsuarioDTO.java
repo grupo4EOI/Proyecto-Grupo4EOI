@@ -1,8 +1,9 @@
 package com.atm.buenas_practicas_java.dtos;
 
-import java.util.List;
 
 public record UsuarioDTO(
+        Long idUsuario,
         String nombreUsuario,
-        String avatarUrl
+        String avatarUrl,
+        String role
 ) { }

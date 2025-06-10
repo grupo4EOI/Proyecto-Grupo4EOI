@@ -1,10 +1,13 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
 import com.atm.buenas_practicas_java.services.*;
+import com.atm.buenas_practicas_java.services.facade.ComunidadServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,112 +23,68 @@ import java.util.List;
 @RequestMapping("/comunidades")
 public class ComunidadesController {
 
-    private ComunidadService comunidadService;
-    private PublicacionService publicacionService;
-    private ComentarioPublicacionService comPubService;
-    private UsuarioService usuarioService;
+    private final ComunidadServiceFacade comunidadServiceFacade;
 
-    public ComunidadesController(ComunidadService comunidadService, PublicacionService publicacionService, ComentarioPublicacionService comPubService, UsuarioService usuarioService) {
-        this.comunidadService = comunidadService;
-        this.publicacionService = publicacionService;
-        this.comPubService = comPubService;
-        this.usuarioService = usuarioService;
+    public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade) {
+        this.comunidadServiceFacade = comunidadServiceFacade;
     }
 
     @GetMapping
     public String mostrarComunidades(Model model) {
-        List<Comunidad> comunidades = comunidadService.findAll();
+        List<ComunidadDTO> comunidades = comunidadServiceFacade.buscarComunidades();
         model.addAttribute("comunidades", comunidades);
         return "comunidades";
     }
 
     @GetMapping("/{id}/temas")
     public String mostrarTemas(Model model, @PathVariable Long id) {
-        List<Publicacion> publicaciones = publicacionService.getPublicacionsByComunidad(comunidadService.findById(id));
-        Comunidad comunidad = comunidadService.findById(id);
-        model.addAttribute("publicaciones", publicaciones);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        List<PublicacionDTO> publicaciones = comunidadServiceFacade.buscarPublicacionesPorComunidad(id);
         model.addAttribute("comunidad", comunidad);
+        model.addAttribute("publicaciones", publicaciones);
         return "comunidad";
     }
 
     @GetMapping("/{idcom}/temas/{id}")
-    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id) {
-        Comunidad com = comunidadService.findById(idcom);
-        List<ComentarioPublicacion> comentarios = comPubService.getComentarioPublicacionByPublicacionId(id);
-        model.addAttribute("comunidad", com);
+    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @RequestParam(value = "citar", required = false) Long comentarioCitadoId) {
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(idcom);
+        List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
+        model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
+
         return "ejemplo-tema";
     }
 
     @GetMapping("/{id}/temas/nuevo-tema")
     public String mostrarNuevoTema(Model model, @PathVariable Long id) {
-        Comunidad comunidad = comunidadService.findById(id);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        model.addAttribute("nuevoTema", new PublicacionCrearDTO(null, "", ""));
         model.addAttribute("comunidad", comunidad);
         return "nuevo-tema";
     }
 
     @PostMapping("/{id}/temas")
-    public String crearNuevoTema(@PathVariable Long id,
-                                 @RequestParam String titulo,
-                                 @RequestParam String contenido,
-                                 Principal principal) {
-
-        Comunidad comunidad = comunidadService.findById(id);
-        if (comunidad == null) {
-            return "redirect:/error";
-        }
-
-        Publicacion publicacion = new Publicacion();
-        publicacion.setTitulo(titulo);
-        publicacion.setComunidad(comunidad);
-
-
-        Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
-
-        ComentarioPublicacion comentario = new ComentarioPublicacion();
-        comentario.setContenido(contenido);
-        comentario.setFecha(LocalDateTime.now());
-        comentario.setPublicacion(publicacion);
-        comentario.setUsuario(usuario);
-
-        publicacion.setComentariosPublicacion(Arrays.asList(comentario));
-
-        publicacionService.save(publicacion);
-
-        comPubService.save(comentario);
-
-
-
-        return "redirect:/comunidades/" + id + "/temas/" + publicacion.getIdPublicacion();
+    public String crearNuevoTema(@PathVariable Long id, @ModelAttribute("nuevoTema") PublicacionCrearDTO publicacion, Principal principal) {
+        PublicacionCrearDTO publicacionDTO = comunidadServiceFacade.nuevaPublicacion(id, publicacion, principal.getName());
+        return String.format("redirect:/comunidades/%d/temas/%d", id, publicacionDTO.idPublicacion());
     }
 
-    @PostMapping("/{idcom}/temas/{id}")
+    @PostMapping(value = "/{idcom}/temas/{id}", params = "accion=nuevoComentario")
     public String crearComentario(@PathVariable Long idcom,
                                   @PathVariable Long id,
-                                  @RequestParam String contenido,
+                                  @ModelAttribute("comentario") ComentarioPublicacionCrearDTO comentario,
                                   Principal principal) {
-
-        Comunidad comunidad = comunidadService.findById(idcom);
-        if (comunidad == null) {
-            return "redirect:/error";
-        }
-
-        Publicacion publicacion = publicacionService.findById(id);
-        if (publicacion == null) {
-            return "redirect:/error";
-        }
-
-        Usuario usuario = usuarioService.findByNombreUsuario(principal.getName());
-
-        ComentarioPublicacion comentario = new ComentarioPublicacion();
-        comentario.setContenido(contenido);
-        comentario.setFecha(LocalDateTime.now());
-        comentario.setPublicacion(publicacion);
-        comentario.setUsuario(usuario);
-
-        comPubService.save(comentario);
-
-        return "redirect:/comunidades/" + idcom + "/temas/" + id;
+        ComentarioPublicacionCrearDTO comentarioDTO = comunidadServiceFacade.nuevoComentario(idcom,comentario, principal.getName(), id);
+        return String.format("redirect:/comunidades/%d/temas/%d", idcom, comentarioDTO.publicacion().idPublicacion());
     }
+
+    @PutMapping(value = "/{idcom}/temas/{id}", params = "accion=reportarComentario")
+    public String reportarComentario(@PathVariable Long idcom,
+                                     @PathVariable Long id,
+                                     @RequestParam("idComentarioPublicacion") Long idComentarioPublicacion){
+        comunidadServiceFacade.reportarComentarioPublicacion(idComentarioPublicacion);
+        return String.format("redirect:/comunidades/%d/temas/%d", idcom, id);
+    }
+
 
 }
