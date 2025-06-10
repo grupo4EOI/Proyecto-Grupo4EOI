@@ -55,8 +55,9 @@ public class ObjetoController {
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
 
-    @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=")
-    public String reportarResena(@PathVariable Long idObjeto, @RequestParam Long idResena) {
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarResena")
+    public String reportarResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena) {
+        fichaObjetoFacade.reportarResena(idResena);
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
 }
