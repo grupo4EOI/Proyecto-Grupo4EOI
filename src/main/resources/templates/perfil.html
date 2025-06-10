@@ -171,32 +171,6 @@
                             </li>
                         </ul>
 
-                        <!--                      <div class="tab-content mt-3">-->
-                        <!--                          <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">-->
-                        <!--                              <div id="resenas-container">-->
-                        <!--                                  <p th:if="${#lists.isEmpty(resenas)}">No hay reseñas aún.</p>-->
-                        <!--                                  <div th:each="resena : ${resenas}">-->
-
-                        <!--                                  </div>-->
-                        <!--                              </div>-->
-                        <!--                          </div>-->
-                        <!--                          <div class="tab-pane fade" id="tab-comentarios" role="tabpanel">-->
-                        <!--                              <div id="comentarios-container">-->
-                        <!--                                  <p th:if="${#lists.isEmpty(comentarios)}">No hay comentarios.</p>-->
-                        <!--                                  <div th:each="comentario : ${comentarios}">-->
-                        <!--                                  </div>-->
-                        <!--                              </div>-->
-                        <!--                          </div>-->
-                        <!--                          <div class="tab-pane fade" id="tab-megusta" role="tabpanel">-->
-                        <!--                              <div id="megusta-container">-->
-                        <!--                                  <p th:if="${#lists.isEmpty(meGusta)}">No hay me gusta.</p>-->
-                        <!--                                  <div th:each="item : ${meGusta}">-->
-                        <!--                                  </div>-->
-                        <!--                              </div>-->
-                        <!--                          </div>-->
-                        <!--                      </div>-->
-                        <!--                  </div>-->
-                        <!--              </div>-->
                         <div class="tab-content mt-3">
                             <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
                                 <div id="resenas-container">
@@ -207,7 +181,7 @@
                                                 <h5 class="card-title" th:text="${resena.titulo}">Título de la reseña</h5>
                                                 <p class="card-text" th:text="${resena.contenido}">Contenido de la reseña</p>
                                                 <p class="card-text">
-                                                    <small th:text="${resena.puntuacion} + '/10'">0/10</small>
+                                                    <small th:text="${resena.puntuacion} + '/5'">0/5</small>
                                                 </p>
                                             </div>
                                         </div>

@@ -1,8 +1,9 @@
 package com.atm.buenas_practicas_java.services;
 
-import com.atm.buenas_practicas_java.dtos.AjustesPerfilDTO;
-import com.atm.buenas_practicas_java.dtos.GeneroPerfilDTO;
+import com.atm.buenas_practicas_java.dtos.GeneroDTO;
+import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioPerfilDTO;
+import com.atm.buenas_practicas_java.entities.Amistad;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
@@ -10,7 +11,6 @@ import com.atm.buenas_practicas_java.repositories.PerfilRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,15 +53,22 @@ public class PerfilService {
 
         Set<Genero> generos = usuario.getGeneros();
 
-        List<GeneroPerfilDTO> peliculas = perfilMapper.toDtoList(
+        List<GeneroDTO> peliculas = perfilMapper.toDtoList(
                 generoService.filtrarGenerosPorTipo(generos, "pelicula")
         );
-        List<GeneroPerfilDTO> series = perfilMapper.toDtoList(
+        List<GeneroDTO> series = perfilMapper.toDtoList(
                 generoService.filtrarGenerosPorTipo(generos, "serie")
         );
-        List<GeneroPerfilDTO> videojuegos = perfilMapper.toDtoList(
+        List<GeneroDTO> videojuegos = perfilMapper.toDtoList(
                 generoService.filtrarGenerosPorTipo(generos, "videojuego")
         );
+
+        List<UsuarioDTO> amigosDTO = usuario.getAmigos().stream()
+                .filter(Amistad::isEstado) // solo amigos confirmados
+                .map(Amistad::getAmigo)
+                .map(perfilMapper::toDto)
+                .collect(Collectors.toList());
+
 
         return new UsuarioPerfilDTO(
                 usuario.getIdUsuario(),
@@ -71,7 +78,7 @@ public class PerfilService {
                 usuario.isEsAdministrador(),
                 usuario.getResenas(),
                 usuario.getComentariosPublicacion(),
-                usuario.getAmigos(),
+                amigosDTO,
                 usuario.getReacciones(),
                 usuario.getComentariosResenas(),
                 usuario.getGeneros(),

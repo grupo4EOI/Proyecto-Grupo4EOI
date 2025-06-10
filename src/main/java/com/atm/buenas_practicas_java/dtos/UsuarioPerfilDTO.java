@@ -13,12 +13,13 @@ public record UsuarioPerfilDTO(
         boolean esAdministrador,
         List<Resena> resenas,
         Set<ComentarioPublicacion> comentariosPublicacion,
-        Set<Amistad> amigos,
+        List<UsuarioDTO> amigos,
+        //Set<Amistad> amigos,
         List<Reaccion> reacciones,
         Set<ComentarioResena> comentariosResenas,
         Set<Genero> generos,
-        List<GeneroPerfilDTO> generosPeliculas,
-        List<GeneroPerfilDTO> generosSeries,
-        List<GeneroPerfilDTO> generosVideojuegos
+        List<GeneroDTO> generosPeliculas,
+        List<GeneroDTO> generosSeries,
+        List<GeneroDTO> generosVideojuegos
 ) {
 }

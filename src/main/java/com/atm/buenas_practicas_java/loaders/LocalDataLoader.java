@@ -766,12 +766,25 @@ public class LocalDataLoader {
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
 
-        Amistad amistad = new Amistad();
-        amistad.setUsuario(usuario1);
-        amistad.setAmigo(usuario2);
-        amistad.setAmigo(usuario3);
-        amistad.setEstado(true);
-        amistad.setFecha(new Date());
+
+
+//        Amistad amistad1 = new Amistad();
+//        amistad1.setUsuario(usuario1);
+//        amistad1.setAmigo(usuario2);
+//        amistad1.setEstado(true);
+//        amistad1.setFecha(new Date());
+//
+//        Amistad amistad2 = new Amistad();
+//        amistad2.setUsuario(usuario2);
+//        amistad2.setAmigo(usuario1);
+//        amistad2.setEstado(true);
+//        amistad2.setFecha(new Date());
+//
+//
+//        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
+
+      //  usuario1.getAmigos().add(amistad1);
+      //  usuario2.getAmigos().add(amistad2);
 
         usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
 
