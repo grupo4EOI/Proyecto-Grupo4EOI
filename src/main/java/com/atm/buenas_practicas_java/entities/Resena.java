@@ -28,7 +28,7 @@ public class Resena {
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Double puntuacion;
-    private boolean spoiler;
+    private boolean spoiler = false;
     private Boolean abuso = false;
 
     @NotNull

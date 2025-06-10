@@ -106,4 +106,8 @@ public class FichaObjetoFacade {
         resenaService.reportarResena(idResena);
     }
 
+    public void reportarSpoilerResena(Long idResena) {
+        resenaService.reportarSpoilerResena(idResena);
+    }
+
 }

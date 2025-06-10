@@ -49,4 +49,8 @@ public class ResenaService {
     public void reportarResena(Long idResena) {
         resenaRepository.reportarResena(idResena);
     }
+
+    public void reportarSpoilerResena(Long idResena) {
+        resenaRepository.reportarSpoilerResena(idResena);
+    }
 }
