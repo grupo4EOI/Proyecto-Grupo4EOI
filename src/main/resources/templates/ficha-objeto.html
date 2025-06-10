@@ -207,8 +207,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="etiqueta px-3 mb-2 mx-1">
                     <i class="bi bi-pencil mx-2"></i>
                     Añadir publicación
@@ -236,8 +234,26 @@
             <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
                     class="bi bi-person me-2"></i>@MrReseñador
             </div>
-            <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
-            <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
+            <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                <input type="hidden" th:name="_method" th:value="put"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
+                <button class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white"
+                        type="submit"
+                        th:name="accion"
+                        th:value="reportarResena"
+                        >Notificar abuso</button>
+            </form>
+            <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                <input type="hidden" th:name="_method" th:value="put"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
+                <button class="etiqueta px-2 mb-2 w-auto bg-danger text-white"
+                        type="submit"
+                        th:name="accion"
+                        th:value="reportarSpoilerResena"
+                        >Notificar spoiler</button>
+            </form>
             <p th:text="${#temporals.format(resena.fechaPublicacion(), 'dd-MM-yyyy HH:mm')}"></p>
             <div class="container" id="review">
                 <div class="row">

@@ -45,4 +45,12 @@ public class ResenaService {
     public Resena save(Resena resena) {
         return resenaRepository.save(resena);
     }
+
+    public void reportarResena(Long idResena) {
+        resenaRepository.reportarResena(idResena);
+    }
+
+    public void reportarSpoilerResena(Long idResena) {
+        resenaRepository.reportarSpoilerResena(idResena);
+    }
 }
