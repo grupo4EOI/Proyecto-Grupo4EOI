@@ -46,8 +46,8 @@
                     </li>
 
                 </ul>
-                <form class="d-flex me-auto" role="search" id="barraDeBusqueda">
-                    <input class="form-control me-2" type="search" placeholder="Buscar contenido" aria-label="Search">
+                <form class="d-flex me-auto" role="search" id="barraDeBusqueda" th:action="@{/buscador-resultado}" method="get">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Buscar contenido" aria-label="Search">
                     <button class="btn btn-outline-light text-white" type="submit">Buscar</button>
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" sec:authorize="!isAuthenticated()">
