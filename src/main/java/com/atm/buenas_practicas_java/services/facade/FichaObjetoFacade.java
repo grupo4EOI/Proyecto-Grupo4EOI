@@ -102,7 +102,6 @@ public class FichaObjetoFacade {
         resenaService.save(resena);
     }
 
-    @Transactional
     public void reportarResena(Long idResena) {
         resenaService.reportarResena(idResena);
     }
