@@ -101,7 +101,7 @@
                                   </li>
                               </ul>
                               <input type="hidden" name="idsGenerosPeliculas" th:id="'idsGenerosPeliculas_' + ${i}"
-                                     th:value="${ajustesPerfil.idsGenerosPeliculas.size() > i} ? ${ajustesPerfil.idsGenerosPeliculas[i]} : ''"/>
+                                     th:value="${ajustesPerfil.generosPeliculas().size() > i} ? ${ajustesPerfil.generosPeliculas()[i]} : ''"/>
                           </div>
                       </div>
                   </div>
@@ -123,7 +123,7 @@
                                   </li>
                               </ul>
                               <input type="hidden" name="idsGenerosSeries" th:id="'idsGenerosSeries_' + ${i}"
-                                     th:value="${ajustesPerfil.idsGenerosSeries.size() > i} ? ${ajustesPerfil.idsGenerosSeries[i]} : ''"/>
+                                     th:value="${ajustesPerfil.generosSeries.size() > i} ? ${ajustesPerfil.generosSeries()[i]} : ''"/>
                           </div>
                       </div>
                   </div>
@@ -145,7 +145,7 @@
                                   </li>
                               </ul>
                               <input type="hidden" name="idsGenerosVideojuegos" th:id="'idsGenerosVideojuegos_' + ${i}"
-                                     th:value="${ajustesPerfil.idsGenerosVideojuegos.size() > i} ? ${ajustesPerfil.idsGenerosVideojuegos[i]} : ''"/>
+                                     th:value="${ajustesPerfil.generosVideojuegos().size() > i} ? ${ajustesPerfil.generosVideojuegos()[i]} : ''"/>
                           </div>
                       </div>
                   </div>

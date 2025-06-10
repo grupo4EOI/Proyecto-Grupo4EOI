@@ -50,36 +50,15 @@ public class AjustesPerfilService {
     public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario) {
         Usuario usuario = findByIdUsuario(idUsuario);
 
-        Set<Genero> generos = usuario.getGeneros();
-
-        List<Integer> idsGenerosPeliculas = generoService.filtrarGenerosPorTipo(generos, "pelicula")
-                .stream()
-                .map(Genero::getIdGenero)
-                .toList();
-
-        List<Integer> idsGenerosSeries = generoService.filtrarGenerosPorTipo(generos, "serie")
-                .stream()
-                .map(Genero::getIdGenero)
-                .toList();
-
-        List<Integer> idsGenerosVideojuegos = generoService.filtrarGenerosPorTipo(generos, "videojuego")
-                .stream()
-                .map(Genero::getIdGenero)
-                .toList();
-
         List<Genero> generosPeliculas = generoService.obtenerGenerosPorTipo("pelicula");
         List<Genero> generosSeries = generoService.obtenerGenerosPorTipo("serie");
         List<Genero> generosVideojuegos = generoService.obtenerGenerosPorTipo("videojuego");
-
 
         return new AjustesPerfilDTO(
                 usuario.getIdUsuario(),
                 usuario.getNombreUsuario(),
                 null,
                 usuario.getBiografia(),
-                idsGenerosPeliculas,
-                idsGenerosSeries,
-                idsGenerosVideojuegos,
                 generosPeliculas,
                 generosSeries,
                 generosVideojuegos,
@@ -88,35 +67,35 @@ public class AjustesPerfilService {
     }
 
 
-    public void actualizarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfildto) {
-        Usuario usuario = findByIdUsuario(idUsuario);
-
-        if (ajustesPerfildto.nombreUsuario() != null && !ajustesPerfildto.nombreUsuario().isBlank()) {
-            usuario.setNombreUsuario(ajustesPerfildto.nombreUsuario());
-        }
-
-        if (ajustesPerfildto.contrasena() != null && !ajustesPerfildto.contrasena().isBlank()) {
-            usuario.setContrasena(ajustesPerfildto.contrasena());
-        }
-
-        usuario.setBiografia(ajustesPerfildto.biografia());
-
-        List<Integer> idsGeneros = new ArrayList<>();
-        if (ajustesPerfildto.idsGenerosPeliculas() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosPeliculas());
-        if (ajustesPerfildto.idsGenerosSeries() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosSeries());
-        if (ajustesPerfildto.idsGenerosVideojuegos() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosVideojuegos());
-
-
-        Set<Genero> generos = new HashSet<>(generoRepository.findAllById(idsGeneros));
-        usuario.setGeneros(generos);
-
-        if (ajustesPerfildto.avatar() != null && !ajustesPerfildto.avatar().isEmpty()) {
-            String imagen = imagenPerfilService.guardarImagen(ajustesPerfildto.avatar());
-            usuario.setAvatarUrl(imagen);
-        }
-
-        perfilRepository.saveAndFlush(usuario);
-    }
+//    public void actualizarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfildto) {
+//        Usuario usuario = findByIdUsuario(idUsuario);
+//
+//        if (ajustesPerfildto.nombreUsuario() != null && !ajustesPerfildto.nombreUsuario().isBlank()) {
+//            usuario.setNombreUsuario(ajustesPerfildto.nombreUsuario());
+//        }
+//
+//        if (ajustesPerfildto.contrasena() != null && !ajustesPerfildto.contrasena().isBlank()) {
+//            usuario.setContrasena(ajustesPerfildto.contrasena());
+//        }
+//
+//        usuario.setBiografia(ajustesPerfildto.biografia());
+//
+//        List<Integer> idsGeneros = new ArrayList<>();
+//        if (ajustesPerfildto.idsGenerosPeliculas() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosPeliculas());
+//        if (ajustesPerfildto.idsGenerosSeries() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosSeries());
+//        if (ajustesPerfildto.idsGenerosVideojuegos() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosVideojuegos());
+//
+//
+//        Set<Genero> generos = new HashSet<>(generoRepository.findAllById(idsGeneros));
+//        usuario.setGeneros(generos);
+//
+//        if (ajustesPerfildto.avatar() != null && !ajustesPerfildto.avatar().isEmpty()) {
+//            String imagen = imagenPerfilService.guardarImagen(ajustesPerfildto.avatar());
+//            usuario.setAvatarUrl(imagen);
+//        }
+//
+//        perfilRepository.saveAndFlush(usuario);
+//    }
 
 
 }

@@ -42,9 +42,7 @@ public class PerfilService {
         return usuario;
     }
 
-    public void editarBiografia(Long idUsuario, String biografia) {
-        Usuario usuario = findByIdUsuario(idUsuario);
-        usuario.setBiografia(biografia);
+    public void saveAndFlush(Usuario usuario) {
         perfilRepository.saveAndFlush(usuario);
     }
 
