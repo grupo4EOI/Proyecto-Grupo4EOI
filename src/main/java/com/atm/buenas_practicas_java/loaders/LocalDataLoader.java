@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -45,7 +46,7 @@ public class LocalDataLoader {
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
-
+    private final PasswordEncoder encoder;
 
     public LocalDataLoader(ObjetoRepository objetoRepository,
                            PersonaRepository personaRepository,
@@ -58,7 +59,8 @@ public class LocalDataLoader {
                            PublicacionRepository publicacionRepository,
                            ComunidadRepository comunidadRepository,
                            ComentarioResenaRepository comentarioResenaRepository,
-                           ObjetoUsuarioRepository objetoUsuarioRepository) {
+                           ObjetoUsuarioRepository objetoUsuarioRepository,
+                           PasswordEncoder encoder) {
         this.objetoRepository = objetoRepository;
         this.personaRepository = personaRepository;
         this.personaObjetoRepository = personaObjetoRepository;
@@ -71,6 +73,7 @@ public class LocalDataLoader {
         this.comunidadRepository = comunidadRepository;
         this.comentarioResenaRepository = comentarioResenaRepository;
         this.objetoUsuarioRepository = objetoUsuarioRepository;
+        this.encoder = encoder;
     }
 
     @PostConstruct
@@ -686,7 +689,15 @@ public class LocalDataLoader {
 
         personaObjetoRepository.saveAll(Arrays.asList(personaObjeto1, personaObjeto2, personaObjeto3));
 
+
+
         // Usuarios de prueba
+        Usuario admin = new Usuario();
+        admin.setNombreUsuario("admin");
+        admin.setEmail("admin@admin.com");
+        admin.setContrasena(encoder.encode("admin"));
+        admin.setRole("ADMIN");
+
         Usuario usuario1 = new Usuario();
         usuario1.setNombreUsuario("Usuario1");
         usuario1.setEmail("hola@gmail.com");
@@ -839,7 +850,7 @@ public class LocalDataLoader {
         objetoUsuario5.setObjeto(objeto19);
 
 
-        usuarioRepository.saveAll(Arrays.asList(
+        usuarioRepository.saveAll(Arrays.asList(admin,
                 usuario1, usuario2, usuario3, usuario4, usuario5,
                 usuario6, usuario7, usuario8, usuario9, usuario10,
                 usuario11, usuario12, usuario13, usuario14, usuario15,
