@@ -19,8 +19,8 @@ public class ObjetoUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_objeto_usuario", columnDefinition = "INTEGER")
     private Long idObjetoUsuario;
-    private boolean favorito;
-    private boolean estado = false;
+    private Boolean favorito = false;
+    private Boolean estado = false;
 
     // Relación M:N entre la tabla usuario y objeto
     @ManyToOne

@@ -1,6 +1,7 @@
 package com.atm.buenas_practicas_java.dtos.composedDTOs;
 
 import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
+import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.PersonaDTO;
 import com.atm.buenas_practicas_java.dtos.ResenaDTO;
 
@@ -20,5 +21,6 @@ public record FichaObjetoDTO(
         String puntuacion,
         Integer numeroResenas,
         List<PersonaDTO> directores,
-        List<PersonaDTO> actores
+        List<PersonaDTO> actores,
+        ComunidadSimpleDTO comunidad
 ) { }

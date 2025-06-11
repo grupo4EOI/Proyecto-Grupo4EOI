@@ -1,11 +1,13 @@
 package com.atm.buenas_practicas_java.services;
 
-import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
-import com.atm.buenas_practicas_java.entities.Publicacion;
-import com.atm.buenas_practicas_java.entities.UserForm;
-import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.entities.*;
+import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
+import com.atm.buenas_practicas_java.repositories.ObjetoUsuarioRepository;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
 import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,17 +20,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
     private final PublicacionRepository publicacionRepository;
     private final PasswordEncoder passwordEncoder;
-
-    public UsuarioService(UsuarioRepository usuarioRepository, PublicacionRepository publicacionRepository, PasswordEncoder passwordEncoder) {
-        this.usuarioRepository = usuarioRepository;
-        this.publicacionRepository = publicacionRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final ObjetoUsuarioRepository objetoUsuarioRepository;
+    private final ObjetoRepository objetoRepository;
 
     public void save(Usuario usuario) {
         usuarioRepository.save(usuario);
@@ -52,6 +51,30 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByNombreUsuario(nombreUsuario)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
+
+    @Transactional
+    public void marcarEstadoObjeto(Long idObjeto, String nombreUsuario, Boolean estado) {
+        Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(() -> new EntityNotFoundException());
+        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow(() -> new EntityNotFoundException());
+
+        Optional<ObjetoUsuario> existente = objetoUsuarioRepository.findByObjeto_IdObjetoAndUsuario_IdUsuario(idObjeto, usuario.getIdUsuario());
+
+        if (existente.isPresent()) {
+            ObjetoUsuario registro = existente.get();
+            registro.setEstado(estado);
+            objetoUsuarioRepository.save(registro);
+        } else {
+            ObjetoUsuario nuevo = new ObjetoUsuario();
+            nuevo.setUsuario(usuario);
+            nuevo.setObjeto(objeto);
+            nuevo.setEstado(estado);
+            objetoUsuarioRepository.save(nuevo);
+        }
+
+    }
+
+
+    // Metodos para el registro y el login
 
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
