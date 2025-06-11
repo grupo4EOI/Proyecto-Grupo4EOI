@@ -289,6 +289,8 @@ public class LocalDataLoader {
         generoEducativoV.setTipo(tipoVideojuegos);
 
 
+
+
         generoRepository.saveAll(Arrays.asList(generoDramaP, generoRomanceP, generoComediaP, generoFiccionP,
                 generoFantasiaP, generoAccionP, generoAventurasP, generoAnimacionP, generoAnimeP, generoBelicoP,
                 generoPoliciacaP, generoDocumentalP, generoFamiliarP, generoHistoriaP, generoMusicalP,
@@ -702,18 +704,74 @@ public class LocalDataLoader {
         usuario1.setNombreUsuario("Usuario1");
         usuario1.setEmail("hola@gmail.com");
         usuario1.setContrasena("1234");
+
+        usuario1.setBiografia("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        usuario1.setEsAdministrador(true);
+
+        Set<Genero> generosFavoritos = new HashSet<>();
+        generosFavoritos.add(generoAccionS);
+        generosFavoritos.add(generoAnimeS);
+        generosFavoritos.add(generoMisterioS);
+
+
         usuario1.setRole("USER");
 
+
+        generosFavoritos.add(generoDramaP);
+        generosFavoritos.add(generoRomanceP);
+        generosFavoritos.add(generoComediaP);
+
+        generosFavoritos.add(generoRPGV);
+        generosFavoritos.add(generoBattleRoyaleV);
+        generosFavoritos.add(generoPlataformasV);
+
+        usuario1.setGeneros(generosFavoritos);
+
+/*
+* contenedor-datos-ficha-perfil mx-auto rounded p-3
+*  shadow text-center d-flex flex-column justify-content-center
+* align-items-center
+*
+*
+* */
         Usuario usuario2 = new Usuario();
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
         usuario2.setContrasena("4321");
+
+        usuario2.setEsAdministrador(false);
+
         usuario2.setRole("USER");
+
 
         Usuario usuario3 = new Usuario();
         usuario3.setNombreUsuario("Usuario3");
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
+
+
+
+
+//        Amistad amistad1 = new Amistad();
+//        amistad1.setUsuario(usuario1);
+//        amistad1.setAmigo(usuario2);
+//        amistad1.setEstado(true);
+//        amistad1.setFecha(new Date());
+//
+//        Amistad amistad2 = new Amistad();
+//        amistad2.setUsuario(usuario2);
+//        amistad2.setAmigo(usuario1);
+//        amistad2.setEstado(true);
+//        amistad2.setFecha(new Date());
+//
+//
+//        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
+
+      //  usuario1.getAmigos().add(amistad1);
+      //  usuario2.getAmigos().add(amistad2);
+
+        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
+
         usuario3.setRole("ADMIN");
 
         Usuario usuario4 = new Usuario();
@@ -859,6 +917,8 @@ public class LocalDataLoader {
 
         objetoUsuarioRepository.saveAll(Arrays.asList(objetoUsuario1, objetoUsuario2, objetoUsuario3, objetoUsuario4, objetoUsuario5));
 
+
+
         // Reseñas de prueba
         Resena resena1 = new Resena();
         resena1.setTitulo("La peor película de mi vida");
@@ -901,8 +961,6 @@ public class LocalDataLoader {
 
         resena1.setComentariosResena(Arrays.asList(comentarioResena1, comentarioResena2));
 
-
-
         Resena resena2 = new Resena();
         resena2.setTitulo("La mejor película de mi vida");
         resena2.setContenido("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
@@ -914,8 +972,16 @@ public class LocalDataLoader {
         resena2.setObjeto(objeto);
         resena2.setAbuso(true);
 
+        Resena resena3 = new Resena();
+        resena3.setTitulo("Ha estado muy bien.");
+        resena3.setContenido("Muy disfrutable, me ha encantado. Sobretodo la escena donde el personaje principal consigue encontrar...");
+        resena3.setPuntuacion(9.0);
+        resena3.setSpoiler(true);
+        resena3.setUsuario(usuario1);
+        resena3.setObjeto(objeto);
 
-        resenaRepository.saveAll(Arrays.asList(resena1, resena2));
+
+        resenaRepository.saveAll(Arrays.asList(resena1, resena2, resena3));
 
         comentarioResenaRepository.saveAll(Arrays.asList(comentarioResena1, comentarioResena2));
 

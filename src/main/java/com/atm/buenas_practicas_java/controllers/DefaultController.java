@@ -152,10 +152,10 @@ public class DefaultController {
     }
 
     /** TODO: Cambiar mapping cuando se hagan servicios y controladores */
-    @GetMapping("/perfil")
-    public String mostrarPerfil() {
-        return "/perfil";
-    }
+//    @GetMapping("/perfil")
+//    public String mostrarPerfil() {
+//        return "/perfil";
+//    }
 
     @GetMapping("/politica-privacidad")
     public String mostrarPoliticaPrivacidad() {
