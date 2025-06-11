@@ -27,6 +27,14 @@ public interface ObjetoRepository extends JpaRepository<Objeto, Long> {
     List<Objeto> buscarListaObjetosMejorValoradosPorTipo(@Param("tipo") String tipo, Limit limit);
 
     @Query("""
+    SELECT o FROM Objeto o
+    WHERE LOWER(o.titulo) LIKE LOWER(CONCAT('%', :filtro, '%'))
+    """)
+    List<Objeto> buscarPorTitulo(@Param("filtro") String filtro);
+           
+    List<Objeto> findByTituloContainingIgnoreCase(String titulo); //Búsqueda Parcial y no sensible a MAYUS/MINUS
+    
+    @Query("""
         SELECT o FROM Objeto o
             JOIN o.usuarios ou
             WHERE o.tipo.nombre = :tipo
