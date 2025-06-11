@@ -102,6 +102,8 @@ public class SecurityConfig {
                         .requestMatchers("/",
                                 "/iniciar-sesion",
                                 "/registro",
+                                "/perfil/**",
+                                "/ajustes-perfil/**",
                                 "/pagina-principal",
                                 "/seccion/**",
                                 "/comunidades/**",

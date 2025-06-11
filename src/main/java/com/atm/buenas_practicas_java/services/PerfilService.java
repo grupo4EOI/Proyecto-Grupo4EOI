@@ -73,7 +73,7 @@ public class PerfilService {
                 usuario.getNombreUsuario(),
                 usuario.getAvatarUrl(),
                 usuario.getBiografia(),
-                usuario.isEsAdministrador(),
+                usuario.getRole(),
                 usuario.getResenas(),
                 usuario.getComentariosPublicacion(),
                 amigosDTO,

@@ -706,7 +706,7 @@ public class LocalDataLoader {
         usuario1.setContrasena("1234");
 
         usuario1.setBiografia("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        usuario1.setEsAdministrador(true);
+        usuario1.setRole("ADMIN");
 
         Set<Genero> generosFavoritos = new HashSet<>();
         generosFavoritos.add(generoAccionS);
@@ -738,9 +738,6 @@ public class LocalDataLoader {
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
         usuario2.setContrasena("4321");
-
-        usuario2.setEsAdministrador(false);
-
         usuario2.setRole("USER");
 
 
@@ -748,30 +745,6 @@ public class LocalDataLoader {
         usuario3.setNombreUsuario("Usuario3");
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
-
-
-
-
-//        Amistad amistad1 = new Amistad();
-//        amistad1.setUsuario(usuario1);
-//        amistad1.setAmigo(usuario2);
-//        amistad1.setEstado(true);
-//        amistad1.setFecha(new Date());
-//
-//        Amistad amistad2 = new Amistad();
-//        amistad2.setUsuario(usuario2);
-//        amistad2.setAmigo(usuario1);
-//        amistad2.setEstado(true);
-//        amistad2.setFecha(new Date());
-//
-//
-//        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
-
-      //  usuario1.getAmigos().add(amistad1);
-      //  usuario2.getAmigos().add(amistad2);
-
-        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3));
-
         usuario3.setRole("ADMIN");
 
         Usuario usuario4 = new Usuario();

@@ -7,6 +7,8 @@ import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
 import com.atm.buenas_practicas_java.repositories.GeneroRepository;
 import com.atm.buenas_practicas_java.repositories.PerfilRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,20 +19,17 @@ import java.util.Set;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AjustesPerfilService {
+
     private final PerfilRepository perfilRepository;
     private final GeneroService generoService;
     private final PerfilMapper perfilMapper;
     private final GeneroRepository generoRepository;
     private final ImagenPerfilService imagenPerfilService;
+    private final PasswordEncoder encoder;
 
-    public AjustesPerfilService(PerfilRepository perfilRepository, GeneroService generoService, PerfilMapper perfilMapper, GeneroRepository generoRepository, ImagenPerfilService imagenPerfilService) {
-        this.perfilRepository = perfilRepository;
-        this.generoService = generoService;
-        this.perfilMapper = perfilMapper;
-        this.generoRepository = generoRepository;
-        this.imagenPerfilService = imagenPerfilService;
-    }
+
 
     public Usuario findByIdUsuario(Long idUsuario) {
         Usuario usuario = perfilRepository.findByIdUsuario(idUsuario)
@@ -75,7 +74,7 @@ public class AjustesPerfilService {
         }
 
         if (ajustesPerfildto.contrasena() != null && !ajustesPerfildto.contrasena().isBlank()) {
-            usuario.setContrasena(ajustesPerfildto.contrasena());
+            usuario.setContrasena(encoder.encode(ajustesPerfildto.contrasena()));
         }
 
         usuario.setBiografia(ajustesPerfildto.biografia());
