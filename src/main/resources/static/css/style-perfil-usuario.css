@@ -74,9 +74,13 @@ img.rounded-circle {
 }
 
 .badge {
+    font-weight: normal;
     margin-right: 5px;
     margin-bottom: 5px;
-    background-color: #FF8C42;
+    background-color: #F9C784;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .tabs-contenido-principal {
@@ -123,9 +127,8 @@ img.rounded-circle {
 }
 
 .contenedor-datos-ficha-perfil {
-    margin-top: 90px; 
-    /*background-color: #b9c1e2;*/
-    background-color: #FF8C42;
+    margin-top: 90px;
+    background-color: #F9C784;
     max-width: 300px;
 }
 

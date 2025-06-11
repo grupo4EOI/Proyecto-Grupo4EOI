@@ -101,8 +101,8 @@
                     <p class="fw-bold fs-5">Géneros de películas favoritos</p>
                     <div>
                         <span th:each="genero : ${perfil.generosPeliculas}"
-                        th:text="'#' + ${genero.nombre}"
-                        class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
+                        th:text="${genero.nombre}"
+                        class="badge border border-dark text-dark rounded-pill fs-6">Género</span>
                     </div>
                 </div>
 
@@ -111,8 +111,8 @@
                     <p class="fw-bold fs-5">Géneros de series favoritos</p>
                     <div>
         <span th:each="genero : ${perfil.generosSeries}"
-              th:text="'#' + ${genero.nombre}"
-              class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
+              th:text="${genero.nombre}"
+              class="badge border border-dark text-dark rounded-pill fs-6">Género</span>
                     </div>
                 </div>
 
@@ -121,8 +121,8 @@
                     <p class="fw-bold fs-5">Géneros de videojuegos favoritos</p>
                     <div>
         <span th:each="genero : ${perfil.generosVideojuegos}"
-              th:text="'#' + ${genero.nombre}"
-              class="badge border border-dark text-dark rounded-pill fs-6">#Género</span>
+              th:text="${genero.nombre}"
+              class="badge border border-dark text-dark rounded-pill fs-6">Género</span>
                     </div>
                 </div>
                </div>
@@ -136,18 +136,18 @@
                                 </a>
                             </li>
                             <li class="mb-3">
-                                <a href="#" id="ver-insignias" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalInsignias">
-                                    🏆 Insignias (<span th:text="${contadorInsignias}">0</span>)
-                                </a>
-                            </li>
-                            <li class="mb-3">
                                 <a href="#" id="ver-favoritos" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalFavoritos">
                                     ❤️ Favoritos (<span th:text="${contadorFavoritos}">0</span>)
                                 </a>
                             </li>
+                            <li class="mb-3">
+                                <a href="#" id="ver-visto" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalVisto">
+                                    🎬 Visto (<span th:text="${contadorVisto}">0</span>)
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" id="ver-pendiente" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalPendiente">
-                                    🎬 Pendiente (<span th:text="${contadorPendiente}">0</span>)
+                                    🕐 Pendiente (<span th:text="${contadorPendiente}">0</span>)
                                 </a>
                             </li>
                         </ul>
@@ -161,13 +161,13 @@
                     <div class="bg-light rounded shadow-sm p-3">
                         <ul class="nav nav-tabs" id="tab-contenido-principal" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="link-resenas" data-bs-toggle="tab" href="#tab-resenas" role="tab">Reseñas</a>
+                                <a class="nav-link active text-dark" id="link-resenas" data-bs-toggle="tab" href="#tab-resenas" role="tab">Reseñas</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="link-comentarios" data-bs-toggle="tab" href="#tab-comentarios" role="tab">Comentarios</a>
+                                <a class="nav-link text-dark" id="link-publicaciones" data-bs-toggle="tab" href="#tab-publicaciones" role="tab">Publicaciones</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="link-megusta" data-bs-toggle="tab" href="#tab-megusta" role="tab">Me gusta</a>
+                                <a class="nav-link text-dark" id="link-megusta" data-bs-toggle="tab" href="#tab-megusta" role="tab">Me gusta</a>
                             </li>
                         </ul>
 
@@ -192,10 +192,10 @@
 
 
 
-                        <div class="tab-pane fade" id="tab-comentarios" role="tabpanel">
-                            <div id="comentarios-container">
-                                <p th:if="${#lists.isEmpty(comentarios)}">No hay comentarios.</p>
-                                <div th:each="comentario : ${comentarios}">
+                        <div class="tab-pane fade" id="tab-publicaciones" role="tabpanel">
+                            <div id="publicaciones-container">
+                                <p th:if="${#lists.isEmpty(publicaciones)}">No hay publicaciones.</p>
+                                <div th:each="publicacion : ${publicaciones}">
 
                                 </div>
                             </div>
@@ -205,7 +205,6 @@
                             <div id="megusta-container">
                                 <p th:if="${#lists.isEmpty(meGusta)}">No hay me gusta.</p>
                                 <div th:each="item : ${meGusta}">
-
                                 </div>
                             </div>
                         </div>
