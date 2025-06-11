@@ -10,13 +10,9 @@ import org.springframework.stereotype.Service;
 public class ObjetoUsuarioService {
 
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
-    private final UsuarioRepository usuarioRepository;
-    private final ObjetoRepository objetoRepository;
 
-    public ObjetoUsuarioService(ObjetoUsuarioRepository objetoUsuarioRepository, UsuarioRepository usuarioRepository, ObjetoRepository objetoRepository) {
+    public ObjetoUsuarioService(ObjetoUsuarioRepository objetoUsuarioRepository) {
         this.objetoUsuarioRepository = objetoUsuarioRepository;
-        this.usuarioRepository = usuarioRepository;
-        this.objetoRepository = objetoRepository;
     }
 
     public Boolean usuarioObjetoVisto(Long idObjeto, Long idUsuario) {

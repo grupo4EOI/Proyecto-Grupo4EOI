@@ -105,6 +105,11 @@ public class FichaObjetoFacade {
         usuarioService.marcarEstadoObjeto(idObjeto, nombreUsuario, estado);
     }
 
+    // Metodo para postmapping de objeto favorito
+    public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
+        usuarioService.marcarObjetoFavorito(idObjeto, nombreUsuario, favorito);
+    }
+
     // Metodo para putMapping de reportar reseña
     public void reportarResena(Long idResena) {
         resenaService.reportarResena(idResena);

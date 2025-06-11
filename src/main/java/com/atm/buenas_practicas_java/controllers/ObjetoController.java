@@ -35,10 +35,8 @@ public class ObjetoController {
 
         // Para postmapping de crear reseña
         model.addAttribute("nuevaResena", new ResenaCrearDTO("", "", 0.0, false));
-
         // Para postmapping de crear comentario reseña
         model.addAttribute("nuevoComentario", new ComentarioResenaDTO(null, "", null, null));
-
 
         return "/ficha-objeto";
     }
@@ -62,6 +60,11 @@ public class ObjetoController {
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
 
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=objetoFavorito")
+    public String nuevoObjetoFavorito(@PathVariable Long idObjeto, @RequestParam("favorito") Boolean favorito, Principal principal) {
+        fichaObjetoFacade.marcarObjetoFavorito(idObjeto, principal.getName(), favorito);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
 
     @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarResena")
     public String reportarResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena) {

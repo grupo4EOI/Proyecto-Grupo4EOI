@@ -54,8 +54,8 @@ public class UsuarioService implements UserDetailsService {
 
     @Transactional
     public void marcarEstadoObjeto(Long idObjeto, String nombreUsuario, Boolean estado) {
-        Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(() -> new EntityNotFoundException());
-        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow(() -> new EntityNotFoundException());
+        Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
+        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow(EntityNotFoundException::new);
 
         Optional<ObjetoUsuario> existente = objetoUsuarioRepository.findByObjeto_IdObjetoAndUsuario_IdUsuario(idObjeto, usuario.getIdUsuario());
 
@@ -71,6 +71,25 @@ public class UsuarioService implements UserDetailsService {
             objetoUsuarioRepository.save(nuevo);
         }
 
+    }
+
+    public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
+        Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
+        Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow(EntityNotFoundException::new);
+
+        Optional<ObjetoUsuario> existente = objetoUsuarioRepository.findByObjeto_IdObjetoAndUsuario_IdUsuario(idObjeto, usuario.getIdUsuario());
+
+        if (existente.isPresent()) {
+            ObjetoUsuario registro = existente.get();
+            registro.setFavorito(favorito);
+            objetoUsuarioRepository.save(registro);
+        } else {
+            ObjetoUsuario nuevo = new ObjetoUsuario();
+            nuevo.setUsuario(usuario);
+            nuevo.setObjeto(objeto);
+            nuevo.setFavorito(favorito);
+            objetoUsuarioRepository.save(nuevo);
+        }
     }
 
 
