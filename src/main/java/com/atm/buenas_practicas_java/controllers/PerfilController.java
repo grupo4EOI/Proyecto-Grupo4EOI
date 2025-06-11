@@ -59,12 +59,12 @@ public class PerfilController {
         return "ajustes-perfil";
     }
 
-//    @PostMapping("/ajustes-perfil/{id}")
-//    public String guardarAjustesPerfil(
-//            @PathVariable Long id,
-//            @ModelAttribute AjustesPerfilDTO ajustesPerfilDTO
-//    ) {
-//        ajustesPerfilService.actualizarAjustesPerfil(id, ajustesPerfilDTO);
-//        return "redirect:/perfil/" + id;
-//    }
+    @PostMapping("/ajustes-perfil/{id}")
+    public String guardarAjustesPerfil(
+            @PathVariable Long id,
+            @ModelAttribute AjustesPerfilDTO ajustesPerfilDTO
+    ) {
+        perfilServiceFacade.guardarAjustesPerfil(id, ajustesPerfilDTO);
+        return "redirect:/perfil/" + id;
+    }
 }

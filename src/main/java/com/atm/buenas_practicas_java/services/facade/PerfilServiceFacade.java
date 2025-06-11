@@ -36,5 +36,10 @@ public class PerfilServiceFacade {
         return ajustesPerfilService.obtenerAjustesPerfil(id);
     }
 
+    public void guardarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfil) {
+        ajustesPerfilService.actualizarAjustesPerfil(idUsuario, ajustesPerfil);
+    }
+
+
 
 }

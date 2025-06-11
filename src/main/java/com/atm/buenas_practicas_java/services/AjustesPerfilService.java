@@ -67,35 +67,43 @@ public class AjustesPerfilService {
     }
 
 
-//    public void actualizarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfildto) {
-//        Usuario usuario = findByIdUsuario(idUsuario);
-//
-//        if (ajustesPerfildto.nombreUsuario() != null && !ajustesPerfildto.nombreUsuario().isBlank()) {
-//            usuario.setNombreUsuario(ajustesPerfildto.nombreUsuario());
-//        }
-//
-//        if (ajustesPerfildto.contrasena() != null && !ajustesPerfildto.contrasena().isBlank()) {
-//            usuario.setContrasena(ajustesPerfildto.contrasena());
-//        }
-//
-//        usuario.setBiografia(ajustesPerfildto.biografia());
-//
-//        List<Integer> idsGeneros = new ArrayList<>();
-//        if (ajustesPerfildto.idsGenerosPeliculas() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosPeliculas());
-//        if (ajustesPerfildto.idsGenerosSeries() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosSeries());
-//        if (ajustesPerfildto.idsGenerosVideojuegos() != null) idsGeneros.addAll(ajustesPerfildto.idsGenerosVideojuegos());
-//
-//
-//        Set<Genero> generos = new HashSet<>(generoRepository.findAllById(idsGeneros));
-//        usuario.setGeneros(generos);
-//
-//        if (ajustesPerfildto.avatar() != null && !ajustesPerfildto.avatar().isEmpty()) {
-//            String imagen = imagenPerfilService.guardarImagen(ajustesPerfildto.avatar());
-//            usuario.setAvatarUrl(imagen);
-//        }
-//
-//        perfilRepository.saveAndFlush(usuario);
-//    }
+    public void actualizarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfildto) {
+        Usuario usuario = findByIdUsuario(idUsuario);
+
+        if (ajustesPerfildto.nombreUsuario() != null && !ajustesPerfildto.nombreUsuario().isBlank()) {
+            usuario.setNombreUsuario(ajustesPerfildto.nombreUsuario());
+        }
+
+        if (ajustesPerfildto.contrasena() != null && !ajustesPerfildto.contrasena().isBlank()) {
+            usuario.setContrasena(ajustesPerfildto.contrasena());
+        }
+
+        usuario.setBiografia(ajustesPerfildto.biografia());
+
+        Set<Genero> generos = new HashSet<>();
+
+        if (ajustesPerfildto.generosPeliculas() != null) {
+            generos.addAll(ajustesPerfildto.generosPeliculas());
+        }
+
+        if (ajustesPerfildto.generosSeries() != null) {
+            generos.addAll(ajustesPerfildto.generosSeries());
+        }
+
+        if (ajustesPerfildto.generosVideojuegos() != null) {
+            generos.addAll(ajustesPerfildto.generosVideojuegos());
+        }
+
+        usuario.setGeneros(generos);
+
+
+        if (ajustesPerfildto.avatar() != null && !ajustesPerfildto.avatar().isEmpty()) {
+            String imagen = imagenPerfilService.guardarImagen(ajustesPerfildto.avatar());
+            usuario.setAvatarUrl(imagen);
+        }
+
+        perfilRepository.saveAndFlush(usuario);
+    }
 
 
 }

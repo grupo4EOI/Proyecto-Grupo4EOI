@@ -95,16 +95,18 @@
                                   <li th:each="genero : ${generosPeliculas}">
                                       <a href="#" class="dropdown-item"
                                          th:data-id="${genero.idGenero}"
-                                         th:data-input-id="'idsGenerosPeliculas_' + ${i}"
+                                         th:data-input-id="'generosPeliculas_' + ${i} + '.idGenero'"
                                          th:text="${genero.nombre}"
                                          onclick="seleccionarGeneroUnico(event, this)"></a>
                                   </li>
                               </ul>
-                              <input type="hidden" name="idsGenerosPeliculas" th:id="'idsGenerosPeliculas_' + ${i}"
-                                     th:value="${ajustesPerfil.generosPeliculas().size() > i} ? ${ajustesPerfil.generosPeliculas()[i]} : ''"/>
+                              <input type="hidden" th:name="'generosPeliculas[' + ${i} + '].idGenero'"
+                                     th:id="'generosPeliculas_' + ${i} + '.idGenero'"
+                                     th:value="${ajustesPerfil.generosPeliculas.size() > i} ? ${ajustesPerfil.generosPeliculas[i].idGenero} : ''"/>
                           </div>
                       </div>
                   </div>
+
 
                   <div class="mb-3">
                       <label class="form-label">Géneros de series favoritos</label>
@@ -117,13 +119,14 @@
                                   <li th:each="genero : ${generosSeries}">
                                       <a href="#" class="dropdown-item"
                                          th:data-id="${genero.idGenero}"
-                                         th:data-input-id="'idsGenerosSeries_' + ${i}"
+                                         th:data-input-id="'generosSeries_' + ${i} + '.idGenero'"
                                          th:text="${genero.nombre}"
                                          onclick="seleccionarGeneroUnico(event, this)"></a>
                                   </li>
                               </ul>
-                              <input type="hidden" name="idsGenerosSeries" th:id="'idsGenerosSeries_' + ${i}"
-                                     th:value="${ajustesPerfil.generosSeries.size() > i} ? ${ajustesPerfil.generosSeries()[i]} : ''"/>
+                              <input type="hidden" th:name="'generosSeries[' + ${i} + '].idGenero'"
+                                     th:id="'generosSeries_' + ${i} + '.idGenero'"
+                                     th:value="${ajustesPerfil.generosSeries.size() > i} ? ${ajustesPerfil.generosSeries[i].idGenero} : ''"/>
                           </div>
                       </div>
                   </div>
@@ -139,13 +142,14 @@
                                   <li th:each="genero : ${generosVideojuegos}">
                                       <a href="#" class="dropdown-item"
                                          th:data-id="${genero.idGenero}"
-                                         th:data-input-id="'idsGenerosVideojuegos_' + ${i}"
+                                         th:data-input-id="'generosVideojuegos_' + ${i} + '.idGenero'"
                                          th:text="${genero.nombre}"
                                          onclick="seleccionarGeneroUnico(event, this)"></a>
                                   </li>
                               </ul>
-                              <input type="hidden" name="idsGenerosVideojuegos" th:id="'idsGenerosVideojuegos_' + ${i}"
-                                     th:value="${ajustesPerfil.generosVideojuegos().size() > i} ? ${ajustesPerfil.generosVideojuegos()[i]} : ''"/>
+                              <input type="hidden" th:name="'generosVideojuegos[' + ${i} + '].idGenero'"
+                                     th:id="'generosVideojuegos_' + ${i} + '.idGenero'"
+                                     th:value="${ajustesPerfil.generosVideojuegos.size() > i} ? ${ajustesPerfil.generosVideojuegos[i].idGenero} : ''"/>
                           </div>
                       </div>
                   </div>
@@ -154,24 +158,6 @@
           </form>
       </div>
   </main>
-<!--   &lt;!&ndash;Color para el perfil&ndash;&gt;
-NO SÉ SI DARÁ TIEMPO BWAAAAHHHHH
--->
-<!--   <label for="color-perfil" class="form-label">Color del perfil</label>-->
-<!--   <div class="mb-3" id="paleta-perfil">-->
-<!--     <input type="color" class="form-control" id="color-picker" value="#33a1ff">-->
-<!--     <div class="color-option" style="background-color: #db0505;"></div>-->
-<!--     <div class="color-option" style="background-color: #3f814b;"></div>-->
-<!--     <div class="color-option" style="background-color: #5733ff;"></div>-->
-<!--     <div class="color-option" style="background-color: #ff33a1;"></div>-->
-<!--     <div class="color-option" style="background-color: #ff5733;"></div>-->
-<!--   </div>-->
-<!-- -->
-<!--   <div class="text-center m-5">-->
-<!--    <a href="./perfil.html" class="btn btn-primary">Guardar cambios</a>-->
-<!--</div>-->
-<!-- </form>-->
-<!--</div>-->
 
     <!--Footer-->
     <footer class="bg-custom text-center py-3 mt-5">
