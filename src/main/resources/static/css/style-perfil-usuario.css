@@ -27,8 +27,8 @@
     background: linear-gradient(
             to bottom,
             rgba(252,175,88,0.63) 0%,
-            rgba(252,175,88,0.63) 3%,
-            rgba(255,255,255,0.30) 25%,
+            rgba(252,175,88,0.63) 10%,
+            rgba(255,255,255,0.30) 50%,
             rgba(255,255,255,0.30) 100%
     );
 
@@ -73,14 +73,14 @@ img.rounded-circle {
     object-fit: cover;
 }
 
-.badge {
+.badge-generos {
     font-weight: normal;
     margin-right: 5px;
     margin-bottom: 5px;
     background-color: #F9C784;
     border: 2px solid black;
     border-radius: 20px;
-    padding: 10px;
+    padding: 7px;
 }
 
 .tabs-contenido-principal {
@@ -143,12 +143,40 @@ img.rounded-circle {
     }
 }
 
+#resenas-container .resena {
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #fff9f0;
+}
+
+#resenas-container .resena {
+    padding: 1.5rem;
+}
+
+#resenas-container .card-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+#resenas-container .card-text small {
+    font-weight: bold;
+}
+
 .contenedores-amigos-insignias{
     max-width: 350px;
 }
 
+.lista-de-amigos{
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #fff9f0;
+}
+
 /* *** Estilo de la configuración del perfil de usuario *** */
 #fondo-ajustes-perfil {
+    flex: 1 0 auto;
+    padding-bottom: 40px;
     background: rgb(255,255,255);
     background: linear-gradient(90deg, rgba(255,255,255,0.3024859602043942) 46%, rgba(252,175,88,0.6330181730895483) 100%);
 }

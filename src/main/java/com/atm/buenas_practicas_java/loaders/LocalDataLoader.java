@@ -754,7 +754,13 @@ public class LocalDataLoader {
 
         usuario1.setGeneros(generosFavoritos);
 
-
+/*
+* contenedor-datos-ficha-perfil mx-auto rounded p-3
+*  shadow text-center d-flex flex-column justify-content-center
+* align-items-center
+*
+*
+* */
         Usuario usuario2 = new Usuario();
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");

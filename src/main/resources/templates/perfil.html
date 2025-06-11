@@ -53,7 +53,8 @@
 <!--Información sobre el usuario-->
 <main class="flex-grow-1 bg-body-secondary py-4" id="fondo-perfil">
     <div class="container">
-        <div class="row g-4 rounded align-items-start bg-white" id="ficha-principal-perfil">
+            <div class="row g-4 rounded align-items-start bg-white mb-5" id="ficha-principal-perfil">
+
             <div class="col-12 col-md-4 text-center text-black">
                 <div class="imagen-circular mx-auto mb-3">
                     <img th:if="${perfil.avatarUrl != null}"
@@ -102,7 +103,7 @@
                     <div>
                         <span th:each="genero : ${perfil.generosPeliculas}"
                         th:text="${genero.nombre}"
-                        class="badge border border-dark text-dark rounded-pill fs-6">Género</span>
+                        class="badge-generos border border-dark text-dark rounded-pill fs-6">Género</span>
                     </div>
                 </div>
 
@@ -112,7 +113,7 @@
                     <div>
         <span th:each="genero : ${perfil.generosSeries}"
               th:text="${genero.nombre}"
-              class="badge border border-dark text-dark rounded-pill fs-6">Género</span>
+              class="badge-generos border border-dark text-dark rounded-pill fs-6">Género</span>
                     </div>
                 </div>
 
@@ -122,7 +123,7 @@
                     <div>
         <span th:each="genero : ${perfil.generosVideojuegos}"
               th:text="${genero.nombre}"
-              class="badge border border-dark text-dark rounded-pill fs-6">Género</span>
+              class="badge-generos border border-dark text-dark rounded-pill fs-6">Género</span>
                     </div>
                 </div>
                </div>
@@ -156,42 +157,44 @@
             </div>
 
             <!--Contenido principal-->
-            <div class="row mt-5">
-                <div class="col-12 col-lg-9 mb-4 tabs-contenido-principal">
-                    <div class="bg-light rounded shadow-sm p-3">
-                        <ul class="nav nav-tabs" id="tab-contenido-principal" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active text-dark" id="link-resenas" data-bs-toggle="tab" href="#tab-resenas" role="tab">Reseñas</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link text-dark" id="link-publicaciones" data-bs-toggle="tab" href="#tab-publicaciones" role="tab">Publicaciones</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link text-dark" id="link-megusta" data-bs-toggle="tab" href="#tab-megusta" role="tab">Me gusta</a>
-                            </li>
-                        </ul>
+        <div class="row mt-5">
+            <div class="col-12 col-lg-9 mb-4 tabs-contenido-principal">
+                <div class="bg-light rounded shadow-sm p-3">
+                    <ul class="nav nav-tabs" id="tab-contenido-principal" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active text-dark" id="link-resenas" data-bs-toggle="tab" href="#tab-resenas" role="tab">Reseñas</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-dark" id="link-publicaciones" data-bs-toggle="tab" href="#tab-publicaciones" role="tab">Publicaciones</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-dark" id="link-megusta" data-bs-toggle="tab" href="#tab-megusta" role="tab">Me gusta</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3">
 
-                        <div class="tab-content mt-3">
-                            <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
-                                <div id="resenas-container">
-                                    <p th:if="${#lists.isEmpty(perfil.resenas)}">No hay reseñas aún.</p>
-                                    <div th:each="resena : ${perfil.resenas}">
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title" th:text="${resena.titulo}">Título de la reseña</h5>
-                                                <p class="card-text" th:text="${resena.contenido}">Contenido de la reseña</p>
-                                                <p class="card-text">
-                                                    <small th:text="${resena.puntuacion} + '/5'">0/5</small>
-                                                </p>
-                                            </div>
-                                        </div>
+                        <!-- Reseñas -->
+                        <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
+                            <div id="resenas-container">
+                                <p th:if="${#lists.isEmpty(perfil.resenas)}">No hay reseñas aún.</p>
+                                <div th:each="resena : ${perfil.resenas}" class="mb-3 p-3 resena">
+                                    <div>
+                                        <span class="fw-bold">Puntuación:</span>
+                                        <span th:text="${resena.puntuacion} + ' / 5'">0 / 5</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="fw-bold">Título de la reseña:</span>
+                                        <span th:text="${resena.titulo}">Título de ejemplo</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="fw-bold">Contenido de la reseña:</span>
+                                        <span th:text="${resena.contenido}">Contenido de ejemplo</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
-
+                        <!-- Publicaciones -->
                         <div class="tab-pane fade" id="tab-publicaciones" role="tabpanel">
                             <div id="publicaciones-container">
                                 <p th:if="${#lists.isEmpty(publicaciones)}">No hay publicaciones.</p>
@@ -201,10 +204,12 @@
                             </div>
                         </div>
 
+                        <!-- Me gusta -->
                         <div class="tab-pane fade" id="tab-megusta" role="tabpanel">
                             <div id="megusta-container">
                                 <p th:if="${#lists.isEmpty(meGusta)}">No hay me gusta.</p>
                                 <div th:each="item : ${meGusta}">
+
                                 </div>
                             </div>
                         </div>
@@ -212,10 +217,9 @@
                 </div>
             </div>
 
-
-            <!--Lista de amigos-->
-            <div class="contenedores-amigos-insignias col-12 col-lg-3 mx-auto mx-lg-0">
-                <div class="bg-light p-3 rounded shadow mb-4">
+            <!-- Lista de amigos -->
+            <div class="col-12 col-md-6 col-lg-3 mx-auto contenedores-amigos-insignias">
+                <div class="lista-de-amigos p-3 rounded shadow mb-4">
                     <h5 class="fs-4 text-center">Lista de amigos</h5>
                     <ul class="list-unstyled">
                         <li th:each="amistad : ${perfil.amigos}" class="mb-3 d-flex justify-content-between align-items-center">
@@ -230,21 +234,10 @@
                         <a href="#" class="text-decoration-none">Ver más</a>
                     </div>
                 </div>
-
-                <!--Insignias-->
-                <div class="bg-light p-3 rounded shadow">
-                    <h5 class="fs-4 text-center">Insignias</h5>
-                    <ul class="list-unstyled">
-                        <li th:each="insignia : ${perfil.amigos}" class="mb-3 text-center">🏆 <span th:text="${insignia}">Insignia</span></li>
-                    </ul>
-                    <div class="text-center">
-                        <a href="#" class="text-decoration-none">Ver más</a>
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
 </main>
-
 
 <!--Footer-->
 <footer class="bg-custom text-center py-3 mt-5">
