@@ -207,25 +207,26 @@
                     </div>
                 </div>
 
-                <div class="etiqueta px-3 mb-2 mx-1">
-                    <i class="bi bi-pencil mx-2"></i>
-                    Añadir publicación
-                </div>
+                <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                    <input type="hidden" th:name="favorito" th:value="true">
+                    <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="objetoFavorito"><i class="bi bi-heart mx-2"></i>Añadir a lista de favoritos</button>
+                </form>
 
-                <div class="etiqueta px-3 mb-2 mx-1">
-                    <i class="bi bi-heart mx-2"></i>
-                    Añadir a lista de favoritos
-                </div>
+                <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                    <input type="hidden" th:name="estado" th:value="false">
+                    <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="estadoObjeto"><i class="bi bi-bookmark mx-2"></i>Marcar como pendiente</button>
+                </form>
 
-                <div class="etiqueta px-3 mb-2 mx-1">
-                    <i class="bi bi-bar-chart mx-2"></i>
-                    Añade tu progreso
-                </div>
+                <form th:action="@{/ficha-objeto/{id}(id=${fichaObjeto.idObjeto()})}" method="post">
+                    <input type="hidden" th:name="estado" th:value="true">
+                    <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="estadoObjeto"><i class="bi bi-eye mx-2"></i>Marcar como visto</button>
+                </form>
+
                 <div class="etiqueta px-3 mb-2 mx-1">
                     <i class="bi bi-people mx-2"></i>
-                    Unirte a la comunidad
+                    <a th:href="@{/comunidades/{idComunidad}/temas(idComunidad=${fichaObjeto.comunidad.idComunidad})}" style="color: black !important; text-decoration: none;">Ir a la comunidad</a>
                 </div>
-            </div>
+            </form>
         </div>
         <hr class="hr mt-3">
         <!-- Apartado reseñas -->

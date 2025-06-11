@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@Mapper(componentModel = "spring", uses = { GeneroMapper.class, ResenaMapper.class, PublicacionMapper.class})
+@Mapper(componentModel = "spring", uses = {GeneroMapper.class, ResenaMapper.class, PublicacionMapper.class, ComunidadSimpleMapper.class})
 public interface FichaObjetoMapper {
 
     @Mapping(target = "fechaYDuracion", expression = "java(fechaYDuracion(objeto))")

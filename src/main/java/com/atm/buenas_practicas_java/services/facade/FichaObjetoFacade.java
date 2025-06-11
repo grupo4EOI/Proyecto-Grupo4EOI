@@ -2,10 +2,7 @@ package com.atm.buenas_practicas_java.services.facade;
 
 import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.FichaObjetoDTO;
-import com.atm.buenas_practicas_java.entities.ComentarioResena;
-import com.atm.buenas_practicas_java.entities.Objeto;
-import com.atm.buenas_practicas_java.entities.Resena;
-import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.entities.*;
 import com.atm.buenas_practicas_java.mapper.ComentarioResenaMapper;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.mapper.ResenaCrearMapper;
@@ -26,6 +23,7 @@ public class FichaObjetoFacade {
     private final ObjetoService objetoService;
     private final PersonaService personaService;
     private final UsuarioService usuarioService;
+    private final ObjetoUsuarioService objetoUsuarioService;
     private final ResenaService resenaService;
     private final ComentarioResenaService comentarioResenaService;
     private final ComentarioPublicacionService comentarioPublicacionService;
@@ -48,7 +46,6 @@ public class FichaObjetoFacade {
         List<PersonaDTO> directores = personaService.getDirectoresByObjetoId(idObjeto);
         List<PersonaDTO> actores = personaService.getActoresByObjetoId(idObjeto);
         List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto);
-
         return new FichaObjetoDTO(
                 dto.idObjeto(),
                 dto.titulo(),
@@ -63,7 +60,8 @@ public class FichaObjetoFacade {
                 puntuacion,
                 numeroResenas,
                 directores,
-                actores
+                actores,
+                dto.comunidad()
         );
     }
 
@@ -102,10 +100,22 @@ public class FichaObjetoFacade {
         resenaService.save(resena);
     }
 
+    // Metodo para postmapping de actualizar estado objeto (visto o pendiente)
+    public void marcarEstadoObjeto(Long idObjeto, String nombreUsuario, Boolean estado) {
+        usuarioService.marcarEstadoObjeto(idObjeto, nombreUsuario, estado);
+    }
+
+    // Metodo para postmapping de objeto favorito
+    public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
+        usuarioService.marcarObjetoFavorito(idObjeto, nombreUsuario, favorito);
+    }
+
+    // Metodo para putMapping de reportar reseña
     public void reportarResena(Long idResena) {
         resenaService.reportarResena(idResena);
     }
 
+    // Metodo para putMapping de reportar comentario reseña
     public void reportarSpoilerResena(Long idResena) {
         resenaService.reportarSpoilerResena(idResena);
     }
