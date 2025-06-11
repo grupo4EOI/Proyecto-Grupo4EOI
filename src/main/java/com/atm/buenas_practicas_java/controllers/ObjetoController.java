@@ -1,17 +1,23 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.dtos.ComentarioResenaDTO;
+import com.atm.buenas_practicas_java.dtos.ResenaCrearDTO;
+import com.atm.buenas_practicas_java.dtos.ResenaDTO;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.entities.Resena;
+import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.services.*;
 import com.atm.buenas_practicas_java.services.facade.FichaObjetoFacade;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -23,18 +29,52 @@ public class ObjetoController {
         this.fichaObjetoFacade = fichaObjetoFacade;
     }
 
-    // TODO: Revisar los métodos en los servicios que tomen como parámetro el objeto entero. Cambiar por idObjeto.
-    @GetMapping("/ficha-objeto/{id}")
-    public String mostrarFichaObjeto(Model model, @PathVariable Long id) {
-        model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(id));
-        model.addAttribute("nuevaResena", new Resena());
+    @GetMapping("/ficha-objeto/{idObjeto}")
+    public String mostrarFichaObjeto(Model model, @PathVariable Long idObjeto) {
+        model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(idObjeto));
+
+        // Para postmapping de crear reseña
+        model.addAttribute("nuevaResena", new ResenaCrearDTO("", "", 0.0, false));
+        // Para postmapping de crear comentario reseña
+        model.addAttribute("nuevoComentario", new ComentarioResenaDTO(null, "", null, null));
 
         return "/ficha-objeto";
     }
 
-    // TODO: Revisar cómo implementarlo en el facade
-    @PostMapping("/ficha-objeto/{id}")
-    public String nuevaResena(@PathVariable Long id, @ModelAttribute("nuevaResena") Resena resena) {
-        return String.format("redirect:/ficha-objeto/%d", id);
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=nuevaResena")
+    public String nuevaResena(@PathVariable Long idObjeto, @ModelAttribute("nuevaResena") ResenaCrearDTO resena, Principal principal, RedirectAttributes attrs) {
+        fichaObjetoFacade.agregarResena(idObjeto, resena, principal.getName());
+        attrs.addFlashAttribute("mensaje", "¡Reseña publicada!");
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=comentarResena")
+    public String nuevoComentarioResena(@PathVariable Long idObjeto, @RequestParam Long idResena, @ModelAttribute("nuevoComentario") ComentarioResenaDTO comentarioDTO, Principal principal) {
+        fichaObjetoFacade.agregarComentarioResena(idResena, comentarioDTO, principal.getName());
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=estadoObjeto")
+    public String actualizarEstadoObjeto(@PathVariable Long idObjeto, @RequestParam("estado") Boolean estado, Principal principal) {
+        fichaObjetoFacade.marcarEstadoObjeto(idObjeto, principal.getName(), estado);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=objetoFavorito")
+    public String nuevoObjetoFavorito(@PathVariable Long idObjeto, @RequestParam("favorito") Boolean favorito, Principal principal) {
+        fichaObjetoFacade.marcarObjetoFavorito(idObjeto, principal.getName(), favorito);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarResena")
+    public String reportarResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena) {
+        fichaObjetoFacade.reportarResena(idResena);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarSpoilerResena")
+    public String reportarSpoilerResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena) {
+        fichaObjetoFacade.reportarSpoilerResena(idResena);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
 }

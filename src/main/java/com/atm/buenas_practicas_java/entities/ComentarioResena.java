@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,9 +22,12 @@ public class ComentarioResena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INTEGER")
     private Long idComentarioResena;
-    private LocalDateTime fecha;
+
+    private LocalDateTime fecha = LocalDateTime.now();
+
     @Column(columnDefinition = "TEXT")
     private String contenido;
+    private Boolean abuso = false;
 
     @NotNull
     @ManyToOne(optional = false)
@@ -36,5 +40,5 @@ public class ComentarioResena {
     private Resena resena;
 
     @OneToMany(mappedBy = "comentarioResena", fetch = FetchType.EAGER)
-    private List<Reaccion> reacciones;
+    private List<Reaccion> reacciones = new ArrayList<>();
 }

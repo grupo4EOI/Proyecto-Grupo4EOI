@@ -19,34 +19,34 @@
     <div class="row mt-4 ms-1 me-1 display-flex flex-wrap">
         <div class="col-md-2 col-comunidad mb-4 display-flex" th:each="comunidad : ${comunidades}">
             <div class="card h-100 w-100">
-                <img th:src="${comunidad.urlImg}" class="img-fluid card-img-top h-100 w-100" th:alt="${comunidad.nombreComunidad}">
+                <img th:src="${comunidad.urlImg()}" class="img-fluid card-img-top img-fixed" th:alt="${comunidad.nombreComunidad()}">
                 <div class="card-body d-flex flex-column justify-content-between">
-                    <h5 class="card-title" th:text="${comunidad.nombreComunidad}">Harry Potter</h5>
-                    <p class="card-text" th:text="${comunidad.descripcion}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
-                    <p class="card-text" th:text="${#lists.size(comunidad.publicaciones)} + ' temas creados'"><i class="bi bi-envelope"> </i>1567 temas creados</p>
-                    <p class="card-text" th:text="${#lists.size(comunidad.usuarios)} + ' usuarios'"><i class="bi bi-people"> </i>69 usuarios activos</p>
-                    <a th:href="@{/comunidades/{id}/temas(id=${comunidad.idComunidad})}" class="btn btn-custom text-dark border-dark mt-2" alt="botón unirse a comunidad">Únete!</a>
+                    <h5 class="card-title" th:text="${comunidad.nombreComunidad()}">Harry Potter</h5>
+                    <p class="card-text" th:text="${comunidad.descripcion()}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare commodo tortor, a pulvinar justo scelerisque ut. Sed porta urna sed lacinia lobortis. Nullam tristique hendrerit enim.</p>
+                    <p class="card-text" th:text="${comunidad.numPublicaciones()} + ' temas creados'"><i class="bi bi-envelope"> </i>1567 temas creados</p>
+                    <p class="card-text" th:text="${comunidad.numUsuarios()} + ' usuarios'"><i class="bi bi-people"> </i>69 usuarios activos</p>
+                    <a th:href="@{/comunidades/{id}/temas(id=${comunidad.idComunidad()})}" class="btn btn-custom text-dark border-dark mt-2">Únete!</a>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function filtrarTarjetas() {
+            let input = document.getElementById("filtro").value.toLowerCase();
+            let cards = document.querySelectorAll(".card");
+
+            cards.forEach(card => {
+                let titulo = card.querySelector(".card-title").textContent.toLowerCase();
+
+                if (titulo.includes(input)) {
+                    card.parentElement.style.display = "block"; // Muestra la card
+                } else {
+                    card.parentElement.style.display = "none"; // Oculta la card
+                }
+            });
+        }
+    </script>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script>
-    function filtrarTarjetas() {
-        let input = document.getElementById("filtro").value.toLowerCase();
-        let cards = document.querySelectorAll(".card");
-
-        cards.forEach(card => {
-            let titulo = card.querySelector(".card-title").textContent.toLowerCase();
-
-            if (titulo.includes(input)) {
-                card.parentElement.style.display = "block"; // Muestra la card
-            } else {
-                card.parentElement.style.display = "none"; // Oculta la card
-            }
-        });
-    }
-</script>
 </body>
 </html>

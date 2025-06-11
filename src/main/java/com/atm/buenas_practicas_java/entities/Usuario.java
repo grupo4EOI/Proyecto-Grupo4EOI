@@ -2,13 +2,15 @@ package com.atm.buenas_practicas_java.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.security.core.CredentialsContainer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -19,14 +21,15 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name="usuarios")
-public class Usuario {
+@Builder
+public class Usuario implements UserDetails, CredentialsContainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INTEGER")
     private Long idUsuario;
-    @NotNull
+    @Column(unique = true, nullable = false)
     private String nombreUsuario;
-    @NotNull
+    @Column(unique = true, nullable = false)
     private String email;
     @NotNull
     private String contrasena;
@@ -34,11 +37,11 @@ public class Usuario {
     private String avatarUrl;
     private String biografia;
     private LocalDateTime ultimaConexion;
-    @Column(columnDefinition = "BOOLEAN default false")
-    private boolean esAdministrador;
+    @Column(nullable = false)
+    private String role;
 
     // Relación 1:N con reseñas
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private List<Resena> resenas;
 
     // Relación M:N entre las tablas objetos y usuarios
@@ -50,8 +53,8 @@ public class Usuario {
     private Set<ComentarioPublicacion> comentariosPublicacion;
 
     // Relación con comunidad
-    @ManyToMany(mappedBy = "usuarios")
-    private List<Comunidad> comunidades;
+    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
+    private Set<Comunidad> comunidades;
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)
     @OneToMany
@@ -75,4 +78,44 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "id_genero")
     )
     private Set<Genero> generos;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role));
+    }
+
+    @Override
+    public String getPassword() {
+        return contrasena;
+    }
+
+    @Override
+    public String getUsername() {
+        return nombreUsuario;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public void eraseCredentials() {
+
+    }
 }

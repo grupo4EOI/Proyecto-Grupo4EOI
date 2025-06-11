@@ -11,7 +11,7 @@ public record ObjetoDTO(
         String imagenUrl,
         String trailerUrl,
         Integer anoPublicacion,
-        Double puntuacion,
+        String puntuacion,
         Integer numeroResenas
 ) {
 }

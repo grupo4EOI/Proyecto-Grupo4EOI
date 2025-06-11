@@ -12,9 +12,14 @@ import java.util.Set;
 public interface ComentarioResenaMapper {
 
     @Mapping(source = "contenido", target = "contenido")
-    @Mapping(source = "fecha", target = "fecha")
     @Mapping(source = "usuario", target = "usuario")
     ComentarioResenaDTO toDto(ComentarioResena comentarioResena);
 
-    List<ComentarioResenaDTO> toDtoList(Set<ComentarioResena> comentarios);
+    List<ComentarioResenaDTO> toDtoList(List<ComentarioResena> comentarios);
+
+    @Mapping(target = "idComentarioResena", ignore = true)
+    @Mapping(target = "abuso", ignore = true)
+    @Mapping(target = "usuario", ignore = true)
+    @Mapping(target = "resena", ignore = true)
+    ComentarioResena toEntity(ComentarioResenaDTO comentarioResenaDTO);
 }

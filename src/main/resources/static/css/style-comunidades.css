@@ -4,17 +4,22 @@
 .card {
     background-color: #4E598C !important;
 }
-@media (max-width: 1596px) {
+.img-fixed {
+    height: 527px;
+    object-fit: cover;
+    width: 100%;
+}
+@media (max-width: 1710px) {
     .col-comunidad {
         width: 25%; /* Muestra 4 tarjetas por fila */
     }
 }
-@media (max-width: 1066px) {
+@media (max-width: 1305px) {
     .col-comunidad {
         width: 50%; /* Muestra 2 tarjetas por fila */
     }
 }
-@media (max-width: 576px) {
+@media (max-width: 785px) {
     .col-comunidad {
         width: 100%; /* Muestra 1 tarjetas por fila */
     }

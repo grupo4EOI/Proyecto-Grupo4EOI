@@ -137,21 +137,20 @@
                     Añadir reseña
                 </div>
 
-                <!-- Modal -->
-                <!-- Modal -->
-                <!--
+                <!-- Modal agregar reseña -->
                 <div class="modal fade" id="modalResena" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
 
 
                             <div class="modal-header bg-gradient text-white py-3">
-                                <h5 class="modal-title fw-bold" id="reviewModalLabel">📝 Añadir Reseña</h5>
+                                <h5 class="modal-title fw-bold text-dark" id="reviewModalLabel">📝 Añadir Reseña</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                             </div>
 
 
-                            <form
+                            <form th:action="@{/ficha-objeto/{id}(id=${fichaObjeto.idObjeto()})}"
+                                  th:object="${nuevaResena}"
                                   method="post">
 
                                 <div class="modal-body px-4 py-3">
@@ -168,15 +167,29 @@
                                                placeholder="Ej. 3.5" required />
                                     </div>
 
+                                    <div class="mb-3">
+                                        <label for="titulo" class="form-label">Título de la reseña</label>
+                                        <input type="text"
+                                               class="form-control rounded-pill"
+                                               id="titulo"
+                                               th:field="*{titulo}"
+                                               placeholder="Añade el título de la reseña...">
+                                    </div>
 
                                     <div class="form-floating mb-3">
-                <textarea class="form-control rounded-3"
-                          placeholder="Escribe tu reseña..."
-                          id="text"
-                          style="height: 120px"
-                          th:field="*{contenido}"
-                          required></textarea>
+                                        <textarea class="form-control rounded-3"
+                                                  placeholder="Escribe tu reseña..."
+                                                  id="text"
+                                                  style="height: 120px"
+                                                  th:field="*{contenido}"
+                                                  required></textarea>
                                         <label for="text">Escribe tu reseña...</label>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <label>
+                                            <input type="checkbox" th:field="*{spoiler}"> Contiene Spoiler
+                                        </label>
                                     </div>
                                 </div>
 
@@ -185,7 +198,7 @@
                                     <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
                                         Cancelar
                                     </button>
-                                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                    <button type="submit" name="accion" value="nuevaResena" class="btn btn-primary rounded-pill px-4">
                                         Publicar
                                     </button>
                                 </div>
@@ -193,28 +206,27 @@
                         </div>
                     </div>
                 </div>
-                -->
 
+                <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                    <input type="hidden" th:name="favorito" th:value="true">
+                    <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="objetoFavorito"><i class="bi bi-heart mx-2"></i>Añadir a lista de favoritos</button>
+                </form>
 
-                <div class="etiqueta px-3 mb-2 mx-1">
-                    <i class="bi bi-pencil mx-2"></i>
-                    Añadir publicación
-                </div>
+                <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                    <input type="hidden" th:name="estado" th:value="false">
+                    <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="estadoObjeto"><i class="bi bi-bookmark mx-2"></i>Marcar como pendiente</button>
+                </form>
 
-                <div class="etiqueta px-3 mb-2 mx-1">
-                    <i class="bi bi-heart mx-2"></i>
-                    Añadir a lista de favoritos
-                </div>
+                <form th:action="@{/ficha-objeto/{id}(id=${fichaObjeto.idObjeto()})}" method="post">
+                    <input type="hidden" th:name="estado" th:value="true">
+                    <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="estadoObjeto"><i class="bi bi-eye mx-2"></i>Marcar como visto</button>
+                </form>
 
-                <div class="etiqueta px-3 mb-2 mx-1">
-                    <i class="bi bi-bar-chart mx-2"></i>
-                    Añade tu progreso
-                </div>
                 <div class="etiqueta px-3 mb-2 mx-1">
                     <i class="bi bi-people mx-2"></i>
-                    Unirte a la comunidad
+                    <a th:href="@{/comunidades/{idComunidad}/temas(idComunidad=${fichaObjeto.comunidad.idComunidad})}" style="color: black !important; text-decoration: none;">Ir a la comunidad</a>
                 </div>
-            </div>
+            </form>
         </div>
         <hr class="hr mt-3">
         <!-- Apartado reseñas -->
@@ -223,8 +235,27 @@
             <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
                     class="bi bi-person me-2"></i>@MrReseñador
             </div>
-            <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
-            <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
+            <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                <input type="hidden" th:name="_method" th:value="put"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
+                <button class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white"
+                        type="submit"
+                        th:name="accion"
+                        th:value="reportarResena"
+                        >Notificar abuso</button>
+            </form>
+            <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                <input type="hidden" th:name="_method" th:value="put"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
+                <button class="etiqueta px-2 mb-2 w-auto bg-danger text-white"
+                        type="submit"
+                        th:name="accion"
+                        th:value="reportarSpoilerResena"
+                        >Notificar spoiler</button>
+            </form>
+            <p th:text="${#temporals.format(resena.fechaPublicacion(), 'dd-MM-yyyy HH:mm')}"></p>
             <div class="container" id="review">
                 <div class="row">
                     <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
@@ -239,12 +270,41 @@
             </div>
             <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
             <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#comentarios-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat"></i> Comentarios</div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#nuevocomentario-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat-dots"></i> Añadir comentario</div>
+            <div class="row collapse mt-3 me-2 pt-3 bg-transparent" th:id="'nuevocomentario-' + ${iterStat.index}">
+                <div class="card card-body p-3 bg-transparent">
+                    <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}"
+                          th:object="${nuevoComentario}"
+                          method="post"
+                          class="d-flex flex-column">
+
+                        <input type="hidden" name="idResena" th:value="${resena.idResena()}">
+
+                        <div class="mb-2">
+                            <textarea th:field="*{contenido}"
+                                      name="contenido"
+                                      class="form-control form-control-lg rounded-pill border-0 shadow-sm mb-3"
+                                      rows="3"
+                                      placeholder="Escribe tu comentario"
+                                      style="resize: none;"
+                                      required></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" name="accion" value="comentarResena" class="btn btn-success btn-lg rounded-pill px-4 shadow"><i class="bi bi-send-fill me-2"></i> Publicar comentario</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="row collapse mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
                 <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
                         class="bi bi-person me-2"></i>@MrReseñador
                 </div>
                 <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
                 <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
+                <div class="w-auto">
+                    <p th:text="${#temporals.format(comentario.fecha(), 'dd-MM-yyyy HH:mm')}"></p>
+                </div>
                 <p th:text="${comentario.contenido()}"></p>
             </div>
         </div>
@@ -268,12 +328,10 @@
         </div>
 
     </div>
+
+    <!-- Parte de JavaScript para el modal -->
+    <script src="/js/trailer.js"></script>
 </div>
-
-
-<!-- Parte de JavaScript para el modal -->
-<script src="/js/trailer.js"></script>
-
 
 <script crossorigin="anonymous"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
