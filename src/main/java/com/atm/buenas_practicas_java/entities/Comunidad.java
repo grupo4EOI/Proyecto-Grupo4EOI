@@ -32,7 +32,7 @@ public class Comunidad {
     @JoinTable(name = "usuarios_comunidades"
     , joinColumns = @JoinColumn(name = "id_comunidad"),
     inverseJoinColumns = @JoinColumn(name = "id_usuario"))
-    private List<Usuario> usuarios;
+    private Set<Usuario> usuarios;
 
     @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
     private List<Publicacion> publicaciones;

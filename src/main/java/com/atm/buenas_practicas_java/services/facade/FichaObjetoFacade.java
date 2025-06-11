@@ -102,7 +102,12 @@ public class FichaObjetoFacade {
         resenaService.save(resena);
     }
 
-    // TODO: Metodos para postmapping de reacciones para reseña y comentario reseña
+    public void reportarResena(Long idResena) {
+        resenaService.reportarResena(idResena);
+    }
 
+    public void reportarSpoilerResena(Long idResena) {
+        resenaService.reportarSpoilerResena(idResena);
+    }
 
 }

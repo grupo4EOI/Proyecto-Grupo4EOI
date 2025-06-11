@@ -24,13 +24,12 @@ public class Resena {
     @Column(name = "id_resena", columnDefinition = "INTEGER")
     private int idResena;
     private String titulo;
+    private LocalDateTime fechaPublicacion = LocalDateTime.now();
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Double puntuacion;
-    private boolean spoiler;
+    private boolean spoiler = false;
     private Boolean abuso = false;
-
-    private LocalDateTime fechaPublicacion = LocalDateTime.now();
 
     @NotNull
     @ManyToOne(optional = false)

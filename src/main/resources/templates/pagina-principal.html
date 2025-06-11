@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/layout/layout.html}">
 <head>
@@ -18,86 +19,200 @@
 <div layout:fragment="content">
 <!--Contenido de la página-->
 
-    <div class="container text-center bg-warning w-900">
-        <div class="row">
-            <div class="col-12 p-3 ">
-                <div id="CarouselFilms" class="carousel slide carousel-fade " data-bs-ride="carousel">
-                    <div class="carousel-inner d-flex">
-                        <div class="carousel-item active">
-                            <picture>
-                                <source media="(max-width: 200px)" srcset="">
-                                <img src="" class="d-block w-100" alt="Poster de Harry Potter: Las Reliquias de la Muerte Parte 1">
-                            </picture>
-
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Harry Potter: Las Reliquias de la Muerte. Parte 1</h5>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <picture>
-                                <source media="(max-width: 200px)" srcset="">
-                                <img src="" class="d-block w-100" alt="Poster de la película Mad Max: Furia en la Carretera">
-                            </picture>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Mad Max: Furia en la carretera</h5>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <picture>
-                                <source media="(max-width: 200px)" srcset="">
-                                <img src="" class="d-block w-100" alt="Poster de la película Thor Ragnarok">
-                            </picture>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Thor: Ragnarok</h5>
-                            </div>
-                        </div>
+    <div class="container px-3 px-md-4 px-lg-5">
+        <div class="container-head-bottom">
+            <div class="row align-items-center">
+                <section class="col-lg-6 col-md-12 order-lg-1 order-2 header-left animate-slide-in-left">
+                    <h2 class="header-main">Bienvenidos a LaConchaCrítica</h2>
+                    <p class="header-secondary">
+                        Si estás hart@ de reseñas que parecen notas de prensa, este es tu sitio. Aquí analizamos pelis, series y videojuegos con criterio,
+                        humor y sin filtros. Nada de endulzar lo mediocre. ¿Te ha flipado algo? ¿Has perdido dos horas de tu vida con una serie infumable?
+                        Cuéntalo. Aquí se viene a criticar con gusto.
+                    </p>
+                    <div class="button-group flex-nowrap flex-md-wrap">
+                        <a href="/iniciar-sesion" class="header-button">Iniciar sesión</a>
+                        <a href="/registro" class="header-button">Regístrate</a>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#CarouselFilms" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#CarouselFilms" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                </section>
+                <div class="col-lg-6 col-md-12 order-lg-2 order-1 mb-4 mb-lg-0 animate-slide-in-right">
+                    <div class="placeholder-img ratio ratio-16x9"></div>
                 </div>
             </div>
         </div>
-
-
-        <!-- Columna Izquierda -->
-
-        <div class="row">
-            <!-- Columna Izquierda más pequeña -->
-            <div class="col-md-4 bg-light">
-                <div class="card mb-3 mt-4 bg-secondary rounded-3">
-                    <div class="card-body">
-                        <h6 class="text-start">Últimas reseñas</h6>
-                        <div class="bg-light rounded-3">
-                            <p class="texto-tarjeta-izq">Jacoboom47</p>
-                            <p class="card-text">Texto de ejemplo para la columna izquierda.</p>
-                            <img src="https://placehold.co/200x200" class="card-img-top p-1 rounded-3" alt="...">
-                        </div>
-                    </div>
-
-                </div>
-                <h3>Juego</h3>
-                <div class="card mb-4"> <!-- margen inferior -->
-                    <img src="https://placehold.co/200x200" class="card-img-top" alt="...">
-                </div>
-            </div>
-
-            <!-- Columna Derecha más grande -->
-            <div class="col-md-8 d-flex flex-column">
-                <div class="card flex-fill mb-4">
-                    <div class="card-body">
-                        <p>Contenido principal que se estira hasta el final.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+        <!-- first section: some random info and placeholder boxes -->
+        <div class="container">
+            <section class="row justify-content-center">
+                <h3 class="col-12"><b>Ultimas Películas Añadidas</b></h3>
+                <!-- Primera tarjeta -->
+                <div class="col-md-3 col-6 w-auto mb-4" th:each="objeto : ${paginaPrincipal.peliculasRecientes()}">
+                    <div class="card-container h-100 d-flex flex-column mx-auto" style="max-width: 300px">
+                        <div class="image-container-ext">
+                            <div class="image-container">
+                                <img class="img-fluid imagen-objeto" alt="Cartel de Harry Potter"
+                                     th:src="${objeto.imagenUrl()}">
+                                <button class="trailer-button btn btn-primary video-btn"
+                                        data-bs-target="#modal-trailer"
+                                        data-bs-toggle="modal"
+                                        th:data-src="${objeto.trailerUrl()}"
+                                        type="button">
+                                    <i class="bi bi-play-circle me-2"></i>Ver trailer
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
+                        <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
+                            <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" >
+                                <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none  text-dark">
+                                    <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                                </a>
+                            </h2>
+                            <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
+                                <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
+                                <p class="puntuacion">
+                                    <span th:text="'(' + ${objeto.numeroResenas()} + ' reseñas) '"></span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <span th:text="${objeto.puntuacion()}">4.7</span> / 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+        <section class="main-quote">
+            <div class="container">
+                    <h3 class="col-12"><b>Ultima Reseña realizada</b></h3>
+                    <div class="row mx-3 my-3 gx-0" th:each="resena, iterStat : ${paginaPrincipal.ultimaResena()}">
+                        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
+                                class="bi bi-person me-2"></i>@MrReseñador
+                        </div>
+                        <div class="container" id="review">
+                            <div class="row">
+                                <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <b>Título de la reseña: </b><span th:text="${resena.titulo()}"></span>
+                                </div>
+                                <div class="col-12 mb-1">
+                                    <b>Contenido de la reseña: </b><span th:text="${resena.contenido()}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="row justify-content-center">
+                <h3 class="col-12"><b>Series más valoradas</b></h3>
+                <!-- Primera tarjeta -->
+                <div class="col-md-3 col-6 w-auto mb-4" th:each="objeto : ${paginaPrincipal.seriesMasValoradas()}">
+                    <div class="card-container h-100 d-flex flex-column mx-auto" style="max-width: 300px">
+                        <div class="image-container-ext">
+                            <div class="image-container">
+                                <img class="img-fluid imagen-objeto" alt="Cartel de Harry Potter"
+                                     th:src="${objeto.imagenUrl()}">
+                                <button class="trailer-button btn btn-primary video-btn"
+                                        data-bs-target="#modal-trailer"
+                                        data-bs-toggle="modal"
+                                        th:data-src="${objeto.trailerUrl()}"
+                                        type="button">
+                                    <i class="bi bi-play-circle me-2"></i>Ver trailer
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
+                        <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
+                            <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" >
+                                <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none  text-dark">
+                                    <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                                </a>
+                            </h2>
+                            <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
+                                <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
+                                <p class="puntuacion">
+                                    <span th:text="'(' + ${objeto.numeroResenas()} + ' reseñas) '"></span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <span th:text="${objeto.puntuacion()}">4.7</span> / 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    <section class="main-quote">
+        <div class="container">
+            <h3 class="col-12"><b>Ultima Reseña realizada</b></h3>
+            <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${paginaPrincipal.ultimaPublicacion()}">
+                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
+                <div class="container" id="publicacion" >
+                    <div class="row">
+                        <div class="col-12 mt-1 mb-2">
+                            <b>Título de la publicación:</b> <span th:text="${publicacion.titulo()}"></span>
+                        </div>
+                        <div class="col-12 mb-1" th:text="${publicacion.contenido()}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div class="container">
+            <section class="row justify-content-center">
+                <h3 class="col-12"><b>Videojuegos Populares</b></h3>
+                <!-- Primera tarjeta -->
+                <div class="col-md-3 col-6 w-auto mb-4" th:each="objeto : ${paginaPrincipal.videojuegosPopulares()}">
+                    <div class="card-container h-100 d-flex flex-column mx-auto" style="max-width: 300px">
+                        <div class="image-container-ext">
+                            <div class="image-container">
+                                <img class="img-fluid imagen-objeto" alt="Cartel de Harry Potter"
+                                     th:src="${objeto.imagenUrl()}">
+                                <button class="trailer-button btn btn-primary video-btn"
+                                        data-bs-target="#modal-trailer"
+                                        data-bs-toggle="modal"
+                                        th:data-src="${objeto.trailerUrl()}"
+                                        type="button">
+                                    <i class="bi bi-play-circle me-2"></i>Ver trailer
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
+                        <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
+                            <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break" >
+                                <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}" class="text-decoration-none  text-dark">
+                                    <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                                </a>
+                            </h2>
+                            <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
+                                <p class="fecha" th:text="${objeto.anoPublicacion()}"></p>
+                                <p class="puntuacion">
+                                    <span th:text="'(' + ${objeto.numeroResenas()} + ' reseñas) '"></span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <span th:text="${objeto.puntuacion()}">4.7</span> / 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- Modal que aparecerá en caso de que se clique el botón de trailer -->
+        <div aria-hidden="true" aria-labelledby="modal-trailer" class="modal fade" id="modal-trailer" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button aria-label="Cerrar" class="btn-close" data-bs-dismiss="modal"
+                                type="button"></button>
+                        <div class="ratio ratio-16x9">
+                            <iframe allow="autoplay" class="embed-responsive-item" id="video"
+                                    src=""></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script th:src="@{/js/trailer.js}"></script>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
