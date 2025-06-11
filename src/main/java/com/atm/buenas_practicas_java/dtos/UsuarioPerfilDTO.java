@@ -10,7 +10,7 @@ public record UsuarioPerfilDTO(
         String nombreUsuario,
         String avatarUrl,
         String biografia,
-        boolean esAdministrador,
+        String role,
         List<Resena> resenas,
         Set<ComentarioPublicacion> comentariosPublicacion,
         List<UsuarioDTO> amigos,
