@@ -660,7 +660,7 @@ public class LocalDataLoader {
                 " embriones por los hijos de Bowser, los malvados «Koopalings»");
         objeto23.setDuracionMinutos(0);
         objeto23.setTipo(tipoVideojuegos);
-        objeto23.setImagenUrl("https://static.wikia.nocookie.net/mario/images/2/20/Super_Mario_World_SFC_JAP.png/revision/latest?cb=20180531002139&path-prefix=es");
+        objeto23.setImagenUrl("https://m.media-amazon.com/images/M/MV5BZjZkZWVjNTYtZDMzZC00N2YxLTg2NjUtMTdlMzJiMDk3MTNhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
         objeto23.setTrailerUrl("https://www.youtube.com/embed/-WpgCFSLtLo");
         objeto23.setFechaPublicacion(LocalDate.of(1990, 11, 21));
 
@@ -2263,7 +2263,7 @@ public class LocalDataLoader {
         comunidad17.setObjetos(Arrays.asList(objeto23));
 //        comunidad17.setPublicaciones(Arrays.asList(publicacion1));
 //        comunidad17.setUsuarios(Arrays.asList(usuario1, usuario2, usuario3));
-        comunidad17.setUrlImg("https://static.wikia.nocookie.net/mario/images/2/20/Super_Mario_World_SFC_JAP.png/revision/latest?cb=20180531002139&path-prefix=es");
+        comunidad17.setUrlImg("https://m.media-amazon.com/images/M/MV5BZjZkZWVjNTYtZDMzZC00N2YxLTg2NjUtMTdlMzJiMDk3MTNhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
 
         objeto.setComunidad(comunidad1);
         objeto2.setComunidad(comunidad2);
