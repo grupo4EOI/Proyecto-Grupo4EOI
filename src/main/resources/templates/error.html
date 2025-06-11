@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+
+<div layout:fragment="content">
+    <div class="container text-center mt-5">
+        <h1 class="display-4">Ostrasssssssssssss...</h1>
+        <p class="lead">Hubo un error <b>crítico.</b></p>
+        <p th:if="${status}" class="text-muted">Código de error: <span th:text="${status}">404</span></p>
+        <p th:if="${error}" class="text-muted">Mensaje: <span th:text="${error}">Recurso no encontrado</span></p>
+
+        <a th:href="@{/pagina-principal}" class="btn btn-primary mt-3">Volver al inicio</a>
+    </div>
+</div>
+</html>
