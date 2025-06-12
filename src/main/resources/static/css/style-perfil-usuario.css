@@ -147,9 +147,13 @@ img.rounded-circle {
     border: 2px solid black;
     border-radius: 8px;
     background-color: #fff9f0;
+    padding: 1.5rem;
 }
 
-#resenas-container .resena {
+#publicaciones-container .publicacion {
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #fff9f0;
     padding: 1.5rem;
 }
 
@@ -159,9 +163,11 @@ img.rounded-circle {
     font-size: 1.25rem;
 }
 
+
 #resenas-container .card-text small {
     font-weight: bold;
 }
+
 
 .contenedores-amigos-insignias{
     max-width: 350px;

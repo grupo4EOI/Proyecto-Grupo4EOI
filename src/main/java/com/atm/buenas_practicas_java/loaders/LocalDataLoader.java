@@ -704,17 +704,14 @@ public class LocalDataLoader {
         usuario1.setNombreUsuario("Usuario1");
         usuario1.setEmail("hola@gmail.com");
         usuario1.setContrasena("1234");
+        usuario1.setRole("USER");
 
         usuario1.setBiografia("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        usuario1.setRole("ADMIN");
 
         Set<Genero> generosFavoritos = new HashSet<>();
         generosFavoritos.add(generoAccionS);
         generosFavoritos.add(generoAnimeS);
         generosFavoritos.add(generoMisterioS);
-
-
-        usuario1.setRole("USER");
 
 
         generosFavoritos.add(generoDramaP);
@@ -727,13 +724,6 @@ public class LocalDataLoader {
 
         usuario1.setGeneros(generosFavoritos);
 
-/*
-* contenedor-datos-ficha-perfil mx-auto rounded p-3
-*  shadow text-center d-flex flex-column justify-content-center
-* align-items-center
-*
-*
-* */
         Usuario usuario2 = new Usuario();
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
@@ -969,6 +959,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion1 = new Publicacion();
         publicacion1.setTitulo("Recomendaciones para ver la última película de harry potter");
+        publicacion1.setUsuario(usuario1);
 
         //Comentarios de la publicacion 1:
 
@@ -998,6 +989,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion2 = new Publicacion();
         publicacion2.setTitulo("Vendo Opel Corsa 250mil KM como nuevo");
+        publicacion2.setUsuario(usuario1);
 
         //Comentarios de la publicacion 2:
 
@@ -1009,7 +1001,7 @@ public class LocalDataLoader {
 
         ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
         comentarioPublicacion5.setPublicacion(publicacion2);
-        comentarioPublicacion5.setUsuario(usuario1);
+        comentarioPublicacion5.setUsuario(usuario2);
         comentarioPublicacion5.setContenido("Mi oferta es que lo lleves al desguace");
         comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
         comentarioPublicacion5.setAbuso(true);
@@ -1026,6 +1018,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion3 = new Publicacion();
         publicacion3.setTitulo("Ron estaba de relleno, no pinta nada en las pelis");
+        publicacion3.setUsuario(usuario1);
 
         //Comentarios de la publicacion 3:
 
@@ -1043,7 +1036,7 @@ public class LocalDataLoader {
 
         ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
         comentarioPublicacion9.setPublicacion(publicacion3);
-        comentarioPublicacion9.setUsuario(usuario1);
+        comentarioPublicacion9.setUsuario(usuario2);
         comentarioPublicacion9.setContenido("Pero qué dices?? Sin el no hay peli");
         comentarioPublicacion9.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
 

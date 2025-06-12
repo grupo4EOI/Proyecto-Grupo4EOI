@@ -5,6 +5,7 @@ import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioPerfilDTO;
 import com.atm.buenas_practicas_java.entities.Amistad;
 import com.atm.buenas_practicas_java.entities.Genero;
+import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
 import com.atm.buenas_practicas_java.repositories.PerfilRepository;
@@ -35,6 +36,7 @@ public class PerfilService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
 
         usuario.getResenas().size();
+        usuario.getPublicaciones().size();
         usuario.getAmigos().size();
         usuario.getGeneros().size();
         usuario.getUsuarios().size();
@@ -61,8 +63,10 @@ public class PerfilService {
                 generoService.filtrarGenerosPorTipo(generos, "videojuego")
         );
 
+        List<Publicacion> publicaciones = usuario.getPublicaciones();
+
         List<UsuarioDTO> amigosDTO = usuario.getAmigos().stream()
-                .filter(Amistad::isEstado) // solo amigos confirmados
+                .filter(Amistad::isEstado)
                 .map(Amistad::getAmigo)
                 .map(perfilMapper::toDto)
                 .collect(Collectors.toList());
@@ -82,7 +86,9 @@ public class PerfilService {
                 usuario.getGeneros(),
                 peliculas,
                 series,
-                videojuegos
+                videojuegos,
+                publicaciones
+
         );
     }
 

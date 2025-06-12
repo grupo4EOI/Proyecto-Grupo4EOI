@@ -48,6 +48,9 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> objetos;
 
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    private List<Publicacion> publicaciones;
+
     // Relación con comentarios de las publicaciones
     @OneToMany(mappedBy = "usuario")
     private Set<ComentarioPublicacion> comentariosPublicacion;
