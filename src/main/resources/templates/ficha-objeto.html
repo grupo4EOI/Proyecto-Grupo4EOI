@@ -268,7 +268,7 @@
                     </div>
                 </div>
             </div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
+            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span></div>
             <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#comentarios-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat"></i> Comentarios</div>
             <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#nuevocomentario-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat-dots"></i> Añadir comentario</div>
             <div class="row collapse mt-3 me-2 pt-3 bg-transparent" th:id="'nuevocomentario-' + ${iterStat.index}">
@@ -324,7 +324,6 @@
                     <div class="col-12 mb-1" th:text="${publicacion.contenido()}"></div>
                 </div>
             </div>
-            <div class="etiqueta px-2 mt-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
         </div>
 
     </div>
