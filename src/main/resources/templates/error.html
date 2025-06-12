@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/style-error.css}">
 </head>
 
 <div layout:fragment="content">
@@ -15,7 +16,7 @@
         <p th:if="${status}" class="text-muted">Código de error: <span th:text="${status}">404</span></p>
         <p th:if="${error}" class="text-muted">Mensaje: <span th:text="${error}">Recurso no encontrado</span></p>
 
-        <a th:href="@{/pagina-principal}" class="btn btn-primary mt-3">Volver al inicio</a>
+        <a th:href="@{/pagina-principal}" class="btn-perso btn-large btn-block">Volver al inicio</a>
     </div>
 </div>
 </html>
