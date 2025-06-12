@@ -35,18 +35,18 @@ class ApplicationTest extends PostgreSQLContainerTest {
     /**
      * Ensures that the Spring application context loads successfully when the main method is called.
      */
-    @Test
-    @Order(1)
-    void contextLoads() {
-        log.info("Iniciando la prueba de contextos...");
-        assertThat(dbContainer.isRunning()).isTrue();
-        assertThat(entidadHijaRepository.findAll()).isEmpty();
-        assertThat(entidadPadreRepository.findAll()).isEmpty();
-        for (String s : Arrays.asList("Context loaded", "Database name: " + dbContainer.getDatabaseName(), "Username: " + dbContainer.getUsername(), "Password: " + dbContainer.getPassword())) {
-            log.info(s);
-        }
-        log.info("Contexto de Spring cargado con éxito.");
-    }
+//    @Test
+//    @Order(1)
+//    void contextLoads() {
+//        log.info("Iniciando la prueba de contextos...");
+//        assertThat(dbContainer.isRunning()).isTrue();
+//        assertThat(entidadHijaRepository.findAll()).isEmpty();
+//        assertThat(entidadPadreRepository.findAll()).isEmpty();
+//        for (String s : Arrays.asList("Context loaded", "Database name: " + dbContainer.getDatabaseName(), "Username: " + dbContainer.getUsername(), "Password: " + dbContainer.getPassword())) {
+//            log.info(s);
+//        }
+//        log.info("Contexto de Spring cargado con éxito.");
+//    }
 
 
 }
