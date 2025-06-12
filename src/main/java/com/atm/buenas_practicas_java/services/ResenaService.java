@@ -24,8 +24,8 @@ public class ResenaService {
     private final ObjetoRepository objetoRepository;
     private final ReaccionRepository reaccionRepository;
     private final UsuarioRepository usuarioRepository;
-    private ResenaRepository resenaRepository;
-    private ResenaMapper resenaMapper;
+    private final ResenaRepository resenaRepository;
+    private final ResenaMapper resenaMapper;
 
     public ResenaService(ResenaRepository resenaRepository, ObjetoRepository objetoRepository, ResenaMapper resenaMapper, ReaccionRepository reaccionRepository, UsuarioRepository usuarioRepository) {
         this.resenaRepository = resenaRepository;
@@ -44,13 +44,8 @@ public class ResenaService {
 
         Boolean likeUsuario = false;
         if (nombreUsuario != null && !nombreUsuario.isBlank()) {
-            usuarioRepository.findByNombreUsuario(nombreUsuario).ifPresent(usuario -> {
-                boolean existe = reaccionRepository
-                        .findByResena_IdResenaAndUsuario_IdUsuario(resenaDTO.idResena(), usuario.getIdUsuario())
-                        .isPresent();
-            });
-
             Optional<Usuario> optUsuario = usuarioRepository.findByNombreUsuario(nombreUsuario);
+
             if (optUsuario.isPresent()) {
                 Usuario usuario = optUsuario.get();
                 likeUsuario = reaccionRepository

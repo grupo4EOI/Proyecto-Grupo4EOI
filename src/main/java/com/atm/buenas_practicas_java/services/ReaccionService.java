@@ -7,6 +7,7 @@ import com.atm.buenas_practicas_java.repositories.ReaccionRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -33,6 +34,7 @@ public class ReaccionService {
     }
 
     // Metodo para marcar like o bien quitar el like si ya le ha dado like anteriormente
+    @Transactional
     public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
         Resena resena = resenaRepository.findById(idResena).orElseThrow(EntityNotFoundException::new);
@@ -48,7 +50,6 @@ public class ReaccionService {
             reaccionRepository.save(reaccion);
             usuarioRepository.save(usuario);
         } else {
-            usuario.getReacciones().remove(existente.get());
             reaccionRepository.deleteReaccionByIdReaccion(existente.get().getIdReaccion());
         }
     }

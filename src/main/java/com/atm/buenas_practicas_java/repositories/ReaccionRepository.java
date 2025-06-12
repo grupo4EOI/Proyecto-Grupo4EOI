@@ -2,6 +2,9 @@ package com.atm.buenas_practicas_java.repositories;
 
 import com.atm.buenas_practicas_java.entities.Reaccion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -13,5 +16,7 @@ public interface ReaccionRepository extends JpaRepository<Reaccion, Long> {
 
     Long countByComentarioResena_IdComentarioResenaAndMeGustaEquals(Long idComentarioResena, Boolean meGusta);
 
-    void deleteReaccionByIdReaccion(Long idReaccion);
+    @Modifying
+    @Query("DELETE FROM Reaccion r WHERE r.idReaccion = :idReaccion")
+    void deleteReaccionByIdReaccion(@Param("idReaccion") Long idReaccion);
 }
