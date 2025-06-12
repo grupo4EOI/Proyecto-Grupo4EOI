@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Comunidad ' + ${comunidad.nombreComunidad()}">Comunidad Harry potter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style-comunidad-harry-potter.css}">
+</head>
+
+<div layout:fragment="content">
+    <!--Contenido de la página-->
+    <!--Comunidad en la que estás y botón de nuevo tema-->
+    <div class="bg-custom mt-4 mx-auto rounded-top p-3 w-75">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 th:text="${comunidad.nombreComunidad()}">Harry Potter</h1>
+        <a type="button" class="btn btn-outline-light text-white" th:href="@{/comunidades/{id}/temas/nuevo-tema(id=${comunidad.idComunidad()})}">Nuevo tema <i class="bi bi-pencil"></i></a>
+    </div>
+    </div>
+    <!--Separador con filtro-->
+    <div class="bg-dark text-light mt-2 mx-auto p-3 w-75">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>Temas</h3>
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-funnel-fill fs-3 filtro"></i>
+          </a>
+        
+          <ul class="dropdown-menu">
+            <!-- Filtro por categoría -->
+            <li><div class="dropdown-item">
+              <label for="categoryFilter">Clasificar por:</label>
+              <select id="categoryFilter" class="form-select">
+                <option value="categoria1">Título de tema</option>
+                <option value="categoria2">Último mensaje</option>
+                <option value="categoria3">Hora de inicio de tema</option>
+                <option value="categoria4">Número de respuestas</option>
+                <option value="categoria5">Autor</option>
+              </select>
+            </div></li>
+            <!-- Filtro por orden -->
+            <li><div class="dropdown-item">
+              <label for="orderFilter">Orden:</label>
+              <select id="orderFilter" class="form-select">
+                <option value="categoria1">Ascendente</option>
+                <option value="categoria2">Descendente</option>
+              </select>
+            </div></li>
+            <!-- Filtro por periodo -->
+            <li><div class="dropdown-item">
+              <label for="dateFilter">Desde:</label>
+              <select id="dateFilter" class="form-select">
+                <option value="categoria1">Último día</option>
+                <option value="categoria2">Última semana</option>
+                <option value="categoria3">Último mes</option>
+                <option value="categoria4">Último año</option>
+              </select>
+            </div></li>
+            <li>
+              <div class="dropdown-item">
+                <button class="btn" id="applyFiltersBtn">Aplicar filtros</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+    </div>
+    <!--Temas-->
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mb-1" th:each="publicacion : ${publicaciones}">
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="border-right border-dark me-3">
+        <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
+      </div>
+      <div>
+        <a class="nav-link" th:href="@{/comunidades/{idCom}/temas/{idPub}(idCom=${comunidad.idComunidad()}, idPub=${publicacion.idPublicacion()})}"><h6 class="mb-1" th:text="${publicacion.titulo()}">Título de tema 1</h6></a>
+        <p class="mb-0" th:text="${publicacion.usuario().nombreUsuario()}">@Usuario</p>
+      </div>
+      <div class="ms-auto d-flex me-3 align-items-center">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+          <h6 class="ms-2 mb-0" th:text="${publicacion.numComentarios()}">XXX</h6>
+      </div>
+    </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

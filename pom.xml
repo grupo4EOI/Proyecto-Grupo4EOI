@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <properties>
-        <java.version>24</java.version>
+        <java.version>23</java.version>
         <lombok.version>1.18.38</lombok.version>
         <sonar.coverage.exclusions>**/Application.*,**/loaders/*</sonar.coverage.exclusions>
         <project.name>resenascom</project.name>
@@ -149,6 +149,29 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.13</version>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -163,8 +186,13 @@
                         <artifactId>lombok</artifactId>
                         <version>${lombok.version}</version>
                       </path>
+                       <path>
+                           <groupId>org.mapstruct</groupId>
+                           <artifactId>mapstruct-processor</artifactId>
+                           <version>1.5.5.Final</version>
+                       </path>
                     </annotationProcessorPaths>
-                    <release>24</release>
+                    <release>23</release>
                 </configuration>
             </plugin>
             <plugin>

@@ -1,0 +1,30 @@
+a:hover, .nav-link:hover {
+    cursor: pointer;
+    color: #FF8C42 !important;
+}
+.redes, .soporte, .legal {
+    text-decoration: none;
+    color: inherit;
+}
+.redes:hover, .soporte:hover, .legal:hover {
+    color: #FF8C42;
+}
+.bg-custom{
+    background-color: #4E598C !important;
+    color: white !important;
+}
+.btn:hover {
+    background-color: #FF8C42 !important;
+}
+#barraDeBusqueda {
+    width:430px !important;
+}
+
+body {
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0.3024859602043942) 46%, rgba(252,175,88,0.6330181730895483) 100%);
+}
+
+.logo{
+    height: 45px;
+}

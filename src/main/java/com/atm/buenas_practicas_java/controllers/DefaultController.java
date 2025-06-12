@@ -3,11 +3,21 @@ package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.services.EntidadHijaService;
 import com.atm.buenas_practicas_java.services.EntidadPadreService;
+import com.atm.buenas_practicas_java.services.ObjetoService;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+
+import java.security.Principal;
+import java.util.Collection;
 
 /**
  * Controlador encargado de manejar las solicitudes relacionadas con la entidad principal.
@@ -37,6 +47,7 @@ public class DefaultController {
 
     private final EntidadHijaService entidadHijaService;
     private final EntidadPadreService entidadPadreService;
+    private final ObjetoService objetoService;
 
     /**
      * Constructor de la clase DefaultController.
@@ -49,9 +60,10 @@ public class DefaultController {
      * @param entidadPadreService instancia de {@link EntidadPadreService} que proporciona
      *                            funcionalidades adicionales relacionadas con la entidad EntidadPadre.
      */
-    public DefaultController(EntidadHijaService entidadHijaService, EntidadPadreService entidadPadreService) {
+    public DefaultController(EntidadHijaService entidadHijaService, EntidadPadreService entidadPadreService, ObjetoService objetoService) {
         this.entidadHijaService = entidadHijaService;
         this.entidadPadreService = entidadPadreService;
+        this.objetoService = objetoService;
     }
 
     /**
@@ -111,21 +123,64 @@ public class DefaultController {
     }
 
     /* Aqui empiezan nuestros métodos */
-    @GetMapping("/contacto")
-    public String mostrarPaginaContacto()
-    {
-        return "contacto"; // View name
+    @GetMapping("/ajustes-perfil")
+    public String mostrarAjustesPerfil() {
+        return "/ajustes-perfil";
     }
 
+    /** TODO: Añadir path variable cuando se hagan los serviicios y controladores */
+    @GetMapping("/comunidad-harry-potter")
+    public String mostrarComunidad() {
+        return "comunidad";
+    }
+
+    @GetMapping("/contacto")
+    public String mostrarContacto() {
+        return "/contacto";
+    }
+
+    /** TODO: Cambiar el path y este mapping cuando se hagan servicios y controladores */
+    @GetMapping("/ejemplo-tema")
+    public String mostrarTema() {
+        return "/ejemplo-tema";
+    }
+
+    /** TODO: Cambiar el mapping a un PostMapping cuando se hagan servicios y controladores */
+    @GetMapping("/nuevo-tema")
+    public String mostrarNuevoTema() {
+        return "/nuevo-tema";
+    }
+
+    /** TODO: Cambiar mapping cuando se hagan servicios y controladores */
+//    @GetMapping("/perfil")
+//    public String mostrarPerfil() {
+//        return "/perfil";
+//    }
+
     @GetMapping("/politica-privacidad")
-    public String mostrarPoliticaPrivacidad()
-    {
-        return "politicaPrivacidad"; // View name
+    public String mostrarPoliticaPrivacidad() {
+        return "/politica-privacidad";
     }
 
     @GetMapping("/quienes-somos")
-    public String mostrarQuienesSomos()
-    {
-        return "quienesSomos"; // View name
+    public String mostrarQuienesSomos() {
+        return "/quienes-somos";
     }
+
+    @GetMapping("/terminos-y-condiciones")
+    public String mostrarTerminosYCondiciones() {
+        return "/terminos-y-condiciones";
+    }
+
+
+//    @GetMapping("/iniciar-sesion")
+//    public String mostrarIniciarSesion() {
+//        return "/iniciar-sesion";
+//    }
+
+//    @GetMapping("/registro")
+//    public String mostrarRegistro() {
+//        return "registro";
+//    }
+
 }
