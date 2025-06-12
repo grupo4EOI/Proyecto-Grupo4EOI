@@ -24,6 +24,14 @@ public class ReaccionService {
         this.resenaRepository = resenaRepository;
     }
 
+    public Long contarLikesPorResena(Long idResena) {
+        return reaccionRepository.countByResena_IdResenaAndMeGustaEquals(idResena, true);
+    }
+
+    public boolean existeLikeUsuarioResena(Long idResena, Long idUsuario) {
+        return reaccionRepository.findByResena_IdResenaAndUsuario_IdUsuario(idResena, idUsuario).isPresent();
+    }
+
     // Metodo para marcar like o bien quitar el like si ya le ha dado like anteriormente
     public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);

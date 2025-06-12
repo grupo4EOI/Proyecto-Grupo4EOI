@@ -15,6 +15,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +34,8 @@ public class FichaObjetoFacade {
     private final ReaccionService reaccionService;
 
 
+
+
     // Metodo para el GetMapping de la ficha de objeto entera
     public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
         Objeto objeto = objetoService.findById(idObjeto);
@@ -47,6 +50,7 @@ public class FichaObjetoFacade {
         List<PersonaDTO> directores = personaService.getDirectoresByObjetoId(idObjeto);
         List<PersonaDTO> actores = personaService.getActoresByObjetoId(idObjeto);
         List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto);
+
         return new FichaObjetoDTO(
                 dto.idObjeto(),
                 dto.titulo(),
