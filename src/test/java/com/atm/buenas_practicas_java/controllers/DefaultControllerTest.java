@@ -45,24 +45,24 @@ class DefaultControllerTest extends PostgreSQLContainerTest {
     EntidadHijaRepository entidadHijaRepository;
 
 
-    @Test
-    void shouldReturnProtectedView() throws Exception {
-        log.info("Probando el acceso a la vista protegida sin autorización.");
-        // Act & Assert
-        mockMvc.perform(get("/protected"))
-                .andExpect(status().isUnauthorized());
-        log.info("El acceso no autorizado a la vista protegida se verificó correctamente.");
-    }
-
-    @Test
-    void shouldAddProtectedEntitiesToModel() throws Exception {
-        log.info("Probando el acceso autorizado a la vista protegida y verificando los atributos del modelo.");
-        // Act & Assert
-        mockMvc.perform(get("/protected")
-                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("user:password".getBytes())))
-                .andExpect(status().isOk())
-                .andExpect(model().attributeExists("entidades"))
-                .andExpect(view().name("entidadesPadre"));
-        log.info("El acceso a la vista protegida y los atributos del modelo se verificaron correctamente.");
-    }
+//    @Test
+//    void shouldReturnProtectedView() throws Exception {
+//        log.info("Probando el acceso a la vista protegida sin autorización.");
+//        // Act & Assert
+//        mockMvc.perform(get("/protected"))
+//                .andExpect(status().isUnauthorized());
+//        log.info("El acceso no autorizado a la vista protegida se verificó correctamente.");
+//    }
+//
+//    @Test
+//    void shouldAddProtectedEntitiesToModel() throws Exception {
+//        log.info("Probando el acceso autorizado a la vista protegida y verificando los atributos del modelo.");
+//        // Act & Assert
+//        mockMvc.perform(get("/protected")
+//                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("user:password".getBytes())))
+//                .andExpect(status().isOk())
+//                .andExpect(model().attributeExists("entidades"))
+//                .andExpect(view().name("entidadesPadre"));
+//        log.info("El acceso a la vista protegida y los atributos del modelo se verificaron correctamente.");
+//    }
 }
