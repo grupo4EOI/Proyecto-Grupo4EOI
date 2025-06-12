@@ -338,53 +338,58 @@ public void loadDataDesarrollo() {
     // Objeto de prueba
     // PELÍCULAS
     Objeto objeto = new Objeto();
-    objeto.setTitulo("Harry Potterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-    objeto.setDescripcion("Harry Potter es una pelicula que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto.setTitulo("Harry Potter y la piedra filosofal");
+    objeto.setDescripcion("Harry Potter es un niño huérfano que vive con sus únicos parientes vivos, la familia " +
+                    "Dursley, en un barrio residencial inglés. En su cumpleaños número 11, Harry es visitado por " +
+                    "un misterioso individuo llamado Rubeus Hagrid, quien le revela que realmente él es un mago " +
+                    "bastante popular en el mundo mágico por haber sobrevivido al ataque mortal de Lord Voldemort " +
+                    "cuando solamente tenía un año de edad. Quien al principio sus tíos les dijeron que sus padres " +
+                    "fallecieron en un “accidente” pero nunca fue cierto. Tras haber asesinado a sus padres (James " +
+                    "y Lily Potter), Voldemort intentó matar a Harry pero no lo consiguió, dejándole solamente una " +
+                    "cicatriz en forma de rayo sobre su frente. Sabiendo esto, Hagrid acompaña a Harry para comprar " +
+                    "lo necesario con tal de comenzar su formación en el Colegio Hogwarts de Magia y Hechicería.");
     objeto.setImagenUrl("https://artesiete.es/Posters/harrypotterpiedra20.jpg");
-    objeto.setDuracionMinutos(123);
+    objeto.setDuracionMinutos(152);
     objeto.setTipo(tipoPeliculas);
     objeto.setTrailerUrl("https://www.youtube.com/embed/6T45PEo55Po");
-    objeto.setFechaPublicacion(LocalDate.of(2001, 3, 1));
+    objeto.setFechaPublicacion(LocalDate.of(2001, 11, 16));
 
     objeto.setGeneros(new HashSet<>(Arrays.asList(generoFantasiaP, generoFiccionP, generoAventurasP)));
 
     Objeto objeto2 = new Objeto();
     objeto2.setTitulo("Interstellar");
-    objeto2.setDescripcion("Interstellar es una pelicula que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto2.setDescripcion("Interestelar narra la historia de un grupo de astronautas que viajan a través de un " +
+                    "agujero de gusano en busca de un nuevo hogar para la humanidad, ya que la Tierra se ha vuelto " +
+                    "inhabitable debido a una catástrofe. El protagonista, un ex piloto de la NASA, se embarca en " +
+                    "esta misión espacial para salvar a la humanidad de la extinción. La película explora temas " +
+                    "como el amor, la pérdida y la importancia de las decisiones que tomamos en la Tierra");
     objeto2.setImagenUrl("https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg");
     objeto2.setDuracionMinutos(169);
     objeto2.setTipo(tipoPeliculas);
     objeto2.setTrailerUrl("https://www.youtube.com/embed/UoSSbmD9vqc");
-    objeto2.setFechaPublicacion(LocalDate.of(2014, 11, 07));
+    objeto2.setFechaPublicacion(LocalDate.of(2014, 11, 7));
 
     objeto2.setGeneros(new HashSet<>(Arrays.asList(generoFiccionP, generoAccionP, generoSuspenseP, generoDramaP)));
 
     Objeto objeto3 = new Objeto();
     objeto3.setTitulo("The Gentlemen");
-    objeto3.setDescripcion("The Gentlemen es una pelicula que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto3.setDescripcion("Mickey Pearson es un expatriado estadounidense que se hizo rico construyendo un " +
+            "imperio de marihuana en Londres. Cuando se corre la voz de que está buscando sacar dinero del " +
+            "negocio, pronto se desencadena una serie de tramas y planes de aquellos que quieren su fortuna.");
     objeto3.setImagenUrl("https://pics.filmaffinity.com/The_Gentlemen_Los_seanores_de_la_mafia-425828685-large.jpg");
     objeto3.setDuracionMinutos(113);
     objeto3.setTipo(tipoPeliculas);
     objeto3.setTrailerUrl("https://www.youtube.com/embed/SywTszaosOo");
-    objeto3.setFechaPublicacion(LocalDate.of(2019, 12, 03));
+    objeto3.setFechaPublicacion(LocalDate.of(2019, 12, 3));
 
     objeto3.setGeneros(new HashSet<>(Arrays.asList(generoAccionP, generoDramaP, generoSuspenseP, generoPoliciacaP)));
 
     Objeto objeto4 = new Objeto();
     objeto4.setTitulo("Cadena Perpetua");
-    objeto4.setDescripcion("Cadena perpetua es una pelicula que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto4.setDescripcion("Andrew Dufresne es un hombre inocente que es acusado del asesinato de su mujer. " +
+            "Tras ser condenado a cadena perpetua, es enviado a la cárcel de Shawshank, en Maine. Con el paso " +
+            "de los años, Andrew conseguirá ganarse la confianza del director del centro y el respeto de los " +
+            "otros convictos, especialmente de Red, el jefe de la mafia.");
     objeto4.setImagenUrl("https://www.ecartelera.com/carteles/5600/5676/003_m.jpg");
     objeto4.setDuracionMinutos(142);
     objeto4.setTipo(tipoPeliculas);
@@ -395,10 +400,9 @@ public void loadDataDesarrollo() {
 
     Objeto objeto5 = new Objeto();
     objeto5.setTitulo("El Padrino");
-    objeto5.setDescripcion("El Padrino es una pelicula que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto5.setDescripcion("Don Vito Corleone es el respetado y temido jefe de una de las cinco familias de la " +
+            "mafia de Nueva York en los años 40. El hombre tiene cuatro hijos: Connie, Sonny, Fredo y Michael, " +
+            "que no quiere saber nada de los negocios sucios de su padre.");
     objeto5.setDuracionMinutos(175);
     objeto5.setTipo(tipoPeliculas);
     objeto5.setImagenUrl("https://www.ecartelera.com/carteles/2500/2521/002.jpg");
@@ -408,10 +412,10 @@ public void loadDataDesarrollo() {
 
     Objeto objeto6 = new Objeto();
     objeto6.setTitulo("12 hombres sin piedad");
-    objeto6.setDescripcion("12 hombres sin piedad es una película que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto6.setDescripcion("Trata sobre el juicio de un homicidio en el que doce hombres tienen que deliberar " +
+            "sobre el futuro de un muchacho, dictaminando si es culpable o inocente del asesinato de su padre. " +
+            "Si hay alguna duda razonable deben emitir un veredicto de «no culpable». Si se le encuentra culpable, " +
+            "será sentenciado a muerte.");
     objeto6.setDuracionMinutos(96);
     objeto6.setTipo(tipoPeliculas);
     objeto6.setImagenUrl("https://cinesembajadores.es/wp-content/uploads/2025/01/12-hombres-sin-piedad-cartel.jpeg");
@@ -422,10 +426,11 @@ public void loadDataDesarrollo() {
 
     Objeto objeto7 = new Objeto();
     objeto7.setTitulo("La lista de Schindler");
-    objeto7.setDescripcion("La lista de schindler es una película que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto7.setDescripcion("Oskar Schindler, un empresario alemán de gran talento para las relaciones públicas, " +
+            "busca ganarse la simpatía de los nazis de cara a su beneficio personal. Después de la invasión de " +
+            "Polonia por los alemanes en 1939, Schindler consigue, gracias a sus relaciones con los altos jerarcas " +
+            "nazis, la propiedad de una fábrica de Cracovia. Allí emplea a cientos de operarios judíos, cuya " +
+            "explotación le hace prosperar rápidamente, gracias sobre todo a su gerente Itzhak Stern, también judío");
     objeto7.setDuracionMinutos(195);
     objeto7.setTipo(tipoPeliculas);
     objeto7.setImagenUrl("https://pics.filmaffinity.com/schindler_s_list-473662617-large.jpg");
@@ -687,7 +692,7 @@ public void loadDataDesarrollo() {
     Usuario usuario1 = new Usuario();
     usuario1.setNombreUsuario("Usuario1");
     usuario1.setEmail("hola@gmail.com");
-    usuario1.setContrasena("1234");
+    usuario1.setContrasena(encoder.encode("1234"));
 
     usuario1.setBiografia("Hater desde 1997");
     usuario1.setRole("ADMIN");
@@ -721,62 +726,62 @@ public void loadDataDesarrollo() {
     Usuario usuario2 = new Usuario();
     usuario2.setNombreUsuario("Usuario2");
     usuario2.setEmail("adios@gmail.com");
-    usuario2.setContrasena("4321");
+    usuario2.setContrasena(encoder.encode("4321"));
     usuario2.setRole("USER");
 
 
     Usuario usuario3 = new Usuario();
     usuario3.setNombreUsuario("Usuario3");
     usuario3.setEmail("odijajoaspco@gmail.es");
-    usuario3.setContrasena("4313213213232132");
+    usuario3.setContrasena(encoder.encode("4313213213232132"));
     usuario3.setRole("ADMIN");
 
     Usuario usuario4 = new Usuario();
     usuario4.setNombreUsuario("OpelCorsa99");
     usuario4.setEmail("corsita@forocoches.com");
-    usuario4.setContrasena("opelpower");
+    usuario4.setContrasena(encoder.encode("opelpower"));
     usuario4.setRole("USER");
 
     Usuario usuario5 = new Usuario();
     usuario5.setNombreUsuario("DNIroto");
     usuario5.setEmail("sinpapeles@forochapa.net");
-    usuario5.setContrasena("cuñadismo123");
+    usuario5.setContrasena(encoder.encode("cuñadismo123"));
     usuario5.setRole("USER");
 
     Usuario usuario6 = new Usuario();
     usuario6.setNombreUsuario("Turbodiesel92");
     usuario6.setEmail("motorz@torquemax.org");
-    usuario6.setContrasena("torque+ps");
+    usuario6.setContrasena(encoder.encode("torque+ps"));
     usuario6.setRole("USER");
 
     Usuario usuario7 = new Usuario();
     usuario7.setNombreUsuario("Forero69");
     usuario7.setEmail("estoydentro@foro.com");
-    usuario7.setContrasena("s3cret0");
+    usuario7.setContrasena(encoder.encode("s3cret0"));
     usuario7.setRole("USER");
 
     Usuario usuario8 = new Usuario();
     usuario8.setNombreUsuario("AntiMultas3000");
     usuario8.setEmail("legalhacks@caminoalbania.ru");
-    usuario8.setContrasena("radardetect");
+    usuario8.setContrasena(encoder.encode("radardetect"));
     usuario8.setRole("USER");
 
     Usuario usuario9 = new Usuario();
     usuario9.setNombreUsuario("PikachuEnZanini");
     usuario9.setEmail("pokemon@electrotuneo.com");
-    usuario9.setContrasena("pika-pika");
+    usuario9.setContrasena(encoder.encode("pika-pika"));
     usuario9.setRole("USER");
 
     Usuario usuario10 = new Usuario();
     usuario10.setNombreUsuario("JoseAntonio88");
     usuario10.setEmail("falcon@españa.es");
-    usuario10.setContrasena("vivaespaña");
+    usuario10.setContrasena(encoder.encode("vivaespaña"));
     usuario10.setRole("USER");
 
     Usuario usuario11 = new Usuario();
     usuario11.setNombreUsuario("MiVecinoMataGatos");
     usuario11.setEmail("denuncia@callejonoscuro.com");
-    usuario11.setContrasena("michisno");
+    usuario11.setContrasena(encoder.encode("michisno"));
     usuario11.setRole("USER");
 
     Usuario usuario12 = new Usuario();
