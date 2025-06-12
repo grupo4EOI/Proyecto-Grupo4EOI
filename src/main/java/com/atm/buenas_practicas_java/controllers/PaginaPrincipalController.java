@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping({"/", "/pagina-principal"})
 public class PaginaPrincipalController {
@@ -17,8 +19,9 @@ public class PaginaPrincipalController {
     }
 
     @GetMapping
-    public String mostrarPaginaPrincipal(Model model) {
-        model.addAttribute("paginaPrincipal", paginaPrincipalService.construirDTOPaginaPrincipal());
+    public String mostrarPaginaPrincipal(Model model, Principal principal) {
+        String nombreUsuario = (principal != null) ? principal.getName() : null;
+        model.addAttribute("paginaPrincipal", paginaPrincipalService.construirDTOPaginaPrincipal(nombreUsuario));
         return "/pagina-principal";
     }
 }

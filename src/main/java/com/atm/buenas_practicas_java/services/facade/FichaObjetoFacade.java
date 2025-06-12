@@ -15,6 +15,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -30,10 +31,13 @@ public class FichaObjetoFacade {
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
     private final ComentarioResenaMapper comentarioResenaMapper;
+    private final ReaccionService reaccionService;
+
+
 
 
     // Metodo para el GetMapping de la ficha de objeto entera
-    public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
+    public FichaObjetoDTO construirFichaObjeto(Long idObjeto, String nombreUsuario) {
         Objeto objeto = objetoService.findById(idObjeto);
 
         FichaObjetoDTO dto = fichaObjetoMapper.toDto(objeto);
@@ -45,7 +49,8 @@ public class FichaObjetoFacade {
         Integer numeroResenas = objetoService.calcularNumeroResenas(idObjeto);
         List<PersonaDTO> directores = personaService.getDirectoresByObjetoId(idObjeto);
         List<PersonaDTO> actores = personaService.getActoresByObjetoId(idObjeto);
-        List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto);
+        List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto, nombreUsuario);
+
         return new FichaObjetoDTO(
                 dto.idObjeto(),
                 dto.titulo(),
@@ -108,6 +113,11 @@ public class FichaObjetoFacade {
     // Metodo para postmapping de objeto favorito
     public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
         usuarioService.marcarObjetoFavorito(idObjeto, nombreUsuario, favorito);
+    }
+
+    // Metodo para postmapping de like reseña
+    public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
+        reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
     }
 
     // Metodo para putMapping de reportar reseña
