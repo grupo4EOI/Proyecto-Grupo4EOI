@@ -7,6 +7,7 @@ import com.atm.buenas_practicas_java.mapper.ResenaMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ReaccionRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -33,6 +34,7 @@ public class ResenaService {
 
     // Metodos auxiliares para rellenar el DTO de Reseña con el numero de likes
     private ResenaDTO rellenarResenaDTO(ResenaDTO resenaDTO) {
+
         return new ResenaDTO(
                 resenaDTO.idResena(),
                 resenaDTO.titulo(),

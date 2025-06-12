@@ -30,6 +30,7 @@ public class FichaObjetoFacade {
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
     private final ComentarioResenaMapper comentarioResenaMapper;
+    private final ReaccionService reaccionService;
 
 
     // Metodo para el GetMapping de la ficha de objeto entera
@@ -108,6 +109,11 @@ public class FichaObjetoFacade {
     // Metodo para postmapping de objeto favorito
     public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
         usuarioService.marcarObjetoFavorito(idObjeto, nombreUsuario, favorito);
+    }
+
+    // Metodo para postmapping de like reseña
+    public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
+        reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
     }
 
     // Metodo para putMapping de reportar reseña

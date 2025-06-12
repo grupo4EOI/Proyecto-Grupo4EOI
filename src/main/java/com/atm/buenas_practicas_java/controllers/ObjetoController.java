@@ -66,6 +66,12 @@ public class ObjetoController {
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
 
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=likeResena")
+    public String likeResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena, Principal principal) {
+        fichaObjetoFacade.marcarQuitarLikeResena(idResena, principal.getName());
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
     @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarResena")
     public String reportarResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena) {
         fichaObjetoFacade.reportarResena(idResena);
