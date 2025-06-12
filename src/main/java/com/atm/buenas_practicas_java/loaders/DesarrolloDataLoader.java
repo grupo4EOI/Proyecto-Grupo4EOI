@@ -436,10 +436,7 @@ public void loadDataDesarrollo() {
 
     Objeto objeto8 = new Objeto();
     objeto8.setTitulo("Pulp Fiction");
-    objeto8.setDescripcion("Pulp fiction es una película que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto8.setDescripcion("Historias de dos matones, un boxeador y una pareja de atracadores de poca monta envueltos en una violencia espectacular e irónica.");
     objeto8.setDuracionMinutos(154);
     objeto8.setTipo(tipoPeliculas);
     objeto8.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1cYyaS50kL0g7JCqP8Dd3-T1NFmcVoFbQcQ&s");
@@ -450,10 +447,7 @@ public void loadDataDesarrollo() {
 
     Objeto objeto9 = new Objeto();
     objeto9.setTitulo("El club de la lucha");
-    objeto9.setDescripcion("El club de la lucha es una película que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto9.setDescripcion("\"El club de la lucha\" trata sobre un hombre insatisfecho con su vida, que se une a un individuo carismático llamado Tyler Durden para crear un club de lucha clandestino.");
     objeto9.setDuracionMinutos(139);
     objeto9.setTipo(tipoPeliculas);
     objeto9.setImagenUrl("https://www.cinepazmadrid.es/data/fotos/afiche5-elclubdelalucha.jpg");
@@ -464,10 +458,9 @@ public void loadDataDesarrollo() {
 
     Objeto objeto10 = new Objeto();
     objeto10.setTitulo("Misión: Imposible - Sentencia Final");
-    objeto10.setDescripcion("Misión: Imposible - Sentencia Final es una película que trata de " +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae");
+    objeto10.setDescripcion("Ethan Hunt y su equipo deben enfrentar una amenaza tecnológica: una inteligencia artificial (IA) llamada \"La Entidad\", " +
+            "que podría tomar el control de las bases nucleares de las principales potencias mundiales. La Entidad, combinada con el peligroso Gabriel, " +
+            "amenaza un cataclismo global, obligando a Hunt a encontrar y destruir a La Entidad y detener a Gabriel");
     objeto10.setDuracionMinutos(169);
     objeto10.setTipo(tipoPeliculas);
     objeto10.setImagenUrl("https://pics.filmaffinity.com/Misiaon_imposible_Sentencia_final-784079226-large.jpg");
@@ -696,7 +689,7 @@ public void loadDataDesarrollo() {
     usuario1.setEmail("hola@gmail.com");
     usuario1.setContrasena("1234");
 
-    usuario1.setBiografia("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+    usuario1.setBiografia("Hater desde 1997");
     usuario1.setRole("ADMIN");
 
     Set<Genero> generosFavoritos = new HashSet<>();
@@ -789,55 +782,55 @@ public void loadDataDesarrollo() {
     Usuario usuario12 = new Usuario();
     usuario12.setNombreUsuario("Tronchamozas");
     usuario12.setEmail("ligon@foropub.com");
-    usuario12.setContrasena("musculitos");
+    usuario12.setContrasena(encoder.encode("musculitos"));
     usuario12.setRole("USER");
 
     Usuario usuario13 = new Usuario();
     usuario13.setNombreUsuario("CanelitaEnMoto");
     usuario13.setEmail("flamenco@dosruedas.com");
-    usuario13.setContrasena("ole1234");
+    usuario13.setContrasena(encoder.encode("ole1234"));
     usuario13.setRole("USER");
 
     Usuario usuario14 = new Usuario();
     usuario14.setNombreUsuario("BocachanclaPro");
     usuario14.setEmail("chismes@lavozdelbarrio.org");
-    usuario14.setContrasena("cotilleoON");
+    usuario14.setContrasena(encoder.encode("cotilleoON"));
     usuario14.setRole("USER");
 
     Usuario usuario15 = new Usuario();
     usuario15.setNombreUsuario("Mecanicor");
     usuario15.setEmail("grasa@talleresmanolo.com");
-    usuario15.setContrasena("aceite5w30");
+    usuario15.setContrasena(encoder.encode("aceite5w30"));
     usuario15.setRole("USER");
 
     Usuario usuario16 = new Usuario();
     usuario16.setNombreUsuario("Ibizilla_1.9TDI");
     usuario16.setEmail("seatpower@vaggroup.org");
-    usuario16.setContrasena("smokeyboi");
+    usuario16.setContrasena(encoder.encode("smokeyboi"));
     usuario16.setRole("USER");
 
     Usuario usuario17 = new Usuario();
     usuario17.setNombreUsuario("PaKeKieresSaberEso");
     usuario17.setEmail("respuestaobvia@forocuñado.com");
-    usuario17.setContrasena("nopreguntes");
+    usuario17.setContrasena(encoder.encode("nopreguntes"));
     usuario17.setRole("USER");
 
     Usuario usuario18 = new Usuario();
     usuario18.setNombreUsuario("DamePermisoAdmin");
     usuario18.setEmail("banme@modmail.com");
-    usuario18.setContrasena("permabanpls");
+    usuario18.setContrasena(encoder.encode("permabanpls"));
     usuario18.setRole("USER");
 
     Usuario usuario19 = new Usuario();
     usuario19.setNombreUsuario("KebabDeRes");
     usuario19.setEmail("nocheloca@4AM.com");
-    usuario19.setContrasena("ajiquemepica");
+    usuario19.setContrasena(encoder.encode("ajiquemepica"));
     usuario19.setRole("USER");
 
     Usuario usuario20 = new Usuario();
     usuario20.setNombreUsuario("TorettoDelPoli");
     usuario20.setEmail("familia@racinglife.com");
-    usuario20.setContrasena("fastnfurious");
+    usuario20.setContrasena(encoder.encode("fastnfurious"));
     usuario20.setRole("USER");
 
 
@@ -886,21 +879,18 @@ public void loadDataDesarrollo() {
     // Reseñas de prueba
     Resena resena1 = new Resena();
     resena1.setTitulo("La peor película de mi vida");
-    resena1.setContenido("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at mi felis. " +
-            "Vivamus efficitur tincidunt aliquet. Etiam eu rhoncus leo. Aenean posuere enim massa, viverra " +
-            "aliquam risus pharetra et. Nulla euismod efficitur lectus vitae bibendum. Aenean lobortis " +
-            "molestie erat at imperdiet. Phasellus pellentesque consectetur nunc eu commodo. Nunc malesuada " +
-            "consequat porttitor. Sed condimentum augue ipsum. Donec vitae dui laoreet, luctus leo vitae, " +
-            "pharetra lorem. Nulla eleifend ipsum leo, a ornare quam vulputate et. Morbi ac aliquet quam. " +
-            "Cras dignissim tincidunt condimentum. Phasellus placerat venenatis lobortis. Praesent commodo " +
-            "sodales sapien, vitae fermentum odio lobortis ut. Fusce blandit varius mollis.Maecenas cursus " +
-            "ullamcorper nunc in euismod. In eget auctor nunc. Phasellus id mauris tortor. Morbi imperdiet " +
-            "tristique accumsan. Vivamus egestas turpis nulla, et ornare nisi tempus eget. Quisque commodo " +
-            "erat non mi pellentesque, vitae condimentum nisi laoreet. Donec in nulla ex. Suspendisse consequat " +
-            "ac nulla ac pellentesque. Nulla non ornare nulla, vulputate placerat risus. Sed in justo egestas, " +
-            "fermentum neque ut, mollis eros. Vivamus gravida odio nec laoreet lacinia. Nulla urna velit, " +
-            "tincidunt quis tincidunt venenatis, pretium quis urna. Nulla in ipsum dolor. ");
-    resena1.setPuntuacion(3.0);
+    resena1.setContenido("Pese a su enorme popularidad, Harry Potter y la piedra filosofal resulta ser una experiencia cinematográfica " +
+            "decepcionante si se mira más allá del brillo superficial. Dirigida por Chris Columbus, la película se siente como un desfile " +
+            "mecánico de escenas del libro, sin la profundidad emocional o narrativa que una adaptación merecería." +
+            "La actuación de los niños, aunque comprensible por su edad, es en gran parte rígida y poco convincente, especialmente " +
+            "en momentos dramáticos donde se nota la falta de naturalidad. Daniel Radcliffe apenas transmite el conflicto interno de Harry, " +
+            "y los personajes secundarios como Ron y Hermione rozan el cliché más que la complejidad." +
+            " Visualmente, la película se apoya en efectos especiales que envejecieron mal, y el tono excesivamente edulcorado rebaja el peligro o " +
+            "la tensión que debería haber en una historia que, en teoría, habla de magia, muerte y descubrimiento personal. El ritmo es irregular, y el guion " +
+            "se limita a ser una lista de chequeo de eventos del libro, sin tomar riesgos ni ofrecer un lenguaje cinematográfico propio." +
+            "En resumen, más que una película mágica, La piedra filosofal parece un producto de marketing cuidadosamente envuelto para agradar, " +
+            "pero vacío de la chispa creativa que hace que una historia cobre vida en la pantalla.");
+    resena1.setPuntuacion(1.0);
     resena1.setSpoiler(false);
     resena1.setUsuario(usuario1);
     resena1.setObjeto(objeto);
@@ -909,10 +899,7 @@ public void loadDataDesarrollo() {
     ComentarioResena comentarioResena1 = new ComentarioResena();
     comentarioResena1.setResena(resena1);
     comentarioResena1.setUsuario(usuario2);
-    comentarioResena1.setContenido("La verdad es que tu reseña se ha quedao flojilla. Podrías haber añadido esto:" +
-            " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi\" +\n" +
-            "                \" delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat\" +\n" +
-            "                \" quibusdam quisquam quos repellat sunt vitae.");
+    comentarioResena1.setContenido("Totalmente de acuerdo");
     comentarioResena1.setAbuso(true);
     comentarioResena1.setFecha(LocalDateTime.now());
 
@@ -927,9 +914,8 @@ public void loadDataDesarrollo() {
 
     Resena resena2 = new Resena();
     resena2.setTitulo("La mejor película de mi vida");
-    resena2.setContenido("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi" +
-            " delectus, deleniti dolorem dolores ducimus eos ex facere laudantium magnam minus nihil odit quaerat" +
-            " quibusdam quisquam quos repellat sunt vitae.");
+    resena2.setContenido("Me ha cambiado la vida hasta tal punto que ahora cuando veo una escoba me subo encima, creo que puedo volar con ella como en la peli," +
+            " lo mismo mañana salto desde el balcón para probar (vivo en un 8º)");
     resena2.setPuntuacion(3.5);
     resena2.setSpoiler(false);
     resena2.setUsuario(usuario2);
