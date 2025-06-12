@@ -37,7 +37,7 @@ public class FichaObjetoFacade {
 
 
     // Metodo para el GetMapping de la ficha de objeto entera
-    public FichaObjetoDTO construirFichaObjeto(Long idObjeto) {
+    public FichaObjetoDTO construirFichaObjeto(Long idObjeto, String nombreUsuario) {
         Objeto objeto = objetoService.findById(idObjeto);
 
         FichaObjetoDTO dto = fichaObjetoMapper.toDto(objeto);
@@ -49,7 +49,7 @@ public class FichaObjetoFacade {
         Integer numeroResenas = objetoService.calcularNumeroResenas(idObjeto);
         List<PersonaDTO> directores = personaService.getDirectoresByObjetoId(idObjeto);
         List<PersonaDTO> actores = personaService.getActoresByObjetoId(idObjeto);
-        List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto);
+        List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto, nombreUsuario);
 
         return new FichaObjetoDTO(
                 dto.idObjeto(),

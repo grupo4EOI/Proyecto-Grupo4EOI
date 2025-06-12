@@ -21,9 +21,9 @@ public class AdminServiceFacade {
         this.comentarioPublicacionService = comentarioPublicacionService;
     }
 
-    public PanelAdminDTO crearPanelAdminDTO() {
+    public PanelAdminDTO crearPanelAdminDTO(String nombreUsuario) {
         return new PanelAdminDTO(
-                resenaService.obtenerResenasConAbuso(),
+                resenaService.obtenerResenasConAbuso(nombreUsuario),
                 comentarioResenaService.obtenerComentariosResenasConAbuso(),
                 comentarioPublicacionService.buscarComentariosPublicacionConAbuso()
         );

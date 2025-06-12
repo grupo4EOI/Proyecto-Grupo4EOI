@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ResenaService {
@@ -41,6 +42,23 @@ public class ResenaService {
     // Metodos auxiliares para rellenar el DTO de Reseña con el numero de likes
     private ResenaDTO rellenarResenaDTO(ResenaDTO resenaDTO, String nombreUsuario) {
 
+        Boolean likeUsuario = false;
+        if (nombreUsuario != null && !nombreUsuario.isBlank()) {
+            usuarioRepository.findByNombreUsuario(nombreUsuario).ifPresent(usuario -> {
+                boolean existe = reaccionRepository
+                        .findByResena_IdResenaAndUsuario_IdUsuario(resenaDTO.idResena(), usuario.getIdUsuario())
+                        .isPresent();
+            });
+
+            Optional<Usuario> optUsuario = usuarioRepository.findByNombreUsuario(nombreUsuario);
+            if (optUsuario.isPresent()) {
+                Usuario usuario = optUsuario.get();
+                likeUsuario = reaccionRepository
+                        .findByResena_IdResenaAndUsuario_IdUsuario(resenaDTO.idResena(), usuario.getIdUsuario())
+                        .isPresent();
+            }
+        }
+
         return new ResenaDTO(
                 resenaDTO.idResena(),
                 resenaDTO.titulo(),
@@ -50,28 +68,29 @@ public class ResenaService {
                 resenaDTO.autor(),
                 resenaDTO.comentariosResena(),
                 resenaDTO.fechaPublicacion(),
-                reaccionRepository.countByResena_IdResenaAndMeGustaEquals(resenaDTO.idResena(), true)
+                reaccionRepository.countByResena_IdResenaAndMeGustaEquals(resenaDTO.idResena(), true),
+                likeUsuario
         );
     }
 
-    private List<ResenaDTO> rellenarListaResenaDTO(List<ResenaDTO> resenasIncompletas) {
+    private List<ResenaDTO> rellenarListaResenaDTO(List<ResenaDTO> resenasIncompletas, String nombreUsuario) {
         return resenasIncompletas.stream()
-                .map(resenaDTO -> rellenarResenaDTO(resenaDTO)).toList();
+                .map(resenaDTO -> rellenarResenaDTO(resenaDTO, nombreUsuario)).toList();
     }
 
-    public List<ResenaDTO> findResenasByObjeto(Long idObjeto) {
+    public List<ResenaDTO> findResenasByObjeto(Long idObjeto, String nombreUsuario) {
         List<ResenaDTO> resenasDTO =  resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjetoOrderByFechaPublicacionDesc(idObjeto));
-        return rellenarListaResenaDTO(resenasDTO);
+        return rellenarListaResenaDTO(resenasDTO, nombreUsuario);
     }
 
-    public List<ResenaDTO> obtenerResenasConAbuso() {
+    public List<ResenaDTO> obtenerResenasConAbuso(String nombreUsuario) {
         List<ResenaDTO> resenasReportadas = resenaMapper.toDtoList(resenaRepository.findResenasByAbusoEquals(true));
-        return rellenarListaResenaDTO(resenasReportadas);
+        return rellenarListaResenaDTO(resenasReportadas, nombreUsuario);
     }
 
-    public ResenaDTO obtenerUltimaResena() {
+    public ResenaDTO obtenerUltimaResena(String nombreUsuario) {
         ResenaDTO ultimaResena = resenaMapper.toDto(resenaRepository.findTopByOrderByFechaPublicacionDesc());
-        return rellenarResenaDTO(ultimaResena);
+        return rellenarResenaDTO(ultimaResena, nombreUsuario);
     }
 
     public Resena save(Resena resena) {

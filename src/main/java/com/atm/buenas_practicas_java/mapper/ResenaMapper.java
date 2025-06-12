@@ -15,6 +15,7 @@ public interface ResenaMapper {
     @Mapping(source = "usuario", target = "autor")
     @Mapping(source = "comentariosResena", target = "comentariosResena")
     @Mapping(target = "numeroLikes", ignore = true)
+    @Mapping(target = "likeUsuario", ignore = true)
     ResenaDTO toDto(Resena resena);
 
     List<ResenaDTO> toDtoList(List<Resena> resenas);
