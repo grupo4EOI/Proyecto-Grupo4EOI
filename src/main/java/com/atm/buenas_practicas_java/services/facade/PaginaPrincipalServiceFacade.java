@@ -22,15 +22,13 @@ public class PaginaPrincipalServiceFacade {
         this.comentarioPublicacionService = comentarioPublicacionService;
     }
 
-    public PaginaPrincipalDTO construirDTOPaginaPrincipal() {
+    public PaginaPrincipalDTO construirDTOPaginaPrincipal(String nombreUsuario) {
         return new PaginaPrincipalDTO(
                 objetoService.obtenerObjetosMasRecientesPorTipo("pelicula", Limit.of(4)),
                 objetoService.obtenerObjetosMejorValoradosPorTipo("serie", Limit.of(4)),
                 objetoService.obtenerObjetosMasPopularesPorTipo("videojuego", Limit.of(4)),
-                resenaService.obtenerUltimaResena(),
+                resenaService.obtenerUltimaResena(nombreUsuario),
                 comentarioPublicacionService.buscarPrimerComentarioUltimaPublicacion()
         );
     }
-
-
 }

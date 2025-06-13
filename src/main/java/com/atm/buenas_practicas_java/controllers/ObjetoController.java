@@ -30,8 +30,9 @@ public class ObjetoController {
     }
 
     @GetMapping("/ficha-objeto/{idObjeto}")
-    public String mostrarFichaObjeto(Model model, @PathVariable Long idObjeto) {
-        model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(idObjeto));
+    public String mostrarFichaObjeto(Model model, @PathVariable Long idObjeto, Principal principal) {
+        String nombreUsuario = (principal != null) ? principal.getName() : null;
+        model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(idObjeto, nombreUsuario));
 
         // Para postmapping de crear reseña
         model.addAttribute("nuevaResena", new ResenaCrearDTO("", "", 0.0, false));
@@ -63,6 +64,14 @@ public class ObjetoController {
     @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=objetoFavorito")
     public String nuevoObjetoFavorito(@PathVariable Long idObjeto, @RequestParam("favorito") Boolean favorito, Principal principal) {
         fichaObjetoFacade.marcarObjetoFavorito(idObjeto, principal.getName(), favorito);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PostMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=likeResena")
+    public String likeResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena, Principal principal) {
+        if (principal != null) {
+            fichaObjetoFacade.marcarQuitarLikeResena(idResena, principal.getName());
+        }
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
 

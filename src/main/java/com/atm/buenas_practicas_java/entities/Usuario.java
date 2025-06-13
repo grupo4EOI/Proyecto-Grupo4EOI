@@ -41,12 +41,15 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private String role;
 
     // Relación 1:N con reseñas
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Resena> resenas;
 
     // Relación M:N entre las tablas objetos y usuarios
     @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> objetos;
+
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    private List<Publicacion> publicaciones;
 
     // Relación con comentarios de las publicaciones
     @OneToMany(mappedBy = "usuario")
@@ -61,11 +64,11 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @JoinColumn(name = "id_usuario")
     private Set<Amistad> usuarios;
 
-    @OneToMany
-    @JoinColumn(name = "id_amigo")
+    @OneToMany(mappedBy = "usuario")
+    //@JoinColumn(name = "id_amigo")
     private Set<Amistad> amigos;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private List<Reaccion> reacciones;
 
     @OneToMany(mappedBy = "usuario")

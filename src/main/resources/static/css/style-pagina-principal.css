@@ -447,3 +447,16 @@
 .animate-slide-in-right {
     animation: slideInRight 1s ease-out forwards;
 }
+
+.etiqueta {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: #F9C784;
+}
+
+.etiqueta:hover {
+    transition: background-color 0.3s ease;
+    background-color: #FF8C42;
+    cursor: pointer;
+}

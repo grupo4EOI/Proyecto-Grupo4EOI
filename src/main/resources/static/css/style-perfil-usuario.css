@@ -147,9 +147,13 @@ img.rounded-circle {
     border: 2px solid black;
     border-radius: 8px;
     background-color: #fff9f0;
+    padding: 1.5rem;
 }
 
-#resenas-container .resena {
+#publicaciones-container .publicacion {
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #fff9f0;
     padding: 1.5rem;
 }
 
@@ -159,9 +163,11 @@ img.rounded-circle {
     font-size: 1.25rem;
 }
 
+
 #resenas-container .card-text small {
     font-weight: bold;
 }
+
 
 .contenedores-amigos-insignias{
     max-width: 350px;
@@ -222,4 +228,25 @@ img.rounded-circle {
     flex: 1;
 }
 
+.btn-perso {
+    border: 2px solid transparent;
+    background: #ff8c42;
+    color: #000000;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+}
 
+.btn-perso:hover {
+    /*background-color: #ffa5a5;*/
+    border: 2px solid #000000;
+    color: #ffffff !important;
+}

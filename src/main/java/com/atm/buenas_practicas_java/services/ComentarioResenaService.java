@@ -28,6 +28,7 @@ public class ComentarioResenaService {
         comentarioResenaRepository.save(comentarioResena);
     }
 
+    @Transactional
     public List<ComentarioResenaDTO> obtenerComentariosResenasConAbuso() {
         List<ComentarioResena> comentarios = comentarioResenaRepository.findComentarioResenasByAbusoEquals(true);
         return comentarioResenaMapper.toDtoList(comentarios);

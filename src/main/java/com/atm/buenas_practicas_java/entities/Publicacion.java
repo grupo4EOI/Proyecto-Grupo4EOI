@@ -22,13 +22,17 @@ public class Publicacion {
 
     @Column(columnDefinition = "VARCHAR(200)")
     private String titulo;
-
     private Boolean abuso = false;
 
-    @OneToMany(mappedBy = "publicacion", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "publicacion", fetch = FetchType.LAZY)
     private List<ComentarioPublicacion> comentariosPublicacion;
 
     @ManyToOne
     @JoinColumn(name = "id_comunidad")
     private Comunidad comunidad;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
 }

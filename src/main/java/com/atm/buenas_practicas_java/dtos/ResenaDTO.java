@@ -11,6 +11,7 @@ public record ResenaDTO(
         boolean spoiler,
         UsuarioDTO autor,
         List<ComentarioResenaDTO> comentariosResena,
-        LocalDateTime fechaPublicacion
-
+        LocalDateTime fechaPublicacion,
+        Long numeroLikes,
+        Boolean likeUsuario
 ) { }

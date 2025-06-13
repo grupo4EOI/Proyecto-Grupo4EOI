@@ -6,6 +6,7 @@ import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
 import com.atm.buenas_practicas_java.mapper.ComunidadSimpleMapper;
 import com.atm.buenas_practicas_java.repositories.ComunidadRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,16 +24,27 @@ public class ComunidadService {
         this.comunidadSimpleMapper = comunidadSimpleMapper;
     }
 
-    public Comunidad save (Comunidad comunidad) {return comunidadRepository.save(comunidad);}
+    @Transactional
+    public Comunidad save (Comunidad comunidad) {
+        return comunidadRepository.save(comunidad);
+    }
 
-    public List<Comunidad> findAll() {return comunidadRepository.findAll();}
+    @Transactional
+    public List<Comunidad> findAll() {
+        return comunidadRepository.findAll();
+    }
 
-    public Comunidad findById(Long id) {return comunidadRepository.findComunidadByIdComunidad(id);}
+    @Transactional
+    public Comunidad findById(Long id) {
+        return comunidadRepository.findComunidadByIdComunidad(id);
+    }
 
+    @Transactional
     public ComunidadSimpleDTO findByID(Long id) {
         return comunidadSimpleMapper.toDTO(comunidadRepository.findComunidadByIdComunidad(id));
     }
 
+    @Transactional
     public List<ComunidadDTO> buscarComunidades(){
         List<ComunidadDTO> comunidadesDTO = comunidadMapper.toDTO(findAll());
         return comunidadesDTO.stream()

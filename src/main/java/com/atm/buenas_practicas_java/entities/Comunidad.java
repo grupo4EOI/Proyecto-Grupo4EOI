@@ -29,12 +29,12 @@ public class Comunidad {
 
     // Relación con usuarios (tabla intermedia)
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuarios_comunidades"
-    , joinColumns = @JoinColumn(name = "id_comunidad"),
-    inverseJoinColumns = @JoinColumn(name = "id_usuario"))
+    @JoinTable(name = "usuarios_comunidades",
+            joinColumns = @JoinColumn(name = "id_comunidad"),
+            inverseJoinColumns = @JoinColumn(name = "id_usuario"))
     private Set<Usuario> usuarios;
 
-    @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "comunidad", fetch = FetchType.LAZY)
     private List<Publicacion> publicaciones;
 
     @OneToMany(mappedBy = "comunidad")

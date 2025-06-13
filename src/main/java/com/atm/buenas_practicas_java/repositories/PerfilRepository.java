@@ -8,10 +8,14 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface PerfilRepository extends JpaRepository<Usuario, Long> {
-    @Query("SELECT u FROM Usuario u " +
-            "LEFT JOIN FETCH u.generos g " +
-            "LEFT JOIN FETCH g.tipo " +
-            "WHERE u.idUsuario = :id")
+    @Query("""
+    SELECT DISTINCT u FROM Usuario u 
+    LEFT JOIN FETCH u.generos g 
+    LEFT JOIN FETCH g.tipo 
+    LEFT JOIN FETCH u.amigos a 
+    LEFT JOIN FETCH a.amigo 
+    WHERE u.idUsuario = :id
+""")
     Optional<Usuario> findByIdUsuario(@Param("id") Long idUsuario);
 
 }

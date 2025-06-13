@@ -44,7 +44,7 @@ public class Resena {
     @OneToMany(mappedBy = "resena")
     private List<Reaccion> reacciones;
 
-    @OneToMany(mappedBy = "resena", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "resena", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<ComentarioResena> comentariosResena;
 
 }

@@ -2,7 +2,7 @@
 <html lang="es"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout.html}">
+      layout:decorate="~{/layout/layout.html}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,6 +87,7 @@
                         <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
                                 class="bi bi-person me-2"></i>@MrReseñador
                         </div>
+                        <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
                         <div class="container" id="review">
                             <div class="row">
                                 <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
@@ -143,7 +144,7 @@
         </div>
     <section class="main-quote">
         <div class="container">
-            <h3 class="col-12"><b>Ultima Reseña realizada</b></h3>
+            <h3 class="col-12"><b>Ultima Publicación realizada</b></h3>
             <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${paginaPrincipal.ultimaPublicacion()}">
                 <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
                 <div class="container" id="publicacion" >

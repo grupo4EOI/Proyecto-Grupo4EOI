@@ -17,7 +17,7 @@
     <div class="bg-custom mt-4 mx-auto rounded-top p-3 w-75">
       <div class="d-flex justify-content-between align-items-center">
         <h1 th:text="${comunidad.nombreComunidad()}">Harry Potter</h1>
-        <a type="button" class="btn btn-outline-light text-white" th:href="@{/comunidades/{id}/temas/nuevo-tema(id=${comunidad.idComunidad()})}">Nuevo tema <i class="bi bi-pencil"></i></a>
+        <a class="btn btn-outline-light text-white" th:href="@{/comunidades/{id}/temas/nuevo-tema(id=${comunidad.idComunidad()})}">Nuevo tema <i class="bi bi-pencil"></i></a>
     </div>
     </div>
     <!--Separador con filtro-->
