@@ -10,6 +10,7 @@ import com.atm.buenas_practicas_java.repositories.ReaccionRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -73,29 +74,35 @@ public class ResenaService {
                 .map(resenaDTO -> rellenarResenaDTO(resenaDTO, nombreUsuario)).toList();
     }
 
+    @Transactional
     public List<ResenaDTO> findResenasByObjeto(Long idObjeto, String nombreUsuario) {
         List<ResenaDTO> resenasDTO =  resenaMapper.toDtoList(resenaRepository.findResenasByObjeto_IdObjetoOrderByFechaPublicacionDesc(idObjeto));
         return rellenarListaResenaDTO(resenasDTO, nombreUsuario);
     }
 
+    @Transactional
     public List<ResenaDTO> obtenerResenasConAbuso(String nombreUsuario) {
         List<ResenaDTO> resenasReportadas = resenaMapper.toDtoList(resenaRepository.findResenasByAbusoEquals(true));
         return rellenarListaResenaDTO(resenasReportadas, nombreUsuario);
     }
 
+    @Transactional
     public ResenaDTO obtenerUltimaResena(String nombreUsuario) {
         ResenaDTO ultimaResena = resenaMapper.toDto(resenaRepository.findTopByOrderByFechaPublicacionDesc());
         return rellenarResenaDTO(ultimaResena, nombreUsuario);
     }
 
+    @Transactional
     public Resena save(Resena resena) {
         return resenaRepository.save(resena);
     }
 
+    @Transactional
     public void reportarResena(Long idResena) {
         resenaRepository.reportarResena(idResena);
     }
 
+    @Transactional
     public void reportarSpoilerResena(Long idResena) {
         resenaRepository.reportarSpoilerResena(idResena);
     }

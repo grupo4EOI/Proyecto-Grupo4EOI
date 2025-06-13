@@ -7,6 +7,7 @@ import com.atm.buenas_practicas_java.entities.Resena;
 import com.atm.buenas_practicas_java.mapper.ObjetoMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ResenaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +83,7 @@ public class ObjetoService {
         return rellenarListaObjetosDTO(objetosMasVistos);
     }
 
+    @Transactional
     public SeccionDTO construirSeccionDTO(String tipo) {
         String tipoSeccion = "";
         if (tipo.equals("pelicula")) {

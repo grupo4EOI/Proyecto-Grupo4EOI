@@ -37,6 +37,7 @@ public class FichaObjetoFacade {
 
 
     // Metodo para el GetMapping de la ficha de objeto entera
+    @Transactional
     public FichaObjetoDTO construirFichaObjeto(Long idObjeto, String nombreUsuario) {
         Objeto objeto = objetoService.findById(idObjeto);
 
@@ -71,6 +72,7 @@ public class FichaObjetoFacade {
     }
 
     // Metodo para el PostMapping de nueva reseña
+    @Transactional
     public void agregarResena(Long idObjeto, ResenaCrearDTO resenaDTO, String nombreUsuario) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
         Objeto objeto = objetoService.findById(idObjeto);
@@ -106,26 +108,31 @@ public class FichaObjetoFacade {
     }
 
     // Metodo para postmapping de actualizar estado objeto (visto o pendiente)
+    @Transactional
     public void marcarEstadoObjeto(Long idObjeto, String nombreUsuario, Boolean estado) {
         usuarioService.marcarEstadoObjeto(idObjeto, nombreUsuario, estado);
     }
 
     // Metodo para postmapping de objeto favorito
+    @Transactional
     public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
         usuarioService.marcarObjetoFavorito(idObjeto, nombreUsuario, favorito);
     }
 
     // Metodo para postmapping de like reseña
+    @Transactional
     public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
         reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
     }
 
     // Metodo para putMapping de reportar reseña
+    @Transactional
     public void reportarResena(Long idResena) {
         resenaService.reportarResena(idResena);
     }
 
     // Metodo para putMapping de reportar comentario reseña
+    @Transactional
     public void reportarSpoilerResena(Long idResena) {
         resenaService.reportarSpoilerResena(idResena);
     }

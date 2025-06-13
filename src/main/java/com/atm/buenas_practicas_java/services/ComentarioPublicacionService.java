@@ -11,6 +11,7 @@ import com.atm.buenas_practicas_java.repositories.ComentarioPublicacionRepositor
 import com.atm.buenas_practicas_java.mapper.ComentarioPublicacionMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class ComentarioPublicacionService {
     }
 
     /** Devuelve una lista de los primeros comentarios de cada publicación pertenecientes a la comunidad del objeto */
+    @Transactional
     public List<ComentarioPublicacionDTO> getPrimerosComentariosObjeto(Long idObjeto) {
         return objetoRepository.findById(idObjeto)
                 .map(objeto -> {
@@ -62,6 +64,7 @@ public class ComentarioPublicacionService {
                 }).orElseThrow(() -> new RuntimeException("No se encontró el objeto"));
     }
 
+    @Transactional
     public List<ComentarioPublicacionSimpleDTO> getComentarioPublicacionByPublicacionId(Long publicacionId){
         List<ComentarioPublicacionSimpleDTO> comPubSimpleDTO = comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacionOrderByIdComentarioPublicacion(publicacionId));
         return comPubSimpleDTO.stream()
@@ -76,6 +79,7 @@ public class ComentarioPublicacionService {
                     ).toList();
     }
 
+    @Transactional
     public ComentarioPublicacionDTO buscarPrimerComentarioUltimaPublicacion() {
         Publicacion ultimaPublicacion = publicacionRepository.findAll().getLast();
         ComentarioPublicacionDTO primerComentarioDTO = comentarioPublicacionMapper.toDto(ultimaPublicacion.getComentariosPublicacion().getFirst());
@@ -87,6 +91,7 @@ public class ComentarioPublicacionService {
         );
     }
 
+    @Transactional
     public List<ComentarioPublicacionDTO> buscarComentariosPublicacionConAbuso() {
         List<ComentarioPublicacion> publicaciones = comentarioPublicacionRepository.findComentarioPublicacionsByAbusoEquals(true);
         return publicaciones.stream()

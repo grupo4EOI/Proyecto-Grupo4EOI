@@ -10,6 +10,7 @@ import com.atm.buenas_practicas_java.services.ComentarioPublicacionService;
 import com.atm.buenas_practicas_java.services.ComunidadService;
 import com.atm.buenas_practicas_java.services.PublicacionService;
 import com.atm.buenas_practicas_java.services.UsuarioService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -55,6 +56,7 @@ public class ComunidadServiceFacade {
         return comPubService.getComentarioPublicacionByPublicacionId(idPublicacion);
     }
 
+    @Transactional
     public PublicacionCrearDTO nuevaPublicacion(Long idComunidad, PublicacionCrearDTO publicacionDTO, String nombreUsuario) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
         Publicacion publicacion = publicacionCrearMapper.toEntity(publicacionDTO);
@@ -86,6 +88,7 @@ public class ComunidadServiceFacade {
         return publicacionCrearMapper.toDto(publicacionGuardada);
     }
 
+    @Transactional
     public ComentarioPublicacionCrearDTO nuevoComentario(Long idComunidad, ComentarioPublicacionCrearDTO comentarioDTO, String nombreUsuario, Long idPublicacion) {
         Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
         Comunidad comunidad = comunidadService.findById(idComunidad);
@@ -107,6 +110,7 @@ public class ComunidadServiceFacade {
         return comentarioPublicacionCrearMapper.toDto(comentarioGuardado);
     }
 
+    @Transactional
     public void reportarComentarioPublicacion(Long idComentarioPublicacion) {
         comentarioPublicacionService.reportar(idComentarioPublicacion);
     }

@@ -6,6 +6,7 @@ import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.mapper.PublicacionMapper;
 import com.atm.buenas_practicas_java.repositories.ComunidadRepository;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class PublicacionService {
         return publicacionRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public List<PublicacionDTO> buscarPublicacionesPorComunidad(Long idComunidad) {
         List<PublicacionDTO> publicaciones = publicacionMapper.toDto(publicacionRepository.findPublicacionsByComunidad_IdComunidad(idComunidad));
         return publicaciones.stream()
