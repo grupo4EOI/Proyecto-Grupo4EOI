@@ -3,6 +3,7 @@ package com.atm.buenas_practicas_java.loaders;
 import com.atm.buenas_practicas_java.entities.*;
 import com.atm.buenas_practicas_java.repositories.*;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -32,6 +33,7 @@ import java.util.*;
 @Configuration
 @Log4j2
 @Profile("local")
+@RequiredArgsConstructor
 public class LocalDataLoader {
 
     private final ObjetoRepository objetoRepository;
@@ -46,39 +48,9 @@ public class LocalDataLoader {
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
-    private final PerfilRepository PerfilRepository;
     private final AmistadRepository AmistadRepository;
     private final PasswordEncoder encoder;
 
-    public LocalDataLoader(ObjetoRepository objetoRepository,
-                           PersonaRepository personaRepository,
-                           PersonaObjetoRepository personaObjetoRepository,
-                           UsuarioRepository usuarioRepository,
-                           ResenaRepository resenaRepository,
-                           TipoRepository tipoRepository,
-                           GeneroRepository generoRepository,
-                           ComentarioPublicacionRepository comentarioPublicacionRepository,
-                           PublicacionRepository publicacionRepository,
-                           ComunidadRepository comunidadRepository,
-                           ComentarioResenaRepository comentarioResenaRepository,
-                           ObjetoUsuarioRepository objetoUsuarioRepository, PerfilRepository perfilRepository, AmistadRepository amistadRepository,
-                           PasswordEncoder encoder) {
-        this.objetoRepository = objetoRepository;
-        this.personaRepository = personaRepository;
-        this.personaObjetoRepository = personaObjetoRepository;
-        this.usuarioRepository = usuarioRepository;
-        this.resenaRepository = resenaRepository;
-        this.tipoRepository = tipoRepository;
-        this.generoRepository = generoRepository;
-        this.comentarioPublicacionRepository = comentarioPublicacionRepository;
-        this.publicacionRepository = publicacionRepository;
-        this.comunidadRepository = comunidadRepository;
-        this.comentarioResenaRepository = comentarioResenaRepository;
-        this.objetoUsuarioRepository = objetoUsuarioRepository;
-        PerfilRepository = perfilRepository;
-        AmistadRepository = amistadRepository;
-        this.encoder = encoder;
-    }
 
     @PostConstruct
     public void loadDataLocal() {

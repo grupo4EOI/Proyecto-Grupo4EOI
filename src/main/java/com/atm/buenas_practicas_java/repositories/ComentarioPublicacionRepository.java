@@ -19,4 +19,6 @@ public interface ComentarioPublicacionRepository extends JpaRepository<Comentari
     @Transactional
     @Query("UPDATE ComentarioPublicacion c SET c.abuso = true WHERE c.idComentarioPublicacion = :id")
     void reportar(@Param("id") Long id);
+
+    List<ComentarioPublicacion> findAllByUsuario_IdUsuario(Long idUsuario);
 }

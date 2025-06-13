@@ -3,12 +3,13 @@ package com.atm.buenas_practicas_java.services;
 import com.atm.buenas_practicas_java.dtos.GeneroDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioPerfilDTO;
-import com.atm.buenas_practicas_java.entities.Amistad;
+import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
-import com.atm.buenas_practicas_java.repositories.PerfilRepository;
+import com.atm.buenas_practicas_java.repositories.ComentarioPublicacionRepository;
+import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,20 +20,23 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class PerfilService {
-    private final PerfilRepository perfilRepository;
+    private final UsuarioRepository usuarioRepository;
     private final GeneroService generoService;
     private final PerfilMapper perfilMapper;
+    private final ComentarioPublicacionRepository comentarioPublicacionRepository;
 
-    public PerfilService(PerfilRepository perfilRepository,
+    public PerfilService(UsuarioRepository usuarioRepository,
                          GeneroService generoService,
-                         PerfilMapper perfilMapper) {
-        this.perfilRepository = perfilRepository;
+                         PerfilMapper perfilMapper, ComentarioPublicacionRepository comentarioPublicacionRepository) {
+        this.usuarioRepository = usuarioRepository;
         this.generoService = generoService;
         this.perfilMapper = perfilMapper;
+        this.comentarioPublicacionRepository = comentarioPublicacionRepository;
     }
 
+    @Transactional
     public Usuario findByIdUsuario(Long idUsuario) {
-        Usuario usuario = perfilRepository.findByIdUsuario(idUsuario)
+        Usuario usuario = usuarioRepository.findByIdUsuario(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
 
         usuario.getResenas().size();
@@ -44,10 +48,12 @@ public class PerfilService {
         return usuario;
     }
 
+    @Transactional
     public void saveAndFlush(Usuario usuario) {
-        perfilRepository.saveAndFlush(usuario);
+        usuarioRepository.saveAndFlush(usuario);
     }
 
+    @Transactional
     public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
         Usuario usuario = findByIdUsuario(idUsuario);
 
@@ -63,7 +69,7 @@ public class PerfilService {
                 generoService.filtrarGenerosPorTipo(generos, "videojuego")
         );
 
-        List<Publicacion> publicaciones = usuario.getPublicaciones();
+        List<ComentarioPublicacion> publicaciones = comentarioPublicacionRepository.findAllByUsuario_IdUsuario(idUsuario);
 
         List<UsuarioDTO> amigos = usuario.getAmigos().stream()
                 .map(amistad -> {
@@ -93,10 +99,8 @@ public class PerfilService {
                 series,
                 videojuegos,
                 publicaciones
-
         );
     }
-
 }
 
 

@@ -65,7 +65,6 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private Set<Amistad> usuarios;
 
     @OneToMany(mappedBy = "usuario")
-    //@JoinColumn(name = "id_amigo")
     private Set<Amistad> amigos;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)

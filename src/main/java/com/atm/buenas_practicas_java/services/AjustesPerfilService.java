@@ -6,13 +6,12 @@ import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
 import com.atm.buenas_practicas_java.repositories.GeneroRepository;
-import com.atm.buenas_practicas_java.repositories.PerfilRepository;
+import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,17 +21,13 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class AjustesPerfilService {
 
-    private final PerfilRepository perfilRepository;
+    private final UsuarioRepository usuarioRepository;
     private final GeneroService generoService;
-    private final PerfilMapper perfilMapper;
-    private final GeneroRepository generoRepository;
     private final ImagenPerfilService imagenPerfilService;
     private final PasswordEncoder encoder;
 
-
-
     public Usuario findByIdUsuario(Long idUsuario) {
-        Usuario usuario = perfilRepository.findByIdUsuario(idUsuario)
+        Usuario usuario = usuarioRepository.findByIdUsuario(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
 
         usuario.getUsuarios().size();
@@ -40,12 +35,14 @@ public class AjustesPerfilService {
         return usuario;
     }
 
+    @Transactional
     public void editarBiografia(Long idUsuario, String biografia) {
         Usuario usuario = findByIdUsuario(idUsuario);
         usuario.setBiografia(biografia);
-        perfilRepository.saveAndFlush(usuario);
+        usuarioRepository.saveAndFlush(usuario);
     }
 
+    @Transactional
     public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario) {
         Usuario usuario = findByIdUsuario(idUsuario);
 
@@ -65,7 +62,7 @@ public class AjustesPerfilService {
         );
     }
 
-
+    @Transactional
     public void actualizarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfildto) {
         Usuario usuario = findByIdUsuario(idUsuario);
 
@@ -101,7 +98,7 @@ public class AjustesPerfilService {
             usuario.setAvatarUrl(imagen);
         }
 
-        perfilRepository.saveAndFlush(usuario);
+        usuarioRepository.saveAndFlush(usuario);
     }
 
 

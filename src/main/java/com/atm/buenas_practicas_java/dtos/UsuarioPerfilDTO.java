@@ -20,6 +20,6 @@ public record UsuarioPerfilDTO(
         List<GeneroDTO> generosPeliculas,
         List<GeneroDTO> generosSeries,
         List<GeneroDTO> generosVideojuegos,
-        List<Publicacion> publicaciones
+        List<ComentarioPublicacion> publicaciones
 ) {
 }
