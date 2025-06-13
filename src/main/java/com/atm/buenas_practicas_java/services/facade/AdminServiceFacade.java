@@ -28,4 +28,8 @@ public class AdminServiceFacade {
                 comentarioPublicacionService.buscarComentariosPublicacionConAbuso()
         );
     }
+
+    public void borrarResenaPorId(Long idResena) {
+        resenaService.eliminarResena(idResena);
+    }
 }

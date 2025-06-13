@@ -106,4 +106,9 @@ public class ResenaService {
     public void reportarSpoilerResena(Long idResena) {
         resenaRepository.reportarSpoilerResena(idResena);
     }
+
+    @Transactional
+    public void eliminarResena(Long idResena) {
+        resenaRepository.borrarResenaPorIdResena(idResena);
+    }
 }

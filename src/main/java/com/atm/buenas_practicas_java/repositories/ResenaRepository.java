@@ -27,4 +27,9 @@ public interface ResenaRepository extends JpaRepository<Resena, Long> {
     @Transactional
     @Query("UPDATE Resena r SET r.spoiler = true WHERE r.idResena = :id")
     void reportarSpoilerResena(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Resena r WHERE r.idResena = :idResena")
+    void borrarResenaPorIdResena(@Param("idResena") Long idResena);
 }
