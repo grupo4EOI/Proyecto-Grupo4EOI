@@ -24,6 +24,9 @@ public class AdminController {
         return "/admin";
     }
 
+    /**
+     * Funcionalidades de borrar reseñas, comentarios
+     */
     @DeleteMapping(params = "accion=borrarResena")
     public String borrarResena(@RequestParam("idResena") Long idResena) {
         adminService.borrarResena(idResena);
@@ -36,6 +39,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    /**
+     * Funcionalidad de banear comentarios y usuarios
+     */
     @PutMapping(params = "accion=banComentarioPublicacion")
     public String banComentarioPublicacion(@RequestParam("idComentarioPublicacion") Long idComentarioPublicacion) {
         adminService.banComentarioPublicacion(idComentarioPublicacion);
@@ -47,4 +53,26 @@ public class AdminController {
         adminService.banUsuario(idUsuario);
         return "redirect:/admin";
     }
+
+    /**
+     * Funcionalidad de aprobar reseñas, comentarios reseñas y publicaciones
+     */
+    @PutMapping(params = "accion=aprobarResena")
+    public String aprobarResena(@RequestParam("idResena") Long idResena) {
+        adminService.aprobarResena(idResena);
+        return "redirect:/admin";
+    }
+
+    @PutMapping(params = "accion=aprobarComentarioResena")
+    public String aprobarComentarioResena(@RequestParam("idComentarioResena") Long idComentarioResena) {
+        adminService.aprobarComentarioResena(idComentarioResena);
+        return "redirect:/admin";
+    }
+
+    @PutMapping(params = "accion=aprobarComentarioPublicacion")
+    public String aprobarComentarioPublicacion(@RequestParam("idComentarioPublicacion") Long idComentarioPublicacion) {
+        adminService.aprobarComentarioPublicacion(idComentarioPublicacion);
+        return "redirect:/admin";
+    }
+
 }

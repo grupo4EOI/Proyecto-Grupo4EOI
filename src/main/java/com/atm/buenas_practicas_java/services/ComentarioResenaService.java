@@ -38,4 +38,9 @@ public class ComentarioResenaService {
     public void borrarComentarioResena(Long idComentarioResena) {
         comentarioResenaRepository.borrarComentarioResena(idComentarioResena);
     }
+
+    @Transactional
+    public void aprobarComentarioResena(Long idComentarioResena) {
+        comentarioResenaRepository.aprobarComentarioResena(idComentarioResena);
+    }
 }

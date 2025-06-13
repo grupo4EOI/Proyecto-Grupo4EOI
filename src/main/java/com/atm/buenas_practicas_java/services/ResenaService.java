@@ -111,4 +111,9 @@ public class ResenaService {
     public void eliminarResena(Long idResena) {
         resenaRepository.borrarResenaPorIdResena(idResena);
     }
+
+    @Transactional
+    public void aprobarResena(Long idResena) {
+        resenaRepository.aprobarResena(idResena);
+    }
 }

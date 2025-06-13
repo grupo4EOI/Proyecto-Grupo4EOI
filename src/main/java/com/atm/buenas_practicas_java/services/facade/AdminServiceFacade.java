@@ -33,6 +33,9 @@ public class AdminServiceFacade {
         );
     }
 
+    /**
+     * Funcionalidades de borrar
+     */
     // Este metodo (asociado al admin) borra también los comentarios asociados a la reseña
     public void borrarResena(Long idResena) {
         resenaService.eliminarResena(idResena);
@@ -42,11 +45,29 @@ public class AdminServiceFacade {
         comentarioResenaService.borrarComentarioResena(idComentarioResena);
     }
 
+    /**
+     * Funcionalidades de banear
+     */
     public void banComentarioPublicacion(Long idComentarioPublicacion) {
         comentarioPublicacionService.banComentarioPublicacion(idComentarioPublicacion);
     }
 
     public void banUsuario(Long idUsuario) {
         usuarioService.banUsuario(idUsuario);
+    }
+
+    /**
+     * Funcionalidades de aprobar (quitar el ban reportado por el usuario)
+     */
+    public void aprobarResena(Long idResena) {
+        resenaService.aprobarResena(idResena);
+    }
+
+    public void aprobarComentarioResena(Long idComentarioResena) {
+        comentarioResenaService.aprobarComentarioResena(idComentarioResena);
+    }
+
+    public void aprobarComentarioPublicacion(Long idComentarioPublicacion) {
+        comentarioPublicacionService.aprobarComentarioPublicacion(idComentarioPublicacion);
     }
 }

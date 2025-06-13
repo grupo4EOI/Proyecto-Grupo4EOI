@@ -131,4 +131,8 @@ public class ComentarioPublicacionService {
     public void banComentarioPublicacion(Long idComentarioPublicacion) {
         comPubRepository.banComentarioPublicacion(idComentarioPublicacion);
     }
+
+    public void aprobarComentarioPublicacion(Long idComentarioPublicacion) {
+        comPubRepository.aprobarComentarioPublicacion(idComentarioPublicacion);
+    }
 }
