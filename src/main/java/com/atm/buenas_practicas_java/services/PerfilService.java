@@ -65,12 +65,17 @@ public class PerfilService {
 
         List<Publicacion> publicaciones = usuario.getPublicaciones();
 
-        List<UsuarioDTO> amigosDTO = usuario.getAmigos().stream()
-                .filter(Amistad::isEstado)
-                .map(Amistad::getAmigo)
-                .map(perfilMapper::toDto)
+        List<UsuarioDTO> amigos = usuario.getAmigos().stream()
+                .map(amistad -> {
+                    Usuario amigo = amistad.getAmigo();
+                    return new UsuarioDTO(
+                            amigo.getIdUsuario(),
+                            amigo.getNombreUsuario(),
+                            amigo.getAvatarUrl(),
+                            amigo.getRole()
+                    );
+                })
                 .collect(Collectors.toList());
-
 
         return new UsuarioPerfilDTO(
                 usuario.getIdUsuario(),
@@ -80,7 +85,7 @@ public class PerfilService {
                 usuario.getRole(),
                 usuario.getResenas(),
                 usuario.getComentariosPublicacion(),
-                amigosDTO,
+                amigos,
                 usuario.getReacciones(),
                 usuario.getComentariosResenas(),
                 usuario.getGeneros(),

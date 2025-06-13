@@ -24,6 +24,7 @@ public class PerfilServiceFacade {
 
     public UsuarioPerfilDTO obtenerPerfilDTO(Long id) {
         return perfilService.obtenerPerfilDTO(id);
+
     }
 
     public void editarBiografia(Long idUsuario, String biografia) {
