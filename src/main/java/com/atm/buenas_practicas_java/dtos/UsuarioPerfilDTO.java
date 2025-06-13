@@ -14,12 +14,12 @@ public record UsuarioPerfilDTO(
         List<Resena> resenas,
         Set<ComentarioPublicacion> comentariosPublicacion,
         List<UsuarioDTO> amigos,
-        //Set<Amistad> amigos,
         List<Reaccion> reacciones,
         Set<ComentarioResena> comentariosResenas,
         Set<Genero> generos,
         List<GeneroDTO> generosPeliculas,
         List<GeneroDTO> generosSeries,
-        List<GeneroDTO> generosVideojuegos
+        List<GeneroDTO> generosVideojuegos,
+        List<Publicacion> publicaciones
 ) {
 }

@@ -160,9 +160,28 @@
                         <!-- Publicaciones -->
                         <div class="tab-pane fade" id="tab-publicaciones" role="tabpanel">
                             <div id="publicaciones-container">
-                                <p th:if="${#lists.isEmpty(publicaciones)}">No hay publicaciones.</p>
-                                <div th:each="publicacion : ${publicaciones}">
+                                <p th:if="${#lists.isEmpty(perfil.publicaciones)}">No hay publicaciones.</p>
 
+                                <div th:each="publicacion : ${perfil.publicaciones}" class="mb-3 p-3  publicacion">
+
+                                    <div class="mb-2">
+                                        <span class="fw-bold">Comunidad:</span>
+                                        <span th:text="${publicacion.comunidad.nombreComunidad}">No pertenece a ninguna comunidad.</span>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <span class="fw-bold">Título:</span>
+                                        <span th:text="${publicacion.titulo}"></span>
+                                    </div>
+
+                                    <div th:each="comentario : ${publicacion.comentariosPublicacion}"
+                                         th:if="${comentario.usuario.idUsuario == perfil.idUsuario}">
+                                        <span class="fw-bold">Contenido de la publicación:</span>
+                                        <p th:text="${comentario.contenido}">No hay contenido.</p>
+                                        <p class="text-muted" style="font-size: 0.85em;">
+                                            <span th:text="${#temporals.format(comentario.fecha, 'dd-MM-yyyy HH:mm')}"></span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -185,16 +204,41 @@
                 <div class="lista-de-amigos p-3 rounded shadow mb-4">
                     <h5 class="fs-4 text-center">Lista de amigos</h5>
                     <ul class="list-unstyled">
-                        <li th:each="amistad : ${perfil.amigos}" class="mb-3 d-flex justify-content-between align-items-center">
-                            <span th:text="${amistad.amigo.nombreUsuario}">#Usuario</span>
-                            <div>
-                                <button class="btn btn-sm btn-outline-secondary">Perfil</button>
-                                <button class="btn btn-sm btn-outline-primary">Chatear</button>
-                            </div>
+                        <li th:each="amigo, iterStat : ${perfil.amigos}"
+                            th:if="${iterStat.index < 3}"
+                            class="mb-3 d-flex justify-content-center align-items-center">
+                            <a th:href="@{/perfil/{id}(id=${amigo.idUsuario})}"
+                               th:text="${amigo.nombreUsuario}"
+                               class="text-decoration-none text-center text-dark">
+                                Usuario
+                            </a>
                         </li>
                     </ul>
-                    <div class="text-center">
-                        <a href="#" class="text-decoration-none">Ver más</a>
+                    <div class="text-center" th:if="${perfil.amigos.size() > 3}">
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#amigosModal">Ver más</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal de amigos-->
+            <div class="modal fade" id="amigosModal" tabindex="-1" aria-labelledby="amigosModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="amigosModalLabel">Lista de amigos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-unstyled">
+                                <li th:each="amigo : ${perfil.amigos}" class="mb-2 d-flex justify-content-center align-items-center">
+                                    <a th:href="@{/perfil/{id}(id=${amigo.idUsuario})}"
+                                       th:text="${amigo.nombreUsuario}"
+                                       class="text-decoration-none text-center text-dark">
+                                        Usuario
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

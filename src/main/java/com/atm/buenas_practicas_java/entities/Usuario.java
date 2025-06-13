@@ -48,6 +48,9 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> objetos;
 
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    private List<Publicacion> publicaciones;
+
     // Relación con comentarios de las publicaciones
     @OneToMany(mappedBy = "usuario")
     private Set<ComentarioPublicacion> comentariosPublicacion;
@@ -61,8 +64,8 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @JoinColumn(name = "id_usuario")
     private Set<Amistad> usuarios;
 
-    @OneToMany
-    @JoinColumn(name = "id_amigo")
+    @OneToMany(mappedBy = "usuario")
+    //@JoinColumn(name = "id_amigo")
     private Set<Amistad> amigos;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
