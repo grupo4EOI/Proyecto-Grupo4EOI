@@ -3,10 +3,7 @@ package com.atm.buenas_practicas_java.controllers;
 import com.atm.buenas_practicas_java.services.facade.AdminServiceFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -39,8 +36,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @DeleteMapping(params = "accion=borrarPublicacion")
-    public String borrarPublicacion(@RequestParam("idComentarioPublicacion") Long idComentarioPublicacion) {
+    @PutMapping(params = "accion=banComentarioPublicacion")
+    public String banComentarioPublicacion(@RequestParam("idComentarioPublicacion") Long idComentarioPublicacion) {
+        adminService.banComentarioPublicacion(idComentarioPublicacion);
         return "redirect:/admin";
     }
 

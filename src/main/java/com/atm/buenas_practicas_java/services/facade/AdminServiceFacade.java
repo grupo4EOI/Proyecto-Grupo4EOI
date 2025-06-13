@@ -37,4 +37,8 @@ public class AdminServiceFacade {
     public void borrarComentarioResena(Long idComentarioResena) {
         comentarioResenaService.borrarComentarioResena(idComentarioResena);
     }
+
+    public void banComentarioPublicacion(Long idComentarioPublicacion) {
+        comentarioPublicacionService.banComentarioPublicacion(idComentarioPublicacion);
+    }
 }

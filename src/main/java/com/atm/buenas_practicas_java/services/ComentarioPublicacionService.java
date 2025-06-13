@@ -54,8 +54,10 @@ public class ComentarioPublicacionService {
                                 ComentarioPublicacionDTO dto = comentarioPublicacionMapper.toDto(comentario);
 
                                 return new ComentarioPublicacionDTO(
+                                        dto.idComentarioPublicacion(),
                                         publicacion.getTitulo(),
                                         dto.contenido(),
+                                        dto.baneado(),
                                         dto.usuario(),
                                         dto.fecha()
                                 );
@@ -84,8 +86,10 @@ public class ComentarioPublicacionService {
         Publicacion ultimaPublicacion = publicacionRepository.findAll().getLast();
         ComentarioPublicacionDTO primerComentarioDTO = comentarioPublicacionMapper.toDto(ultimaPublicacion.getComentariosPublicacion().getFirst());
         return new ComentarioPublicacionDTO(
+                primerComentarioDTO.idComentarioPublicacion(),
                 ultimaPublicacion.getTitulo(),
                 primerComentarioDTO.contenido(),
+                primerComentarioDTO.baneado(),
                 primerComentarioDTO.usuario(),
                 primerComentarioDTO.fecha()
         );
@@ -99,8 +103,10 @@ public class ComentarioPublicacionService {
                     String titulo = comentario.getPublicacion().getTitulo();
                     ComentarioPublicacionDTO comentarioDTO = comentarioPublicacionMapper.toDto(comentario);
                     return new ComentarioPublicacionDTO(
+                            comentarioDTO.idComentarioPublicacion(),
                             titulo,
                             comentarioDTO.contenido(),
+                            comentarioDTO.baneado(),
                             comentarioDTO.usuario(),
                             comentarioDTO.fecha()
                     );
@@ -116,7 +122,13 @@ public class ComentarioPublicacionService {
         return comPubRepository.findById(id).orElse(null);
     }
 
+    // Para notificar al admin que revise el comentario de la publicación
     public void reportar(Long idComentarioPublicacion) {
         comPubRepository.reportar(idComentarioPublicacion);
+    }
+
+    // Para cuando el admin confirme que el comentario es indebido
+    public void banComentarioPublicacion(Long idComentarioPublicacion) {
+        comPubRepository.banComentarioPublicacion(idComentarioPublicacion);
     }
 }
