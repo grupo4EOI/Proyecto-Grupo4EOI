@@ -4,6 +4,7 @@ import com.atm.buenas_practicas_java.dtos.composedDTOs.PanelAdminDTO;
 import com.atm.buenas_practicas_java.services.ComentarioPublicacionService;
 import com.atm.buenas_practicas_java.services.ComentarioResenaService;
 import com.atm.buenas_practicas_java.services.ResenaService;
+import com.atm.buenas_practicas_java.services.UsuarioService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,13 +13,16 @@ public class AdminServiceFacade {
     private final ResenaService resenaService;
     private final ComentarioResenaService comentarioResenaService;
     private final ComentarioPublicacionService comentarioPublicacionService;
+    private final UsuarioService usuarioService;
 
     public AdminServiceFacade(ResenaService resenaService,
                               ComentarioResenaService comentarioResenaService,
-                              ComentarioPublicacionService comentarioPublicacionService) {
+                              ComentarioPublicacionService comentarioPublicacionService,
+                              UsuarioService usuarioService) {
         this.resenaService = resenaService;
         this.comentarioResenaService = comentarioResenaService;
         this.comentarioPublicacionService = comentarioPublicacionService;
+        this.usuarioService = usuarioService;
     }
 
     public PanelAdminDTO crearPanelAdminDTO(String nombreUsuario) {
@@ -40,5 +44,9 @@ public class AdminServiceFacade {
 
     public void banComentarioPublicacion(Long idComentarioPublicacion) {
         comentarioPublicacionService.banComentarioPublicacion(idComentarioPublicacion);
+    }
+
+    public void banUsuario(Long idUsuario) {
+        usuarioService.banUsuario(idUsuario);
     }
 }

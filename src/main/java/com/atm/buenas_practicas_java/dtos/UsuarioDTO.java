@@ -14,5 +14,6 @@ public record UsuarioDTO(
         Long idUsuario,
         String nombreUsuario,
         String avatarUrl,
-        String role
+        String role,
+        Boolean baneado
 ) { }

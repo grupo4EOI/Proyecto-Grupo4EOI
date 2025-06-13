@@ -42,5 +42,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-
+    @PutMapping(params = "accion=banUsuario")
+    public String banUsuario(@RequestParam("idUsuario") Long idUsuario) {
+        adminService.banUsuario(idUsuario);
+        return "redirect:/admin";
+    }
 }

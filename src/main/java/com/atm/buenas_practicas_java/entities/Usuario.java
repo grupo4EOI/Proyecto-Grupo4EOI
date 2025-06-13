@@ -39,6 +39,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private LocalDateTime ultimaConexion;
     @Column(nullable = false)
     private String role;
+    private Boolean baneado = false;
 
     // Relación 1:N con reseñas
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)

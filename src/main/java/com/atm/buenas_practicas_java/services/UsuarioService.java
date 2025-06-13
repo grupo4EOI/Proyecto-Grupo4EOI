@@ -93,6 +93,10 @@ public class UsuarioService implements UserDetailsService {
         }
     }
 
+    public void banUsuario(Long idUsuario) {
+        usuarioRepository.banUsuario(idUsuario);
+    }
+
 
     // Métodos para el registro y el login
 
