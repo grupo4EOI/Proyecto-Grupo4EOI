@@ -73,6 +73,7 @@ public class UsuarioService implements UserDetailsService {
 
     }
 
+    @Transactional
     public void marcarObjetoFavorito(Long idObjeto, String nombreUsuario, Boolean favorito) {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
         Objeto objeto = objetoRepository.findById(idObjeto).orElseThrow(EntityNotFoundException::new);
@@ -93,7 +94,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
 
-    // Metodos para el registro y el login
+    // Métodos para el registro y el login
 
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {

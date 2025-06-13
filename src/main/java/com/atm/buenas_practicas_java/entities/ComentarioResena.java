@@ -39,6 +39,6 @@ public class ComentarioResena {
     @JoinColumn(name = "id_resena", nullable = false)
     private Resena resena;
 
-    @OneToMany(mappedBy = "comentarioResena", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "comentarioResena")
     private List<Reaccion> reacciones = new ArrayList<>();
 }

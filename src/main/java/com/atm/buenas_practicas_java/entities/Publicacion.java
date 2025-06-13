@@ -25,7 +25,7 @@ public class Publicacion {
 
     private Boolean abuso = false;
 
-    @OneToMany(mappedBy = "publicacion", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "publicacion", fetch = FetchType.LAZY)
     private List<ComentarioPublicacion> comentariosPublicacion;
 
     @ManyToOne

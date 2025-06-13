@@ -29,11 +29,11 @@ public class ComentarioPublicacion {
 
     private Boolean abuso = false;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_publicacion")
     private Publicacion publicacion;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
