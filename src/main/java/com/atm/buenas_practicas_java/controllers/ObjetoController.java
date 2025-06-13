@@ -37,7 +37,7 @@ public class ObjetoController {
         // Para postmapping de crear reseña
         model.addAttribute("nuevaResena", new ResenaCrearDTO("", "", 0.0, false));
         // Para postmapping de crear comentario reseña
-        model.addAttribute("nuevoComentario", new ComentarioResenaDTO(null, "", null, null));
+        model.addAttribute("nuevoComentario", new ComentarioResenaDTO(null, null, null, null, null));
 
         return "/ficha-objeto";
     }

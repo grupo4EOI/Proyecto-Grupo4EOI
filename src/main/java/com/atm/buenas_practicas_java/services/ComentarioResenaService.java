@@ -34,4 +34,8 @@ public class ComentarioResenaService {
         return comentarioResenaMapper.toDtoList(comentarios);
     }
 
+    @Transactional
+    public void borrarComentarioResena(Long idComentarioResena) {
+        comentarioResenaRepository.borrarComentarioResena(idComentarioResena);
+    }
 }

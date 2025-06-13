@@ -29,12 +29,13 @@ public class AdminController {
 
     @DeleteMapping(params = "accion=borrarResena")
     public String borrarResena(@RequestParam("idResena") Long idResena) {
-        adminService.borrarResenaPorId(idResena);
+        adminService.borrarResena(idResena);
         return "redirect:/admin";
     }
 
     @DeleteMapping(params = "accion=borrarComentarioResena")
     public String borrarComentarioResena(@RequestParam("idComentarioResena") Long idComentarioResena) {
+        adminService.borrarComentarioResena(idComentarioResena);
         return "redirect:/admin";
     }
 

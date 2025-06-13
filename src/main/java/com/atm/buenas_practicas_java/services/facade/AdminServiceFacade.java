@@ -29,7 +29,12 @@ public class AdminServiceFacade {
         );
     }
 
-    public void borrarResenaPorId(Long idResena) {
+    // Este metodo (asociado al admin) borra también los comentarios asociados a la reseña
+    public void borrarResena(Long idResena) {
         resenaService.eliminarResena(idResena);
+    }
+
+    public void borrarComentarioResena(Long idComentarioResena) {
+        comentarioResenaService.borrarComentarioResena(idComentarioResena);
     }
 }
