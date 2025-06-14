@@ -1,11 +1,17 @@
 package com.atm.buenas_practicas_java.services.facade;
 
+import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
+import com.atm.buenas_practicas_java.dtos.ComentarioResenaDTO;
+import com.atm.buenas_practicas_java.dtos.ResenaDTO;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.EstadisticasReportesDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.PanelAdminDTO;
 import com.atm.buenas_practicas_java.services.ComentarioPublicacionService;
 import com.atm.buenas_practicas_java.services.ComentarioResenaService;
 import com.atm.buenas_practicas_java.services.ResenaService;
 import com.atm.buenas_practicas_java.services.UsuarioService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminServiceFacade {
@@ -25,13 +31,26 @@ public class AdminServiceFacade {
         this.usuarioService = usuarioService;
     }
 
-    public PanelAdminDTO crearPanelAdminDTO(String nombreUsuario) {
-        return new PanelAdminDTO(
-                resenaService.obtenerResenasConAbuso(nombreUsuario),
-                comentarioResenaService.obtenerComentariosResenasConAbuso(),
-                comentarioPublicacionService.buscarComentariosPublicacionConAbuso()
+    public EstadisticasReportesDTO crearPanelAdmin() {
+        return new EstadisticasReportesDTO(
+                resenaService.contarResenasConAbuso(),
+                comentarioResenaService.contarComentariosResenaConAbuso(),
+                comentarioPublicacionService.contarComentariosPublicacionesConAbuso()
         );
     }
+
+    public List<ResenaDTO> obtenerResenasConAbuso(String nombreUsuario) {
+        return resenaService.obtenerResenasConAbuso(nombreUsuario);
+    }
+
+    public List<ComentarioResenaDTO> obtenerComentariosResenasConAbuso() {
+        return comentarioResenaService.obtenerComentariosResenasConAbuso();
+    }
+
+    public List<ComentarioPublicacionDTO> obtenerComentariosPublicacionesConAbuso() {
+        return comentarioPublicacionService.obtenerComentariosPublicacionConAbuso();
+    }
+
 
     /**
      * Funcionalidades de borrar

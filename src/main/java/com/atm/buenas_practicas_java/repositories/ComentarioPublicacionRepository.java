@@ -29,4 +29,6 @@ public interface ComentarioPublicacionRepository extends JpaRepository<Comentari
     @Transactional
     @Query("UPDATE ComentarioPublicacion c SET c.baneado = FALSE, c.abuso = FALSE WHERE c.idComentarioPublicacion = :idComentarioPublicacion")
     void aprobarComentarioPublicacion(@Param("idComentarioPublicacion") Long idComentarioPublicacion);
+
+    Long countComentarioPublicacionsByAbusoEquals(boolean b);
 }

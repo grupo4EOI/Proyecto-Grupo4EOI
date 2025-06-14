@@ -116,4 +116,8 @@ public class ResenaService {
     public void aprobarResena(Long idResena) {
         resenaRepository.aprobarResena(idResena);
     }
+
+    public Long contarResenasConAbuso() {
+        return resenaRepository.countResenaByAbusoEquals(true);
+    }
 }

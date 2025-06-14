@@ -37,4 +37,6 @@ public interface ResenaRepository extends JpaRepository<Resena, Long> {
     @Transactional
     @Query("UPDATE Resena r SET r.abuso = false WHERE r.idResena = :idResena")
     void aprobarResena(@Param("idResena") Long idResena);
+
+    Long countResenaByAbusoEquals(Boolean abuso);
 }

@@ -96,7 +96,7 @@ public class ComentarioPublicacionService {
     }
 
     @Transactional
-    public List<ComentarioPublicacionDTO> buscarComentariosPublicacionConAbuso() {
+    public List<ComentarioPublicacionDTO> obtenerComentariosPublicacionConAbuso() {
         List<ComentarioPublicacion> publicaciones = comentarioPublicacionRepository.findComentarioPublicacionsByAbusoEquals(true);
         return publicaciones.stream()
                 .map(comentario -> {
@@ -134,5 +134,9 @@ public class ComentarioPublicacionService {
 
     public void aprobarComentarioPublicacion(Long idComentarioPublicacion) {
         comPubRepository.aprobarComentarioPublicacion(idComentarioPublicacion);
+    }
+
+    public Long contarComentariosPublicacionesConAbuso() {
+        return comPubRepository.countComentarioPublicacionsByAbusoEquals(true);
     }
 }

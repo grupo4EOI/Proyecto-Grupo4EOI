@@ -43,4 +43,8 @@ public class ComentarioResenaService {
     public void aprobarComentarioResena(Long idComentarioResena) {
         comentarioResenaRepository.aprobarComentarioResena(idComentarioResena);
     }
+
+    public Long contarComentariosResenaConAbuso() {
+        return comentarioResenaRepository.countComentarioResenasByAbusoEquals(true);
+    }
 }

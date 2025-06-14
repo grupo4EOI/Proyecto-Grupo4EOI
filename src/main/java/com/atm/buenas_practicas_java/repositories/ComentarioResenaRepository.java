@@ -18,4 +18,6 @@ public interface ComentarioResenaRepository extends JpaRepository<ComentarioRese
     @Modifying
     @Query("UPDATE ComentarioResena cr SET cr.abuso = false WHERE cr.idComentarioResena = :idComentarioResena")
     void aprobarComentarioResena(@Param("idComentarioResena") Long idComentarioResena);
+
+    Long countComentarioResenasByAbusoEquals(boolean b);
 }
