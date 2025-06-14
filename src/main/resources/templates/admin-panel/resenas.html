@@ -10,47 +10,9 @@
 </head>
 
 <div layout:fragment="content" class="mx-3 my-2 container d-flex flex-column justify-content-center">
-    <div class="admin-tabs">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:classappend="${currentPage == 'resumen'} ? 'active'"
-                   th:href="@{/admin}">
-                    Resumen
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:classappend="${currentPage == 'resenas'} ? 'active'"
-                   th:href="@{/admin/resenas}">
-                    Reseñas Reportadas
-                    <span th:if="${currentPage == 'resumen'}"
-                          class="badge badge-danger"
-                          th:text="${estadisticas?.totalResenasReportadas} ?: 0">0</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:classappend="${currentPage == 'comentariosresenas'} ? 'active'"
-                   th:href="@{/admin/comentariosresenas}">
-                    Comentarios Reseñas
-                    <span th:if="${currentPage == 'resumen'}"
-                          class="badge badge-danger"
-                          th:text="${estadisticas?.totalComentariosResenasReportados} ?: 0">0</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:classappend="${currentPage == 'comentariospublicaciones'} ? 'active'"
-                   th:href="@{/admin/comentariospublicaciones}">
-                    Comentarios Publicaciones
-                    <span th:if="${currentPage == 'resumen'}"
-                          class="badge badge-danger"
-                          th:text="${estadisticas?.totalComentariosPublicacionesReportados} ?: 0">0</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+
+    <div class="mb-2" th:replace="~{/fragments/tabs-fragment :: adminTabs(${currentPage}, ${estadisticas})}"></div>
+
     <h3 class="align-self-start">Reseñas a revisar</h3>
     <div class="resenas-container col-12 mb-3" th:each="resena : ${resenasAdmin}">
         <div class="row mx-3 my-3 gx-0">
