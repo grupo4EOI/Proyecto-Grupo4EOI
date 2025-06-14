@@ -1,5 +1,6 @@
-package com.atm.buenas_practicas_java.dtos;
+package com.atm.buenas_practicas_java.dtos.composedDTOs;
 
+import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.entities.*;
 
 import java.util.List;
@@ -11,15 +12,17 @@ public record UsuarioPerfilDTO(
         String avatarUrl,
         String biografia,
         String role,
-        List<Resena> resenas,
-        Set<ComentarioPublicacion> comentariosPublicacion,
+        List<ResenaDTO> resenas,
+        List<ComentarioPublicacionSimpleDTO> comentariosPublicaciones,
+        List<ResenaDTO> likesResenas,
         List<UsuarioDTO> amigos,
-        List<Reaccion> reacciones,
-        Set<ComentarioResena> comentariosResenas,
-        Set<Genero> generos,
+        List<ComentarioResenaDTO> comentariosResenas,
         List<GeneroDTO> generosPeliculas,
         List<GeneroDTO> generosSeries,
         List<GeneroDTO> generosVideojuegos,
-        List<Publicacion> publicaciones
+        Long numeroResenas,
+        Long numeroFavoritos,
+        Long numeroVistos,
+        Long numeroPendientes
 ) {
 }

@@ -122,6 +122,12 @@ public class ComentarioPublicacionService {
         return comPubRepository.findById(id).orElse(null);
     }
 
+    // Métodos para el perfil de usuario
+    @Transactional
+    public List<ComentarioPublicacionSimpleDTO> obtenerComentariosPublicacionUsuario(Long idUsuario) {
+        return comPubSimpleMapper.toDto(comPubRepository.findComentarioPublicacionsByUsuario_IdUsuario(idUsuario));
+    }
+
     // Para notificar al admin que revise el comentario de la publicación
     public void reportar(Long idComentarioPublicacion) {
         comPubRepository.reportar(idComentarioPublicacion);

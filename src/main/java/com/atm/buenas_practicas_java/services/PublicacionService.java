@@ -42,6 +42,7 @@ public class PublicacionService {
                     Publicacion publicacion = publicacionRepository.findById(publicacionDTO.idPublicacion()).get();
                     return new PublicacionDTO(
                             publicacionDTO.idPublicacion(),
+                            publicacionDTO.comunidad(),
                             publicacionDTO.titulo(),
                             (long) publicacion.getComentariosPublicacion().size(),
                             publicacionDTO.usuario()

@@ -10,9 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Getter
@@ -49,31 +47,30 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> objetos;
 
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-    private List<Publicacion> publicaciones;
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<Publicacion> publicaciones = new ArrayList<>();
 
     // Relación con comentarios de las publicaciones
     @OneToMany(mappedBy = "usuario")
-    private Set<ComentarioPublicacion> comentariosPublicacion;
+    private Set<ComentarioPublicacion> comentariosPublicacion = new HashSet<>();
 
     // Relación con comunidad
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
-    private Set<Comunidad> comunidades;
+    private Set<Comunidad> comunidades = new HashSet<>();
 
     // Relación con la tabla Amistad (M:N autorelación de Usuario)
-    @OneToMany
-    @JoinColumn(name = "id_usuario")
-    private Set<Amistad> usuarios;
-
     @OneToMany(mappedBy = "usuario")
+    private Set<Amistad> usuarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "amigo")
     //@JoinColumn(name = "id_amigo")
-    private Set<Amistad> amigos;
+    private Set<Amistad> amigos = new HashSet<>();
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-    private List<Reaccion> reacciones;
+    private List<Reaccion> reacciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
-    private Set<ComentarioResena> comentariosResenas;
+    private Set<ComentarioResena> comentariosResenas = new HashSet<>();
 
     @ManyToMany
     @JoinTable(

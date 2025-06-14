@@ -1,6 +1,8 @@
 package com.atm.buenas_practicas_java.services;
 
+import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.entities.*;
+import com.atm.buenas_practicas_java.mapper.UsuarioMapper;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
 import com.atm.buenas_practicas_java.repositories.ObjetoUsuarioRepository;
 import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
@@ -28,23 +30,18 @@ public class UsuarioService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
     private final ObjetoRepository objetoRepository;
+    private final UsuarioMapper usuarioMapper;
 
     public void save(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario findUsuarioByPublicacion(Long idPublicacion) {
-        Publicacion publicacion = publicacionRepository.findById(idPublicacion).get();
-        ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();
-        return comentario.getUsuario();
+    public void saveAndFlush(Usuario usuario) {
+        usuarioRepository.saveAndFlush(usuario);
     }
 
-    public List<Usuario> findUsuariosByPublicaciones(List<Publicacion> publicaciones) {
-        List<Usuario> usuarios = new ArrayList<>();
-        for (Publicacion publicacion : publicaciones) {
-            usuarios.add(findUsuarioByPublicacion(publicacion.getIdPublicacion()));
-        }
-        return usuarios;
+    public Usuario findById(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
     }
 
     public Usuario findByNombreUsuario(String nombreUsuario) {
@@ -52,6 +49,7 @@ public class UsuarioService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
 
+    // Métodos relacionados con el usuario en la ficha de objeto
     @Transactional
     public void marcarEstadoObjeto(Long idObjeto, String nombreUsuario, Boolean estado) {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
@@ -70,7 +68,6 @@ public class UsuarioService implements UserDetailsService {
             nuevo.setEstado(estado);
             objetoUsuarioRepository.save(nuevo);
         }
-
     }
 
     @Transactional
@@ -93,13 +90,17 @@ public class UsuarioService implements UserDetailsService {
         }
     }
 
+    // Métodos panel admin
     public void banUsuario(Long idUsuario) {
         usuarioRepository.banUsuario(idUsuario);
     }
 
+    // Métodos para perfil de usuario
+    public List<UsuarioDTO> buscarAmigosUsuario(Long idUsuario) {
+        return usuarioMapper.toDtoList(usuarioRepository.buscarAmistadesUsuario(idUsuario));
+    }
 
     // Métodos para el registro y el login
-
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario)

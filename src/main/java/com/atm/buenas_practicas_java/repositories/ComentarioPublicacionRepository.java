@@ -13,12 +13,15 @@ import java.util.List;
 
 public interface ComentarioPublicacionRepository extends JpaRepository<ComentarioPublicacion, Long> {
     List<ComentarioPublicacion> findComentarioPublicacionsByAbusoEquals(boolean b);
+
     List<ComentarioPublicacion> findComentarioPublicacionsByPublicacion_IdPublicacionOrderByIdComentarioPublicacion(Long idPublicacion);
+
+    List<ComentarioPublicacion> findComentarioPublicacionsByUsuario_IdUsuario(Long idUsuario);
 
     @Modifying
     @Transactional
     @Query("UPDATE ComentarioPublicacion c SET c.abuso = FALSE WHERE c.idComentarioPublicacion = :idComentarioPublicacion")
-    void reportar(@Param("id") Long idComentarioPublicacion);
+    void reportar(@Param("idComentarioPublicacion") Long idComentarioPublicacion);
 
     @Modifying
     @Transactional

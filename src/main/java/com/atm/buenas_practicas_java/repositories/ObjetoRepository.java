@@ -14,6 +14,7 @@ public interface ObjetoRepository extends JpaRepository<Objeto, Long> {
 
     List<Objeto> findObjetosByTipo_NombreOrderByFechaPublicacionDesc(String tipo, Limit limit);
 
+
     @Query("""
         SELECT o
             FROM Objeto o

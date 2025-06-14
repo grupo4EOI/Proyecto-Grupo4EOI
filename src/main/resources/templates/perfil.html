@@ -96,22 +96,22 @@
                         <ul class="list-unstyled fs-5">
                             <li class="mb-3">
                                 <a href="#" id="ver-resenas" class="text-decoration-none text-dark">
-                                    ⭐ Reseñas (<span th:text="${contadorResenas}">0</span>)
+                                    ⭐ Reseñas (<span th:text="${perfil.numeroResenas()}">0</span>)
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="#" id="ver-favoritos" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalFavoritos">
-                                    ❤️ Favoritos (<span th:text="${contadorFavoritos}">0</span>)
+                                    ❤️ Favoritos (<span th:text="${perfil.numeroFavoritos()}">0</span>)
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="#" id="ver-visto" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalVisto">
-                                    🎬 Visto (<span th:text="${contadorVisto}">0</span>)
+                                    🎬 Visto (<span th:text="${perfil.numeroVistos()}">0</span>)
                                 </a>
                             </li>
                             <li>
                                 <a href="#" id="ver-pendiente" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalPendiente">
-                                    🕐 Pendiente (<span th:text="${contadorPendiente}">0</span>)
+                                    🕐 Pendiente (<span th:text="${perfil.numeroPendientes()}">0</span>)
                                 </a>
                             </li>
                         </ul>
@@ -160,26 +160,24 @@
                         <!-- Publicaciones -->
                         <div class="tab-pane fade" id="tab-publicaciones" role="tabpanel">
                             <div id="publicaciones-container">
-                                <p th:if="${#lists.isEmpty(perfil.publicaciones)}">No hay publicaciones.</p>
+                                <p th:if="${#lists.isEmpty(perfil.comentariosPublicaciones())}">No hay publicaciones.</p>
 
-                                <div th:each="publicacion : ${perfil.publicaciones}" class="mb-3 p-3  publicacion">
+                                <div th:each="publicacion : ${perfil.comentariosPublicaciones()}" class="mb-3 p-3  publicacion">
 
                                     <div class="mb-2">
                                         <span class="fw-bold">Comunidad:</span>
-                                        <span th:text="${publicacion.comunidad.nombreComunidad}">No pertenece a ninguna comunidad.</span>
+                                        <span th:text="${publicacion.publicacion().comunidad().nombreComunidad()}">No pertenece a ninguna comunidad.</span>
                                     </div>
 
                                     <div class="mb-2">
                                         <span class="fw-bold">Título:</span>
-                                        <span th:text="${publicacion.titulo}"></span>
+                                        <span th:text="${publicacion.publicacion().titulo()}"></span>
                                     </div>
 
-                                    <div th:each="comentario : ${publicacion.comentariosPublicacion}"
-                                         th:if="${comentario.usuario.idUsuario == perfil.idUsuario}">
-                                        <span class="fw-bold">Contenido de la publicación:</span>
-                                        <p th:text="${comentario.contenido}">No hay contenido.</p>
+                                    <span class="fw-bold">Contenido de la publicación:</span>
+                                    <p th:text="${publicacion.contenido()}">No hay contenido.</p>
                                         <p class="text-muted" style="font-size: 0.85em;">
-                                            <span th:text="${#temporals.format(comentario.fecha, 'dd-MM-yyyy HH:mm')}"></span>
+                                            <span th:text="${#temporals.format(publicacion.fecha(), 'dd-MM-yyyy HH:mm')}"></span>
                                         </p>
                                     </div>
                                 </div>
