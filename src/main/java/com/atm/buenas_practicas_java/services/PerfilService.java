@@ -72,7 +72,8 @@ public class PerfilService {
                             amigo.getIdUsuario(),
                             amigo.getNombreUsuario(),
                             amigo.getAvatarUrl(),
-                            amigo.getRole()
+                            amigo.getRole(),
+                            amigo.getBaneado()
                     );
                 })
                 .collect(Collectors.toList());
