@@ -35,7 +35,7 @@
                     </div>
                 </section>
                 <div class="col-lg-6 col-md-12 order-lg-2 order-1 mb-4 mb-lg-0 animate-slide-in-right">
-                    <div class="placeholder-img ratio ratio-16x9"></div>
+                    <div class="placeholder-img ratio ratio-16x9" style="background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXM2ZG5qbGI1cDgxaHY0Y2hyNXBkY3h6a2RydG50ejVjeWRtNDFtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GDGRWmvz28qx47sq3C/giphy.gif'); background-size: cover; background-position: center;"></div>
                 </div>
             </div>
         </div>
@@ -84,9 +84,11 @@
             <div class="container">
                     <h3 class="col-12"><b>Ultima Reseña realizada</b></h3>
                     <div class="row mx-3 my-3 gx-0" th:each="resena, iterStat : ${paginaPrincipal.ultimaResena()}">
-                        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
-                                class="bi bi-person me-2"></i>@MrReseñador
-                        </div>
+                        <a th:href="@{/perfil/{id}(id=${resena.autor().idUsuario()})}"
+                           class="etiqueta px-2 mb-2 me-3 w-auto">
+<!--                            <i class="bi bi-person me-2"></i>-->
+                            @<span th:text="${resena.autor().nombreUsuario()}">MrReseñador</span>
+                        </a>
                         <div class="etiqueta px-2 mb-2 me-3 w-auto"><i class="bi bi-heart"></i> Me gusta</div>
                         <div class="container" id="review">
                             <div class="row">
@@ -146,7 +148,11 @@
         <div class="container">
             <h3 class="col-12"><b>Ultima Publicación realizada</b></h3>
             <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${paginaPrincipal.ultimaPublicacion()}">
-                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
+                <a class="etiqueta px-2 mb-2 me-3 w-auto text-decoration-none"
+                   th:href="@{/perfil/{id}(id=${publicacion.usuario().idUsuario()})}">
+<!--                    <i class="bi bi-person me-2"></i>-->
+                    <span th:text="'@' + ${publicacion.usuario().nombreUsuario()}"></span>
+                </a>
                 <div class="container" id="publicacion" >
                     <div class="row">
                         <div class="col-12 mt-1 mb-2">

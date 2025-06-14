@@ -10,12 +10,15 @@
     border-radius: 20px;
     padding: 5px;
     background-color: #F9C784;
+    color: black;
+    text-decoration: none;
 }
 
 .etiqueta:hover {
     transition: background-color 0.3s ease;
     background-color: #FF8C42;
     cursor: pointer;
+    color: black !important;
 }
 
 
@@ -184,3 +187,18 @@ body {
     border-top: none;
     padding: 0 2rem 1.5rem;
 }
+
+.main-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*padding: 100px 300px;*/
+    /*background-color: #E5E7EB;*/
+    gap: 20px;
+    /*height: 500px;*/
+    height: auto; /* Elimina altura fija */
+    padding: 2rem 1rem; /* Reduce padding en móviles */
+    /*margin: 1rem 0; !* Espaciado vertical *!*/
+}
+

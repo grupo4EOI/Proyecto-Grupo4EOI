@@ -29,3 +29,8 @@
     font-size: 1.2rem;
     font-weight: 500;
 }
+
+.btn:hover{
+    /*background-color: #FF8C42 !important;*/
+    color: white !important;
+}
