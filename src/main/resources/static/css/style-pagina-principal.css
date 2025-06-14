@@ -278,7 +278,7 @@
     /*height: 500px;*/
     height: auto; /* Elimina altura fija */
     padding: 2rem 1rem; /* Reduce padding en móviles */
-    margin: 2rem 0; /* Espaciado vertical */
+    /*margin: 2rem 0; !* Espaciado vertical *!*/
 }
 
 .quote-text {

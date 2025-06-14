@@ -148,7 +148,11 @@
         <div class="container">
             <h3 class="col-12"><b>Ultima Publicación realizada</b></h3>
             <div class="row mx-3 my-3 gx-0" th:each="publicacion : ${paginaPrincipal.ultimaPublicacion()}">
-                <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}"><i class="bi bi-person me-2"></i></div>
+                <a class="etiqueta px-2 mb-2 me-3 w-auto text-decoration-none"
+                   th:href="@{/perfil/{id}(id=${publicacion.usuario().idUsuario()})}">
+<!--                    <i class="bi bi-person me-2"></i>-->
+                    <span th:text="'@' + ${publicacion.usuario().nombreUsuario()}"></span>
+                </a>
                 <div class="container" id="publicacion" >
                     <div class="row">
                         <div class="col-12 mt-1 mb-2">
