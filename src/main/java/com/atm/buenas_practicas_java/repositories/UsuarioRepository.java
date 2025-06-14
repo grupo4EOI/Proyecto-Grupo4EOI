@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
@@ -18,4 +19,14 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("UPDATE Usuario u SET u.baneado = true WHERE u.idUsuario = :idUsuario")
     void banUsuario(@Param("idUsuario") Long idUsuario);
 
+    @Query("""
+        SELECT CASE
+              WHEN a.usuario.idUsuario = :idUsuario THEN a.amigo
+              ELSE a.usuario
+            END 
+        FROM Amistad a
+        WHERE (a.usuario.idUsuario = :idUsuario OR a.amigo.idUsuario = :idUsuario)
+        """
+    )
+    List<Usuario> buscarAmistadesUsuario(@Param("idUsuario") Long idUsuario);
 }

@@ -7,10 +7,8 @@ import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
-import com.atm.buenas_practicas_java.services.AjustesPerfilService;
-import com.atm.buenas_practicas_java.services.GeneroService;
-import com.atm.buenas_practicas_java.services.PerfilService;
-import com.atm.buenas_practicas_java.services.UsuarioService;
+import com.atm.buenas_practicas_java.services.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,41 +16,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class PerfilServiceFacade {
 
     private final UsuarioService usuarioService;
     private final AjustesPerfilService ajustesPerfilService;
     private final GeneroService generoService;
-
-    public PerfilServiceFacade(UsuarioService usuarioService, AjustesPerfilService ajustesPerfilService, GeneroService generoService) {
-        this.usuarioService = usuarioService;
-        this.ajustesPerfilService = ajustesPerfilService;
-        this.generoService = generoService;
-    }
+    private final ResenaService resenaService;
+    private final ComentarioPublicacionService comentarioPublicacionService;
+    private final ComentarioResenaService comentarioResenaService;
 
     public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
         Usuario usuario = usuarioService.findById(idUsuario);
 
         Set<Genero> generos = usuario.getGeneros();
-
-        List<GeneroDTO> peliculas = generoService.filtrarGenerosPorTipo(generos, "pelicula");
-        List<GeneroDTO> series = generoService.filtrarGenerosPorTipo(generos, "serie");
-        List<GeneroDTO> videojuegos = generoService.filtrarGenerosPorTipo(generos, "videojuego");
-
-        List<Publicacion> publicaciones = usuario.getPublicaciones();
-
-        List<UsuarioDTO> amigos = usuario.getAmigos().stream()
-                .map(amistad -> {
-                    Usuario amigo = amistad.getAmigo();
-                    return new UsuarioDTO(
-                            amigo.getIdUsuario(),
-                            amigo.getNombreUsuario(),
-                            amigo.getAvatarUrl(),
-                            amigo.getRole(),
-                            amigo.getBaneado()
-                    );
-                })
-                .collect(Collectors.toList());
 
         return new UsuarioPerfilDTO(
                 usuario.getIdUsuario(),
@@ -60,17 +37,14 @@ public class PerfilServiceFacade {
                 usuario.getAvatarUrl(),
                 usuario.getBiografia(),
                 usuario.getRole(),
-                usuario.getResenas(),
-                usuario.getComentariosPublicacion(),
-                amigos,
-                usuario.getReacciones(),
-                usuario.getComentariosResenas(),
-                usuario.getGeneros(),
-                peliculas,
-                series,
-                videojuegos,
-                publicaciones
-
+                resenaService.obtenerResenasUsuario(idUsuario, usuario.getNombreUsuario()),
+                comentarioPublicacionService.obtenerComentariosPublicacionUsuario(idUsuario),
+                resenaService.obtenerResenasReaccionadasUsuario(idUsuario, usuario.getNombreUsuario()),
+                usuarioService.buscarAmigosUsuario(idUsuario),
+                comentarioResenaService.obtenerComentariosResenasUsuario(idUsuario),
+                generoService.filtrarGenerosPorTipo(generos, "pelicula"),
+                generoService.filtrarGenerosPorTipo(generos, "serie"),
+                generoService.filtrarGenerosPorTipo(generos, "videojuego")
         );
     }
 
@@ -80,14 +54,11 @@ public class PerfilServiceFacade {
 //        perfilService.saveAndFlush(usuario);
 //    }
 
-    public AjustesPerfilDTO obtenerAjustesPerfil(Long id) {
-        return ajustesPerfilService.obtenerAjustesPerfil(id);
-    }
+//    public AjustesPerfilDTO obtenerAjustesPerfil(Long id) {
+//        return ajustesPerfilService.obtenerAjustesPerfil(id);
+//    }
 
     public void guardarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfil) {
         ajustesPerfilService.actualizarAjustesPerfil(idUsuario, ajustesPerfil);
     }
-
-
-
 }

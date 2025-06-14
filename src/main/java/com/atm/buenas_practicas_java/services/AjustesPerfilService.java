@@ -1,6 +1,7 @@
 package com.atm.buenas_practicas_java.services;
 
 
+import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Usuario;
@@ -45,24 +46,24 @@ public class AjustesPerfilService {
         usuarioRepository.saveAndFlush(usuario);
     }
 
-    public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario) {
-        Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
-
-        List<Genero> generosPeliculas = generoService.obtenerGenerosPorTipo("pelicula");
-        List<Genero> generosSeries = generoService.obtenerGenerosPorTipo("serie");
-        List<Genero> generosVideojuegos = generoService.obtenerGenerosPorTipo("videojuego");
-
-        return new AjustesPerfilDTO(
-                usuario.getIdUsuario(),
-                usuario.getNombreUsuario(),
-                null,
-                usuario.getBiografia(),
-                generosPeliculas,
-                generosSeries,
-                generosVideojuegos,
-                null
-        );
-    }
+//    public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario) {
+//        UsuarioDTO usuario = usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
+//
+//        List<Genero> generosPeliculas = generoService.obtenerGenerosPorTipo("pelicula");
+//        List<Genero> generosSeries = generoService.obtenerGenerosPorTipo("serie");
+//        List<Genero> generosVideojuegos = generoService.obtenerGenerosPorTipo("videojuego");
+//
+//        return new AjustesPerfilDTO(
+//                usuario.getIdUsuario(),
+//                usuario.getNombreUsuario(),
+//                null,
+//                usuario.getBiografia(),
+//                generosPeliculas,
+//                generosSeries,
+//                generosVideojuegos,
+//                null
+//        );
+//    }
 
 
     public void actualizarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfildto) {

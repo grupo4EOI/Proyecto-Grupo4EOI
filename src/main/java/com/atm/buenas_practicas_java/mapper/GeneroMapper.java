@@ -10,6 +10,7 @@ import java.util.List;
 public interface GeneroMapper {
 
     GeneroDTO toDto(Genero genero);
+
     Genero toEntity(GeneroDTO generoDTO);
 
     List<GeneroDTO> toDtoList(List<Genero> generos);

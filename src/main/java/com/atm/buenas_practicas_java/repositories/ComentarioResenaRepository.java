@@ -11,6 +11,8 @@ import java.util.List;
 public interface ComentarioResenaRepository extends JpaRepository<ComentarioResena, Long> {
     List<ComentarioResena> findComentarioResenasByAbusoEquals(boolean b);
 
+    List<ComentarioResena> findComentarioResenasByUsuario_IdUsuario(Long idUsuario);
+
     @Modifying
     @Query("DELETE FROM ComentarioResena cr WHERE cr.idComentarioResena = :idComentarioResena")
     void borrarComentarioResena(@Param("idComentarioResena") Long idComentarioResena);

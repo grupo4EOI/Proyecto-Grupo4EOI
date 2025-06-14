@@ -5,11 +5,12 @@ import com.atm.buenas_practicas_java.entities.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
 
-    @Mapping(source = "nombreUsuario", target = "nombreUsuario")
-    @Mapping(source = "avatarUrl", target = "avatarUrl")
     UsuarioDTO toDto(Usuario usuario);
 
+    List<UsuarioDTO> toDtoList(List<Usuario> usuarios);
 }

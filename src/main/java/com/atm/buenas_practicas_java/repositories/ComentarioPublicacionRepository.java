@@ -13,7 +13,10 @@ import java.util.List;
 
 public interface ComentarioPublicacionRepository extends JpaRepository<ComentarioPublicacion, Long> {
     List<ComentarioPublicacion> findComentarioPublicacionsByAbusoEquals(boolean b);
+
     List<ComentarioPublicacion> findComentarioPublicacionsByPublicacion_IdPublicacionOrderByIdComentarioPublicacion(Long idPublicacion);
+
+    List<ComentarioPublicacion> findComentarioPublicacionsByUsuario_IdUsuario(Long idUsuario);
 
     @Modifying
     @Transactional

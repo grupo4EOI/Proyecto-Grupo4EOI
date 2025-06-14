@@ -14,9 +14,20 @@ public interface ResenaRepository extends JpaRepository<Resena, Long> {
 
     List<Resena> findResenasByObjeto_IdObjeto(Long idObjeto);
 
+    List<Resena> findResenasByUsuario_IdUsuario(Long idUsuario);
+
     List<Resena> findResenasByAbusoEquals(Boolean abuso);
 
+
     Resena findTopByOrderByFechaPublicacionDesc();
+
+    @Query("""
+        SELECT r
+            FROM Reaccion rc
+            JOIN rc.resena r
+            WHERE rc.usuario.idUsuario = :idUsuario AND rc.meGusta = true
+    """)
+    List<Resena> obtenerResenasReaccionadasUsuario(@Param("idUsuario") Long idUsuario);
 
     @Modifying
     @Transactional

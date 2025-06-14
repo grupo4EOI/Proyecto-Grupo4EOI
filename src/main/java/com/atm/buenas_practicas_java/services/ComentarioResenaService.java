@@ -34,6 +34,11 @@ public class ComentarioResenaService {
         return comentarioResenaMapper.toDtoList(comentarios);
     }
 
+    public List<ComentarioResenaDTO> obtenerComentariosResenasUsuario(Long idUsuario) {
+        List<ComentarioResena> comentarios = comentarioResenaRepository.findComentarioResenasByUsuario_IdUsuario(idUsuario);
+        return comentarioResenaMapper.toDtoList(comentarios);
+    }
+
     @Transactional
     public void borrarComentarioResena(Long idComentarioResena) {
         comentarioResenaRepository.borrarComentarioResena(idComentarioResena);
