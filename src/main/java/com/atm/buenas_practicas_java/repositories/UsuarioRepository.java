@@ -17,4 +17,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Transactional
     @Query("UPDATE Usuario u SET u.baneado = true WHERE u.idUsuario = :idUsuario")
     void banUsuario(@Param("idUsuario") Long idUsuario);
+
 }

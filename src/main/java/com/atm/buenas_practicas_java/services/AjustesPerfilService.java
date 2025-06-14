@@ -1,18 +1,18 @@
 package com.atm.buenas_practicas_java.services;
 
 
-import com.atm.buenas_practicas_java.dtos.AjustesPerfilDTO;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
 import com.atm.buenas_practicas_java.repositories.GeneroRepository;
-import com.atm.buenas_practicas_java.repositories.PerfilRepository;
+import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +22,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class AjustesPerfilService {
 
-    private final PerfilRepository perfilRepository;
+    private final UsuarioRepository usuarioRepository;
     private final GeneroService generoService;
     private final PerfilMapper perfilMapper;
     private final GeneroRepository generoRepository;
@@ -30,9 +30,8 @@ public class AjustesPerfilService {
     private final PasswordEncoder encoder;
 
 
-
     public Usuario findByIdUsuario(Long idUsuario) {
-        Usuario usuario = perfilRepository.findByIdUsuario(idUsuario)
+        Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
 
         usuario.getUsuarios().size();
@@ -43,11 +42,11 @@ public class AjustesPerfilService {
     public void editarBiografia(Long idUsuario, String biografia) {
         Usuario usuario = findByIdUsuario(idUsuario);
         usuario.setBiografia(biografia);
-        perfilRepository.saveAndFlush(usuario);
+        usuarioRepository.saveAndFlush(usuario);
     }
 
     public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario) {
-        Usuario usuario = findByIdUsuario(idUsuario);
+        Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
 
         List<Genero> generosPeliculas = generoService.obtenerGenerosPorTipo("pelicula");
         List<Genero> generosSeries = generoService.obtenerGenerosPorTipo("serie");
@@ -95,14 +94,11 @@ public class AjustesPerfilService {
 
         usuario.setGeneros(generos);
 
-
         if (ajustesPerfildto.avatar() != null && !ajustesPerfildto.avatar().isEmpty()) {
             String imagen = imagenPerfilService.guardarImagen(ajustesPerfildto.avatar());
             usuario.setAvatarUrl(imagen);
         }
 
-        perfilRepository.saveAndFlush(usuario);
+        usuarioRepository.saveAndFlush(usuario);
     }
-
-
 }

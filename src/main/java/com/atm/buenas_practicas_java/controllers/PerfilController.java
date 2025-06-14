@@ -1,22 +1,14 @@
 package com.atm.buenas_practicas_java.controllers;
 
-import com.atm.buenas_practicas_java.dtos.AjustesPerfilDTO;
-import com.atm.buenas_practicas_java.dtos.UsuarioPerfilDTO;
-import com.atm.buenas_practicas_java.entities.Genero;
-import com.atm.buenas_practicas_java.entities.Resena;
-import com.atm.buenas_practicas_java.entities.Usuario;
-import com.atm.buenas_practicas_java.repositories.GeneroRepository;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
 import com.atm.buenas_practicas_java.services.AjustesPerfilService;
 import com.atm.buenas_practicas_java.services.GeneroService;
 import com.atm.buenas_practicas_java.services.PerfilService;
-import com.atm.buenas_practicas_java.services.facade.FichaObjetoFacade;
 import com.atm.buenas_practicas_java.services.facade.PerfilServiceFacade;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class PerfilController {

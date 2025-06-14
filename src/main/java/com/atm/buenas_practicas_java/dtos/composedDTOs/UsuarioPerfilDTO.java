@@ -1,5 +1,7 @@
-package com.atm.buenas_practicas_java.dtos;
+package com.atm.buenas_practicas_java.dtos.composedDTOs;
 
+import com.atm.buenas_practicas_java.dtos.GeneroDTO;
+import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.entities.*;
 
 import java.util.List;

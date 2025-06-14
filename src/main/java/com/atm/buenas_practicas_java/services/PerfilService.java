@@ -2,13 +2,11 @@ package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.dtos.GeneroDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
-import com.atm.buenas_practicas_java.dtos.UsuarioPerfilDTO;
-import com.atm.buenas_practicas_java.entities.Amistad;
+import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
-import com.atm.buenas_practicas_java.repositories.PerfilRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,22 +29,24 @@ public class PerfilService {
         this.perfilMapper = perfilMapper;
     }
 
-    public Usuario findByIdUsuario(Long idUsuario) {
-        Usuario usuario = perfilRepository.findByIdUsuario(idUsuario)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
+    // Este método sobra
+//    public Usuario findByIdUsuario(Long idUsuario) {
+//        Usuario usuario = perfilRepository.findByIdUsuario(idUsuario)
+//                .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
+//
+//        usuario.getResenas().size();
+//        usuario.getPublicaciones().size();
+//        usuario.getAmigos().size();
+//        usuario.getGeneros().size();
+//        usuario.getUsuarios().size();
+//
+//        return usuario;
+//    }
 
-        usuario.getResenas().size();
-        usuario.getPublicaciones().size();
-        usuario.getAmigos().size();
-        usuario.getGeneros().size();
-        usuario.getUsuarios().size();
-
-        return usuario;
-    }
-
-    public void saveAndFlush(Usuario usuario) {
-        perfilRepository.saveAndFlush(usuario);
-    }
+    // Este método sobra
+//    public void saveAndFlush(Usuario usuario) {
+//        perfilRepository.saveAndFlush(usuario);
+//    }
 
     public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
         Usuario usuario = findByIdUsuario(idUsuario);
@@ -72,7 +72,8 @@ public class PerfilService {
                             amigo.getIdUsuario(),
                             amigo.getNombreUsuario(),
                             amigo.getAvatarUrl(),
-                            amigo.getRole()
+                            amigo.getRole(),
+                            amigo.getBaneado()
                     );
                 })
                 .collect(Collectors.toList());

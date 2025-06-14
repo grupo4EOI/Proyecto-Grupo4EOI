@@ -28,10 +28,11 @@ public class FichaObjetoFacade {
     private final ResenaService resenaService;
     private final ComentarioResenaService comentarioResenaService;
     private final ComentarioPublicacionService comentarioPublicacionService;
+    private final ReaccionService reaccionService;
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
     private final ComentarioResenaMapper comentarioResenaMapper;
-    private final ReaccionService reaccionService;
+
 
 
 

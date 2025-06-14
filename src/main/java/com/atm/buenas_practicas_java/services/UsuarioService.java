@@ -33,6 +33,10 @@ public class UsuarioService implements UserDetailsService {
         usuarioRepository.save(usuario);
     }
 
+    public Usuario findById(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
+    }
+
     public Usuario findUsuarioByPublicacion(Long idPublicacion) {
         Publicacion publicacion = publicacionRepository.findById(idPublicacion).get();
         ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();
