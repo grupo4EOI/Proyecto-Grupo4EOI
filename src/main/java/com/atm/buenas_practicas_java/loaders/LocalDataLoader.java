@@ -46,6 +46,8 @@ public class LocalDataLoader {
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
+    private final PerfilRepository PerfilRepository;
+    private final AmistadRepository AmistadRepository;
     private final PasswordEncoder encoder;
 
     public LocalDataLoader(ObjetoRepository objetoRepository,
@@ -59,7 +61,7 @@ public class LocalDataLoader {
                            PublicacionRepository publicacionRepository,
                            ComunidadRepository comunidadRepository,
                            ComentarioResenaRepository comentarioResenaRepository,
-                           ObjetoUsuarioRepository objetoUsuarioRepository,
+                           ObjetoUsuarioRepository objetoUsuarioRepository, PerfilRepository perfilRepository, AmistadRepository amistadRepository,
                            PasswordEncoder encoder) {
         this.objetoRepository = objetoRepository;
         this.personaRepository = personaRepository;
@@ -73,6 +75,8 @@ public class LocalDataLoader {
         this.comunidadRepository = comunidadRepository;
         this.comentarioResenaRepository = comentarioResenaRepository;
         this.objetoUsuarioRepository = objetoUsuarioRepository;
+        PerfilRepository = perfilRepository;
+        AmistadRepository = amistadRepository;
         this.encoder = encoder;
     }
 
@@ -704,17 +708,14 @@ public class LocalDataLoader {
         usuario1.setNombreUsuario("Usuario1");
         usuario1.setEmail("hola@gmail.com");
         usuario1.setContrasena("1234");
+        usuario1.setRole("USER");
 
         usuario1.setBiografia("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        usuario1.setRole("ADMIN");
 
         Set<Genero> generosFavoritos = new HashSet<>();
         generosFavoritos.add(generoAccionS);
         generosFavoritos.add(generoAnimeS);
         generosFavoritos.add(generoMisterioS);
-
-
-        usuario1.setRole("USER");
 
 
         generosFavoritos.add(generoDramaP);
@@ -727,13 +728,8 @@ public class LocalDataLoader {
 
         usuario1.setGeneros(generosFavoritos);
 
-/*
-* contenedor-datos-ficha-perfil mx-auto rounded p-3
-*  shadow text-center d-flex flex-column justify-content-center
-* align-items-center
-*
-*
-* */
+
+
         Usuario usuario2 = new Usuario();
         usuario2.setNombreUsuario("Usuario2");
         usuario2.setEmail("adios@gmail.com");
@@ -746,6 +742,7 @@ public class LocalDataLoader {
         usuario3.setEmail("odijajoaspco@gmail.es");
         usuario3.setContrasena("4313213213232132");
         usuario3.setRole("ADMIN");
+
 
         Usuario usuario4 = new Usuario();
         usuario4.setNombreUsuario("OpelCorsa99");
@@ -880,6 +877,75 @@ public class LocalDataLoader {
         objetoUsuario5.setFavorito(true);
         objetoUsuario5.setObjeto(objeto19);
 
+        // Amistad entre usuarios
+        Amistad amistad1 = new Amistad();
+        amistad1.setUsuario(usuario1);
+        amistad1.setAmigo(usuario2);
+        amistad1.setEstado(true);
+
+        Amistad amistad2 = new Amistad();
+        amistad2.setUsuario(usuario2);
+        amistad2.setAmigo(usuario1);
+        amistad2.setEstado(true);
+
+        Amistad amistad3 = new Amistad();
+        amistad3.setUsuario(usuario1);
+        amistad3.setAmigo(usuario3);
+        amistad3.setEstado(true);
+
+        Amistad amistad4 = new Amistad();
+        amistad4.setUsuario(usuario3);
+        amistad4.setAmigo(usuario1);
+        amistad4.setEstado(true);
+
+        Amistad amistad5 = new Amistad();
+        amistad5.setUsuario(usuario1);
+        amistad5.setAmigo(usuario4);
+        amistad5.setEstado(true);
+
+        Amistad amistad6 = new Amistad();
+        amistad6.setUsuario(usuario4);
+        amistad6.setAmigo(usuario1);
+        amistad6.setEstado(true);
+
+        Amistad amistad7 = new Amistad();
+        amistad7.setUsuario(usuario1);
+        amistad7.setAmigo(usuario5);
+        amistad7.setEstado(true);
+
+        Amistad amistad8 = new Amistad();
+        amistad8.setUsuario(usuario5);
+        amistad8.setAmigo(usuario1);
+        amistad8.setEstado(true);
+
+        Amistad amistad9 = new Amistad();
+        amistad9.setUsuario(usuario1);
+        amistad9.setAmigo(usuario6);
+        amistad9.setEstado(true);
+
+        Amistad amistad10 = new Amistad();
+        amistad10.setUsuario(usuario6);
+        amistad10.setAmigo(usuario1);
+        amistad10.setEstado(true);
+
+        Amistad amistad11 = new Amistad();
+        amistad11.setUsuario(usuario1);
+        amistad11.setAmigo(usuario7);
+        amistad11.setEstado(true);
+
+        Amistad amistad12 = new Amistad();
+        amistad12.setUsuario(usuario7);
+        amistad12.setAmigo(usuario1);
+        amistad12.setEstado(true);
+
+        usuario1.setAmigos(Set.of(amistad1, amistad3, amistad5, amistad7, amistad9, amistad11));
+        usuario2.setAmigos(Set.of(amistad2));
+        usuario3.setAmigos(Set.of(amistad4));
+        usuario4.setAmigos(Set.of(amistad6));
+        usuario5.setAmigos(Set.of(amistad8));
+        usuario6.setAmigos(Set.of(amistad10));
+        usuario7.setAmigos(Set.of(amistad12));
+
 
         usuarioRepository.saveAll(Arrays.asList(admin,
                 usuario1, usuario2, usuario3, usuario4, usuario5,
@@ -889,6 +955,11 @@ public class LocalDataLoader {
         ));
 
         objetoUsuarioRepository.saveAll(Arrays.asList(objetoUsuario1, objetoUsuario2, objetoUsuario3, objetoUsuario4, objetoUsuario5));
+        AmistadRepository.saveAll(List.of(amistad1, amistad2, amistad3, amistad4, amistad5, amistad6, amistad7, amistad8, amistad9, amistad10, amistad11, amistad12));
+
+
+
+
 
 
 
@@ -969,6 +1040,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion1 = new Publicacion();
         publicacion1.setTitulo("Recomendaciones para ver la última película de harry potter");
+        publicacion1.setUsuario(usuario1);
 
         //Comentarios de la publicacion 1:
 
@@ -998,6 +1070,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion2 = new Publicacion();
         publicacion2.setTitulo("Vendo Opel Corsa 250mil KM como nuevo");
+        publicacion2.setUsuario(usuario1);
 
         //Comentarios de la publicacion 2:
 
@@ -1009,7 +1082,7 @@ public class LocalDataLoader {
 
         ComentarioPublicacion comentarioPublicacion5 = new ComentarioPublicacion();
         comentarioPublicacion5.setPublicacion(publicacion2);
-        comentarioPublicacion5.setUsuario(usuario1);
+        comentarioPublicacion5.setUsuario(usuario2);
         comentarioPublicacion5.setContenido("Mi oferta es que lo lleves al desguace");
         comentarioPublicacion5.setFecha(LocalDateTime.of(2025, 5, 26, 18, 48, 41));
         comentarioPublicacion5.setAbuso(true);
@@ -1026,6 +1099,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion3 = new Publicacion();
         publicacion3.setTitulo("Ron estaba de relleno, no pinta nada en las pelis");
+        publicacion3.setUsuario(usuario1);
 
         //Comentarios de la publicacion 3:
 
@@ -1043,7 +1117,7 @@ public class LocalDataLoader {
 
         ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
         comentarioPublicacion9.setPublicacion(publicacion3);
-        comentarioPublicacion9.setUsuario(usuario1);
+        comentarioPublicacion9.setUsuario(usuario2);
         comentarioPublicacion9.setContenido("Pero qué dices?? Sin el no hay peli");
         comentarioPublicacion9.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
 

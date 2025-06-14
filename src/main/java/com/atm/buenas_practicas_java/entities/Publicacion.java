@@ -22,7 +22,6 @@ public class Publicacion {
 
     @Column(columnDefinition = "VARCHAR(200)")
     private String titulo;
-
     private Boolean abuso = false;
 
     @OneToMany(mappedBy = "publicacion", fetch = FetchType.LAZY)
@@ -31,4 +30,9 @@ public class Publicacion {
     @ManyToOne
     @JoinColumn(name = "id_comunidad")
     private Comunidad comunidad;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
 }
