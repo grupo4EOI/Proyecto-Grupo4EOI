@@ -19,7 +19,10 @@ public record UsuarioPerfilDTO(
         List<ComentarioResenaDTO> comentariosResenas,
         List<GeneroDTO> generosPeliculas,
         List<GeneroDTO> generosSeries,
-        List<GeneroDTO> generosVideojuegos
-
+        List<GeneroDTO> generosVideojuegos,
+        Long numeroResenas,
+        Long numeroFavoritos,
+        Long numeroVistos,
+        Long numeroPendientes
 ) {
 }

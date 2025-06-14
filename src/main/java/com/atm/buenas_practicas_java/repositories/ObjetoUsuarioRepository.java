@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface ObjetoUsuarioRepository extends JpaRepository<ObjetoUsuario, Long> {
     Optional<ObjetoUsuario> findByObjeto_IdObjetoAndUsuario_IdUsuario(Long idObjeto, Long idUsuario);
+
+    Long countByUsuario_IdUsuarioAndEstado(Long idUsuario, Boolean estado);
 }

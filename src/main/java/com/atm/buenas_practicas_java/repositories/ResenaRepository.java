@@ -18,6 +18,7 @@ public interface ResenaRepository extends JpaRepository<Resena, Long> {
 
     List<Resena> findResenasByAbusoEquals(Boolean abuso);
 
+    Long countByUsuario_IdUsuario(Long idUsuario);
 
     Resena findTopByOrderByFechaPublicacionDesc();
 

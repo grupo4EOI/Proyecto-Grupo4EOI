@@ -91,6 +91,10 @@ public class ResenaService {
         return rellenarListaResenaDTO(resenasDTO, nombreUsuario);
     }
 
+    public Long contarResenasUsuario(Long idUsuario) {
+        return resenaRepository.countByUsuario_IdUsuario(idUsuario);
+    }
+
     @Transactional
     public List<ResenaDTO> obtenerResenasConAbuso(String nombreUsuario) {
         List<ResenaDTO> resenasReportadas = resenaMapper.toDtoList(resenaRepository.findResenasByAbusoEquals(true));

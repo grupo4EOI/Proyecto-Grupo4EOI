@@ -29,7 +29,9 @@ public class PerfilServiceFacade {
     private final ComentarioPublicacionService comentarioPublicacionService;
     private final ComentarioResenaService comentarioResenaService;
     private final ImagenPerfilService imagenPerfilService;
+    private final ReaccionService reaccionService;
     private final PasswordEncoder encoder;
+    private final ObjetoUsuarioService objetoUsuarioService;
 
     @Transactional
     public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
@@ -50,7 +52,11 @@ public class PerfilServiceFacade {
                 comentarioResenaService.obtenerComentariosResenasUsuario(idUsuario),
                 generoService.filtrarGenerosPorTipo(generos, "pelicula"),
                 generoService.filtrarGenerosPorTipo(generos, "serie"),
-                generoService.filtrarGenerosPorTipo(generos, "videojuego")
+                generoService.filtrarGenerosPorTipo(generos, "videojuego"),
+                resenaService.contarResenasUsuario(idUsuario),
+                reaccionService.contarReaccionesUsuario(idUsuario),
+                objetoUsuarioService.contarObjetosVistosUsuario(idUsuario),
+                objetoUsuarioService.contarObjetosPendientesUsuario(idUsuario)
         );
     }
 

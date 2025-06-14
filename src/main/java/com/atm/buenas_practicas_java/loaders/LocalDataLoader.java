@@ -937,7 +937,7 @@ public class LocalDataLoader {
         amistad12.setAmigo(usuario1);
         amistad12.setEstado(true);
 
-        usuario1.setAmigos(Set.of(amistad1, amistad3, amistad5, amistad7, amistad9, amistad11));
+        usuario1.setAmigos(new HashSet<>(Arrays.asList(amistad1, amistad3, amistad5, amistad7, amistad9, amistad11)));
         usuario2.setAmigos(Set.of(amistad2));
         usuario3.setAmigos(Set.of(amistad4));
         usuario4.setAmigos(Set.of(amistad6));

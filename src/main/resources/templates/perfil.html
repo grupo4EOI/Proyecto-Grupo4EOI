@@ -96,22 +96,22 @@
                         <ul class="list-unstyled fs-5">
                             <li class="mb-3">
                                 <a href="#" id="ver-resenas" class="text-decoration-none text-dark">
-                                    ⭐ Reseñas (<span th:text="${contadorResenas}">0</span>)
+                                    ⭐ Reseñas (<span th:text="${perfil.numeroResenas()}">0</span>)
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="#" id="ver-favoritos" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalFavoritos">
-                                    ❤️ Favoritos (<span th:text="${contadorFavoritos}">0</span>)
+                                    ❤️ Favoritos (<span th:text="${perfil.numeroFavoritos()}">0</span>)
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="#" id="ver-visto" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalVisto">
-                                    🎬 Visto (<span th:text="${contadorVisto}">0</span>)
+                                    🎬 Visto (<span th:text="${perfil.numeroVistos()}">0</span>)
                                 </a>
                             </li>
                             <li>
                                 <a href="#" id="ver-pendiente" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalPendiente">
-                                    🕐 Pendiente (<span th:text="${contadorPendiente}">0</span>)
+                                    🕐 Pendiente (<span th:text="${perfil.numeroPendientes()}">0</span>)
                                 </a>
                             </li>
                         </ul>

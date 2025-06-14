@@ -46,4 +46,8 @@ public class ReaccionService {
             reaccionRepository.deleteReaccionByIdReaccion(existente.get().getIdReaccion());
         }
     }
+
+    public Long contarReaccionesUsuario(Long idUsuario) {
+        return reaccionRepository.countByUsuario_IdUsuarioAndMeGustaEquals(idUsuario, true);
+    }
 }
