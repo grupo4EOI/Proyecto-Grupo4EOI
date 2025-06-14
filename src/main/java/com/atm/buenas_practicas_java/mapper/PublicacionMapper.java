@@ -24,7 +24,8 @@ public interface PublicacionMapper {
                 primerComentario.getUsuario().getIdUsuario(),
                 primerComentario.getUsuario().getNombreUsuario(),
                 primerComentario.getUsuario().getAvatarUrl(),
-                primerComentario.getUsuario().getRole()
+                primerComentario.getUsuario().getRole(),
+                primerComentario.getUsuario().getBaneado()
         );
     }
 

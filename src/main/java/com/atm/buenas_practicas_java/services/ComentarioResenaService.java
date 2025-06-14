@@ -34,4 +34,17 @@ public class ComentarioResenaService {
         return comentarioResenaMapper.toDtoList(comentarios);
     }
 
+    @Transactional
+    public void borrarComentarioResena(Long idComentarioResena) {
+        comentarioResenaRepository.borrarComentarioResena(idComentarioResena);
+    }
+
+    @Transactional
+    public void aprobarComentarioResena(Long idComentarioResena) {
+        comentarioResenaRepository.aprobarComentarioResena(idComentarioResena);
+    }
+
+    public Long contarComentariosResenaConAbuso() {
+        return comentarioResenaRepository.countComentarioResenasByAbusoEquals(true);
+    }
 }
