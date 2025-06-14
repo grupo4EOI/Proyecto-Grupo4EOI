@@ -34,6 +34,7 @@ public class ComentarioResenaService {
         return comentarioResenaMapper.toDtoList(comentarios);
     }
 
+    @Transactional
     public List<ComentarioResenaDTO> obtenerComentariosResenasUsuario(Long idUsuario) {
         List<ComentarioResena> comentarios = comentarioResenaRepository.findComentarioResenasByUsuario_IdUsuario(idUsuario);
         return comentarioResenaMapper.toDtoList(comentarios);

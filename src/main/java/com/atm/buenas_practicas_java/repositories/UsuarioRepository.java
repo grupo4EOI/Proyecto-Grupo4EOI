@@ -20,12 +20,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     void banUsuario(@Param("idUsuario") Long idUsuario);
 
     @Query("""
-        SELECT CASE
-              WHEN a.usuario.idUsuario = :idUsuario THEN a.amigo
-              ELSE a.usuario
-            END 
-        FROM Amistad a
+        SELECT DISTINCT u
+        FROM Usuario u
+        JOIN Amistad a ON (u.idUsuario = a.usuario.idUsuario OR u.idUsuario = a.amigo.idUsuario)
         WHERE (a.usuario.idUsuario = :idUsuario OR a.amigo.idUsuario = :idUsuario)
+                AND u.idUsuario != :idUsuario
         """
     )
     List<Usuario> buscarAmistadesUsuario(@Param("idUsuario") Long idUsuario);

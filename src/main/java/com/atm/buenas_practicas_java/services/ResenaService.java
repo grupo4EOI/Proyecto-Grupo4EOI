@@ -80,6 +80,7 @@ public class ResenaService {
         return rellenarListaResenaDTO(resenasDTO, nombreUsuario);
     }
 
+    @Transactional
     public List<ResenaDTO> obtenerResenasUsuario(Long idUsuario, String nombreUsuario) {
         List<ResenaDTO> resenasDTO = resenaMapper.toDtoList(resenaRepository.findResenasByUsuario_IdUsuario(idUsuario));
         return rellenarListaResenaDTO(resenasDTO, nombreUsuario);

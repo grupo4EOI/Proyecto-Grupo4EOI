@@ -123,6 +123,7 @@ public class ComentarioPublicacionService {
     }
 
     // Métodos para el perfil de usuario
+    @Transactional
     public List<ComentarioPublicacionSimpleDTO> obtenerComentariosPublicacionUsuario(Long idUsuario) {
         return comPubSimpleMapper.toDto(comPubRepository.findComentarioPublicacionsByUsuario_IdUsuario(idUsuario));
     }

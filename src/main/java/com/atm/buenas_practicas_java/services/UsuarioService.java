@@ -36,6 +36,10 @@ public class UsuarioService implements UserDetailsService {
         usuarioRepository.save(usuario);
     }
 
+    public void saveAndFlush(Usuario usuario) {
+        usuarioRepository.saveAndFlush(usuario);
+    }
+
     public Usuario findById(Long idUsuario) {
         return usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
     }

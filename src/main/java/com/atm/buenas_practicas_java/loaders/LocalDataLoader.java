@@ -46,8 +46,7 @@ public class LocalDataLoader {
     private final ComunidadRepository comunidadRepository;
     private final ComentarioResenaRepository comentarioResenaRepository;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
-    private final PerfilRepository PerfilRepository;
-    private final AmistadRepository AmistadRepository;
+    private final AmistadRepository amistadRepository;
     private final PasswordEncoder encoder;
 
     public LocalDataLoader(ObjetoRepository objetoRepository,
@@ -61,7 +60,8 @@ public class LocalDataLoader {
                            PublicacionRepository publicacionRepository,
                            ComunidadRepository comunidadRepository,
                            ComentarioResenaRepository comentarioResenaRepository,
-                           ObjetoUsuarioRepository objetoUsuarioRepository, PerfilRepository perfilRepository, AmistadRepository amistadRepository,
+                           ObjetoUsuarioRepository objetoUsuarioRepository,
+                           AmistadRepository amistadRepository,
                            PasswordEncoder encoder) {
         this.objetoRepository = objetoRepository;
         this.personaRepository = personaRepository;
@@ -75,8 +75,7 @@ public class LocalDataLoader {
         this.comunidadRepository = comunidadRepository;
         this.comentarioResenaRepository = comentarioResenaRepository;
         this.objetoUsuarioRepository = objetoUsuarioRepository;
-        PerfilRepository = perfilRepository;
-        AmistadRepository = amistadRepository;
+        this.amistadRepository = amistadRepository;
         this.encoder = encoder;
     }
 
@@ -955,7 +954,7 @@ public class LocalDataLoader {
         ));
 
         objetoUsuarioRepository.saveAll(Arrays.asList(objetoUsuario1, objetoUsuario2, objetoUsuario3, objetoUsuario4, objetoUsuario5));
-        AmistadRepository.saveAll(List.of(amistad1, amistad2, amistad3, amistad4, amistad5, amistad6, amistad7, amistad8, amistad9, amistad10, amistad11, amistad12));
+        amistadRepository.saveAll(List.of(amistad1, amistad2, amistad3, amistad4, amistad5, amistad6, amistad7, amistad8, amistad9, amistad10, amistad11, amistad12));
 
 
 

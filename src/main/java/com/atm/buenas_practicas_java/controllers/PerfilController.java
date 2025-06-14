@@ -2,7 +2,6 @@ package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
-import com.atm.buenas_practicas_java.services.AjustesPerfilService;
 import com.atm.buenas_practicas_java.services.GeneroService;
 import com.atm.buenas_practicas_java.services.PerfilService;
 import com.atm.buenas_practicas_java.services.facade.PerfilServiceFacade;
@@ -15,15 +14,9 @@ public class PerfilController {
 
     private final PerfilServiceFacade perfilServiceFacade;
 
-    private final PerfilService perfilService;
-    private final AjustesPerfilService ajustesPerfilService;
-    private final GeneroService generoService;
 
-    public PerfilController(PerfilServiceFacade perfilServiceFacade, PerfilService perfilService, AjustesPerfilService ajustesPerfilService1, GeneroService generoService) {
+    public PerfilController(PerfilServiceFacade perfilServiceFacade) {
         this.perfilServiceFacade = perfilServiceFacade;
-        this.perfilService = perfilService;
-        this.ajustesPerfilService = ajustesPerfilService1;
-        this.generoService = generoService;
     }
 
     // Perfil de usuario.
@@ -56,7 +49,7 @@ public class PerfilController {
             @PathVariable Long id,
             @ModelAttribute AjustesPerfilDTO ajustesPerfilDTO
     ) {
-        perfilServiceFacade.guardarAjustesPerfil(id, ajustesPerfilDTO);
+        perfilServiceFacade.actualizarAjustesPerfil(id, ajustesPerfilDTO);
         return "redirect:/perfil/" + id;
     }
 }

@@ -17,17 +17,17 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class PerfilService {
-    private final PerfilRepository perfilRepository;
-    private final GeneroService generoService;
-    private final PerfilMapper perfilMapper;
-
-    public PerfilService(PerfilRepository perfilRepository,
-                         GeneroService generoService,
-                         PerfilMapper perfilMapper) {
-        this.perfilRepository = perfilRepository;
-        this.generoService = generoService;
-        this.perfilMapper = perfilMapper;
-    }
+//    private final PerfilRepository perfilRepository;
+//    private final GeneroService generoService;
+//    private final PerfilMapper perfilMapper;
+//
+//    public PerfilService(PerfilRepository perfilRepository,
+//                         GeneroService generoService,
+//                         PerfilMapper perfilMapper) {
+//        this.perfilRepository = perfilRepository;
+//        this.generoService = generoService;
+//        this.perfilMapper = perfilMapper;
+//    }
 
     // Este método sobra
 //    public Usuario findByIdUsuario(Long idUsuario) {
@@ -48,55 +48,55 @@ public class PerfilService {
 //        perfilRepository.saveAndFlush(usuario);
 //    }
 
-    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
-        Usuario usuario = findByIdUsuario(idUsuario);
-
-        Set<Genero> generos = usuario.getGeneros();
-
-        List<GeneroDTO> peliculas = perfilMapper.toDtoList(
-                generoService.filtrarGenerosPorTipo(generos, "pelicula")
-        );
-        List<GeneroDTO> series = perfilMapper.toDtoList(
-                generoService.filtrarGenerosPorTipo(generos, "serie")
-        );
-        List<GeneroDTO> videojuegos = perfilMapper.toDtoList(
-                generoService.filtrarGenerosPorTipo(generos, "videojuego")
-        );
-
-        List<Publicacion> publicaciones = usuario.getPublicaciones();
-
-        List<UsuarioDTO> amigos = usuario.getAmigos().stream()
-                .map(amistad -> {
-                    Usuario amigo = amistad.getAmigo();
-                    return new UsuarioDTO(
-                            amigo.getIdUsuario(),
-                            amigo.getNombreUsuario(),
-                            amigo.getAvatarUrl(),
-                            amigo.getRole(),
-                            amigo.getBaneado()
-                    );
-                })
-                .collect(Collectors.toList());
-
-        return new UsuarioPerfilDTO(
-                usuario.getIdUsuario(),
-                usuario.getNombreUsuario(),
-                usuario.getAvatarUrl(),
-                usuario.getBiografia(),
-                usuario.getRole(),
-                usuario.getResenas(),
-                usuario.getComentariosPublicacion(),
-                amigos,
-                usuario.getReacciones(),
-                usuario.getComentariosResenas(),
-                usuario.getGeneros(),
-                peliculas,
-                series,
-                videojuegos,
-                publicaciones
-
-        );
-    }
+//    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
+//        Usuario usuario = findByIdUsuario(idUsuario);
+//
+//        Set<Genero> generos = usuario.getGeneros();
+//
+//        List<GeneroDTO> peliculas = perfilMapper.toDtoList(
+//                generoService.filtrarGenerosPorTipo(generos, "pelicula")
+//        );
+//        List<GeneroDTO> series = perfilMapper.toDtoList(
+//                generoService.filtrarGenerosPorTipo(generos, "serie")
+//        );
+//        List<GeneroDTO> videojuegos = perfilMapper.toDtoList(
+//                generoService.filtrarGenerosPorTipo(generos, "videojuego")
+//        );
+//
+//        List<Publicacion> publicaciones = usuario.getPublicaciones();
+//
+//        List<UsuarioDTO> amigos = usuario.getAmigos().stream()
+//                .map(amistad -> {
+//                    Usuario amigo = amistad.getAmigo();
+//                    return new UsuarioDTO(
+//                            amigo.getIdUsuario(),
+//                            amigo.getNombreUsuario(),
+//                            amigo.getAvatarUrl(),
+//                            amigo.getRole(),
+//                            amigo.getBaneado()
+//                    );
+//                })
+//                .collect(Collectors.toList());
+//
+//        return new UsuarioPerfilDTO(
+//                usuario.getIdUsuario(),
+//                usuario.getNombreUsuario(),
+//                usuario.getAvatarUrl(),
+//                usuario.getBiografia(),
+//                usuario.getRole(),
+//                usuario.getResenas(),
+//                usuario.getComentariosPublicacion(),
+//                amigos,
+//                usuario.getReacciones(),
+//                usuario.getComentariosResenas(),
+//                usuario.getGeneros(),
+//                peliculas,
+//                series,
+//                videojuegos,
+//                publicaciones
+//
+//        );
+//    }
 
 }
 
