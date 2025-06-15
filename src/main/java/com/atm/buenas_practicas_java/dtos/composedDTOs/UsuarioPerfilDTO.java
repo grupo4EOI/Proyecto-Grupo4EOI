@@ -23,6 +23,7 @@ public record UsuarioPerfilDTO(
         Long numeroResenas,
         Long numeroFavoritos,
         Long numeroVistos,
-        Long numeroPendientes
+        Long numeroPendientes,
+        boolean esAmigo
 ) {
 }

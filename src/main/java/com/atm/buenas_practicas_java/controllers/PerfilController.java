@@ -23,8 +23,16 @@ public class PerfilController {
 
     // Perfil de usuario.
     @GetMapping("/perfil/{id}")
-    public String mostrarPerfil(@PathVariable Long id, Model model) {
-        UsuarioPerfilDTO usuario = perfilServiceFacade.obtenerPerfilDTO(id);
+    public String mostrarPerfil(@PathVariable Long id, Model model, Authentication authentication) {
+        Long idAutenticado = null;
+
+        if (authentication != null && authentication.isAuthenticated()
+                && !authentication.getPrincipal().equals("anonymousUser")) {
+            String nombreUsuario = authentication.getName();
+            idAutenticado = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuario);
+        }
+
+        UsuarioPerfilDTO usuario = perfilServiceFacade.obtenerPerfilDTO(id, idAutenticado);
         model.addAttribute("perfil", usuario);
         return "perfil";
     }
@@ -39,7 +47,7 @@ public class PerfilController {
 
         String nombreUsuario = authentication.getName();
         Long idUsuario = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuario);
-        UsuarioPerfilDTO usuario = perfilServiceFacade.obtenerPerfilDTO(idUsuario);
+        UsuarioPerfilDTO usuario = perfilServiceFacade.obtenerPerfilDTO(idUsuario, idUsuario);
         model.addAttribute("perfil", usuario);
         return "perfil";
     }

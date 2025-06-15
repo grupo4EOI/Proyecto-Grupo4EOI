@@ -58,6 +58,8 @@
     padding-bottom: 40px;
 }
 
+
+
 .btn-editar-estado:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -234,7 +236,7 @@ img.rounded-circle {
     flex: 1;
 }
 
-.btn-perso {
+.btn-perso, .btn-agregar-amigo {
     border: 2px solid transparent;
     background: #ff8c42;
     color: #000000;
@@ -253,6 +255,11 @@ img.rounded-circle {
 
 .btn-perso:hover {
     /*background-color: #ffa5a5;*/
+    border: 2px solid #000000;
+    color: #ffffff !important;
+}
+
+.btn-agregar-amigo:hover {
     border: 2px solid #000000;
     color: #ffffff !important;
 }

@@ -37,10 +37,15 @@ public class PerfilServiceFacade {
     private AmistadRepository amistadRepository;
 
     @Transactional
-    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
+    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario, Long idAutenticado) {
         Usuario usuario = usuarioService.findById(idUsuario);
 
         Set<Genero> generos = usuario.getGeneros();
+
+        boolean esAmigo = false;
+        if (idAutenticado != null && !idUsuario.equals(idAutenticado)) {
+            esAmigo = usuarioService.sonAmigos(idUsuario, idAutenticado);
+        }
 
         return new UsuarioPerfilDTO(
                 usuario.getIdUsuario(),
@@ -59,7 +64,8 @@ public class PerfilServiceFacade {
                 resenaService.contarResenasUsuario(idUsuario),
                 reaccionService.contarReaccionesUsuario(idUsuario),
                 objetoUsuarioService.contarObjetosVistosUsuario(idUsuario),
-                objetoUsuarioService.contarObjetosPendientesUsuario(idUsuario)
+                objetoUsuarioService.contarObjetosPendientesUsuario(idUsuario),
+                esAmigo
         );
     }
 

@@ -95,11 +95,23 @@
             <!-- Botón añadir amigo -->
             <div class="col-12 col-md-3">
                 <div th:if="${#authentication.name != perfil.nombreUsuario}">
-                    <form method="post" th:action="@{/perfil/{id}/agregar-amigo(id=${perfil.idUsuario})}">
-                        <button type="submit">Agregar amigo</button>
+
+                    <!-- Si ya son amigos -->
+                    <div th:if="${perfil.esAmigo}">
+                      <span class="text-success d-flex align-items-center gap-1 justify-content-center">
+                        <i class="bi bi-person-check-fill"></i> ¡Sois amigos!
+                      </span>
+                    </div>
+
+                    <!-- Si no son amigos -->
+                    <form th:if="${!perfil.esAmigo}" method="post"
+                          th:action="@{/perfil/{id}/agregar-amigo(id=${perfil.idUsuario})}"
+                          class="d-flex justify-content-center">
+                        <button class="btn btn-agregar-amigo rounded" type="submit">
+                            <i class="bi bi-person-plus-fill"></i> Agregar amigo
+                        </button>
                     </form>
                 </div>
-
 
                 <!-- Contadores -->
                 <div class="contenedor-datos-ficha-perfil mx-auto rounded p-3 shadow text-center d-flex flex-column justify-content-center align-items-center">

@@ -3,10 +3,7 @@ package com.atm.buenas_practicas_java.services;
 import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.entities.*;
 import com.atm.buenas_practicas_java.mapper.UsuarioMapper;
-import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
-import com.atm.buenas_practicas_java.repositories.ObjetoUsuarioRepository;
-import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
-import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
+import com.atm.buenas_practicas_java.repositories.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +28,7 @@ public class UsuarioService implements UserDetailsService {
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
     private final ObjetoRepository objetoRepository;
     private final UsuarioMapper usuarioMapper;
+    private final AmistadRepository amistadRepository;
 
     public void save(Usuario usuario) {
         usuarioRepository.save(usuario);
@@ -99,6 +97,14 @@ public class UsuarioService implements UserDetailsService {
     public List<UsuarioDTO> buscarAmigosUsuario(Long idUsuario) {
         return usuarioMapper.toDtoList(usuarioRepository.buscarAmistadesUsuario(idUsuario));
     }
+
+    public boolean sonAmigos(Long id1, Long id2) {
+        Usuario u1 = findById(id1);
+        Usuario u2 = findById(id2);
+        return amistadRepository.findByUsuarioAndAmigo(u1, u2).isPresent()
+                || amistadRepository.findByUsuarioAndAmigo(u2, u1).isPresent();
+    }
+
 
     // Métodos para el registro y el login
     @Override
