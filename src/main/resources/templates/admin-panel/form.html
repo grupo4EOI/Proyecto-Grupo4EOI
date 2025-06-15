@@ -102,52 +102,6 @@
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control"
                                        th:value="${director.nombreCompleto()}"
-                                       th:name="|directores[${iterStat.index}].nombre|" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Fecha de nacimiento</label>
-                                <input type="date" class="form-control"
-                                       th:value="${director.fechaNacimiento()}"
-                                       th:name="|directores[${iterStat.index}].fechaNacimiento|">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Biografía</label>
-                                <textarea class="form-control" rows="3"
-                                          th:name="|directores[${iterStat.index}].biografia|"
-                                          th:text="${director.biografia()}"></textarea>
-                            </div>
-
-                            <!-- Campo para URL de imagen del director con previsualización -->
-                            <div class="mb-3">
-                                <label class="form-label">URL de la imagen</label>
-                                <input type="text" class="form-control"
-                                       th:value="${director.fotoUrl()}"
-                                       th:name="|directores[${iterStat.index}].imagenUrl|"
-                                       th:id="|directorImagenUrl_${iterStat.index}|"
-                                       onchange="updatePreview(this.value, 'previewDirectorImg_${iterStat.index}')">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="mt-4 mb-3">Directores</h4>
-            <div th:each="director, iterStat : ${pelicula.direccion()}">
-                <div class="persona-card mb-4">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img th:src="${director.fotoUrl()}"
-                                 class="persona-imagen img-fluid"
-                                 id="previewDirectorImg_${iterStat.index}"
-                                 th:alt="'Imagen de ' + ${director.nombreCompleto()}">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="mb-3">
-                                <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control"
-                                       th:value="${director.nombreCompleto()}"
                                        th:name="|direccion[${iterStat.index}].nombreCompleto|" required>
                             </div>
 
