@@ -38,7 +38,7 @@ public class EmailService {
             // Cuerpo del mensaje (HTML)
             String contenido = "<html><body>"
                     + "<h3>Nuevo mensaje de contacto</h3>"
-                    + "<p><strong>De:</strong> " + emailUsuario + "</p>"
+                    + "<p><strong>De:</strong> " + nombre + " (" + emailUsuario + ")</p>"
                     + "<p><strong>Asunto:</strong> " + asunto + "</p>"
                     + "<p><strong>Mensaje:</strong></p>"
                     + "<pre>" + mensaje + "</pre>"  // <pre> conserva saltos de línea

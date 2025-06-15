@@ -32,7 +32,7 @@ public class ContactoController {
 
         try {
             // Enviar email
-            emailService.enviarEmailContacto("tu-email@empresa.com", nombre, asunto, mensaje);
+            emailService.enviarEmailContacto(email, nombre, asunto, mensaje);
 
             // También podrías guardar en base de datos aquí
 
