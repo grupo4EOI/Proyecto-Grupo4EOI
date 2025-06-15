@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface PersonaMapper {
 
-    @Mapping(target = "nombreCompleto", expression = "java(persona.getNombre() + ' ' + persona.getApellido())")
     PersonaDTO toDto(Persona persona);
 
 }

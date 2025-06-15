@@ -2,6 +2,7 @@ package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.dtos.ObjetoCrearDTO;
 import com.atm.buenas_practicas_java.services.ObjetoAPIService;
+import com.atm.buenas_practicas_java.services.facade.AdminServiceFacade;
 import info.movito.themoviedbapi.tools.TmdbException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminObjetoController {
 
     private final ObjetoAPIService objetoAPIService;
+    private final AdminServiceFacade adminServiceFacade;
 
-    public AdminObjetoController(ObjetoAPIService objetoAPIService) {
+    public AdminObjetoController(ObjetoAPIService objetoAPIService, AdminServiceFacade adminServiceFacade) {
         this.objetoAPIService = objetoAPIService;
+        this.adminServiceFacade = adminServiceFacade;
     }
 
     @GetMapping("/admin/nuevoobjeto")
@@ -39,6 +42,7 @@ public class AdminObjetoController {
 
     @PostMapping("/admin/nuevoobjeto/guardar")
     public String guardarObjeto(@ModelAttribute ObjetoCrearDTO objetoDTO) {
+        adminServiceFacade.guardarPelicula(objetoDTO);
         return "redirect:/admin/nuevoobjeto";
     }
 }

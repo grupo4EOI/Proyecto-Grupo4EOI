@@ -135,7 +135,7 @@ public class ObjetoAPIService {
 
     public List<ObjetoCrearDTO> buscarPeliculas(String query) throws TmdbException {
         TmdbSearch buscador = tmdbApi.getSearch();
-        MovieResultsPage resultado = buscador.searchMovie(query, false, "es-ES", null, 1, null, null);
+        MovieResultsPage resultado = buscador.searchMovie(query, true, "es-ES", null, 1, null, null);
         List<Movie> peliculas = resultado.getResults();
         return peliculas.stream()
                 .map(pelicula -> {
