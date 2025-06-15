@@ -44,11 +44,25 @@ public class PerfilController {
         return "perfil";
     }
 
-
+    //Editar biografía
     @PostMapping("/perfil/editarBiografia")
     public String editarBiografia(Long idUsuario, String biografia) {
         perfilServiceFacade.editarBiografia(idUsuario, biografia);
         return "redirect:/perfil/" + idUsuario;
+    }
+
+    //Agregar amigo
+    @PostMapping("/perfil/{id}/agregar-amigo")
+    public String agregarAmigo(@PathVariable Long id, Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "redirect:/login";
+        }
+
+        String nombreUsuarioActual = authentication.getName();
+        Long idUsuarioActual = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuarioActual);
+
+        perfilServiceFacade.agregarAmigo(idUsuarioActual, id);
+        return "redirect:/perfil/" + id;
     }
 
     // Ajustes del perfil de usuario.
