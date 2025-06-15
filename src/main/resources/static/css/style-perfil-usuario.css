@@ -17,6 +17,7 @@
 }
 .btn:hover {
     background-color: #FF8C42 !important;
+    color: #f0f0f0 !important;
 }
 #barraDeBusqueda {
     width:430px !important;
