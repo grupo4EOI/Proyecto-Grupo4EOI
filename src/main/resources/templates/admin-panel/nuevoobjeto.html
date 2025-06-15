@@ -45,9 +45,13 @@
                     </div>
                     <!-- Contenedor de info con flex-grow para ocupar espacio restante -->
                     <div class="objeto-info d-flex flex-column justify-content-between flex-grow-1">
-                        <div class="meta-info-objeto d-flex flex-row justify-content-between px-3">
-                            <p class="fecha" th:text="${objeto.fechaPublicacion()}"></p>
-                        </div>
+                        <h2 class="titulo-objeto mt-1 mb-1 fs-5 text-center text-break">
+                            <span class="enlace-tit" th:text="${objeto.titulo()}"></span>
+                        </h2>
+                        <a th:href="@{/admin/nuevoobjeto/form(tmdbId=${objeto.tmdbId()})}"
+                           class="btn btn-success">
+                            <i class="bi bi-pencil-square me-1"></i>Agregar
+                        </a>
                     </div>
                 </div>
             </div>
