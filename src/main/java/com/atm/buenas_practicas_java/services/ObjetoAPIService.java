@@ -47,7 +47,7 @@ public class ObjetoAPIService {
     public String buscarCarteleraPelicula(Movie movie) {
         try {
             MovieDb movieDb = tmdbApi.getMovies().getDetails(movie.getId(), "es-ES");
-            String posterPath = movie.getPosterPath();
+            String posterPath = movieDb.getPosterPath();
             if (posterPath != null && !posterPath.isBlank()) {
                 return "https://image.tmdb.org/t/p/w342/" + posterPath;
             } else {
