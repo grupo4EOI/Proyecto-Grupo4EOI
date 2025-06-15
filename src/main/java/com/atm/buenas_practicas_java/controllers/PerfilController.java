@@ -5,6 +5,8 @@ import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
 import com.atm.buenas_practicas_java.services.GeneroService;
 import com.atm.buenas_practicas_java.services.PerfilService;
 import com.atm.buenas_practicas_java.services.facade.PerfilServiceFacade;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,22 @@ public class PerfilController {
         model.addAttribute("perfil", usuario);
         return "perfil";
     }
+
+    //Redirigir al perfil de usuario para el layout
+    @GetMapping("/perfil")
+    public String mostrarPerfilAutenticado(Authentication authentication, Model model, HttpSession session) {
+        if (authentication == null || !authentication.isAuthenticated()
+                || authentication.getPrincipal().equals("anonymousUser")) {
+            return "redirect:/login";
+        }
+
+        String nombreUsuario = authentication.getName();
+        Long idUsuario = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuario);
+        UsuarioPerfilDTO usuario = perfilServiceFacade.obtenerPerfilDTO(idUsuario);
+        model.addAttribute("perfil", usuario);
+        return "perfil";
+    }
+
 
     @PostMapping("/perfil/editarBiografia")
     public String editarBiografia(Long idUsuario, String biografia) {

@@ -122,4 +122,10 @@ public class PerfilServiceFacade {
 
         usuarioService.saveAndFlush(usuario);
     }
+
+
+    public Long obtenerIdUsuarioPorNombreUsuario(String nombreUsuario) {
+        Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
+        return usuario.getIdUsuario();
+    }
 }
