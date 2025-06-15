@@ -61,7 +61,9 @@
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" sec:authorize="isAuthenticated()">
                     <li class="nav-item">
-                     <a class="nav-link active text-white" href="/perfil" sec:authentication="name">@Usuario</a>
+                        <a class="nav-link active text-white" th:href="@{/perfil}">
+                            @<span th:text="${#authentication.name}"></span>
+                        </a>
                     </li>
                 </ul>
                 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">

@@ -9,6 +9,7 @@ import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.PerfilMapper;
 import com.atm.buenas_practicas_java.repositories.PerfilRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,12 +45,23 @@ public class PerfilService {
         return usuario;
     }
 
+    public Usuario findByNombreUsuario(String nombreUsuario) {
+        return perfilRepository.findByNombreUsuario(nombreUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
+    }
+
+
     public void saveAndFlush(Usuario usuario) {
         perfilRepository.saveAndFlush(usuario);
     }
 
-    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
+    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario, Long idOtro) {
         Usuario usuario = findByIdUsuario(idUsuario);
+
+        // Esto es importante: obtener el usuario autenticado
+        String nombreUsuarioActual = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuarioActual = perfilRepository.findByNombreUsuario(nombreUsuarioActual)
+                .orElseThrow(() -> new RuntimeException("Usuario actual no encontrado"));
 
         Set<Genero> generos = usuario.getGeneros();
 
@@ -68,14 +80,14 @@ public class PerfilService {
         List<UsuarioDTO> amigos = usuario.getAmigos().stream()
                 .map(amistad -> {
                     Usuario amigo = amistad.getAmigo();
-                    return new UsuarioDTO(
-                            amigo.getIdUsuario(),
-                            amigo.getNombreUsuario(),
-                            amigo.getAvatarUrl(),
-                            amigo.getRole()
-                    );
+                    return new UsuarioDTO(amigo.getIdUsuario(), amigo.getNombreUsuario(), amigo.getAvatarUrl(), amigo.getRole());
                 })
                 .collect(Collectors.toList());
+
+        boolean esAmigo = usuario.getAmigos().stream()
+                .anyMatch(amistad -> amistad.getAmigo().getIdUsuario().equals(idOtro));
+
+
 
         return new UsuarioPerfilDTO(
                 usuario.getIdUsuario(),
@@ -92,10 +104,41 @@ public class PerfilService {
                 peliculas,
                 series,
                 videojuegos,
-                publicaciones
+                publicaciones,
+                esAmigo
 
         );
     }
+
+    public void agregarAmigo(Long idUsuarioActual, Long idAmigo) {
+        Usuario actual = perfilRepository.findById(idUsuarioActual)
+                .orElseThrow(() -> new RuntimeException("Usuario actual no encontrado"));
+        Usuario amigo = perfilRepository.findById(idAmigo)
+                .orElseThrow(() -> new RuntimeException("Amigo no encontrado"));
+
+        // Verificar si ya existe la amistad en alguna dirección
+        boolean yaSonAmigos = actual.getAmigos().stream()
+                .anyMatch(amistad -> amistad.getAmigo().getIdUsuario().equals(idAmigo));
+
+        if (!yaSonAmigos) {
+            // Crear amistad A -> B
+            Amistad amistadAB = new Amistad();
+            amistadAB.setUsuario(actual);
+            amistadAB.setAmigo(amigo);
+
+            // Crear amistad B -> A
+            Amistad amistadBA = new Amistad();
+            amistadBA.setUsuario(amigo);
+            amistadBA.setAmigo(actual);
+
+            actual.getAmigos().add(amistadAB);
+            amigo.getAmigos().add(amistadBA);
+
+            perfilRepository.save(actual);
+            perfilRepository.save(amigo);
+        }
+    }
+
 
 }
 

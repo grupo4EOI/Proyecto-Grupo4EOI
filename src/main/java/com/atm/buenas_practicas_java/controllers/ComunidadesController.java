@@ -51,7 +51,6 @@ public class ComunidadesController {
         List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
-
         return "ejemplo-tema";
     }
 

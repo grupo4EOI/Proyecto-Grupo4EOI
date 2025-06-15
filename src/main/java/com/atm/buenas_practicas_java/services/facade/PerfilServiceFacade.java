@@ -22,16 +22,22 @@ public class PerfilServiceFacade {
         this.generoService = generoService;
     }
 
-    public UsuarioPerfilDTO obtenerPerfilDTO(Long id) {
-        return perfilService.obtenerPerfilDTO(id);
-
+    public UsuarioPerfilDTO obtenerPerfilDTO(Long idPerfil, Long idOtro) {
+        return perfilService.obtenerPerfilDTO(idPerfil, idOtro);
     }
+
 
     public void editarBiografia(Long idUsuario, String biografia) {
         Usuario usuario = perfilService.findByIdUsuario(idUsuario);
         usuario.setBiografia(biografia);
         perfilService.saveAndFlush(usuario);
     }
+
+    public Long obtenerIdUsuarioPorNombreUsuario(String nombreUsuario) {
+        Usuario usuario = perfilService.findByNombreUsuario(nombreUsuario);
+        return usuario.getIdUsuario();
+    }
+
 
     public AjustesPerfilDTO obtenerAjustesPerfil(Long id) {
         return ajustesPerfilService.obtenerAjustesPerfil(id);
@@ -40,7 +46,4 @@ public class PerfilServiceFacade {
     public void guardarAjustesPerfil(Long idUsuario, AjustesPerfilDTO ajustesPerfil) {
         ajustesPerfilService.actualizarAjustesPerfil(idUsuario, ajustesPerfil);
     }
-
-
-
 }

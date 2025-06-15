@@ -14,9 +14,12 @@ public interface PerfilRepository extends JpaRepository<Usuario, Long> {
     LEFT JOIN FETCH g.tipo 
     LEFT JOIN FETCH u.amigos a 
     LEFT JOIN FETCH a.amigo 
+    LEFT JOIN FETCH u.publicaciones p 
+    LEFT JOIN FETCH p.comunidad 
     WHERE u.idUsuario = :id
 """)
     Optional<Usuario> findByIdUsuario(@Param("id") Long idUsuario);
+    Optional<Usuario> findByNombreUsuario(String nombreUsuario);
 
 }
 

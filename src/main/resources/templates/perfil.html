@@ -92,6 +92,18 @@
                </div>
 
                 <div class="col-12 col-md-3">
+                    <div th:if="${#authentication.name != perfil.nombreUsuario and !perfil.esAmigo}" class="col-12 col-md-3">
+                        <!-- Botón añadir amigo -->
+                        <div class="mb-3 text-center">
+                            <form th:action="@{/perfil/{id}/agregar-amigo(id=${perfil.idUsuario})}" method="post">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-person-plus me-2"></i>Añadir amigo
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+
                     <div class="contenedor-datos-ficha-perfil mx-auto rounded p-3 shadow text-center d-flex flex-column justify-content-center align-items-center">
                         <ul class="list-unstyled fs-5">
                             <li class="mb-3">
@@ -161,26 +173,14 @@
                         <div class="tab-pane fade" id="tab-publicaciones" role="tabpanel">
                             <div id="publicaciones-container">
                                 <p th:if="${#lists.isEmpty(perfil.publicaciones)}">No hay publicaciones.</p>
-
                                 <div th:each="publicacion : ${perfil.publicaciones}" class="mb-3 p-3  publicacion">
-
                                     <div class="mb-2">
                                         <span class="fw-bold">Comunidad:</span>
                                         <span th:text="${publicacion.comunidad.nombreComunidad}">No pertenece a ninguna comunidad.</span>
                                     </div>
-
                                     <div class="mb-2">
                                         <span class="fw-bold">Título:</span>
                                         <span th:text="${publicacion.titulo}"></span>
-                                    </div>
-
-                                    <div th:each="comentario : ${publicacion.comentariosPublicacion}"
-                                         th:if="${comentario.usuario.idUsuario == perfil.idUsuario}">
-                                        <span class="fw-bold">Contenido de la publicación:</span>
-                                        <p th:text="${comentario.contenido}">No hay contenido.</p>
-                                        <p class="text-muted" style="font-size: 0.85em;">
-                                            <span th:text="${#temporals.format(comentario.fecha, 'dd-MM-yyyy HH:mm')}"></span>
-                                        </p>
                                     </div>
                                 </div>
                             </div>

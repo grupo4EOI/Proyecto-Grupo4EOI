@@ -1127,6 +1127,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion4 = new Publicacion();
         publicacion4.setTitulo("Mi perro se parece a Dobby");
+        publicacion4.setUsuario(usuario2);
 
         //Comentarios de la publicacion 4:
 
@@ -1186,6 +1187,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion5 = new Publicacion();
         publicacion5.setTitulo("¿Alguien entiende por qué Voldemort no usaba una pistola?");
+        publicacion5.setUsuario(usuario2);
 
         //Comentarios de la publicacion 5:
 
@@ -1245,6 +1247,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion6 = new Publicacion();
         publicacion6.setTitulo("¿Qué casa de Hogwarts es la más chusta?");
+        publicacion6.setUsuario(usuario2);
 
         //Comentarios de la publicacion 6:
 
@@ -1346,6 +1349,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion7 = new Publicacion();
         publicacion7.setTitulo("¿Por qué los videojuegos antiguos de Harry Potter molaban más?");
+        publicacion7.setUsuario(usuario3);
 
         //Comentarios de la publicacion 7:
 
@@ -1456,6 +1460,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion8 = new Publicacion();
         publicacion8.setTitulo("He vuelto a ver Interstellar y cada vez me explota más la cabeza");
+        publicacion8.setUsuario(usuario1);
 
         // Comentarios de la publicacion 8
 
@@ -1549,6 +1554,7 @@ public class LocalDataLoader {
 
         Publicacion publicacion9 = new Publicacion();
         publicacion9.setTitulo("La explicación del tiempo en Interstellar es una fumada o ciencia real?");
+        publicacion9.setUsuario(usuario4);
 
         // Comentarios de la publicacion 9
 

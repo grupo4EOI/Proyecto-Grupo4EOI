@@ -18,6 +18,7 @@ public interface PublicacionMapper {
     @Mapping(target = "usuario", expression = "java(mapUsuario(publicacion))")
     PublicacionDTO toDto(Publicacion publicacion);
 
+
     default UsuarioDTO mapUsuario(Publicacion publicacion) {
         ComentarioPublicacion primerComentario = publicacion.getComentariosPublicacion().get(0);
         return new UsuarioDTO(
@@ -29,5 +30,7 @@ public interface PublicacionMapper {
     }
 
     List<PublicacionDTO> toDto(List<Publicacion> publicaciones);
+
+
 
 }
