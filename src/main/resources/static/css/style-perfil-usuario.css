@@ -17,22 +17,23 @@
 }
 .btn:hover {
     background-color: #FF8C42 !important;
+    color: #f0f0f0 !important;
 }
 #barraDeBusqueda {
     width:430px !important;
 }
 
 /* *** Estilo del perfil de usuario *** */
-#fondo-perfil {
-    background: linear-gradient(
-            to bottom,
-            rgba(252,175,88,0.63) 0%,
-            rgba(252,175,88,0.63) 10%,
-            rgba(255,255,255,0.30) 50%,
-            rgba(255,255,255,0.30) 100%
-    );
+/*#fondo-perfil {*/
+/*    background: linear-gradient(*/
+/*            to bottom,*/
+/*            rgba(252,175,88,0.63) 0%,*/
+/*            rgba(252,175,88,0.63) 10%,*/
+/*            rgba(255,255,255,0.30) 50%,*/
+/*            rgba(255,255,255,0.30) 100%*/
+/*    );*/
 
-}
+/*}*/
 
 #nombreUsuario{
     font-size: 28px;
@@ -52,7 +53,8 @@
 #ficha-principal-perfil {
     margin-top: 2%;
     padding: 20px;
-    width: 100%;
+    background-color: #F8F9FA;
+    /*width: 100%;*/
     padding-bottom: 40px;
 }
 
@@ -121,9 +123,13 @@ img.rounded-circle {
     flex-direction: column;
     justify-content: center; 
 }
-.tab-pane {
-    flex-grow: 1;
-    min-height: 1000px; 
+/*.tab-pane {*/
+/*    flex-grow: 1;*/
+/*    min-height: 1000px; */
+/*}*/
+
+.tab-pane > div {
+    min-height: 150px;
 }
 
 .contenedor-datos-ficha-perfil {
@@ -135,7 +141,7 @@ img.rounded-circle {
 @media (min-width: 768px) and (max-width: 991.98px) {
     #ficha-principal-perfil > div {
         flex: 0 0 100%;
-        max-width: 100%;
+        /*max-width: 100%;*/
     }
 
     #ficha-principal-perfil{
@@ -169,15 +175,15 @@ img.rounded-circle {
 }
 
 
-.contenedores-amigos-insignias{
-    max-width: 350px;
-}
+/*.contenedores-amigos-insignias{*/
+/*    max-width: 350px;*/
+/*}*/
 
-.lista-de-amigos{
-    border: 2px solid black;
-    border-radius: 8px;
-    background-color: #fff9f0;
-}
+/*.lista-de-amigos{*/
+/*    border: 2px solid black;*/
+/*    border-radius: 8px;*/
+/*    background-color: #fff9f0;*/
+/*}*/
 
 /* *** Estilo de la configuración del perfil de usuario *** */
 #fondo-ajustes-perfil {
@@ -249,4 +255,12 @@ img.rounded-circle {
     /*background-color: #ffa5a5;*/
     border: 2px solid #000000;
     color: #ffffff !important;
+}
+
+.lista-de-amigos {
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #fff9f0;
+    max-height: 600px;
+    overflow-y: auto;
 }
