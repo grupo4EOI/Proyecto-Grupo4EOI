@@ -93,6 +93,21 @@ public class PerfilServiceFacade {
         amistadRepository.save(amistad);
     }
 
+    @Transactional
+    public void eliminarAmigo(Long idUsuario, Long idAmigo) {
+        if (idUsuario.equals(idAmigo)) return;
+
+        Usuario usuario = usuarioService.findById(idUsuario);
+        Usuario amigo = usuarioService.findById(idAmigo);
+
+        amistadRepository.findByUsuarioAndAmigo(usuario, amigo)
+                .ifPresent(amistadRepository::delete);
+
+        amistadRepository.findByUsuarioAndAmigo(amigo, usuario)
+                .ifPresent(amistadRepository::delete);
+    }
+
+
     // Ajustes de perfil
     public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario)  {
         Usuario usuario = usuarioService.findById(idUsuario);

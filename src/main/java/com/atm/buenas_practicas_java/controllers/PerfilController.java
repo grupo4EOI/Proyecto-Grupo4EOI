@@ -73,6 +73,20 @@ public class PerfilController {
         return "redirect:/perfil/" + id;
     }
 
+    //Eliminar amigo
+    @PostMapping("/perfil/{id}/eliminar-amigo")
+    public String eliminarAmigo(@PathVariable Long id, Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "redirect:/login";
+        }
+
+        String nombreUsuarioActual = authentication.getName();
+        Long idUsuarioActual = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuarioActual);
+
+        perfilServiceFacade.eliminarAmigo(idUsuarioActual, id);
+        return "redirect:/perfil/" + id;
+    }
+
     // Ajustes del perfil de usuario.
     @GetMapping("/ajustes-perfil/{id}")
     public String mostrarAjustesPerfil(@PathVariable Long id, Model model) {

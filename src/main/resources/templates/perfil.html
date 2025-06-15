@@ -97,10 +97,16 @@
                 <div th:if="${#authentication.name != perfil.nombreUsuario}">
 
                     <!-- Si ya son amigos -->
-                    <div th:if="${perfil.esAmigo}">
-                      <span class="text-success d-flex align-items-center gap-1 justify-content-center">
-                        <i class="bi bi-person-check-fill"></i> ¡Sois amigos!
-                      </span>
+                    <div th:if="${perfil.esAmigo}" class="d-flex flex-column align-items-center gap-2">
+                    <span class="text-success d-flex align-items-center gap-1">
+                      <i class="bi bi-person-check-fill"></i> ¡Sois amigos!
+                    </span>
+
+                        <form method="post" th:action="@{/perfil/{id}/eliminar-amigo(id=${perfil.idUsuario})}">
+                            <button class="btn btn-danger rounded" type="submit">
+                                <i class="bi bi-person-dash-fill"></i> Eliminar amigo
+                            </button>
+                        </form>
                     </div>
 
                     <!-- Si no son amigos -->
