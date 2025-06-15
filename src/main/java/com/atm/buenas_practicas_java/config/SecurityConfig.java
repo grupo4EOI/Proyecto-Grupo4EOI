@@ -109,6 +109,7 @@ public class SecurityConfig {
                                 "/comunidades/**",
                                 "/ficha-objeto/**",
                                 "/buscador-resultado/**",
+                                "/contacto/**",
                                 "/static/**",
                                 "/css/**",
                                 "/images/**",

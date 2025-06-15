@@ -134,10 +134,10 @@ public class DefaultController {
         return "comunidad";
     }
 
-    @GetMapping("/contacto")
-    public String mostrarContacto() {
-        return "/contacto";
-    }
+//    @GetMapping("/contacto")
+//    public String mostrarContacto() {
+//        return "/contacto";
+//    }
 
     /** TODO: Cambiar el path y este mapping cuando se hagan servicios y controladores */
     @GetMapping("/ejemplo-tema")
