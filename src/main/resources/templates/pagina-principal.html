@@ -30,8 +30,18 @@
                         Cuéntalo. Aquí se viene a criticar con gusto.
                     </p>
                     <div class="button-group flex-nowrap flex-md-wrap">
-                        <a href="/iniciar-sesion" class="header-button">Iniciar sesión</a>
-                        <a href="/registro" class="header-button">Regístrate</a>
+                        <!-- Mostrar solo si NO está autenticado -->
+                        <div sec:authorize="!isAuthenticated()">
+                            <a href="/iniciar-sesion" class="header-button">Iniciar sesión</a>
+                            <a href="/registro" class="header-button">Regístrate</a>
+                        </div>
+                        <!-- Mostrar solo si ESTÁ autenticado -->
+                        <div sec:authorize="isAuthenticated()">
+                            <a th:href="@{/perfil}" class="header-button">Mi perfil</a>
+                            <form th:action="@{/logout}" method="post" style="display: inline;">
+                                <button class="header-button no-effect" type="submit">Cerrar sesión</button>
+                            </form>
+                        </div>
                     </div>
                 </section>
                 <div class="col-lg-6 col-md-12 order-lg-2 order-1 mb-4 mb-lg-0 animate-slide-in-right">
