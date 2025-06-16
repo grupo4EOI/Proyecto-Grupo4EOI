@@ -1,10 +1,10 @@
-function seleccionarGeneroUnico(event, elemento){
+function seleccionarGeneroUnico(event, elemento) {
     event.preventDefault();
 
-    const inputId = elemento.dataset.inputId;
-    const input = document.getElementById(inputId);
+    const dropdown = elemento.closest(".dropdown");
+    const input = dropdown.querySelector("input[type='hidden']");
 
-    const selectedValue = elemento.dataset.id;
+    const selectedValue = elemento.textContent.trim();
 
     const siblings = elemento.closest("ul").querySelectorAll(".dropdown-item");
     siblings.forEach(item => item.classList.remove("active"));
@@ -14,6 +14,6 @@ function seleccionarGeneroUnico(event, elemento){
         input.value = selectedValue;
     }
 
-    const button = elemento.closest(".dropdown").querySelector("button");
-    button.textContent = elemento.textContent;
+    const button = dropdown.querySelector("button");
+    button.textContent = selectedValue;
 }

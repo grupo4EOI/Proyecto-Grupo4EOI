@@ -56,19 +56,15 @@
                               <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
                                   <li th:each="genero : ${generosPeliculas}">
                                       <a href="#" class="dropdown-item"
-                                         th:data-id="${genero.idGenero}"
-                                         th:data-input-id="'generosPeliculas_' + ${i} + '.idGenero'"
                                          th:text="${genero.nombre}"
                                          onclick="seleccionarGeneroUnico(event, this)"></a>
                                   </li>
                               </ul>
                               <input type="hidden" th:name="'generosPeliculas[' + ${i} + '].idGenero'"
-                                     th:id="'generosPeliculas_' + ${i} + '.idGenero'"
                                      th:value="${ajustesPerfil.generosPeliculas.size() > i} ? ${ajustesPerfil.generosPeliculas[i].idGenero} : ''"/>
                           </div>
                       </div>
                   </div>
-
 
                   <div class="mb-3">
                       <label class="form-label">Géneros de series favoritos</label>
@@ -80,14 +76,11 @@
                               <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
                                   <li th:each="genero : ${generosSeries}">
                                       <a href="#" class="dropdown-item"
-                                         th:data-id="${genero.idGenero}"
-                                         th:data-input-id="'generosSeries_' + ${i} + '.idGenero'"
                                          th:text="${genero.nombre}"
                                          onclick="seleccionarGeneroUnico(event, this)"></a>
                                   </li>
                               </ul>
                               <input type="hidden" th:name="'generosSeries[' + ${i} + '].idGenero'"
-                                     th:id="'generosSeries_' + ${i} + '.idGenero'"
                                      th:value="${ajustesPerfil.generosSeries.size() > i} ? ${ajustesPerfil.generosSeries[i].idGenero} : ''"/>
                           </div>
                       </div>
@@ -103,20 +96,20 @@
                               <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;">
                                   <li th:each="genero : ${generosVideojuegos}">
                                       <a href="#" class="dropdown-item"
-                                         th:data-id="${genero.idGenero}"
-                                         th:data-input-id="'generosVideojuegos_' + ${i} + '.idGenero'"
                                          th:text="${genero.nombre}"
                                          onclick="seleccionarGeneroUnico(event, this)"></a>
                                   </li>
                               </ul>
                               <input type="hidden" th:name="'generosVideojuegos[' + ${i} + '].idGenero'"
-                                     th:id="'generosVideojuegos_' + ${i} + '.idGenero'"
                                      th:value="${ajustesPerfil.generosVideojuegos.size() > i} ? ${ajustesPerfil.generosVideojuegos[i].idGenero} : ''"/>
                           </div>
                       </div>
                   </div>
 
-              <button type="submit" class="btn btn-primary mt-3">Guardar cambios</button><br>
+
+
+
+                  <button type="submit" class="btn btn-primary mt-3">Guardar cambios</button><br>
           </form>
       </div>
   </main>
