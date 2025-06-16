@@ -14,6 +14,7 @@
     <!--Contenido de la página-->
 <body>
 <div layout:fragment="content">
+    <div class="container-fluid">
     <!--Banner título del tema-->
     <div class="bg-custom mt-4 mx-auto p-3 w-75" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
         <h2 th:text="${comentarios.content[0].publicacion().titulo()}">Título de ejemplo</h2>
@@ -129,9 +130,9 @@
         </form>
     </div>
     <!-- PAGINACIÓN - Solo mostrar si hay más de una página -->
-    <div class="row justify-content-center mt-4" th:if="${comentarios.totalPages > 1}">
+    <div class="row justify-content-center" th:if="${comentarios.totalPages > 1}">
         <nav>
-            <ul class="pagination">
+            <ul class="pagination justify-content-center">
                 <!-- Primera página -->
                 <li class="page-item" th:classappend="${comentarios.first} ? 'disabled' : ''">
                     <a class="page-link"
@@ -185,6 +186,7 @@
             Página <span th:text="${comentarios.number + 1}"></span> de
             <span th:text="${comentarios.totalPages}"></span>
         </div>
+    </div>
     </div>
 </div>
 
