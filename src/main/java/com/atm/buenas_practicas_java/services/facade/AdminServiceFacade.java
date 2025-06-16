@@ -10,10 +10,21 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Facade para operaciones administrativas
+ *
+ * <p> Organizado por áreas funcionales:</p>
+ * <ul>
+ *     <li><b>Gestión de Contenido</b>: Operaciones relacionadas con objetos (películas, series, videojuegos)</li>
+ *     <li><b>Reporte de usuarios</b>: Publicación de contenido indebido</li>
+ *     <li><b>Gestión de reseñas y publicaciones</b>: Ocultar publicaciones indebidas</li>
+ * </ul>
+ */
 @Service
 @RequiredArgsConstructor
 public class AdminServiceFacade {
@@ -27,6 +38,7 @@ public class AdminServiceFacade {
     private final ObjetoService objetoService;
     private final PersonaService personaService;
     private final PersonaObjetoService personaObjetoService;
+    private final ComunidadService comunidadService;
 
     public EstadisticasReportesDTO crearPanelAdmin() {
         return new EstadisticasReportesDTO(
@@ -87,6 +99,11 @@ public class AdminServiceFacade {
         comentarioPublicacionService.aprobarComentarioPublicacion(idComentarioPublicacion);
     }
 
+    /**
+     * Función para guardar una película que no está en la base de datos (obtenida de la API de tmdb)
+     *
+     * @param objetoDTO
+     */
     public void guardarPelicula(ObjetoCrearDTO objetoDTO) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -117,7 +134,16 @@ public class AdminServiceFacade {
         }
         objeto.setGeneros(generos);
 
+        Comunidad comunidad = new Comunidad();
+        comunidad.setNombreComunidad(objetoDTO.titulo());
+        comunidad.setDescripcion("En la comunidad de " + objetoDTO.titulo() + " podrás hablar de todas " +
+                        "las películas, series y videojuegos relacionados. ¡Anímate y haz una publicación!");
+        comunidad.setObjetos(Arrays.asList(objeto));
+        comunidad.setUrlImg(objetoDTO.imagenUrl());
+
+        objeto.setComunidad(comunidad);
         // Guardar objeto principal
+        Comunidad comunidadGuardada = comunidadService.save(comunidad);
         Objeto objetoGuardado = objetoService.save(objeto);
 
         // Guardar directores y sus relaciones
@@ -127,9 +153,15 @@ public class AdminServiceFacade {
         guardarPersonasConRol(objetoDTO.reparto(), objetoGuardado, false);
     }
 
-    private void guardarPersonasConRol(List<PersonaDTO> personasDTO,
-                                       Objeto objeto,
-                                       boolean esDirector) {
+    /**
+     * Función auxiliar para guardar las personas (actores o directores) que no estén ya guardados
+     * en la base de datos.
+     *
+     * @param personasDTO
+     * @param objeto
+     * @param esDirector
+     */
+    private void guardarPersonasConRol(List<PersonaDTO> personasDTO, Objeto objeto, boolean esDirector) {
         for (PersonaDTO personaDTO : personasDTO) {
             // Buscar o crear persona
             Persona persona = personaService.findByNombreCompleto(personaDTO.nombreCompleto())
