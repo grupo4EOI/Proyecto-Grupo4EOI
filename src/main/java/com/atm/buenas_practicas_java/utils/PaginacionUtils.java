@@ -10,22 +10,14 @@ import java.util.List;
 public class PaginacionUtils {
 
     public static <T> Page<T> listToPage(List<T> list, Pageable pageable) {
-        if (pageable == null) {
-            return new PageImpl<>(list);
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), list.size());
+
+        if (start > end) {
+            start = 0;
+            end = 0;
         }
 
-        int total = list.size();
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-        List<T> pagedList;
-
-        if (startItem >= total) {
-            pagedList = Collections.emptyList();
-        } else {
-            int toIndex = Math.min(startItem + pageSize, total);
-            pagedList = list.subList(startItem, toIndex);
-        }
-        return new PageImpl<>(pagedList, pageable, total);
+        return new PageImpl<>(list.subList(start, end), pageable, list.size());
     }
 }
