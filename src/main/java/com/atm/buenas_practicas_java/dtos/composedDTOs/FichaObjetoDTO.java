@@ -4,6 +4,7 @@ import com.atm.buenas_practicas_java.dtos.ComentarioPublicacionDTO;
 import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
 import com.atm.buenas_practicas_java.dtos.PersonaDTO;
 import com.atm.buenas_practicas_java.dtos.ResenaDTO;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public record FichaObjetoDTO(
         String trailerUrl,
         String tipo,
         List<String> generos,
-        List<ResenaDTO> resenas,
+        Page<ResenaDTO> resenas,
         String puntuacion,
         Integer numeroResenas,
         List<PersonaDTO> directores,

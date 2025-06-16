@@ -229,124 +229,254 @@
         </div>
         <hr class="hr mt-3">
         <!-- Apartado reseñas -->
-        <section class="main-quote">
-             <div class="container">
-                <h3 class="col-12"><b>Reseñas</b></h3>
-                <div class="row mx-3 my-3 gx-0" th:each="resena, iterStat : ${fichaObjeto.resenas()}">
-                    <a th:href="@{/perfil/{id}(id=${resena.autor().idUsuario()})}"
-                       class="etiqueta px-2 mb-2 me-3 w-auto">
-                        <!--                            <i class="bi bi-person me-2"></i>-->
-                        @<span th:text="${resena.autor().nombreUsuario()}">MrReseñador</span>
-                    </a>
-                    <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
-                        <input type="hidden" th:name="_method" th:value="put"/>
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
-                        <button class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white"
-                                type="submit"
-                                th:name="accion"
-                                th:value="reportarResena"
-                                >Notificar abuso</button>
-                    </form>
-                    <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
-                        <input type="hidden" th:name="_method" th:value="put"/>
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
-                        <button class="etiqueta px-2 mb-2 w-auto bg-danger text-white"
-                                type="submit"
-                                th:name="accion"
-                                th:value="reportarSpoilerResena"
-                                >Notificar spoiler</button>
-                    </form>
-                    <p th:text="${#temporals.format(resena.fechaPublicacion(), 'dd-MM-yyyy HH:mm')}"></p>
-                    <div class="container" id="review">
-                        <div class="row">
-                            <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <b>Título de la reseña: </b><span th:text="${resena.titulo()}"></span>
-                            </div>
-                            <div class="col-12 mb-1">
-                                <b>Contenido de la reseña: </b><span th:text="${resena.contenido()}"></span>
-                            </div>
+            <section class="main-quote">
+                <div class="container">
+                    <h3 class="col-12"><b>Reseñas</b></h3>
+
+                    <!-- Contador de reseñas y puntuación -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                <span class="badge bg-primary">
+                    <i class="bi bi-star-fill"></i>
+                    Puntuación media: <span th:text="${fichaObjeto.puntuacion} + '/5'"></span>
+                </span>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                <span class="badge bg-info">
+                    <i class="bi bi-chat-square-text"></i>
+                    Total reseñas: <span th:text="${fichaObjeto.numeroResenas}"></span>
+                </span>
                         </div>
                     </div>
 
+                    <!-- Iterar sobre reseñas PAGINADAS -->
+                    <div class="row mx-3 my-3 gx-0"
+                         th:each="resena : ${fichaObjeto.resenas.content}"
+                         th:if="${fichaObjeto.resenas.totalElements != 0}">
 
+                        <!-- Contenido de cada reseña (manteniendo tu estructura actual) -->
+                        <a th:href="@{/perfil/{id}(id=${resena.autor().idUsuario()})}"
+                           class="etiqueta px-2 mb-2 me-3 w-auto">
+                            @<span th:text="${resena.autor().nombreUsuario()}"></span>
+                        </a>
 
-                        <button sec:authorize="!isAuthenticated()"
-                                type="button"
-                                class="etiqueta px-2 mt-2 me-3 w-auto"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="click"
-                                data-bs-placement="left"
-                                title="Atención"
-                                data-bs-content="Debes iniciar sesión para poder dar like, conchudo">
-                            <i class="bi bi-heart"></i> Me gusta <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span>
-                        </button>
-
-                        <form sec:authorize="isAuthenticated()" th:if="${!resena.likeUsuario()}" class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                        <!-- Botones de reporte -->
+                        <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}" method="post">
+                            <input type="hidden" th:name="_method" th:value="put"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
-                            <button class="etiqueta px-2 mt-2 w-auto me-3 bg-danger text-white"
+                            <button class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white"
                                     type="submit"
                                     th:name="accion"
-                                    th:value="likeResena"
-                            ><i class="bi bi-heart"></i> Me gusta <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span></button>
+                                    th:value="reportarResena">Notificar abuso</button>
                         </form>
 
-                        <form sec:authorize="isAuthenticated()" th:if="${resena.likeUsuario()}" class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}" method="post">
+                        <form class="w-auto" th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}" method="post">
+                            <input type="hidden" th:name="_method" th:value="put"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
-                            <button class="etiqueta px-2 mt-2 w-auto me-3 bg-danger text-white"
+                            <button class="etiqueta px-2 mb-2 w-auto bg-danger text-white"
                                     type="submit"
                                     th:name="accion"
-                                    th:value="likeResena"
-                            ><i class="bi bi-heart-fill"></i> Quitar Me gusta <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span></button>
+                                    th:value="reportarSpoilerResena">Notificar spoiler</button>
                         </form>
 
+                        <p th:text="${#temporals.format(resena.fechaPublicacion(), 'dd-MM-yyyy HH:mm')}"></p>
 
-
-
-                    <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#comentarios-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat"></i> Comentarios</div>
-                    <div class="etiqueta px-2 mt-2 me-3 w-auto" data-bs-toggle="collapse" th:data-bs-target="'#nuevocomentario-' + ${iterStat.index}" aria-expanded="false"><i class="bi bi-chat-dots"></i> Añadir comentario</div>
-                    <div class="row collapse mt-3 me-2 pt-3 bg-transparent" th:id="'nuevocomentario-' + ${iterStat.index}">
-                        <div class="card card-body p-3 bg-transparent">
-                            <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto()})}"
-                                  th:object="${nuevoComentario}"
-                                  method="post"
-                                  class="d-flex flex-column">
-
-                                <input type="hidden" name="idResena" th:value="${resena.idResena()}">
-
-                                <div class="mb-2">
-                                    <textarea th:field="*{contenido}"
-                                              name="contenido"
-                                              class="form-control form-control-lg rounded-pill border-0 shadow-sm mb-3"
-                                              rows="3"
-                                              placeholder="Escribe tu comentario"
-                                              style="resize: none;"
-                                              required></textarea>
+                        <div class="container" id="review">
+                            <div class="row">
+                                <div class="col-12 mb-2 mt-1">
+                        <span class="badge bg-warning text-dark">
+                            <i class="bi bi-star-fill"></i>
+                            Puntuación: <span th:text="${resena.puntuacion()} + '/5'"></span>
+                        </span>
                                 </div>
-
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" name="accion" value="comentarResena" class="btn btn-success btn-lg rounded-pill px-4 shadow"><i class="bi bi-send-fill me-2"></i> Publicar comentario</button>
+                                <div class="col-12 mb-2">
+                                    <h5><b th:text="${resena.titulo()}"></b></h5>
                                 </div>
+                                <div class="col-12 mb-1">
+                                    <p th:text="${resena.contenido()}"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones de interacción -->
+                        <div class="d-flex flex-wrap mt-2">
+                            <!-- Botón Me gusta -->
+                            <button sec:authorize="!isAuthenticated()"
+                                    type="button"
+                                    class="etiqueta px-2 mt-2 me-3 w-auto"
+                                    data-bs-toggle="popover"
+                                    data-bs-trigger="click"
+                                    data-bs-placement="left"
+                                    title="Atención"
+                                    data-bs-content="Debes iniciar sesión para poder dar like">
+                                <i class="bi bi-heart"></i> Me gusta
+                                <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span>
+                            </button>
+
+                            <form sec:authorize="isAuthenticated()" th:if="${!resena.likeUsuario()}" class="w-auto me-2"
+                                  th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}" method="post">
+                                <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
+                                <button class="etiqueta px-2 mt-2 bg-danger text-white"
+                                        type="submit"
+                                        th:name="accion"
+                                        th:value="likeResena">
+                                    <i class="bi bi-heart"></i> Me gusta
+                                    <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span>
+                                </button>
                             </form>
+
+                            <form sec:authorize="isAuthenticated()" th:if="${resena.likeUsuario()}" class="w-auto me-2"
+                                  th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}" method="post">
+                                <input type="hidden" th:name="idResena" th:value="${resena.idResena()}">
+                                <button class="etiqueta px-2 mt-2 bg-danger text-white"
+                                        type="submit"
+                                        th:name="accion"
+                                        th:value="likeResena">
+                                    <i class="bi bi-heart-fill"></i> Quitar Me gusta
+                                    <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span>
+                                </button>
+                            </form>
+
+                            <!-- Botones de comentarios -->
+                            <button class="etiqueta px-2 mt-2 me-2"
+                                    data-bs-toggle="collapse"
+                                    th:data-bs-target="'#comentarios-' + ${resena.idResena()}"
+                                    aria-expanded="false">
+                                <i class="bi bi-chat"></i> Comentarios
+                                <span th:if="${resena.comentariosResena() != null}"
+                                      th:text="'(' + ${#lists.size(resena.comentariosResena())} + ')'"></span>
+                            </button>
+
+                            <button class="etiqueta px-2 mt-2"
+                                    data-bs-toggle="collapse"
+                                    th:data-bs-target="'#nuevocomentario-' + ${resena.idResena()}"
+                                    aria-expanded="false">
+                                <i class="bi bi-chat-dots"></i> Añadir comentario
+                            </button>
+                        </div>
+
+                        <!-- Formulario para nuevo comentario -->
+                        <div class="row collapse mt-3" th:id="'nuevocomentario-' + ${resena.idResena()}">
+                            <div class="card card-body p-3 bg-light">
+                                <form th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}"
+                                      th:object="${nuevoComentario}"
+                                      method="post"
+                                      class="d-flex flex-column">
+                                    <input type="hidden" name="idResena" th:value="${resena.idResena()}">
+                                    <div class="mb-2">
+                            <textarea th:field="*{contenido}"
+                                      name="contenido"
+                                      class="form-control border-0 shadow-sm mb-3"
+                                      rows="2"
+                                      placeholder="Escribe tu comentario..."
+                                      style="resize: none; border-radius: 20px;"
+                                      required></textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" name="accion" value="comentarResena"
+                                                class="btn btn-success btn-sm rounded-pill px-3 shadow">
+                                            <i class="bi bi-send-fill me-1"></i> Publicar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Comentarios existentes -->
+                        <div class="row collapse mt-3 bg-light p-3 rounded"
+                             th:id="'comentarios-' + ${resena.idResena()}">
+                            <h6 class="mb-3"><i class="bi bi-chat-left-text me-2"></i>Comentarios:</h6>
+
+                            <div th:each="comentario : ${resena.comentariosResena()}"
+                                 class="mb-3 p-2 bg-white rounded">
+                                <div class="d-flex align-items-center mb-1">
+                                    <a th:href="@{/perfil/{id}(id=${comentario.usuario().idUsuario()})}"
+                                       class="fw-bold me-2"
+                                       th:text="'@' + ${comentario.usuario().nombreUsuario()}"></a>
+                                    <small class="text-muted"
+                                           th:text="${#temporals.format(comentario.fecha(), 'dd/MM/yyyy HH:mm')}"></small>
+                                </div>
+                                <p class="mb-1" th:text="${comentario.contenido()}"></p>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-danger py-0 px-2 me-1">
+                                        <i class="bi bi-flag"></i> Abuso
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger py-0 px-2">
+                                        <i class="bi bi-exclamation-triangle"></i> Spoiler
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row collapse mt-3 ms-4 me-2 pt-3 comentarios" th:each="comentario : ${resena.comentariosResena()}" th:id="'comentarios-' + ${iterStat.index}">
-                        <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
-                                class="bi bi-person me-2"></i>@MrReseñador
+
+                    <!-- Mensaje cuando no hay reseñas -->
+                    <div class="alert alert-info" th:if="${fichaObjeto.resenas.totalElements == 0}">
+                        <i class="bi bi-info-circle"></i> Aún no hay reseñas para este contenido.
+                        ¡Sé el primero en opinar!
+                    </div>
+
+                    <!-- PAGINACIÓN - Solo mostrar si hay más de una página -->
+                    <div class="row justify-content-center mt-4" th:if="${fichaObjeto.resenas.totalPages > 1}">
+                        <nav>
+                            <ul class="pagination">
+                                <!-- Primera página -->
+                                <li class="page-item" th:classappend="${fichaObjeto.resenas.first} ? 'disabled' : ''">
+                                    <a class="page-link"
+                                       th:href="@{/ficha-objeto/{id}(id=${fichaObjeto.idObjeto}, page=0)}">
+                                        <i class="bi bi-chevron-bar-left"></i>
+                                    </a>
+                                </li>
+
+                                <!-- Página anterior -->
+                                <li class="page-item" th:classappend="${fichaObjeto.resenas.first} ? 'disabled' : ''">
+                                    <a class="page-link"
+                                       th:href="@{${'/ficha-objeto/' + fichaObjeto.idObjeto} + '?page=' + ${fichaObjeto.resenas.number - 1}}">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </a>
+                                </li>
+
+                                <!-- Páginas cercanas a la actual -->
+                                <li th:each="i : ${#numbers.sequence(
+                        T(java.lang.Math).max(0, fichaObjeto.resenas.number - 2),
+                        T(java.lang.Math).min(fichaObjeto.resenas.totalPages - 1, fichaObjeto.resenas.number + 2)
+                    )}"
+                                    class="page-item"
+                                    th:classappend="${i == fichaObjeto.resenas.number} ? 'active' : ''">
+                                    <a class="page-link"
+                                       th:href="@{${'/ficha-objeto/' + fichaObjeto.idObjeto} + '?page=' + ${i}}"
+                                       th:text="${i + 1}"></a>
+                                </li>
+
+                                <!-- Página siguiente -->
+                                <li class="page-item" th:classappend="${fichaObjeto.resenas.last} ? 'disabled' : ''">
+                                    <a class="page-link"
+                                       th:href="@{${'/ficha-objeto/' + fichaObjeto.idObjeto} + '?page=' + ${fichaObjeto.resenas.number + 1}}">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </li>
+
+                                <!-- Última página -->
+                                <li class="page-item" th:classappend="${fichaObjeto.resenas.last} ? 'disabled' : ''">
+                                    <a class="page-link"
+                                       th:href="@{${'/ficha-objeto/' + fichaObjeto.idObjeto} + '?page=' + ${fichaObjeto.resenas.totalPages - 1}}">
+                                        <i class="bi bi-chevron-bar-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!-- Información de paginación -->
+                        <div class="text-center mt-2 text-muted small">
+                            Mostrando <span th:text="${fichaObjeto.resenas.numberOfElements}"></span> de
+                            <span th:text="${fichaObjeto.resenas.totalElements}"></span> reseñas -
+                            Página <span th:text="${fichaObjeto.resenas.number + 1}"></span> de
+                            <span th:text="${fichaObjeto.resenas.totalPages}"></span>
                         </div>
-                        <div class="etiqueta px-2 mb-2 w-auto me-3 bg-danger text-white">Notificar abuso</div>
-                        <div class="etiqueta px-2 mb-2 w-auto bg-danger text-white">Notificar spoiler</div>
-                        <div class="w-auto">
-                            <p th:text="${#temporals.format(comentario.fecha(), 'dd-MM-yyyy HH:mm')}"></p>
-                        </div>
-                        <p th:text="${comentario.contenido()}"></p>
                     </div>
                 </div>
-             </div>
-        </section>
+            </section>
     </div>
 
     <!-- Parte de JavaScript para el modal -->

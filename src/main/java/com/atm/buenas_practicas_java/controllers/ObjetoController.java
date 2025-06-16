@@ -9,6 +9,8 @@ import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.services.*;
 import com.atm.buenas_practicas_java.services.facade.FichaObjetoFacade;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -30,9 +32,9 @@ public class ObjetoController {
     }
 
     @GetMapping("/ficha-objeto/{idObjeto}")
-    public String mostrarFichaObjeto(Model model, @PathVariable Long idObjeto, Principal principal) {
+    public String mostrarFichaObjeto(Model model, @PathVariable Long idObjeto, Principal principal, @PageableDefault(size = 5) Pageable pageable) {
         String nombreUsuario = (principal != null) ? principal.getName() : null;
-        model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(idObjeto, nombreUsuario));
+        model.addAttribute("fichaObjeto", fichaObjetoFacade.construirFichaObjeto(idObjeto, nombreUsuario, pageable));
 
         // Para postmapping de crear reseña
         model.addAttribute("nuevaResena", new ResenaCrearDTO("", "", 0.0, false));
