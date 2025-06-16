@@ -442,7 +442,7 @@
                     <!-- PAGINACIÓN - Solo mostrar si hay más de una página -->
                     <div class="row justify-content-center mt-4" th:if="${fichaObjeto.resenas.totalPages > 1}">
                         <nav>
-                            <ul class="pagination">
+                            <ul class="pagination justify-content-center">
                                 <!-- Primera página -->
                                 <li class="page-item" th:classappend="${fichaObjeto.resenas.first} ? 'disabled' : ''">
                                     <a class="page-link"
