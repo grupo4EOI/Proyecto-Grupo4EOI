@@ -69,7 +69,7 @@
     </div>
     </div>
     <!--Temas-->
-    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mb-1" th:each="publicacion : ${publicaciones}">
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mb-1" th:each="publicacion : ${publicaciones.content}">
       <div class="d-flex justify-content-between align-items-center">
       <div class="border-right border-dark me-3">
         <i class="bi bi-envelope-fill fs-4 icono-mensaje"></i>
@@ -83,6 +83,64 @@
           <h6 class="ms-2 mb-0" th:text="${publicacion.numComentarios()}">XXX</h6>
       </div>
     </div>
+    </div>
+    <!-- PAGINACIÓN - Solo mostrar si hay más de una página -->
+    <div class="row justify-content-center mt-4 ms-4" th:if="${publicaciones.totalPages > 1}">
+        <nav>
+            <ul class="pagination">
+                <!-- Primera página -->
+                <li class="page-item" th:classappend="${publicaciones.first} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{/comunidades/{id}(id=${comunidad.idComunidad()}, page=0)}">
+                        <i class="bi bi-chevron-bar-left"></i>
+                    </a>
+                </li>
+
+                <!-- Página anterior -->
+                <li class="page-item" th:classappend="${publicaciones.first} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{${'/comunidades/' + comunidad.idComunidad()} + '/temas' + '?page=' + ${publicaciones.number - 1}}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Páginas cercanas a la actual -->
+                <li th:each="i : ${#numbers.sequence(
+                                        T(java.lang.Math).max(0, publicaciones.number - 2),
+                                        T(java.lang.Math).min(publicaciones.totalPages - 1, publicaciones.number + 2)
+                                    )}"
+                    class="page-item"
+                    th:classappend="${i == publicaciones.number} ? 'active' : ''">
+                    <a class="page-link"
+                       th:href="@{${'/comunidades/' + comunidad.idComunidad()} + '/temas' +  '?page=' + ${i}}"
+                       th:text="${i + 1}"></a>
+                </li>
+
+                <!-- Página siguiente -->
+                <li class="page-item" th:classappend="${publicaciones.last} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{${'/comunidades/' + comunidad.idComunidad()} + '/temas' +  '?page=' + ${publicaciones.number + 1}}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+
+                <!-- Última página -->
+                <li class="page-item" th:classappend="${publicaciones.last} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{${'/comunidad/' + comunidad.idComunidad()} + '/temas' +  '?page=' + ${publicaciones.totalPages - 1}}">
+                        <i class="bi bi-chevron-bar-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Información de paginación -->
+        <div class="text-center mt-2 text-muted small">
+            Mostrando <span th:text="${publicaciones.numberOfElements}"></span> de
+            <span th:text="${publicaciones.totalElements}"></span> temas -
+            Página <span th:text="${publicaciones.number + 1}"></span> de
+            <span th:text="${publicaciones.totalPages}"></span>
+        </div>
     </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
