@@ -118,6 +118,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/registro").permitAll()
                         .requestMatchers(HttpMethod.POST, "/iniciar-sesion").permitAll()
                         .requestMatchers(HttpMethod.GET, "/iniciar-sesion").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Solo ADMIN puede acceder a /admin
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
