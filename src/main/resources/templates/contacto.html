@@ -78,20 +78,21 @@
     </div>
     <script>
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const form = document.getElementById("contactForm");
+            const mensajeExito = document.getElementById("mensajeExito");
 
             if (!form) {
                 console.error("Formulario no encontrado");
                 return;
             }
 
-            form.addEventListener("submit", async function(event) {
-                event.preventDefault();
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault(); // Evita el envío tradicional
                 const btn = form.querySelector("button[type='submit']");
+                btn.disabled = true; // Desactiva botón para evitar envíos dobles
 
                 try {
-                    btn.disabled = true;
                     const response = await fetch(form.action, {
                         method: "POST",
                         headers: {
@@ -100,23 +101,21 @@
                         body: new URLSearchParams(new FormData(form))
                     });
 
-                    if (!response.ok) {
-                        throw new Error(`Error HTTP: ${response.status}`);
+                    if (response.ok) {
+                        // Mostrar mensaje de éxito
+                        mensajeExito.style.display = "block";
+                        form.reset(); // Limpia el formulario
+                    } else {
+                        console.error("Error en la respuesta del servidor:", response.status);
+                        // Aquí puedes manejar errores, pero sin alertas si no quieres
                     }
-
-                    // Éxito: mostrar mensaje al usuario
-                    document.getElementById("mensajeExito").style.display = "block";
-                    form.reset();
-
                 } catch (error) {
                     console.error("Error al enviar el formulario:", error);
-                    alert("Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.");
                 } finally {
-                    btn.disabled = false;
+                    btn.disabled = false; // Habilita el botón de nuevo
                 }
             });
         });
-
 
     </script>
 </div>
