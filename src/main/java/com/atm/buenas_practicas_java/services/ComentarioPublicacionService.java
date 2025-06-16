@@ -41,31 +41,6 @@ public class ComentarioPublicacionService {
         this.comPubSimpleMapper = comentarioPublicacionSimpleMapper;
     }
 
-    /** Devuelve una lista de los primeros comentarios de cada publicación pertenecientes a la comunidad del objeto */
-    @Transactional
-    public List<ComentarioPublicacionDTO> getPrimerosComentariosObjeto(Long idObjeto) {
-        return objetoRepository.findById(idObjeto)
-                .map(objeto -> {
-                    Comunidad comunidad = objeto.getComunidad();
-                    return publicacionRepository.getPublicacionsByComunidad(comunidad)
-                            .stream()
-                            .map(publicacion -> {
-                                ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();
-                                ComentarioPublicacionDTO dto = comentarioPublicacionMapper.toDto(comentario);
-
-                                return new ComentarioPublicacionDTO(
-                                        dto.idComentarioPublicacion(),
-                                        publicacion.getTitulo(),
-                                        dto.contenido(),
-                                        dto.baneado(),
-                                        dto.usuario(),
-                                        dto.fecha()
-                                );
-                            })
-                            .toList();
-                }).orElseThrow(() -> new RuntimeException("No se encontró el objeto"));
-    }
-
     @Transactional
     public List<ComentarioPublicacionSimpleDTO> getComentarioPublicacionByPublicacionId(Long publicacionId){
         List<ComentarioPublicacionSimpleDTO> comPubSimpleDTO = comPubSimpleMapper.toDto(comentarioPublicacionRepository.findComentarioPublicacionsByPublicacion_IdPublicacionOrderByIdComentarioPublicacion(publicacionId));

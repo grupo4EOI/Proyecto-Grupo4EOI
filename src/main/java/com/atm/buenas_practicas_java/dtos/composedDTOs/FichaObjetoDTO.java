@@ -17,7 +17,6 @@ public record FichaObjetoDTO(
         String tipo,
         List<String> generos,
         List<ResenaDTO> resenas,
-        List<ComentarioPublicacionDTO> publicaciones,
         String puntuacion,
         Integer numeroResenas,
         List<PersonaDTO> directores,
