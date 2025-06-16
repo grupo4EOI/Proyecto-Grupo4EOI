@@ -125,8 +125,13 @@ public class FichaObjetoFacade {
 
     // Metodo para postmapping de like reseña
     @Transactional
-    public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
-        reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
+    public Boolean marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
+        return reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
+    }
+
+    @Transactional
+    public Long obtenerNumeroLikesResena(Long idResena) {
+        return reaccionService.contarLikesResena(idResena);
     }
 
     // Metodo para putMapping de reportar reseña

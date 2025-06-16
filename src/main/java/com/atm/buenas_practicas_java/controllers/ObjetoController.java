@@ -11,6 +11,8 @@ import com.atm.buenas_practicas_java.services.*;
 import com.atm.buenas_practicas_java.services.facade.FichaObjetoFacade;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -76,6 +80,27 @@ public class ObjetoController {
         }
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
+
+    @PostMapping("/ficha-objeto/like-resena/{idResena}")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> toggleLikeResena(@PathVariable Long idResena, Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        boolean liked = fichaObjetoFacade.marcarQuitarLikeResena(idResena, principal.getName());
+        Long likeCount = fichaObjetoFacade.obtenerNumeroLikesResena(idResena);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("liked", liked);
+        response.put("likeCount", likeCount);
+
+        return ResponseEntity.ok(response);
+    }
+
+
+
+
 
     @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarResena")
     public String reportarResena(@PathVariable Long idObjeto, @RequestParam("idResena") Long idResena) {
