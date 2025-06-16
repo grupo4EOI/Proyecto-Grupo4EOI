@@ -38,7 +38,7 @@ public class ComunidadesController {
 
     @GetMapping("/{id}/temas")
     public String mostrarTemas(Model model, @PathVariable Long id) {
-        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(id);
         List<PublicacionDTO> publicaciones = comunidadServiceFacade.buscarPublicacionesPorComunidad(id);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("publicaciones", publicaciones);
@@ -47,7 +47,7 @@ public class ComunidadesController {
 
     @GetMapping("/{idcom}/temas/{id}")
     public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @RequestParam(value = "citar", required = false) Long comentarioCitadoId) {
-        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(idcom);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(idcom);
         List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
@@ -57,7 +57,7 @@ public class ComunidadesController {
 
     @GetMapping("/{id}/temas/nuevo-tema")
     public String mostrarNuevoTema(Model model, @PathVariable Long id) {
-        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(id);
         model.addAttribute("nuevoTema", new PublicacionCrearDTO(null, "", ""));
         model.addAttribute("comunidad", comunidad);
         return "nuevo-tema";

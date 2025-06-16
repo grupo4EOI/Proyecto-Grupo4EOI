@@ -22,6 +22,7 @@ import java.util.List;
 public class ComunidadServiceFacade {
     private final ComentarioPublicacionService comentarioPublicacionService;
     private final ComentarioPublicacionCrearMapper comentarioPublicacionCrearMapper;
+    private final ComunidadSimpleMapper comunidadSimpleMapper;
     private ComunidadService comunidadService;
     private PublicacionService publicacionService;
     private ComentarioPublicacionService comPubService;
@@ -35,7 +36,7 @@ public class ComunidadServiceFacade {
                                   UsuarioService usuarioService,
                                   PublicacionCrearMapper publicacionCrearMapper,
                                   ComentarioPublicacionService comentarioPublicacionService,
-                                  ComentarioPublicacionCrearMapper comentarioPublicacionCrearMapper) {
+                                  ComentarioPublicacionCrearMapper comentarioPublicacionCrearMapper, ComunidadSimpleMapper comunidadSimpleMapper) {
         this.comunidadService = comunidadService;
         this.publicacionService = publicacionService;
         this.comPubService = comPubService;
@@ -43,10 +44,16 @@ public class ComunidadServiceFacade {
         this.publicacionCrearMapper = publicacionCrearMapper;
         this.comentarioPublicacionService = comentarioPublicacionService;
         this.comentarioPublicacionCrearMapper = comentarioPublicacionCrearMapper;
+        this.comunidadSimpleMapper = comunidadSimpleMapper;
     }
 
-    public List<ComunidadDTO> buscarComunidades() {return comunidadService.buscarComunidades();}
-    public ComunidadSimpleDTO findByID(Long id) { return comunidadService.findByID(id);}
+    public ComunidadSimpleDTO findById(Long idComunidad) {
+        return comunidadSimpleMapper.toDTO(comunidadService.findById(idComunidad));
+    }
+
+    public List<ComunidadDTO> buscarComunidades() {
+        return comunidadService.buscarComunidades();
+    }
 
     public List<PublicacionDTO> buscarPublicacionesPorComunidad(Long idComunidad) {
         return publicacionService.buscarPublicacionesPorComunidad(idComunidad);
@@ -82,8 +89,6 @@ public class ComunidadServiceFacade {
         comunidadService.save(comunidad);
         Publicacion publicacionGuardada = publicacionService.save(publicacion);
         comentarioPublicacionService.save(comentarioPublicacion);
-
-
 
         return publicacionCrearMapper.toDto(publicacionGuardada);
     }

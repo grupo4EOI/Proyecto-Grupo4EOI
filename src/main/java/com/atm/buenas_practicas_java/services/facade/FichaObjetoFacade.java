@@ -24,7 +24,6 @@ public class FichaObjetoFacade {
     private final ObjetoService objetoService;
     private final PersonaService personaService;
     private final UsuarioService usuarioService;
-    private final ObjetoUsuarioService objetoUsuarioService;
     private final ResenaService resenaService;
     private final ComentarioResenaService comentarioResenaService;
     private final ComentarioPublicacionService comentarioPublicacionService;
@@ -32,8 +31,6 @@ public class FichaObjetoFacade {
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
     private final ComentarioResenaMapper comentarioResenaMapper;
-
-
 
 
 
@@ -46,7 +43,6 @@ public class FichaObjetoFacade {
 
         DecimalFormat df = new DecimalFormat("#.##");
 
-        List<ComentarioPublicacionDTO> primerasPublicaciones = comentarioPublicacionService.getPrimerosComentariosObjeto(idObjeto);
         String puntuacion = df.format(objetoService.calcularPuntuacionObjeto(idObjeto));
         Integer numeroResenas = objetoService.calcularNumeroResenas(idObjeto);
         List<PersonaDTO> directores = personaService.getDirectoresByObjetoId(idObjeto);
@@ -63,7 +59,6 @@ public class FichaObjetoFacade {
                 dto.tipo(),
                 dto.generos(),
                 resenas,
-                primerasPublicaciones,
                 puntuacion,
                 numeroResenas,
                 directores,
