@@ -30,7 +30,7 @@ public class ComentarioResena {
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Boolean abuso = false;
-
+    private Boolean spoiler = false;
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario")

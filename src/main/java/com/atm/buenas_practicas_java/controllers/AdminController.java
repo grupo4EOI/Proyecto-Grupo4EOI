@@ -1,6 +1,9 @@
 package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.services.facade.AdminServiceFacade;
+import com.atm.buenas_practicas_java.utils.PaginacionUtils;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,27 +28,27 @@ public class AdminController {
     }
 
     @GetMapping("/resenas")
-    public String revisarResenas(Model model, Principal principal) {
+    public String revisarResenas(Model model, Principal principal, @PageableDefault(size = 8) Pageable pageable) {
         String nombreUsuario = (principal != null) ? principal.getName() : null;
         model.addAttribute("currentPage", "resenas");
         model.addAttribute("estadisticas", adminService.crearPanelAdmin());
-        model.addAttribute("resenasAdmin", adminService.obtenerResenasConAbuso(nombreUsuario));
+        model.addAttribute("resenasAdmin", PaginacionUtils.listToPage(adminService.obtenerResenasConAbuso(nombreUsuario), pageable));
         return "/admin-panel/resenas";
     }
 
     @GetMapping("/comentariosresenas")
-    public String revisarComentariosResenas(Model model) {
+    public String revisarComentariosResenas(Model model, @PageableDefault(size = 8) Pageable pageable) {
         model.addAttribute("currentPage", "comentariosresenas");
         model.addAttribute("estadisticas", adminService.crearPanelAdmin());
-        model.addAttribute("comentariosResenasAdmin", adminService.obtenerComentariosResenasConAbuso());
+        model.addAttribute("comentariosResenasAdmin", PaginacionUtils.listToPage(adminService.obtenerComentariosResenasConAbuso(), pageable));
         return "/admin-panel/comentariosresenas";
     }
 
     @GetMapping("/comentariospublicaciones")
-    public String revisarComentariosPublicaciones(Model model) {
+    public String revisarComentariosPublicaciones(Model model, @PageableDefault(size = 8) Pageable pageable) {
         model.addAttribute("currentPage", "comentariospublicaciones");
         model.addAttribute("estadisticas", adminService.crearPanelAdmin());
-        model.addAttribute("comentariosPublicacionesAdmin", adminService.obtenerComentariosPublicacionesConAbuso());
+        model.addAttribute("comentariosPublicacionesAdmin", PaginacionUtils.listToPage(adminService.obtenerComentariosPublicacionesConAbuso(), pageable));
         return "/admin-panel/comentariospublicaciones";
     }
     /**

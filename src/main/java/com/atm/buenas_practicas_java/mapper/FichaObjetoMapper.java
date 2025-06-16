@@ -22,6 +22,7 @@ public interface FichaObjetoMapper {
     @Mapping(target = "generos", source = "generos")
     @Mapping(target = "puntuacion", ignore = true)
     @Mapping(target = "numeroResenas", ignore = true)
+    @Mapping(target = "resenas", ignore = true)
     @Mapping(target = "directores", ignore = true)
     @Mapping(target = "actores", ignore = true)
     FichaObjetoDTO toDto(Objeto objeto);

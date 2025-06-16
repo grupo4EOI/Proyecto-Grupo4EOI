@@ -135,7 +135,7 @@ body {
 }
 
 /* Estilo para las reseñas */
-#review, #publicacion, .comentarios {
+#review, .comentarios {
     border: 2px solid black;
     border-radius: 8px;
 }
@@ -202,3 +202,76 @@ body {
     /*margin: 1rem 0; !* Espaciado vertical *!*/
 }
 
+/* Contenedor de comentarios */
+.comentarios {
+    /* ya tenías bg-light, p-3, rounded en el contenedor; aquí podemos ajustar si hace falta */
+}
+
+/* Cada comentario individual */
+.comentario-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
+    /* padding ya dado con p-3 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.comentario-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Encabezado del comentario: nombre y fecha */
+.comentario-header a {
+    color: #333;
+    text-decoration: none;
+}
+.comentario-header a:hover {
+    text-decoration: underline;
+}
+.comentario-header small {
+    font-size: 0.85rem;
+}
+
+/* Texto del comentario */
+.comentario-contenido {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+/* Botones de reporte dentro de comentarios */
+.comentario-actions {
+    margin-top: 0.5rem;
+}
+.comentario-btn {
+    border-radius: 20px;
+    padding: 4px 10px;
+    background-color: #F9C784;
+    color: black;
+    border: 2px solid black;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+.comentario-btn i {
+    font-size: 1rem;
+}
+.comentario-btn:hover {
+    background-color: #FF8C42;
+    color: black !important;
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+
+/* Ajuste responsivo: en pantallas muy pequeñas puede reducir padding/márgenes si hace falta */
+@media (max-width: 576px) {
+    .comentario-card {
+        padding: 0.75rem;
+    }
+    .comentario-btn {
+        padding: 3px 8px;
+        font-size: 0.8rem;
+    }
+}
