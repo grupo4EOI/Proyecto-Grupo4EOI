@@ -461,9 +461,9 @@
 
                                 <!-- Páginas cercanas a la actual -->
                                 <li th:each="i : ${#numbers.sequence(
-                        T(java.lang.Math).max(0, fichaObjeto.resenas.number - 2),
-                        T(java.lang.Math).min(fichaObjeto.resenas.totalPages - 1, fichaObjeto.resenas.number + 2)
-                    )}"
+                                        T(java.lang.Math).max(0, fichaObjeto.resenas.number - 2),
+                                        T(java.lang.Math).min(fichaObjeto.resenas.totalPages - 1, fichaObjeto.resenas.number + 2)
+                                    )}"
                                     class="page-item"
                                     th:classappend="${i == fichaObjeto.resenas.number} ? 'active' : ''">
                                     <a class="page-link"
