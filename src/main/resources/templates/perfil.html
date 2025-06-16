@@ -91,7 +91,35 @@
                 </div>
             </div>
 
+
+            <!-- Botón añadir amigo -->
             <div class="col-12 col-md-3">
+                <div th:if="${#authentication.name != perfil.nombreUsuario}">
+
+                    <!-- Si ya son amigos -->
+                    <div th:if="${perfil.esAmigo}" class="d-flex flex-column align-items-center gap-2">
+                    <span class="text-success d-flex align-items-center gap-1">
+                      <i class="bi bi-person-check-fill"></i> ¡Sois amigos!
+                    </span>
+
+                        <form method="post" th:action="@{/perfil/{id}/eliminar-amigo(id=${perfil.idUsuario})}">
+                            <button class="btn btn-danger rounded" type="submit">
+                                <i class="bi bi-person-dash-fill"></i> Eliminar amigo
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Si no son amigos -->
+                    <form th:if="${!perfil.esAmigo}" method="post"
+                          th:action="@{/perfil/{id}/agregar-amigo(id=${perfil.idUsuario})}"
+                          class="d-flex justify-content-center">
+                        <button class="btn btn-agregar-amigo rounded" type="submit">
+                            <i class="bi bi-person-plus-fill"></i> Agregar amigo
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contadores -->
                 <div class="contenedor-datos-ficha-perfil mx-auto rounded p-3 shadow text-center d-flex flex-column justify-content-center align-items-center">
                     <ul class="list-unstyled fs-5">
                         <li class="mb-3">
@@ -119,9 +147,8 @@
             </div>
         </div>
 
-        <!-- Contenedor principal + lista de amigos unificados -->
+        <!-- Contenedor principal + lista de amigos -->
         <div class="row align-items-start gx-4">
-            <!-- Contenido principal (Reseñas, publicaciones, me gusta) -->
             <div class="col-lg-9 col-md-8 col-12 mb-4">
                 <div class="bg-light rounded shadow-sm p-3 h-100">
                     <ul class="nav nav-tabs" id="tab-contenido-principal" role="tablist">
@@ -140,7 +167,7 @@
                         <!-- Reseñas -->
                         <div class="tab-pane fade show active" id="tab-resenas" role="tabpanel">
                             <div id="resenas-container">
-                                <p th:if="${#lists.isEmpty(perfil.resenas)}">No hay reseñas aún.</p>
+                                <p th:if="${#lists.isEmpty(perfil.resenas)}">No hay reseñas.</p>
                                 <div th:each="resena : ${perfil.resenas}" class="mb-3 p-3 resena">
                                     <div><strong>Puntuación:</strong> <span th:text="${resena.puntuacion} + ' / 5'">0 / 5</span></div>
                                     <div class="mt-2"><strong>Título:</strong> <span th:text="${resena.titulo}">Título</span></div>
@@ -166,9 +193,11 @@
                         <!-- Me gusta -->
                         <div class="tab-pane fade" id="tab-megusta" role="tabpanel">
                             <div id="megusta-container">
-                                <p th:if="${#lists.isEmpty(meGusta)}">No hay me gusta.</p>
-                                <div th:each="item : ${meGusta}">
-                                    <!-- Contenido de "me gusta" aquí si aplica -->
+                                <p th:if="${#lists.isEmpty(perfil.likesResenas)}">No hay me gusta.</p>
+                                <div th:each="resena : ${perfil.likesResenas}" class="mb-3 p-3 resena">
+                                    <div><strong>Puntuación:</strong> <span th:text="${resena.puntuacion} + ' / 5'">0 / 5</span></div>
+                                    <div class="mt-2"><strong>Título:</strong> <span th:text="${resena.titulo}">Título</span></div>
+                                    <div class="mt-2"><strong>Contenido:</strong> <span th:text="${resena.contenido}">Contenido</span></div>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +205,7 @@
                 </div>
             </div>
 
-            <!-- Lista de amigos (columna derecha) -->
+            <!-- Lista de amigos -->
             <div class="col-lg-3 col-md-4 col-12">
                 <div class="lista-de-amigos p-3 bg-white rounded shadow-sm sticky-top">
                     <h5 class="fs-4 text-center">Lista de amigos</h5>

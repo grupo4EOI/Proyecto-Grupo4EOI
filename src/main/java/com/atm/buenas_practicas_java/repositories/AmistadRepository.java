@@ -9,5 +9,5 @@ import java.util.Optional;
 
 
 public interface AmistadRepository extends JpaRepository<Amistad, Long> {
-
+    Optional<Amistad> findByUsuarioAndAmigo(Usuario usuario, Usuario amigo);
 }
