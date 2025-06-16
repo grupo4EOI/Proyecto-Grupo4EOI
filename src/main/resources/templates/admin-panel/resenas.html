@@ -15,7 +15,7 @@
     <div class="mb-2" th:replace="~{/fragments/tabs-fragment :: adminTabs(${currentPage}, ${estadisticas})}"></div>
 
     <h3 class="align-self-start">Reseñas a revisar</h3>
-    <div class="resenas-container col-12 mb-3" th:each="resena : ${resenasAdmin}">
+    <div class="resenas-container col-12 mb-3" th:each="resena : ${resenasAdmin.content}">
         <div class="row mx-3 my-3 gx-0">
             <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${resena.autor().nombreUsuario()}"><i
                     class="bi bi-person me-2"></i>
@@ -53,6 +53,68 @@
             </form>
         </div>
     </div>
+        <div class="alert alert-info" th:if="${resenasAdmin.totalElements == 0}">
+            No hay reseñas reportadas en este momento.
+        </div>
+
+        <!-- Paginación -->
+        <div class="row justify-content-center mt-4" th:if="${resenasAdmin.totalPages > 1}">
+            <nav>
+                <ul class="pagination">
+                    <!-- Primera página -->
+                    <li class="page-item" th:classappend="${resenasAdmin.first} ? 'disabled' : ''">
+                        <a class="page-link"
+                           th:href="@{/admin/resenas(page=0)}">
+                            <i class="bi bi-chevron-bar-left"></i>
+                        </a>
+                    </li>
+
+                    <!-- Página anterior -->
+                    <li class="page-item" th:classappend="${resenasAdmin.first} ? 'disabled' : ''">
+                        <a class="page-link"
+                           th:href="@{/admin/resenas(page=${resenasAdmin.number - 1})}">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    <!-- Páginas cercanas a la actual -->
+                    <li th:each="i : ${#numbers.sequence(
+                                        T(java.lang.Math).max(0, resenasAdmin.number - 2),
+                                        T(java.lang.Math).min(resenasAdmin.totalPages - 1, resenasAdmin.number + 2)
+                                    )}"
+                        class="page-item"
+                        th:classappend="${i == resenasAdmin.number} ? 'active' : ''">
+                        <a class="page-link"
+                           th:href="@{/admin/resenas(page=${i})}"
+                           th:text="${i + 1}"></a>
+                    </li>
+
+                    <!-- Página siguiente -->
+                    <li class="page-item" th:classappend="${resenasAdmin.last} ? 'disabled' : ''">
+                        <a class="page-link"
+                           th:href="@{/admin/resenas(page=${resenasAdmin.number + 1})}">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+
+                    <!-- Última página -->
+                    <li class="page-item" th:classappend="${resenasAdmin.last} ? 'disabled' : ''">
+                        <a class="page-link"
+                           th:href="@{/admin/resenas(page=${resenasAdmin.totalPages - 1})}">
+                            <i class="bi bi-chevron-bar-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Información de paginación -->
+            <div class="text-center mt-2 text-muted small">
+                Mostrando <span th:text="${resenasAdmin.numberOfElements}"></span> de
+                <span th:text="${resenasAdmin.totalElements}"></span> reseñas -
+                Página <span th:text="${resenasAdmin.number + 1}"></span> de
+                <span th:text="${resenasAdmin.totalPages}"></span>
+            </div>
+        </div>
     </div>
 </div>
 

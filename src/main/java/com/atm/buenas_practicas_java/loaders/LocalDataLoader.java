@@ -1015,13 +1015,40 @@ public class LocalDataLoader {
         Resena resena3 = new Resena();
         resena3.setTitulo("Ha estado muy bien.");
         resena3.setContenido("Muy disfrutable, me ha encantado. Sobretodo la escena donde el personaje principal consigue encontrar...");
-        resena3.setPuntuacion(9.0);
+        resena3.setPuntuacion(4.0);
         resena3.setSpoiler(true);
+        resena3.setAbuso(true);
         resena3.setUsuario(usuario1);
         resena3.setObjeto(objeto);
 
+        Resena resena4 = new Resena();
+        resena4.setTitulo("Hdsdsaddsadssd");
+        resena4.setContenido("Muy adsdasadsdasdasadsdasasd");
+        resena4.setPuntuacion(4.0);
+        resena4.setAbuso(true);
+        resena4.setSpoiler(true);
+        resena4.setUsuario(usuario1);
+        resena4.setObjeto(objeto);
 
-        resenaRepository.saveAll(Arrays.asList(resena1, resena2, resena3));
+        Resena resena5 = new Resena();
+        resena5.setTitulo("Hdsdsaddsadssd");
+        resena5.setContenido("Muy adsdasadsdasdasadsdasasd");
+        resena5.setPuntuacion(4.0);
+        resena5.setSpoiler(true);
+        resena5.setAbuso(true);
+        resena5.setUsuario(usuario1);
+        resena5.setObjeto(objeto);
+
+        Resena resena6 = new Resena();
+        resena6.setTitulo("Hdsdsaddsadssd");
+        resena6.setContenido("Muy adsdasadsdasdasadsdasasd");
+        resena6.setPuntuacion(4.0);
+        resena6.setAbuso(true);
+        resena6.setSpoiler(true);
+        resena6.setUsuario(usuario1);
+        resena6.setObjeto(objeto);
+
+        resenaRepository.saveAll(Arrays.asList(resena1, resena2, resena3, resena4, resena5, resena6));
 
         comentarioResenaRepository.saveAll(Arrays.asList(comentarioResena1, comentarioResena2));
 

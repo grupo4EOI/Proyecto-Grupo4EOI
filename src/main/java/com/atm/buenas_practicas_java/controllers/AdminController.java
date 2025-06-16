@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @GetMapping("/resenas")
-    public String revisarResenas(Model model, Principal principal, @PageableDefault(size = 8) Pageable pageable) {
+    public String revisarResenas(Model model, Principal principal, @PageableDefault(size = 5) Pageable pageable) {
         String nombreUsuario = (principal != null) ? principal.getName() : null;
         model.addAttribute("currentPage", "resenas");
         model.addAttribute("estadisticas", adminService.crearPanelAdmin());
@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @GetMapping("/comentariosresenas")
-    public String revisarComentariosResenas(Model model, @PageableDefault(size = 8) Pageable pageable) {
+    public String revisarComentariosResenas(Model model, @PageableDefault(size = 5) Pageable pageable) {
         model.addAttribute("currentPage", "comentariosresenas");
         model.addAttribute("estadisticas", adminService.crearPanelAdmin());
         model.addAttribute("comentariosResenasAdmin", PaginacionUtils.listToPage(adminService.obtenerComentariosResenasConAbuso(), pageable));
@@ -45,7 +45,7 @@ public class AdminController {
     }
 
     @GetMapping("/comentariospublicaciones")
-    public String revisarComentariosPublicaciones(Model model, @PageableDefault(size = 8) Pageable pageable) {
+    public String revisarComentariosPublicaciones(Model model, @PageableDefault(size = 5) Pageable pageable) {
         model.addAttribute("currentPage", "comentariospublicaciones");
         model.addAttribute("estadisticas", adminService.crearPanelAdmin());
         model.addAttribute("comentariosPublicacionesAdmin", PaginacionUtils.listToPage(adminService.obtenerComentariosPublicacionesConAbuso(), pageable));
