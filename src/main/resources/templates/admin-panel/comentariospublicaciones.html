@@ -16,7 +16,7 @@
 
     <h2 class="col-12">Comentarios de publicaciones a revisar</h2>
     <hr>
-    <div class="publicaciones-container mb-3 col-12" th:each="publicacion : ${comentariosPublicacionesAdmin}">
+    <div class="publicaciones-container mb-3 col-12" th:each="publicacion : ${comentariosPublicacionesAdmin.content}">
       <div class="row mx-3 my-3 gx-0">
         <div class="etiqueta px-2 mb-2 me-3 w-auto" th:text="'@' + ${publicacion.usuario().nombreUsuario()}">
           <i class="bi bi-person me-2"></i>
@@ -48,6 +48,64 @@
           <input type="hidden" th:name="idComentarioPublicacion" th:value="${publicacion.idComentarioPublicacion}">
           <button class="btn w-100 rounded-pill etiqueta px-3 mb-2 mx-1" type="submit" name="accion" value="aprobarComentarioPublicacion"><i class="bi bi-hand-thumbs-up me-1"></i>Aprobar</button>
         </form>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-4" th:if="${comentariosPublicacionesAdmin.totalPages > 1}">
+      <nav>
+        <ul class="pagination justify-content-center">
+          <!-- Primera página -->
+          <li class="page-item" th:classappend="${comentariosPublicacionesAdmin.first} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariospublicaciones(page=0)}">
+              <i class="bi bi-chevron-bar-left"></i>
+            </a>
+          </li>
+
+          <!-- Página anterior -->
+          <li class="page-item" th:classappend="${comentariosPublicacionesAdmin.first} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariospublicaciones(page=${comentariosPublicacionesAdmin.number - 1})}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+
+          <!-- Páginas cercanas a la actual -->
+          <li th:each="i : ${#numbers.sequence(
+                                        T(java.lang.Math).max(0, comentariosPublicacionesAdmin.number - 2),
+                                        T(java.lang.Math).min(comentariosPublicacionesAdmin.totalPages - 1, comentariosPublicacionesAdmin.number + 2)
+                                    )}"
+              class="page-item"
+              th:classappend="${i == comentariosPublicacionesAdmin.number} ? 'active' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariospublicaciones(page=${i})}"
+               th:text="${i + 1}"></a>
+          </li>
+
+          <!-- Página siguiente -->
+          <li class="page-item" th:classappend="${comentariosPublicacionesAdmin.last} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariospublicaciones(page=${comentariosPublicacionesAdmin.number + 1})}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+
+          <!-- Última página -->
+          <li class="page-item" th:classappend="${comentariosPublicacionesAdmin.last} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariospublicaciones(page=${comentariosPublicacionesAdmin.totalPages - 1})}">
+              <i class="bi bi-chevron-bar-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Información de paginación -->
+      <div class="text-center mt-2 text-muted small">
+        Mostrando <span th:text="${comentariosPublicacionesAdmin.numberOfElements}"></span> de
+        <span th:text="${comentariosPublicacionesAdmin.totalElements}"></span> comentarios de publicaciones -
+        Página <span th:text="${comentariosPublicacionesAdmin.number + 1}"></span> de
+        <span th:text="${comentariosPublicacionesAdmin.totalPages}"></span>
       </div>
     </div>
   </div>

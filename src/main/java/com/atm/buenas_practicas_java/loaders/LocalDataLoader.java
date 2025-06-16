@@ -999,7 +999,36 @@ public class LocalDataLoader {
         comentarioResena2.setAbuso(true);
         comentarioResena2.setFecha(LocalDateTime.now());
 
-        resena1.setComentariosResena(Arrays.asList(comentarioResena1, comentarioResena2));
+        ComentarioResena comentarioResena3 = new ComentarioResena();
+        comentarioResena3.setResena(resena1);
+        comentarioResena3.setUsuario(usuario3);
+        comentarioResena3.setContenido("Me haadsdasdasadsadso con lo tuyo.");
+        comentarioResena3.setAbuso(true);
+        comentarioResena3.setFecha(LocalDateTime.now());
+
+        ComentarioResena comentarioResena4 = new ComentarioResena();
+        comentarioResena4.setResena(resena1);
+        comentarioResena4.setUsuario(usuario10);
+        comentarioResena4.setContenido("Me haadsoweiqwuu0rjqwuhcorwqicqwuoicjqwu0r5tuyo.");
+        comentarioResena4.setAbuso(true);
+        comentarioResena4.setFecha(LocalDateTime.now());
+
+        ComentarioResena comentarioResena5 = new ComentarioResena();
+        comentarioResena5.setResena(resena1);
+        comentarioResena5.setUsuario(usuario9);
+        comentarioResena5.setContenido("Me casdscacdasssssssssssssssssssssssssssssssssssssssssss.");
+        comentarioResena5.setAbuso(true);
+        comentarioResena5.setFecha(LocalDateTime.now());
+
+        ComentarioResena comentarioResena6 = new ComentarioResena();
+        comentarioResena6.setResena(resena1);
+        comentarioResena6.setUsuario(usuario4);
+        comentarioResena6.setContenido("Me haadsdasdasadsadso con lo tuyo.");
+        comentarioResena6.setAbuso(true);
+        comentarioResena6.setFecha(LocalDateTime.now());
+
+        resena1.setComentariosResena(Arrays.asList(comentarioResena1, comentarioResena2, comentarioResena3,
+                comentarioResena4, comentarioResena5, comentarioResena6));
 
         Resena resena2 = new Resena();
         resena2.setTitulo("La mejor película de mi vida");
@@ -1015,13 +1044,40 @@ public class LocalDataLoader {
         Resena resena3 = new Resena();
         resena3.setTitulo("Ha estado muy bien.");
         resena3.setContenido("Muy disfrutable, me ha encantado. Sobretodo la escena donde el personaje principal consigue encontrar...");
-        resena3.setPuntuacion(9.0);
+        resena3.setPuntuacion(4.0);
         resena3.setSpoiler(true);
+        resena3.setAbuso(true);
         resena3.setUsuario(usuario1);
         resena3.setObjeto(objeto);
 
+        Resena resena4 = new Resena();
+        resena4.setTitulo("Hdsdsaddsadssd");
+        resena4.setContenido("Muy adsdasadsdasdasadsdasasd");
+        resena4.setPuntuacion(4.0);
+        resena4.setAbuso(true);
+        resena4.setSpoiler(true);
+        resena4.setUsuario(usuario1);
+        resena4.setObjeto(objeto);
 
-        resenaRepository.saveAll(Arrays.asList(resena1, resena2, resena3));
+        Resena resena5 = new Resena();
+        resena5.setTitulo("Hdsdsaddsadssd");
+        resena5.setContenido("Muy adsdasadsdasdasadsdasasd");
+        resena5.setPuntuacion(4.0);
+        resena5.setSpoiler(true);
+        resena5.setAbuso(true);
+        resena5.setUsuario(usuario1);
+        resena5.setObjeto(objeto);
+
+        Resena resena6 = new Resena();
+        resena6.setTitulo("Hdsdsaddsadssd");
+        resena6.setContenido("Muy adsdasadsdasdasadsdasasd");
+        resena6.setPuntuacion(4.0);
+        resena6.setAbuso(true);
+        resena6.setSpoiler(true);
+        resena6.setUsuario(usuario1);
+        resena6.setObjeto(objeto);
+
+        resenaRepository.saveAll(Arrays.asList(resena1, resena2, resena3, resena4, resena5, resena6));
 
         comentarioResenaRepository.saveAll(Arrays.asList(comentarioResena1, comentarioResena2));
 
@@ -1046,6 +1102,7 @@ public class LocalDataLoader {
         comentarioPublicacion1.setContenido("Pues eso, a parte de ponerme el pijama y tumbarme en la cama para estar preparado para la peli, " +
                 "me recomendais algo más??");
         comentarioPublicacion1.setFecha(LocalDateTime.of(2025, 5, 25, 16, 32, 28));
+        comentarioPublicacion1.setAbuso(true);
 
         ComentarioPublicacion comentarioPublicacion2 = new ComentarioPublicacion();
         comentarioPublicacion2.setPublicacion(publicacion1);
@@ -1088,6 +1145,7 @@ public class LocalDataLoader {
         comentarioPublicacion6.setUsuario(usuario3);
         comentarioPublicacion6.setContenido("Te lo cambio por mi seat ibiza del 97 con 300k Km");
         comentarioPublicacion6.setFecha(LocalDateTime.of(2025, 5, 26, 19, 2, 12));
+        comentarioPublicacion6.setAbuso(true);
 
         publicacion2.setComentariosPublicacion(Arrays.asList(comentarioPublicacion4, comentarioPublicacion5, comentarioPublicacion6));
 
@@ -1110,12 +1168,14 @@ public class LocalDataLoader {
         comentarioPublicacion8.setUsuario(usuario2);
         comentarioPublicacion8.setContenido("Al zanahorio que le den por culo jajajajaja");
         comentarioPublicacion8.setFecha(LocalDateTime.of(2025, 5, 27, 14, 2, 23));
+        comentarioPublicacion8.setAbuso(true);
 
         ComentarioPublicacion comentarioPublicacion9 = new ComentarioPublicacion();
         comentarioPublicacion9.setPublicacion(publicacion3);
         comentarioPublicacion9.setUsuario(usuario2);
         comentarioPublicacion9.setContenido("Pero qué dices?? Sin el no hay peli");
         comentarioPublicacion9.setFecha(LocalDateTime.of(2025, 5, 27, 14, 31, 48));
+        comentarioPublicacion9.setAbuso(true);
 
         publicacion3.setComentariosPublicacion(Arrays.asList(comentarioPublicacion7, comentarioPublicacion8, comentarioPublicacion9));
 

@@ -16,7 +16,7 @@
 
   <h2 class="col-12">Comentarios de reseñas a revisar</h2>
   <hr>
-  <div class="comentarios-resenas-container mb-3" th:each="comentario : ${comentariosResenasAdmin}">
+  <div class="comentarios-resenas-container mb-3" th:each="comentario : ${comentariosResenasAdmin.content}">
     <div class="row my-3 mx-3 gx-0 comentarios" >
       <div class="etiqueta px-2 mb-2 mt-2 ms-2 me-3 w-auto " th:text="'@' + ${comentario.usuario().nombreUsuario()}"><i
               class="bi bi-person me-2"></i>@MrReseñador
@@ -43,6 +43,64 @@
       </form>
     </div>
   </div>
+
+    <div class="row justify-content-center mt-4" th:if="${comentariosResenasAdmin.totalPages > 1}">
+      <nav>
+        <ul class="pagination justify-content-center">
+          <!-- Primera página -->
+          <li class="page-item" th:classappend="${comentariosResenasAdmin.first} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariosresenas(page=0)}">
+              <i class="bi bi-chevron-bar-left"></i>
+            </a>
+          </li>
+
+          <!-- Página anterior -->
+          <li class="page-item" th:classappend="${comentariosResenasAdmin.first} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariosresenas(page=${comentariosResenasAdmin.number - 1})}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+
+          <!-- Páginas cercanas a la actual -->
+          <li th:each="i : ${#numbers.sequence(
+                                        T(java.lang.Math).max(0, comentariosResenasAdmin.number - 2),
+                                        T(java.lang.Math).min(comentariosResenasAdmin.totalPages - 1, comentariosResenasAdmin.number + 2)
+                                    )}"
+              class="page-item"
+              th:classappend="${i == comentariosResenasAdmin.number} ? 'active' : ''">
+            <a class="page-link"
+               th:href="@{/admin/comentariosresenas(page=${i})}"
+               th:text="${i + 1}"></a>
+          </li>
+
+          <!-- Página siguiente -->
+          <li class="page-item" th:classappend="${comentariosResenasAdmin.last} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/resenas(page=${comentariosResenasAdmin.number + 1})}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+
+          <!-- Última página -->
+          <li class="page-item" th:classappend="${comentariosResenasAdmin.last} ? 'disabled' : ''">
+            <a class="page-link"
+               th:href="@{/admin/resenas(page=${comentariosResenasAdmin.totalPages - 1})}">
+              <i class="bi bi-chevron-bar-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Información de paginación -->
+      <div class="text-center mt-2 text-muted small">
+        Mostrando <span th:text="${comentariosResenasAdmin.numberOfElements}"></span> de
+        <span th:text="${comentariosResenasAdmin.totalElements}"></span> comentarios de reseñas -
+        Página <span th:text="${comentariosResenasAdmin.number + 1}"></span> de
+        <span th:text="${comentariosResenasAdmin.totalPages}"></span>
+      </div>
+    </div>
   </div>
 </div>
 
