@@ -50,7 +50,7 @@ public class ComunidadesController {
     }
 
     @GetMapping("/{idcom}/temas/{id}")
-    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @PageableDefault(size = 5) Pageable pageable) {
+    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @PageableDefault(size = 20) Pageable pageable) {
         ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(idcom);
         Page<ComentarioPublicacionSimpleDTO> comentarios = PaginacionUtils.listToPage(comunidadServiceFacade.buscarComentariosPorPublicacion(id), pageable);
         model.addAttribute("comunidad", comunidad);
