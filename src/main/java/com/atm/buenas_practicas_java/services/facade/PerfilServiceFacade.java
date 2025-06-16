@@ -4,19 +4,20 @@ import com.atm.buenas_practicas_java.dtos.GeneroDTO;
 import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
+import com.atm.buenas_practicas_java.entities.Amistad;
 import com.atm.buenas_practicas_java.entities.Genero;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
+import com.atm.buenas_practicas_java.repositories.AmistadRepository;
 import com.atm.buenas_practicas_java.services.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,12 +33,19 @@ public class PerfilServiceFacade {
     private final ReaccionService reaccionService;
     private final PasswordEncoder encoder;
     private final ObjetoUsuarioService objetoUsuarioService;
+    @Autowired
+    private AmistadRepository amistadRepository;
 
     @Transactional
-    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario) {
+    public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario, Long idAutenticado) {
         Usuario usuario = usuarioService.findById(idUsuario);
 
         Set<Genero> generos = usuario.getGeneros();
+
+        boolean esAmigo = false;
+        if (idAutenticado != null && !idUsuario.equals(idAutenticado)) {
+            esAmigo = usuarioService.sonAmigos(idUsuario, idAutenticado);
+        }
 
         return new UsuarioPerfilDTO(
                 usuario.getIdUsuario(),
@@ -56,7 +64,8 @@ public class PerfilServiceFacade {
                 resenaService.contarResenasUsuario(idUsuario),
                 reaccionService.contarReaccionesUsuario(idUsuario),
                 objetoUsuarioService.contarObjetosVistosUsuario(idUsuario),
-                objetoUsuarioService.contarObjetosPendientesUsuario(idUsuario)
+                objetoUsuarioService.contarObjetosPendientesUsuario(idUsuario),
+                esAmigo
         );
     }
 
@@ -65,6 +74,39 @@ public class PerfilServiceFacade {
         usuario.setBiografia(biografia);
         usuarioService.saveAndFlush(usuario);
     }
+
+    @Transactional
+    public void agregarAmigo(Long idUsuario, Long idAmigo) {
+        if (idUsuario.equals(idAmigo)) return;
+
+        Usuario usuario = usuarioService.findById(idUsuario);
+        Usuario amigo = usuarioService.findById(idAmigo);
+
+        Optional<Amistad> existente = amistadRepository.findByUsuarioAndAmigo(usuario, amigo);
+        if (existente.isPresent()) return;
+
+        Amistad amistad = new Amistad();
+        amistad.setUsuario(usuario);
+        amistad.setAmigo(amigo);
+        amistad.setFecha(new Date());
+        amistad.setEstado(true);
+        amistadRepository.save(amistad);
+    }
+
+    @Transactional
+    public void eliminarAmigo(Long idUsuario, Long idAmigo) {
+        if (idUsuario.equals(idAmigo)) return;
+
+        Usuario usuario = usuarioService.findById(idUsuario);
+        Usuario amigo = usuarioService.findById(idAmigo);
+
+        amistadRepository.findByUsuarioAndAmigo(usuario, amigo)
+                .ifPresent(amistadRepository::delete);
+
+        amistadRepository.findByUsuarioAndAmigo(amigo, usuario)
+                .ifPresent(amistadRepository::delete);
+    }
+
 
     // Ajustes de perfil
     public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario)  {
@@ -121,5 +163,11 @@ public class PerfilServiceFacade {
         }
 
         usuarioService.saveAndFlush(usuario);
+    }
+
+
+    public Long obtenerIdUsuarioPorNombreUsuario(String nombreUsuario) {
+        Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
+        return usuario.getIdUsuario();
     }
 }
