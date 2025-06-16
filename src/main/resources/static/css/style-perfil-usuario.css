@@ -188,6 +188,16 @@ img.rounded-circle {
     font-size: 1.25rem;
 }
 
+#resenas-container,
+#publicaciones-container,
+#megusta-container {
+    min-height: 800px;
+    max-height: 800px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+
 
 /*.contenedores-amigos-insignias{*/
 /*    max-width: 350px;*/
