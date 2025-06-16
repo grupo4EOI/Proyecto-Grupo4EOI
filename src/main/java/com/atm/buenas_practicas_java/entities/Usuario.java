@@ -36,7 +36,8 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private String biografia;
     private LocalDateTime ultimaConexion;
     @Column(nullable = false)
-    private String role;
+    @Builder.Default
+    private String role = "USER"; // Valor por defecto como String
     private Boolean baneado = false;
 
     // Relación 1:N con reseñas
