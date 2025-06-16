@@ -310,7 +310,7 @@
                                     data-bs-trigger="click"
                                     data-bs-placement="left"
                                     title="Atención"
-                                    data-bs-content="Debes iniciar sesión para poder dar like">
+                                    data-bs-content="Debes iniciar sesión para poder dar like, conchudo">
                                 <i class="bi bi-heart"></i> Me gusta
                                 <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span>
                             </button>
@@ -385,27 +385,49 @@
                         </div>
 
                         <!-- Comentarios existentes -->
-                        <div class="row collapse mt-3 bg-light p-3 rounded"
-                             th:id="'comentarios-' + ${resena.idResena()}">
+                        <div class="row collapse mt-3 bg-light p-3 rounded comentarios" th:id="'comentarios-' + ${resena.idResena()}">
                             <h6 class="mb-3"><i class="bi bi-chat-left-text me-2"></i>Comentarios:</h6>
 
-                            <div th:each="comentario : ${resena.comentariosResena()}"
-                                 class="mb-3 p-2 bg-white rounded">
-                                <div class="d-flex align-items-center mb-1">
+                            <div th:each="comentario : ${resena.comentariosResena}"
+                                 class="comentario-card p-3 bg-white rounded">
+                                <!-- Encabezado del comentario -->
+                                <div class="d-flex align-items-center mb-2 comentario-header">
                                     <a th:href="@{/perfil/{id}(id=${comentario.usuario().idUsuario()})}"
                                        class="fw-bold me-2"
                                        th:text="'@' + ${comentario.usuario().nombreUsuario()}"></a>
                                     <small class="text-muted"
                                            th:text="${#temporals.format(comentario.fecha(), 'dd/MM/yyyy HH:mm')}"></small>
                                 </div>
-                                <p class="mb-1" th:text="${comentario.contenido()}"></p>
-                                <div>
-                                    <button class="btn btn-sm btn-outline-danger py-0 px-2 me-1">
-                                        <i class="bi bi-flag"></i> Abuso
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger py-0 px-2">
-                                        <i class="bi bi-exclamation-triangle"></i> Spoiler
-                                    </button>
+                                <!-- Contenido del comentario -->
+                                <p class="mb-2 comentario-contenido" th:text="${comentario.contenido()}"></p>
+                                <!-- Botones de reporte (Abuso / Spoiler) como formularios -->
+                                <div class="comentario-actions">
+                                    <form class="d-inline-block me-2"
+                                          th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}"
+                                          method="post">
+                                        <input type="hidden" th:name="_method" th:value="put"/>
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                        <input type="hidden" th:name="idComentarioResena" th:value="${comentario.idComentarioResena}"/>
+                                        <button class="etiqueta comentario-btn"
+                                                type="submit"
+                                                th:name="accion"
+                                                th:value="reportarComentarioResena">
+                                            <i class="bi bi-flag me-1"></i>Abuso
+                                        </button>
+                                    </form>
+                                    <form class="d-inline-block"
+                                          th:action="@{/ficha-objeto/{idObjeto}(idObjeto=${fichaObjeto.idObjeto})}"
+                                          method="post">
+                                        <input type="hidden" th:name="_method" th:value="put"/>
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                        <input type="hidden" th:name="idComentario" th:value="${comentario.idComentarioResena}"/>
+                                        <button class="etiqueta comentario-btn"
+                                                type="submit"
+                                                th:name="accion"
+                                                th:value="reportarSpoilerComentarioResena">
+                                            <i class="bi bi-exclamation-triangle me-1"></i>Spoiler
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

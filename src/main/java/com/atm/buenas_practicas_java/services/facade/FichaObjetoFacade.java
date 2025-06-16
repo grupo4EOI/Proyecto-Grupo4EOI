@@ -141,4 +141,13 @@ public class FichaObjetoFacade {
         resenaService.reportarSpoilerResena(idResena);
     }
 
+    @Transactional
+    public void reportarComentarioResena(Long idComentarioResena) {
+        comentarioResenaService.reportarComentarioResena(idComentarioResena);
+    }
+
+    @Transactional
+    public void reportarSpoilerComentarioResena(Long idComentarioResena) {
+        comentarioResenaService.reportarSpoilerComentarioResena(idComentarioResena);
+    }
 }

@@ -14,6 +14,14 @@ public interface ComentarioResenaRepository extends JpaRepository<ComentarioRese
     List<ComentarioResena> findComentarioResenasByUsuario_IdUsuario(Long idUsuario);
 
     @Modifying
+    @Query("UPDATE ComentarioResena cr SET cr.abuso = true WHERE cr.idComentarioResena = :idComentarioResena")
+    void reportarComentarioResena(@Param("idComentarioResena") Long idComentarioResena);
+
+    @Modifying
+    @Query("UPDATE ComentarioResena cr SET cr.spoiler = true WHERE cr.idComentarioResena = :idComentarioResena")
+    void reportarSpoilerComentarioResena(@Param("idComentarioResena") Long idComentarioResena);
+
+    @Modifying
     @Query("DELETE FROM ComentarioResena cr WHERE cr.idComentarioResena = :idComentarioResena")
     void borrarComentarioResena(@Param("idComentarioResena") Long idComentarioResena);
 

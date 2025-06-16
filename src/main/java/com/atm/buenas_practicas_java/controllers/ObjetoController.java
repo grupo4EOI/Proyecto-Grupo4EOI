@@ -88,4 +88,16 @@ public class ObjetoController {
         fichaObjetoFacade.reportarSpoilerResena(idResena);
         return String.format("redirect:/ficha-objeto/%d", idObjeto);
     }
+
+    @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarComentarioResena")
+    public String reportarComentarioResena(@PathVariable Long idObjeto, @RequestParam("idComentarioResena") Long idComentarioResena) {
+        fichaObjetoFacade.reportarComentarioResena(idComentarioResena);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
+
+    @PutMapping(value = "/ficha-objeto/{idObjeto}", params = "accion=reportarSpoilerComentarioResena")
+    public String reportarSpoilerComentarioResena(@PathVariable Long idObjeto, @RequestParam("idComentarioResena") Long idComentarioResena) {
+        fichaObjetoFacade.reportarSpoilerComentarioResena(idComentarioResena);
+        return String.format("redirect:/ficha-objeto/%d", idObjeto);
+    }
 }

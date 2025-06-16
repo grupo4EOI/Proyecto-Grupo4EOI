@@ -41,6 +41,16 @@ public class ComentarioResenaService {
     }
 
     @Transactional
+    public void reportarComentarioResena(Long idComentarioResena) {
+        comentarioResenaRepository.reportarComentarioResena(idComentarioResena);
+    }
+
+    @Transactional
+    public void reportarSpoilerComentarioResena(Long idComentarioResena) {
+        comentarioResenaRepository.reportarSpoilerComentarioResena(idComentarioResena);
+    }
+
+    @Transactional
     public void borrarComentarioResena(Long idComentarioResena) {
         comentarioResenaRepository.borrarComentarioResena(idComentarioResena);
     }
