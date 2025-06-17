@@ -13,10 +13,25 @@ import java.util.List;
 
 public interface ComentarioPublicacionRepository extends JpaRepository<ComentarioPublicacion, Long> {
     List<ComentarioPublicacion> findComentarioPublicacionsByAbusoEquals(boolean b);
+
     List<ComentarioPublicacion> findComentarioPublicacionsByPublicacion_IdPublicacionOrderByIdComentarioPublicacion(Long idPublicacion);
+
+    List<ComentarioPublicacion> findComentarioPublicacionsByUsuario_IdUsuario(Long idUsuario);
 
     @Modifying
     @Transactional
-    @Query("UPDATE ComentarioPublicacion c SET c.abuso = true WHERE c.idComentarioPublicacion = :id")
-    void reportar(@Param("id") Long id);
+    @Query("UPDATE ComentarioPublicacion c SET c.abuso = FALSE WHERE c.idComentarioPublicacion = :idComentarioPublicacion")
+    void reportar(@Param("idComentarioPublicacion") Long idComentarioPublicacion);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE ComentarioPublicacion c SET c.baneado = FALSE WHERE c.idComentarioPublicacion = :idComentarioPublicacion")
+    void banComentarioPublicacion(@Param("idComentarioPublicacion") Long idComentarioPublicacion);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE ComentarioPublicacion c SET c.baneado = FALSE, c.abuso = FALSE WHERE c.idComentarioPublicacion = :idComentarioPublicacion")
+    void aprobarComentarioPublicacion(@Param("idComentarioPublicacion") Long idComentarioPublicacion);
+
+    Long countComentarioPublicacionsByAbusoEquals(boolean b);
 }

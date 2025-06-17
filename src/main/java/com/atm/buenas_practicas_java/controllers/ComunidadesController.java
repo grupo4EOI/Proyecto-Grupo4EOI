@@ -8,7 +8,11 @@ import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
 import com.atm.buenas_practicas_java.services.*;
 import com.atm.buenas_practicas_java.services.facade.ComunidadServiceFacade;
+import com.atm.buenas_practicas_java.utils.PaginacionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,18 +41,18 @@ public class ComunidadesController {
     }
 
     @GetMapping("/{id}/temas")
-    public String mostrarTemas(Model model, @PathVariable Long id) {
-        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
-        List<PublicacionDTO> publicaciones = comunidadServiceFacade.buscarPublicacionesPorComunidad(id);
+    public String mostrarTemas(Model model, @PathVariable Long id, @PageableDefault(size = 20) Pageable pageable) {
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(id);
+        Page<PublicacionDTO> publicaciones = PaginacionUtils.listToPage(comunidadServiceFacade.buscarPublicacionesPorComunidad(id), pageable);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("publicaciones", publicaciones);
         return "comunidad";
     }
 
     @GetMapping("/{idcom}/temas/{id}")
-    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @RequestParam(value = "citar", required = false) Long comentarioCitadoId) {
-        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(idcom);
-        List<ComentarioPublicacionSimpleDTO> comentarios = comunidadServiceFacade.buscarComentariosPorPublicacion(id);
+    public String mostrarComentarios(Model model, @PathVariable Long idcom, @PathVariable Long id, @PageableDefault(size = 20) Pageable pageable) {
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(idcom);
+        Page<ComentarioPublicacionSimpleDTO> comentarios = PaginacionUtils.listToPage(comunidadServiceFacade.buscarComentariosPorPublicacion(id), pageable);
         model.addAttribute("comunidad", comunidad);
         model.addAttribute("comentarios", comentarios);
 
@@ -57,7 +61,7 @@ public class ComunidadesController {
 
     @GetMapping("/{id}/temas/nuevo-tema")
     public String mostrarNuevoTema(Model model, @PathVariable Long id) {
-        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findByID(id);
+        ComunidadSimpleDTO comunidad = comunidadServiceFacade.findById(id);
         model.addAttribute("nuevoTema", new PublicacionCrearDTO(null, "", ""));
         model.addAttribute("comunidad", comunidad);
         return "nuevo-tema";

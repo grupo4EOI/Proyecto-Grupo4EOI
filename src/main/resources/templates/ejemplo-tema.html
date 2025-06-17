@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${comentarios.get(0).publicacion().titulo()}">Título de ejemplo</title>
+    <title th:text="${comentarios.content[0].publicacion().titulo()}">Título de ejemplo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style-ejemplo-tema.css}">
@@ -14,13 +14,14 @@
     <!--Contenido de la página-->
 <body>
 <div layout:fragment="content">
+    <div class="container-fluid">
     <!--Banner título del tema-->
     <div class="bg-custom mt-4 mx-auto p-3 w-75" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
-        <h2 th:text="${comentarios.get(0).publicacion().titulo()}">Título de ejemplo</h2>
+        <h2 th:text="${comentarios.content[0].publicacion().titulo()}">Título de ejemplo</h2>
     </div>
 
     <!--Mensaje del creador del tema-->
-    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2" th:each="comentario, stat : ${comentarios}">
+    <div class="bg-custom text-light mx-auto ps-3 w-75 p-2 mt-2" th:each="comentario, stat : ${comentarios.content}">
       <!--Este div contiene la información del mensaje-->
       <div class="d-flex justify-content-between align-items-center">
         <!--Imagen de perfil-->
@@ -57,7 +58,7 @@
   <hr class="w-75 mx-auto my-3 border-light">
       <!--Botones de reportar, citar y responder-->
       <div class="mb-2 mt-2 d-flex gap-5 justify-content-center">
-          <form th:action="@{/comunidades/{idcom}/temas/{id}(idcom = ${comunidad.idComunidad()}, id = ${comentarios.get(0).publicacion().idPublicacion()})}" th:method="post">
+          <form th:action="@{/comunidades/{idcom}/temas/{id}(idcom = ${comunidad.idComunidad()}, id = ${comentarios.content[0].publicacion().idPublicacion()})}" th:method="post">
               <input type="hidden" th:name="_method" th:value="put"/>
               <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
               <input type="hidden" th:name="idComentarioPublicacion" th:value="${comentario.idComentarioPublicacion}"/>
@@ -104,31 +105,15 @@
       </div>
       </div>
         <!--Caja de contenido de la respuesta-->
-        <form th:action="@{/comunidades/{idcom}/temas/{id}(idcom=${comunidad.idComunidad()}, id=${comentarios.get(0).publicacion().idPublicacion()})}" method="post">
+        <form th:action="@{/comunidades/{idcom}/temas/{id}(idcom=${comunidad.idComunidad()}, id=${comentarios.content[0].publicacion().idPublicacion()})}" method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="mt-2">
-
-<!--            <div id="mensaje-citado-preview"-->
-<!--                 class="mensaje-citado px-3 py-2 [[${comentarioCitado} != null ? '' : 'd-none']]" th:if="${comentarioCitado != null}"> &lt;!&ndash; MODIFICACIÓN &ndash;&gt;-->
-
-<!--            <div class="d-flex align-items-center">-->
-<!--                <h6 class="m-0 mb-1">-->
-<!--                    Cita de <b id="nombre-autor-cita" th:text="${comentarioCitado.usuario.nombreUsuario}">Usuario</b>-->
-<!--                </h6>-->
-<!--                <a th:href="@{'/comentario/' + ${comentarioCitado.idComentarioPublicacion}}" class="ir-a-mensaje-citado ms-2" id="link-mensaje-citado">-->
-<!--                    <i class="bi bi-reply-fill fs-4" style="transform: scaleX(-1); display: inline-block;"></i>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <p class="m-0 pt-2" id="contenido-cita" th:text="${comentarioCitado.contenido}">Contenido...</p>-->
-<!--        </div>-->
-
 
             <!-- Campo oculto con el ID del comentario citado -->
             <input type="hidden" name="comentarioCitadoId" id="mensajeCitadoId"
                    th:value="${comentarioCitado != null} ? ${comentarioCitado.idComentarioPublicacion} : ''" />
 
             <!-- MODIFICACIÓN -->
-
 
             <textarea id="contenido-tema" name="contenido" class="form-control" rows="5" placeholder="Escribe aquí tu respuesta" required></textarea>
 
@@ -144,33 +129,67 @@
       </div>
         </form>
     </div>
+    <!-- PAGINACIÓN - Solo mostrar si hay más de una página -->
+    <div class="row justify-content-center" th:if="${comentarios.totalPages > 1}">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <!-- Primera página -->
+                <li class="page-item" th:classappend="${comentarios.first} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{/comunidades/{idcom}/temas/{id}(idcom=${comunidad.idComunidad()}, id=${comentarios.content[0].publicacion().idPublicacion()}, page=0)}">
+                        <i class="bi bi-chevron-bar-left"></i>
+                    </a>
+                </li>
+
+                <!-- Página anterior -->
+                <li class="page-item" th:classappend="${comentarios.first} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{/comunidades/{idComunidad}/temas/{idPublicacion}(idComunidad=${comunidad.idComunidad()}, idPublicacion=${comentarios.content[0].publicacion().idPublicacion()}, page=${comentarios.number - 1})}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Páginas cercanas a la actual -->
+                <li th:each="i : ${#numbers.sequence(
+                                        T(java.lang.Math).max(0, comentarios.number - 2),
+                                        T(java.lang.Math).min(comentarios.totalPages - 1, comentarios.number + 2)
+                                    )}"
+                    class="page-item"
+                    th:classappend="${i == comentarios.number} ? 'active' : ''">
+                    <a class="page-link"
+                       th:href="@{/comunidades/{idComunidad}/temas/{idPublicacion}(idComunidad=${comunidad.idComunidad()}, idPublicacion=${comentarios.content[0].publicacion().idPublicacion()}, page=${i})}"
+                       th:text="${i + 1}"></a>
+                </li>
+
+                <!-- Página siguiente -->
+                <li class="page-item" th:classappend="${comentarios.last} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{/comunidades/{idComunidad}/temas/{idPublicacion}(idComunidad=${comunidad.idComunidad()}, idPublicacion=${comentarios.content[0].publicacion().idPublicacion()}, page=${comentarios.number + 1})}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+
+                <!-- Última página -->
+                <li class="page-item" th:classappend="${comentarios.last} ? 'disabled' : ''">
+                    <a class="page-link"
+                       th:href="@{/comunidades/{idComunidad}/temas/{idPublicacion}(idComunidad=${comunidad.idComunidad()}, idPublicacion=${comentarios.content[0].publicacion().idPublicacion()}, page=${comentarios.totalPages - 1})}">
+                        <i class="bi bi-chevron-bar-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Información de paginación -->
+        <div class="text-center mt-2 text-muted small">
+            Mostrando <span th:text="${comentarios.numberOfElements}"></span> de
+            <span th:text="${comentarios.totalElements}"></span> comentarios -
+            Página <span th:text="${comentarios.number + 1}"></span> de
+            <span th:text="${comentarios.totalPages}"></span>
+        </div>
+    </div>
+    </div>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".citar-mensaje").forEach(btn => {
-            btn.addEventListener("click", function (e) {
-                e.preventDefault();
-
-                const autor = this.dataset.autor;
-                const contenido = this.dataset.contenido;
-                const id = this.dataset.id;
-                const link = this.dataset.link;
-
-                document.getElementById("nombre-autor-cita").innerText = autor;
-                document.getElementById("contenido-cita").innerText = contenido;
-                document.getElementById("mensajeCitadoId").value = id;
-                document.getElementById("link-mensaje-citado").href = link;
-
-                document.getElementById("mensaje-citado-preview").classList.remove("d-none");
-
-                // Scroll al formulario
-                const destino = document.getElementById("destino");
-                destino.scrollIntoView({ behavior: "smooth" });
-            });
-        });
-    });
-</script>
   </body>
 </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Panel de Administración - Resumen</title>
+    <title>Comentarios de publicaciones reportados - LaConchaCrítica</title>
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/style-admin.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+        <!-- Título y bienvenida -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Panel de Administración</h2>
+            <div class="text-end">
+                <span class="text-muted">Bienvenido, </span>
+                <strong sec:authentication="name"></strong>
+            </div>
+        </div>
+
+        <!-- Tarjetas de estadísticas -->
+        <div class="row mb-5">
+            <!-- Tarjeta Reseñas Reportadas -->
+            <div class="col-md-4 mb-4">
+                <div class="card card-counter h-100 text-center border-primary">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="bi bi-star-fill text-primary" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title">Reseñas</h5>
+                        <h1 class="display-4 text-danger" th:text="${estadisticas.totalResenasReportadas}">0</h1>
+                        <p class="text-muted">Pendientes de revisión</p>
+                        <a th:href="@{/admin/resenas}" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-arrow-right-circle me-2"></i>Revisar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta Comentarios de Reseñas -->
+            <div class="col-md-4 mb-4">
+                <div class="card card-counter h-100 text-center border-success">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="bi bi-chat-dots-fill text-success" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title">Comentarios de Reseñas</h5>
+                        <h1 class="display-4 text-danger" th:text="${estadisticas.totalComentariosResenasReportados}">0</h1>
+                        <p class="text-muted">Pendientes de revisión</p>
+                        <a th:href="@{/admin/comentariosresenas}" class="btn btn-success btn-lg w-100">
+                            <i class="bi bi-arrow-right-circle me-2"></i>Revisar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta Comentarios de Publicaciones -->
+            <div class="col-md-4 mb-4">
+                <div class="card card-counter h-100 text-center border-warning">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="bi bi-newspaper text-warning" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title">Comentarios de Publicaciones</h5>
+                        <h1 class="display-4 text-danger" th:text="${estadisticas.totalComentariosPublicacionesReportados}">0</h1>
+                        <p class="text-muted">Pendientes de revisión</p>
+                        <a th:href="@{/admin/comentariospublicaciones}" class="btn btn-warning btn-lg w-100">
+                            <i class="bi bi-arrow-right-circle me-2"></i>Revisar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Sección de herramientas rápidas -->
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">
+                    <i class="bi bi-tools me-2"></i>Herramientas Rápidas
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-outline-primary" th:href="@{/admin/nuevoobjeto}">
+                                <i class="bi bi-camera-reels me-2"></i>Añadir nueva película
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-outline-primary" th:href="@{/admin/nuevocapitulo}">
+                                <i class="bi bi-camera-reels me-2"></i>Añadir nuevo capítulo de serie
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-success">
+                                <i class="bi bi-controller"></i>Añadir videojuego
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-info">
+                                <i class="bi bi-person-plus me-2"></i>Añadir comunidad
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

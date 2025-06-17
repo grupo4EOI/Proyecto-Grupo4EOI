@@ -8,6 +8,7 @@ import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.entities.Publicacion;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -24,7 +25,8 @@ public interface PublicacionMapper {
                 primerComentario.getUsuario().getIdUsuario(),
                 primerComentario.getUsuario().getNombreUsuario(),
                 primerComentario.getUsuario().getAvatarUrl(),
-                primerComentario.getUsuario().getRole()
+                primerComentario.getUsuario().getRole(),
+                primerComentario.getUsuario().getBaneado()
         );
     }
 

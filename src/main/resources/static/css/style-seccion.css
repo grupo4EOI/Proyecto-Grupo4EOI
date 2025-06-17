@@ -34,18 +34,18 @@ a:hover, .nav-link:hover {
     position: relative;
     display: inline-block;
     width: 300px;
-    height: 400px;
+    height: 450px;
 }
 
 .image-container > img {
     display: block;
     transition: opacity 0.3s ease;
     border-radius: 8px;
-    width: 300px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     max-width: 300px;
-    max-height: 400px;
+    max-height: 450px;
 }
 
 .image-container:hover img {
@@ -98,12 +98,12 @@ a:hover, .nav-link:hover {
 /* Diseño imagen para vista menor que ordenador*/
 .image-container-ext {
     width: 300px;
-    height: 400px;
+    height: 450px;
 }
 
 .imagen-objeto {
     width: 300px;
-    height: 400px;
+    height: 450px;
 }
 
 @media screen and (max-width: 1200px) {

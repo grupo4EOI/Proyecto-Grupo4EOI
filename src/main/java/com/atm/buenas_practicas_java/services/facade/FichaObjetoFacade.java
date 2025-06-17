@@ -7,15 +7,17 @@ import com.atm.buenas_practicas_java.mapper.ComentarioResenaMapper;
 import com.atm.buenas_practicas_java.mapper.FichaObjetoMapper;
 import com.atm.buenas_practicas_java.mapper.ResenaCrearMapper;
 import com.atm.buenas_practicas_java.services.*;
+import com.atm.buenas_practicas_java.utils.PaginacionUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -24,33 +26,29 @@ public class FichaObjetoFacade {
     private final ObjetoService objetoService;
     private final PersonaService personaService;
     private final UsuarioService usuarioService;
-    private final ObjetoUsuarioService objetoUsuarioService;
     private final ResenaService resenaService;
     private final ComentarioResenaService comentarioResenaService;
-    private final ComentarioPublicacionService comentarioPublicacionService;
+    private final ReaccionService reaccionService;
     private final ResenaCrearMapper resenaCrearMapper;
     private final FichaObjetoMapper fichaObjetoMapper;
     private final ComentarioResenaMapper comentarioResenaMapper;
-    private final ReaccionService reaccionService;
-
 
 
 
     // Metodo para el GetMapping de la ficha de objeto entera
     @Transactional
-    public FichaObjetoDTO construirFichaObjeto(Long idObjeto, String nombreUsuario) {
+    public FichaObjetoDTO construirFichaObjeto(Long idObjeto, String nombreUsuario, Pageable pageable) {
         Objeto objeto = objetoService.findById(idObjeto);
 
         FichaObjetoDTO dto = fichaObjetoMapper.toDto(objeto);
 
         DecimalFormat df = new DecimalFormat("#.##");
 
-        List<ComentarioPublicacionDTO> primerasPublicaciones = comentarioPublicacionService.getPrimerosComentariosObjeto(idObjeto);
         String puntuacion = df.format(objetoService.calcularPuntuacionObjeto(idObjeto));
         Integer numeroResenas = objetoService.calcularNumeroResenas(idObjeto);
         List<PersonaDTO> directores = personaService.getDirectoresByObjetoId(idObjeto);
         List<PersonaDTO> actores = personaService.getActoresByObjetoId(idObjeto);
-        List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto, nombreUsuario);
+        Page<ResenaDTO> resenas = obtenerResenasPaginadas(idObjeto, nombreUsuario, pageable);
 
         return new FichaObjetoDTO(
                 dto.idObjeto(),
@@ -62,7 +60,6 @@ public class FichaObjetoFacade {
                 dto.tipo(),
                 dto.generos(),
                 resenas,
-                primerasPublicaciones,
                 puntuacion,
                 numeroResenas,
                 directores,
@@ -70,6 +67,13 @@ public class FichaObjetoFacade {
                 dto.comunidad()
         );
     }
+
+    @Transactional
+    public Page<ResenaDTO> obtenerResenasPaginadas(Long idObjeto, String nombreUsuario, Pageable pageable) {
+        List<ResenaDTO> resenas = resenaService.findResenasByObjeto(idObjeto, nombreUsuario);
+        return PaginacionUtils.listToPage(resenas, pageable);
+    }
+
 
     // Metodo para el PostMapping de nueva reseña
     @Transactional
@@ -121,8 +125,13 @@ public class FichaObjetoFacade {
 
     // Metodo para postmapping de like reseña
     @Transactional
-    public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
-        reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
+    public Boolean marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
+        return reaccionService.marcarQuitarLikeResena(idResena, nombreUsuario);
+    }
+
+    @Transactional
+    public Long obtenerNumeroLikesResena(Long idResena) {
+        return reaccionService.contarLikesResena(idResena);
     }
 
     // Metodo para putMapping de reportar reseña
@@ -137,4 +146,13 @@ public class FichaObjetoFacade {
         resenaService.reportarSpoilerResena(idResena);
     }
 
+    @Transactional
+    public void reportarComentarioResena(Long idComentarioResena) {
+        comentarioResenaService.reportarComentarioResena(idComentarioResena);
+    }
+
+    @Transactional
+    public void reportarSpoilerComentarioResena(Long idComentarioResena) {
+        comentarioResenaService.reportarSpoilerComentarioResena(idComentarioResena);
+    }
 }

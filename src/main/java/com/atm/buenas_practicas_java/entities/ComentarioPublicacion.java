@@ -28,6 +28,7 @@ public class ComentarioPublicacion {
     private String contenido;
 
     private Boolean abuso = false;
+    private Boolean baneado = false;
 
     @ManyToOne
     @JoinColumn(name = "id_publicacion")

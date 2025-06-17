@@ -15,13 +15,15 @@ public class ObjetoUsuarioService {
         this.objetoUsuarioRepository = objetoUsuarioRepository;
     }
 
-    public Boolean usuarioObjetoVisto(Long idObjeto, Long idUsuario) {
-        return objetoUsuarioRepository.findByObjeto_IdObjetoAndUsuario_IdUsuario(idObjeto, idUsuario)
-                .map(ObjetoUsuario::getEstado)
-                .orElse(null);
-    }
-
     public void save(ObjetoUsuario objetoUsuario) {
         objetoUsuarioRepository.save(objetoUsuario);
+    }
+
+    public Long contarObjetosVistosUsuario(Long idUsuario) {
+        return objetoUsuarioRepository.countByUsuario_IdUsuarioAndEstado(idUsuario, true);
+    }
+
+    public Long contarObjetosPendientesUsuario(Long idUsuario) {
+        return objetoUsuarioRepository.countByUsuario_IdUsuarioAndEstado(idUsuario, false);
     }
 }

@@ -40,11 +40,6 @@ public class ComunidadService {
     }
 
     @Transactional
-    public ComunidadSimpleDTO findByID(Long id) {
-        return comunidadSimpleMapper.toDTO(comunidadRepository.findComunidadByIdComunidad(id));
-    }
-
-    @Transactional
     public List<ComunidadDTO> buscarComunidades(){
         List<ComunidadDTO> comunidadesDTO = comunidadMapper.toDTO(findAll());
         return comunidadesDTO.stream()

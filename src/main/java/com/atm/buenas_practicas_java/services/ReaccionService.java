@@ -28,7 +28,7 @@ public class ReaccionService {
 
     // Metodo para marcar like o bien quitar el like si ya le ha dado like anteriormente
     @Transactional
-    public void marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
+    public boolean marcarQuitarLikeResena(Long idResena, String nombreUsuario) {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
         Resena resena = resenaRepository.findById(idResena).orElseThrow(EntityNotFoundException::new);
 
@@ -42,8 +42,18 @@ public class ReaccionService {
             usuario.getReacciones().add(reaccion);
             reaccionRepository.save(reaccion);
             usuarioRepository.save(usuario);
+            return true;
         } else {
             reaccionRepository.deleteReaccionByIdReaccion(existente.get().getIdReaccion());
+            return false;
         }
+    }
+
+    public Long contarReaccionesUsuario(Long idUsuario) {
+        return reaccionRepository.countByUsuario_IdUsuarioAndMeGustaEquals(idUsuario, true);
+    }
+
+    public Long contarLikesResena(Long idResena) {
+        return reaccionRepository.countByResena_IdResenaAndMeGustaEquals(idResena, true);
     }
 }

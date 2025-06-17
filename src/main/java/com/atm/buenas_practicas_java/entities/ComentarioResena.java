@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
@@ -28,7 +30,7 @@ public class ComentarioResena {
     @Column(columnDefinition = "TEXT")
     private String contenido;
     private Boolean abuso = false;
-
+    private Boolean spoiler = false;
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario")
@@ -37,6 +39,7 @@ public class ComentarioResena {
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_resena", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Resena resena;
 
     @OneToMany(mappedBy = "comentarioResena")

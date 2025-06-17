@@ -19,21 +19,44 @@
                     <h1>Registrate</h1>
                 </div>
 
-                <form class="login-form" th:action="@{/registro}" method="post">
+                <form class="login-form" th:action="@{/registro}" th:object="${userForm}" method="post">
 
-                    <div class="control-group">
-                        <input type="text" class="login-field" name="nombreUsuario" placeholder="usuario" id="login-name" required>
+                    <!-- Campo Nombre de Usuario -->
+                    <div class="control-group" th:classappend="${#fields.hasErrors('nombreUsuario')} ? 'has-error'">
+                        <input type="text" class="login-field" th:field="*{nombreUsuario}"
+                               placeholder="usuario" id="login-name" required>
                         <label class="login-field-icon fui-user" for="login-name"></label>
+                        <!-- Mensaje de error para nombre de usuario -->
+                        <div th:if="${#fields.hasErrors('nombreUsuario')}" class="error-message">
+                            <span th:each="err : ${#fields.errors('nombreUsuario')}" th:text="${err}"></span>
+                        </div>
                     </div>
 
-                    <div class="control-group">
-                        <input type="email" class="login-field" name="email" placeholder="email" id="login-email" required>
+                    <!-- Campo Email -->
+                    <div class="control-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                        <input type="email" class="login-field" th:field="*{email}"
+                               placeholder="email" id="login-email" required>
                         <label class="login-field-icon fui-lock" for="login-email"></label>
+                        <!-- Mensaje de error para email -->
+                        <div th:if="${#fields.hasErrors('email')}" class="error-message">
+                            <span th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
+                        </div>
                     </div>
 
-                    <div class="control-group">
-                        <input type="password" class="login-field" name="contrasena" placeholder="contraseña" minlength="5" maxlength="12" id="login-pass" required>
+                    <!-- Campo Contraseña -->
+                    <div class="control-group" th:classappend="${#fields.hasErrors('contrasena')} ? 'has-error'">
+                        <input type="password" class="login-field" th:field="*{contrasena}"
+                               placeholder="contraseña" id="login-pass" minlength="5" maxlength="12" required>
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        <!-- Mensaje de error para contraseña -->
+                        <div th:if="${#fields.hasErrors('contrasena')}" class="error-message">
+                            <span th:each="err : ${#fields.errors('contrasena')}" th:text="${err}"></span>
+                        </div>
+                    </div>
+
+                    <!-- Error general del formulario -->
+                    <div th:if="${#fields.hasErrors('global')}" class="alert alert-danger">
+                        <span th:each="err : ${#fields.errors('global')}" th:text="${err}"></span>
                     </div>
 
                     <button type="submit" class="btn btn-large btn-block">Registrarse</button>

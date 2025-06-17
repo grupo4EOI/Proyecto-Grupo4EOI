@@ -1,0 +1,137 @@
+a:hover, .nav-link:hover {
+    cursor: pointer;
+    color: #FF8C42 !important;
+}
+.redes, .soporte, .legal {
+    text-decoration: none;
+    color: inherit;
+}
+.redes:hover, .soporte:hover, .legal:hover {
+    color: #FF8C42;
+}
+.bg-custom{
+    background-color: #4E598C !important;
+    color: white !important;
+}
+
+.btn-perso-nvo{
+    background-color: #FF8C42;
+}
+
+.btn-perso-nvo:hover {
+    background-color: #FF8C42 !important;
+    color: black !important;
+    border: 2px solid black;
+}
+#barraDeBusqueda {
+    width:430px !important;
+}
+.card {
+    background-color: #4E598C !important;
+}
+.condiciones {
+    text-decoration: none;
+    color: #FF8C42 !important;
+}
+.condiciones:hover {
+    color:#914f27 !important;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 450px;
+}
+
+.image-container > img {
+    display: block;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 300px;
+    max-height: 450px;
+}
+
+.image-container:hover img {
+    opacity: 0.6;
+}
+
+.trailer-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s ease;
+    z-index: 2;
+    font-weight: bold;
+}
+
+.image-container:hover .trailer-button {
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
+
+.trailer-button:hover{
+    background-color: #f0f0f0;
+}
+
+/* Estilos para el modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 100px auto;
+}
+
+.modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+.btn-close {
+    position: absolute;
+    right: -30px;
+    top: 0;
+}
+
+/* Diseño imagen para vista menor que ordenador*/
+.image-container-ext {
+    width: 300px;
+    height: 450px;
+}
+
+.imagen-objeto {
+    width: 300px;
+    height: 450px;
+}
+
+@media screen and (max-width: 1200px) {
+    .image-container-ext {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+}
+
+.titulo-objeto {
+    max-width: 300px;
+}
+
+.enlace-tit{
+    transition: color 0.6s ease, text-shadow 0.6s ease, transform 0.6s ease;
+}
+
+.enlace-tit:hover {
+    color: #ff8c42; /* Azul Bootstrap */
+    transform: scale(1.03);
+}

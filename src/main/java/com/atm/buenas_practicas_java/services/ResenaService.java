@@ -81,6 +81,21 @@ public class ResenaService {
     }
 
     @Transactional
+    public List<ResenaDTO> obtenerResenasUsuario(Long idUsuario, String nombreUsuario) {
+        List<ResenaDTO> resenasDTO = resenaMapper.toDtoList(resenaRepository.findResenasByUsuario_IdUsuario(idUsuario));
+        return rellenarListaResenaDTO(resenasDTO, nombreUsuario);
+    }
+
+    public List<ResenaDTO> obtenerResenasReaccionadasUsuario(Long idUsuario, String nombreUsuario) {
+        List<ResenaDTO> resenasDTO = resenaMapper.toDtoList(resenaRepository.obtenerResenasReaccionadasUsuario(idUsuario));
+        return rellenarListaResenaDTO(resenasDTO, nombreUsuario);
+    }
+
+    public Long contarResenasUsuario(Long idUsuario) {
+        return resenaRepository.countByUsuario_IdUsuario(idUsuario);
+    }
+
+    @Transactional
     public List<ResenaDTO> obtenerResenasConAbuso(String nombreUsuario) {
         List<ResenaDTO> resenasReportadas = resenaMapper.toDtoList(resenaRepository.findResenasByAbusoEquals(true));
         return rellenarListaResenaDTO(resenasReportadas, nombreUsuario);
@@ -105,5 +120,19 @@ public class ResenaService {
     @Transactional
     public void reportarSpoilerResena(Long idResena) {
         resenaRepository.reportarSpoilerResena(idResena);
+    }
+
+    @Transactional
+    public void eliminarResena(Long idResena) {
+        resenaRepository.borrarResenaPorIdResena(idResena);
+    }
+
+    @Transactional
+    public void aprobarResena(Long idResena) {
+        resenaRepository.aprobarResena(idResena);
+    }
+
+    public Long contarResenasConAbuso() {
+        return resenaRepository.countResenaByAbusoEquals(true);
     }
 }

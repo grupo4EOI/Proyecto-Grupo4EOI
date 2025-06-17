@@ -297,8 +297,7 @@ public class ProductionlDataLoader {
 
         // Personas (actores / directores) de prueba
         Persona persona1 = new Persona();
-        persona1.setNombre("Daniel");
-        persona1.setApellido("Radcliffe");
+        persona1.setNombreCompleto("Daniel Radcliffe");
         persona1.setBiografia("Este chaval nació en Torremolinos junto con su familia y amigos." +
                 " Disfrutó de una infancia agradable y luego se puso a hacer películas. " +
                 "Daniel Jacob Radcliffe es un actor británico, principalmente conocido por " +
@@ -308,8 +307,7 @@ public class ProductionlDataLoader {
         persona1.setFotoUrl("https://cdn-images.dzcdn.net/images/artist/477d3a877aeb43dd565cb0d9888861f7/1900x1900-000000-80-0-0.jpg");
 
         Persona persona2 = new Persona();
-        persona2.setNombre("Emma");
-        persona2.setApellido("Watson");
+        persona2.setNombreCompleto("Emma Watson");
         persona2.setBiografia("Esta chavala nació en Guadalajara junto con su familia y amigos." +
                 " Disfrutó de una infancia muy triste y luego se puso a hacer películas. " +
                 "Emma Charlotte Duerre Watson\u200B es una actriz, modelo y activista británica, " +
@@ -318,8 +316,7 @@ public class ProductionlDataLoader {
         persona2.setFotoUrl("https://m.media-amazon.com/images/M/MV5BMTQ3ODE2NTMxMV5BMl5BanBnXkFtZTgwOTIzOTQzMjE@._V1_.jpg");
 
         Persona persona3 = new Persona();
-        persona3.setNombre("Chris");
-        persona3.setApellido("Colombus");
+        persona3.setNombreCompleto("Chris Colombus");
         persona3.setBiografia("Chris nació en una familia ítalo-estadounidense en Spangler, Pensilvania y se crio en " +
                 "Youngstown, Ohio, hijo de Mary Irene, una trabajadora de fábrica, y Alex Michael Columbus, un minero." +
                 "\nChris Columbus efectúa sus estudios secundarios en una aldea de Ohio y desarrolla su imaginación " +

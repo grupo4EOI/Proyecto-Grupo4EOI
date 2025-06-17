@@ -1,13 +1,13 @@
 package com.atm.buenas_practicas_java.services;
 
+import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.entities.*;
-import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
-import com.atm.buenas_practicas_java.repositories.ObjetoUsuarioRepository;
-import com.atm.buenas_practicas_java.repositories.PublicacionRepository;
-import com.atm.buenas_practicas_java.repositories.UsuarioRepository;
+import com.atm.buenas_practicas_java.mapper.UsuarioMapper;
+import com.atm.buenas_practicas_java.repositories.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,23 +29,19 @@ public class UsuarioService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
     private final ObjetoRepository objetoRepository;
+    private final UsuarioMapper usuarioMapper;
+    private final AmistadRepository amistadRepository;
 
     public void save(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario findUsuarioByPublicacion(Long idPublicacion) {
-        Publicacion publicacion = publicacionRepository.findById(idPublicacion).get();
-        ComentarioPublicacion comentario = publicacion.getComentariosPublicacion().getFirst();
-        return comentario.getUsuario();
+    public void saveAndFlush(Usuario usuario) {
+        usuarioRepository.saveAndFlush(usuario);
     }
 
-    public List<Usuario> findUsuariosByPublicaciones(List<Publicacion> publicaciones) {
-        List<Usuario> usuarios = new ArrayList<>();
-        for (Publicacion publicacion : publicaciones) {
-            usuarios.add(findUsuarioByPublicacion(publicacion.getIdPublicacion()));
-        }
-        return usuarios;
+    public Usuario findById(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario).orElseThrow(EntityNotFoundException::new);
     }
 
     public Usuario findByNombreUsuario(String nombreUsuario) {
@@ -52,6 +49,7 @@ public class UsuarioService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
 
+    // Métodos relacionados con el usuario en la ficha de objeto
     @Transactional
     public void marcarEstadoObjeto(Long idObjeto, String nombreUsuario, Boolean estado) {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario).orElseThrow(EntityNotFoundException::new);
@@ -70,7 +68,6 @@ public class UsuarioService implements UserDetailsService {
             nuevo.setEstado(estado);
             objetoUsuarioRepository.save(nuevo);
         }
-
     }
 
     @Transactional
@@ -93,9 +90,25 @@ public class UsuarioService implements UserDetailsService {
         }
     }
 
+    // Métodos panel admin
+    public void banUsuario(Long idUsuario) {
+        usuarioRepository.banUsuario(idUsuario);
+    }
 
-    // Métodos para el registro y el login
+    // Métodos para perfil de usuario
+    public List<UsuarioDTO> buscarAmigosUsuario(Long idUsuario) {
+        return usuarioMapper.toDtoList(usuarioRepository.buscarAmistadesUsuario(idUsuario));
+    }
 
+    public boolean sonAmigos(Long id1, Long id2) {
+        Usuario u1 = findById(id1);
+        Usuario u2 = findById(id2);
+        return amistadRepository.findByUsuarioAndAmigo(u1, u2).isPresent()
+                || amistadRepository.findByUsuarioAndAmigo(u2, u1).isPresent();
+    }
+
+
+//     Métodos para el registro y el login
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario)
@@ -109,9 +122,39 @@ public class UsuarioService implements UserDetailsService {
                 .build();
     }
 
+//    public void registerUser(UserForm userForm) {
+//        Usuario usuario = userForm.toUserWithPassword(passwordEncoder);
+//        usuario.setContrasena(passwordEncoder.encode(userForm.getContrasena()));
+//        usuarioRepository.save(usuario);
+//    }
+
+
+    public boolean existeNombreUsuario(String nombreUsuario) {
+        return usuarioRepository.existsByNombreUsuario(nombreUsuario);
+    }
+
+    public boolean existeEmail(String email) {
+        return usuarioRepository.existsByEmail(email);
+    }
+
+    @Transactional
     public void registerUser(UserForm userForm) {
-        Usuario usuario = userForm.toUserWithPassword(passwordEncoder);
+        if (existeNombreUsuario(userForm.getNombreUsuario())) {
+            throw new IllegalArgumentException("El nombre de usuario ya está en uso");
+        }
+
+        if (existeEmail(userForm.getEmail())) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
+
+        Usuario usuario = new Usuario();
+        usuario.setNombreUsuario(userForm.getNombreUsuario());
+        usuario.setEmail(userForm.getEmail());
         usuario.setContrasena(passwordEncoder.encode(userForm.getContrasena()));
+        usuario.setRole("USER"); // Rol por defecto
+        usuario.setFechaRegistro(LocalDateTime.now());
+        usuario.setBaneado(false);
+
         usuarioRepository.save(usuario);
     }
 
