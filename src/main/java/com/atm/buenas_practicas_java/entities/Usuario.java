@@ -42,6 +42,9 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @Column(nullable = false)
     private String role;
 
+    //Verificación de correo
+    private boolean verificado = false;
+
     // Relación 1:N con reseñas
     @OneToMany(mappedBy = "usuario")
     private List<Resena> resenas;
@@ -113,7 +116,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return verificado;
     }
 
     @Override
