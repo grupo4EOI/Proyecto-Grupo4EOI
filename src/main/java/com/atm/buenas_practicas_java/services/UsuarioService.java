@@ -7,6 +7,7 @@ import com.atm.buenas_practicas_java.repositories.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,7 +108,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
 
-    // Métodos para el registro y el login
+//     Métodos para el registro y el login
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario)
@@ -120,9 +122,39 @@ public class UsuarioService implements UserDetailsService {
                 .build();
     }
 
+//    public void registerUser(UserForm userForm) {
+//        Usuario usuario = userForm.toUserWithPassword(passwordEncoder);
+//        usuario.setContrasena(passwordEncoder.encode(userForm.getContrasena()));
+//        usuarioRepository.save(usuario);
+//    }
+
+
+    public boolean existeNombreUsuario(String nombreUsuario) {
+        return usuarioRepository.existsByNombreUsuario(nombreUsuario);
+    }
+
+    public boolean existeEmail(String email) {
+        return usuarioRepository.existsByEmail(email);
+    }
+
+    @Transactional
     public void registerUser(UserForm userForm) {
-        Usuario usuario = userForm.toUserWithPassword(passwordEncoder);
+        if (existeNombreUsuario(userForm.getNombreUsuario())) {
+            throw new IllegalArgumentException("El nombre de usuario ya está en uso");
+        }
+
+        if (existeEmail(userForm.getEmail())) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
+
+        Usuario usuario = new Usuario();
+        usuario.setNombreUsuario(userForm.getNombreUsuario());
+        usuario.setEmail(userForm.getEmail());
         usuario.setContrasena(passwordEncoder.encode(userForm.getContrasena()));
+        usuario.setRole("USER"); // Rol por defecto
+        usuario.setFechaRegistro(LocalDateTime.now());
+        usuario.setBaneado(false);
+
         usuarioRepository.save(usuario);
     }
 

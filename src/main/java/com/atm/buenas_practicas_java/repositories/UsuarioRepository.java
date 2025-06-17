@@ -33,4 +33,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             )
     """)
     List<Usuario> buscarAmistadesUsuario(@Param("idUsuario") Long idUsuario);
+
+    // Nuevos métodos para verificación de existencia
+    boolean existsByNombreUsuario(String nombreUsuario);
+
+    boolean existsByEmail(String email);
+
+    // Méodo adicional útil para búsqueda por email
+    Optional<Usuario> findByEmail(String email);
 }

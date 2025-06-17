@@ -15,7 +15,7 @@
 
     <div th:if="${error != null}" class="error">[[${error}]]</div>
 
-    <div th:if="${param.registroExitoso != null}" class="alert alert-success" role="alert">¡Registro exitoso! Por favor inicia sesión</div>
+    <div th:if="${registroExitoso}" class="alert alert-success" role="alert">¡Registro exitoso! Por favor inicia sesión</div>
 
    <div class="container1">
     <div class="login">
@@ -35,10 +35,10 @@
                     <label class="login-field-icon fui-user" for="login-name"></label>
                 </div>
 
-                <div class="control-group">
-                    <input type="email" class="login-field" name="email" placeholder="email" id="login-email">
-                    <label class="login-field-icon fui-lock" for="login-email"></label>
-                </div>
+<!--                <div class="control-group">-->
+<!--                    <input type="email" class="login-field" name="email" placeholder="email" id="login-email">-->
+<!--                    <label class="login-field-icon fui-lock" for="login-email"></label>-->
+<!--                </div>-->
 
                 <div class="control-group">
                     <input type="password" class="login-field" name="password" placeholder="contraseña" id="login-pass" minlength="5" maxlength="12">
