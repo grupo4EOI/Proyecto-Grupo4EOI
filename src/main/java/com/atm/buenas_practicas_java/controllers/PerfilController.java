@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PerfilController {
@@ -54,8 +55,9 @@ public class PerfilController {
 
     //Editar biografía
     @PostMapping("/perfil/editarBiografia")
-    public String editarBiografia(Long idUsuario, String biografia) {
+    public String editarBiografia(Long idUsuario, String biografia, RedirectAttributes redirectAttributes) {
         perfilServiceFacade.editarBiografia(idUsuario, biografia);
+        redirectAttributes.addFlashAttribute("guardado", true);
         return "redirect:/perfil/" + idUsuario;
     }
 
@@ -87,14 +89,11 @@ public class PerfilController {
         return "redirect:/perfil/" + id;
     }
 
-    // Ajustes del perfil de usuario.
+    //Ajustes del perfil de usuario.
     @GetMapping("/ajustes-perfil/{id}")
     public String mostrarAjustesPerfil(@PathVariable Long id, Model model) {
         AjustesPerfilDTO ajustesPerfilDTO = perfilServiceFacade.obtenerAjustesPerfil(id);
         model.addAttribute("ajustesPerfil", ajustesPerfilDTO);
-        model.addAttribute("generosPeliculas", ajustesPerfilDTO.generosPeliculas());
-        model.addAttribute("generosSeries", ajustesPerfilDTO.generosSeries());
-        model.addAttribute("generosVideojuegos", ajustesPerfilDTO.generosVideojuegos());
         return "ajustes-perfil";
     }
 
