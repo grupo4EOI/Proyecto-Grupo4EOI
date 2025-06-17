@@ -2,34 +2,25 @@ package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.dtos.GeneroDTO;
 import com.atm.buenas_practicas_java.dtos.ObjetoCrearDTO;
-import com.atm.buenas_practicas_java.dtos.ObjetoDTO;
 import com.atm.buenas_practicas_java.dtos.PersonaDTO;
 import com.atm.buenas_practicas_java.dtos.auxiliarDTOs.CapituloDTO;
 import com.atm.buenas_practicas_java.dtos.auxiliarDTOs.TemporadaDTO;
-import com.atm.buenas_practicas_java.entities.Objeto;
 import info.movito.themoviedbapi.*;
 import info.movito.themoviedbapi.model.core.Movie;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import info.movito.themoviedbapi.model.core.TvSeries;
 import info.movito.themoviedbapi.model.core.TvSeriesResultsPage;
 import info.movito.themoviedbapi.model.core.video.Video;
 import info.movito.themoviedbapi.model.core.video.VideoResults;
 import info.movito.themoviedbapi.model.movies.Credits;
-import info.movito.themoviedbapi.model.movies.Images;
 import info.movito.themoviedbapi.model.movies.MovieDb;
 import info.movito.themoviedbapi.model.people.PersonDb;
-import info.movito.themoviedbapi.model.tv.core.TvEpisode;
 import info.movito.themoviedbapi.model.tv.core.TvSeason;
-import info.movito.themoviedbapi.model.tv.episode.TvEpisodeDb;
 import info.movito.themoviedbapi.model.tv.season.TvSeasonDb;
 import info.movito.themoviedbapi.model.tv.season.TvSeasonEpisode;
 import info.movito.themoviedbapi.model.tv.series.TvSeriesDb;
 import info.movito.themoviedbapi.tools.TmdbException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
