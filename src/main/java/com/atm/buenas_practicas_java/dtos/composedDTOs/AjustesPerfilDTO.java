@@ -10,9 +10,6 @@ public record AjustesPerfilDTO(
         String nombreUsuario,
         String contrasena,
         String biografia,
-        List<Genero> generosPeliculas,
-        List<Genero> generosSeries,
-        List<Genero> generosVideojuegos,
         MultipartFile avatar
 ) {}
 

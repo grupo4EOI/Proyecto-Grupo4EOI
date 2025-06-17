@@ -24,16 +24,6 @@
 }
 
 /* *** Estilo del perfil de usuario *** */
-/*#fondo-perfil {*/
-/*    background: linear-gradient(*/
-/*            to bottom,*/
-/*            rgba(252,175,88,0.63) 0%,*/
-/*            rgba(252,175,88,0.63) 10%,*/
-/*            rgba(255,255,255,0.30) 50%,*/
-/*            rgba(255,255,255,0.30) 100%*/
-/*    );*/
-
-/*}*/
 
 #nombreUsuario{
     font-size: 28px;
@@ -58,12 +48,32 @@
     padding-bottom: 40px;
 }
 
-
-
-.btn-editar-estado:focus {
-    outline: none !important;
-    box-shadow: none !important;
+.texto-miembro-desde{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
 }
+
+btn-perfil-biografia{
+    background-color: #fbe5ad;
+    color: #ff8a05;"
+}
+
+form button.btn-perfil-biografia {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+}
+
+form > div.text-end {
+    margin-bottom: 0;
+}
+
+form textarea#biografia {
+    margin-bottom: 0;
+}
+
 
 .btn-editar-perfil:focus {
     outline: none !important;
@@ -125,10 +135,6 @@ img.rounded-circle {
     flex-direction: column;
     justify-content: center; 
 }
-/*.tab-pane {*/
-/*    flex-grow: 1;*/
-/*    min-height: 1000px; */
-/*}*/
 
 .tab-pane > div {
     min-height: 150px;
@@ -143,7 +149,6 @@ img.rounded-circle {
 @media (min-width: 768px) and (max-width: 991.98px) {
     #ficha-principal-perfil > div {
         flex: 0 0 100%;
-        /*max-width: 100%;*/
     }
 
     #ficha-principal-perfil{
@@ -188,16 +193,14 @@ img.rounded-circle {
     font-size: 1.25rem;
 }
 
-
-/*.contenedores-amigos-insignias{*/
-/*    max-width: 350px;*/
-/*}*/
-
-/*.lista-de-amigos{*/
-/*    border: 2px solid black;*/
-/*    border-radius: 8px;*/
-/*    background-color: #fff9f0;*/
-/*}*/
+#resenas-container,
+#publicaciones-container,
+#megusta-container {
+    min-height: 800px;
+    max-height: 800px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
 
 /* *** Estilo de la configuración del perfil de usuario *** */
 #fondo-ajustes-perfil {
@@ -243,12 +246,31 @@ img.rounded-circle {
     flex-wrap: wrap;
 }
 
+.fecha-registro {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+textarea.guardado {
+    border: 2px solid #fff1db !important;
+    box-shadow: 0 0 5px #f8dda4;
+    transition: all 0.3s ease-in-out;
+}
+
+textarea#biografia {
+    height: 150px;
+    resize: none;
+}
+
 /*Para que el footer no suba*/
 .contenedor-ajustes-usuario {
     flex: 1;
 }
 
-.btn-perso, .btn-agregar-amigo {
+.btn-perso, .btn-agregar-amigo, .btn-guardar-ajustes {
     border: 2px solid transparent;
     background: #ff8c42;
     color: #000000;
@@ -266,7 +288,6 @@ img.rounded-circle {
 }
 
 .btn-perso:hover {
-    /*background-color: #ffa5a5;*/
     border: 2px solid #000000;
     color: #ffffff !important;
 }

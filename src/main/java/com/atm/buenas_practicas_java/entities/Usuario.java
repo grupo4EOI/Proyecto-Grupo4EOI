@@ -31,6 +31,7 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private String email;
     @NotNull
     private String contrasena;
+    @Column(name = "fecha_registro", nullable = false, updatable = false)
     private LocalDateTime fechaRegistro;
     private String avatarUrl;
     private String biografia;
@@ -119,5 +120,9 @@ public class Usuario implements UserDetails, CredentialsContainer {
     @Override
     public void eraseCredentials() {
 
+    }
+    @PrePersist
+    protected void onCreate() {
+        this.fechaRegistro = LocalDateTime.now();
     }
 }

@@ -58,13 +58,11 @@ public class PerfilServiceFacade {
                 resenaService.obtenerResenasReaccionadasUsuario(idUsuario, usuario.getNombreUsuario()),
                 usuarioService.buscarAmigosUsuario(idUsuario),
                 comentarioResenaService.obtenerComentariosResenasUsuario(idUsuario),
-                generoService.filtrarGenerosPorTipo(generos, "pelicula"),
-                generoService.filtrarGenerosPorTipo(generos, "serie"),
-                generoService.filtrarGenerosPorTipo(generos, "videojuego"),
                 resenaService.contarResenasUsuario(idUsuario),
                 reaccionService.contarReaccionesUsuario(idUsuario),
                 objetoUsuarioService.contarObjetosVistosUsuario(idUsuario),
                 objetoUsuarioService.contarObjetosPendientesUsuario(idUsuario),
+                usuario.getFechaRegistro(),
                 esAmigo
         );
     }
@@ -107,23 +105,20 @@ public class PerfilServiceFacade {
                 .ifPresent(amistadRepository::delete);
     }
 
+    public Long obtenerIdUsuarioPorNombreUsuario(String nombreUsuario) {
+        Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
+        return usuario.getIdUsuario();
+    }
 
     // Ajustes de perfil
     public AjustesPerfilDTO obtenerAjustesPerfil(Long idUsuario)  {
         Usuario usuario = usuarioService.findById(idUsuario);
-
-        List<Genero> generosPeliculas = generoService.obtenerGenerosPorTipo("pelicula");
-        List<Genero> generosSeries = generoService.obtenerGenerosPorTipo("serie");
-        List<Genero> generosVideojuegos = generoService.obtenerGenerosPorTipo("videojuego");
 
         return new AjustesPerfilDTO(
                 usuario.getIdUsuario(),
                 usuario.getNombreUsuario(),
                 null,
                 usuario.getBiografia(),
-                generosPeliculas,
-                generosSeries,
-                generosVideojuegos,
                 null
         );
     }
@@ -141,33 +136,11 @@ public class PerfilServiceFacade {
 
         usuario.setBiografia(ajustesPerfildto.biografia());
 
-        Set<Genero> generos = new HashSet<>();
-
-        if (ajustesPerfildto.generosPeliculas() != null) {
-            generos.addAll(ajustesPerfildto.generosPeliculas());
-        }
-
-        if (ajustesPerfildto.generosSeries() != null) {
-            generos.addAll(ajustesPerfildto.generosSeries());
-        }
-
-        if (ajustesPerfildto.generosVideojuegos() != null) {
-            generos.addAll(ajustesPerfildto.generosVideojuegos());
-        }
-
-        usuario.setGeneros(generos);
-
         if (ajustesPerfildto.avatar() != null && !ajustesPerfildto.avatar().isEmpty()) {
             String imagen = imagenPerfilService.guardarImagen(ajustesPerfildto.avatar());
             usuario.setAvatarUrl(imagen);
         }
 
         usuarioService.saveAndFlush(usuario);
-    }
-
-
-    public Long obtenerIdUsuarioPorNombreUsuario(String nombreUsuario) {
-        Usuario usuario = usuarioService.findByNombreUsuario(nombreUsuario);
-        return usuario.getIdUsuario();
     }
 }
