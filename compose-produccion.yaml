@@ -20,6 +20,8 @@ services:
       timeout: 10s
       retries: 3
     restart: always
+    volumes:
+      - perfil_uploads:/var/lib/data/uploads
 
   db:
     image: postgres:latest
@@ -32,3 +34,6 @@ services:
       timeout: 20s
       retries: 10
     restart: always
+
+volumes:
+  perfil_uploads:

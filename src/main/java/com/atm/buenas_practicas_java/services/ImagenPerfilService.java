@@ -1,5 +1,6 @@
 package com.atm.buenas_practicas_java.services;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,11 @@ import java.util.UUID;
 @Service
 public class ImagenPerfilService {
 
-    private final Path raiz = Paths.get("uploads");
+    private final Path raiz;
+
+    public ImagenPerfilService(@Value("${app.upload-dir}") String uploadDir) {
+        this.raiz = Paths.get(uploadDir);
+    }
 
     public String guardarImagen(MultipartFile archivo) {
         try {
