@@ -23,17 +23,13 @@ services:
     # Añade volumen para persistencia y debug
     volumes:
       - ./uploads:/tmp/uploads  # Mapeo directo para ver archivos en host
+    user: root
     command: >
       sh -c "
-      # Comandos de diagnóstico
-      echo 'Creando directorio de uploads: $${APP_UPLOAD_DIR}' &&
       mkdir -p $${APP_UPLOAD_DIR} &&
-      echo 'Asignando permisos...' &&
       chmod -R 777 $${APP_UPLOAD_DIR} &&
-      echo 'Contenido inicial del directorio:' &&
-      ls -la $${APP_UPLOAD_DIR} &&
-      echo 'Iniciando aplicación...' &&
-      java -jar /app.jar
+      chown -R 1000:1000 $${APP_UPLOAD_DIR} &&
+      su -c 'java -jar /app.jar' -s /bin/sh 1000
       "
 
   db:

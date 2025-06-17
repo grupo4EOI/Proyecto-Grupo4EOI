@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.util.UUID;
 
 @Service
@@ -20,12 +17,22 @@ public class ImagenPerfilService {
 
     public ImagenPerfilService(@Value("${app.upload-dir}") String uploadDir) {
         this.raiz = Paths.get(uploadDir);
-        log.info("CONFIGURACIÓN DE DIRECTORIO:");
-        log.info("Ruta configurada: {}", uploadDir);
-        log.info("Ruta absoluta: {}", raiz.toAbsolutePath());
-        log.info("Existe?: {}", Files.exists(raiz));
-        log.info("Es directorio?: {}", Files.isDirectory(raiz));
-        log.info("Permisos de escritura?: {}", Files.isWritable(raiz));
+
+        try {
+            log.info("Verificando permisos para: {}", raiz.toAbsolutePath());
+
+            // Intentar crear un archivo de prueba
+            Path testFile = raiz.resolve("permiso_test.txt");
+            Files.write(testFile, "test".getBytes(),
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.TRUNCATE_EXISTING);
+
+            log.info("Permisos OK - Se pudo escribir en el directorio");
+            Files.delete(testFile);
+        } catch (IOException e) {
+            log.error("ERROR DE PERMISOS: No se puede escribir en el directorio", e);
+            throw new RuntimeException("Configuración de permisos incorrecta", e);
+        }
     }
 
     public String guardarImagen(MultipartFile archivo) {
