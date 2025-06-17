@@ -23,6 +23,11 @@ public class ImagenPerfilService {
     public String guardarImagen(MultipartFile archivo) {
         try {
             Files.createDirectories(raiz);
+
+            if (!Files.isWritable(raiz)) {
+                throw new RuntimeException("Directorio no tiene permisos de escritura: " + raiz);
+            }
+
             String nuevoNombre = UUID.randomUUID() + "_" + archivo.getOriginalFilename();
             Files.copy(archivo.getInputStream(), raiz.resolve(nuevoNombre), StandardCopyOption.REPLACE_EXISTING);
             return nuevoNombre;
