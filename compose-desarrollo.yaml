@@ -22,16 +22,11 @@ services:
       timeout: 10s
       retries: 5
     restart: always
-    volumes:
-      - ./uploads:/tmp/uploads
 
     command: >
       sh -c "
-      # Crear directorio de uploads con permisos adecuados
       mkdir -p $${APP_UPLOAD_DIR} &&
       chmod -R 777 $${APP_UPLOAD_DIR} &&
-      
-      # Iniciar aplicación
       java -jar /app.jar
       "
 
