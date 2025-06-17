@@ -87,22 +87,29 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-primary">
-                                <i class="bi bi-person-plus me-2"></i>Añadir nueva película / serie
-                            </button>
+                            <a class="btn btn-outline-primary" th:href="@{/admin/nuevoobjeto}">
+                                <i class="bi bi-camera-reels me-2"></i>Añadir nueva película
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-outline-primary" th:href="@{/admin/nuevocapitulo}">
+                                <i class="bi bi-camera-reels me-2"></i>Añadir nuevo capítulo de serie
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="d-grid gap-2">
                             <button class="btn btn-outline-success">
-                                <i class="bi bi-graph-up me-2"></i>Añadir videojuego
+                                <i class="bi bi-controller"></i>Añadir videojuego
                             </button>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="d-grid gap-2">
                             <button class="btn btn-outline-info">
-                                <i class="bi bi-gear me-2"></i>Añadir comunidad
+                                <i class="bi bi-person-plus me-2"></i>Añadir comunidad
                             </button>
                         </div>
                     </div>

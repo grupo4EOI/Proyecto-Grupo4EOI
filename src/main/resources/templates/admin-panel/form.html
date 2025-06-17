@@ -41,7 +41,7 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-        <h2 class="mb-4">Agregar nueva película</h2>
+        <h2 class="mb-4" th:text="${(pelicula.titulo().contains('T.') or pelicula.titulo().contains('Ep.')) ? 'Agregar nuevo capítulo' : 'Agregar nueva película'}">Agregar nueva película</h2>
         <form th:action="@{/admin/nuevoobjeto/guardar}" method="post">
             <!-- Campo oculto para TMDB ID -->
             <input type="hidden" name="tmdbId" th:value="${pelicula.tmdbId()}">

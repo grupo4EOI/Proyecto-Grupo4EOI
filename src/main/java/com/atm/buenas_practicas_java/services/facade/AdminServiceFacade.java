@@ -104,11 +104,12 @@ public class AdminServiceFacade {
      *
      * @param objetoDTO
      */
-    public void guardarPelicula(ObjetoCrearDTO objetoDTO) {
+    public String guardarObjeto(ObjetoCrearDTO objetoDTO) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // Obtener tipo "Película"
-        Tipo tipoPelicula = tipoService.findByNombre("pelicula");
+        String tipoObjeto = determinarTipoObjeto(objetoDTO);
+        Tipo tipo = tipoService.findByNombre(tipoObjeto);
 
         // Crear objeto principal
         Objeto objeto = new Objeto();
@@ -118,7 +119,7 @@ public class AdminServiceFacade {
         objeto.setImagenUrl(objetoDTO.imagenUrl());
         objeto.setTrailerUrl(objetoDTO.trailerUrl());
         objeto.setDuracionMinutos(0); // Valor temporal, se podría obtener de TMDB
-        objeto.setTipo(tipoPelicula);
+        objeto.setTipo(tipo);
 
         // Guardar géneros
         Set<Genero> generos = new HashSet<>();
@@ -127,7 +128,7 @@ public class AdminServiceFacade {
                     .orElseGet(() -> {
                         Genero nuevoGenero = new Genero();
                         nuevoGenero.setNombre(generoDTO.nombre());
-                        nuevoGenero.setTipo(tipoPelicula);
+                        nuevoGenero.setTipo(tipo);
                         return generoService.save(nuevoGenero);
                     });
             generos.add(genero);
@@ -151,6 +152,15 @@ public class AdminServiceFacade {
 
         // Guardar actores y sus relaciones
         guardarPersonasConRol(objetoDTO.reparto(), objetoGuardado, false);
+
+        return tipoObjeto;
+    }
+
+    private String determinarTipoObjeto(ObjetoCrearDTO objetoDTO) {
+        if (objetoDTO.titulo().contains("T.") && objetoDTO.titulo().contains("Ep.")) {
+            return "serie";
+        }
+        return "pelicula";
     }
 
     /**
