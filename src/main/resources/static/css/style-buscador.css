@@ -1,0 +1,22 @@
+.header-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #ff8c42;
+    color: #000000;
+    text-decoration: none;
+    min-width: 160px; /* asegura mismo ancho mínimo */
+    margin: 0.25rem;
+    cursor: pointer;
+}
+
+
+.header-button:hover {
+    border: 2px solid black;
+    color: #fff !important;
+    /*transform: translateY(-2px);*/
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+}
