@@ -26,13 +26,4 @@ public class UserForm {
     private String contrasena;
 
     private String role = "USER";
-
-    public Usuario toUserWithPassword(PasswordEncoder passwordEncoder) {
-        return Usuario.builder()
-                .email(this.email)
-                .nombreUsuario(this.nombreUsuario)
-                .contrasena(passwordEncoder.encode(this.contrasena))
-                .role("USER")
-                .build();
-    }
 }

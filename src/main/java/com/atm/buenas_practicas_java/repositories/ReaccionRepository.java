@@ -16,8 +16,6 @@ public interface ReaccionRepository extends JpaRepository<Reaccion, Long> {
 
     Long countByUsuario_IdUsuarioAndMeGustaEquals(Long idUsuario, Boolean meGusta);
 
-    Long countByComentarioResena_IdComentarioResenaAndMeGustaEquals(Long idComentarioResena, Boolean meGusta);
-
     @Modifying
     @Query("DELETE FROM Reaccion r WHERE r.idReaccion = :idReaccion")
     void deleteReaccionByIdReaccion(@Param("idReaccion") Long idReaccion);

@@ -2,24 +2,15 @@ package com.atm.buenas_practicas_java.controllers;
 
 
 import com.atm.buenas_practicas_java.PostgreSQLContainerTest;
-import com.atm.buenas_practicas_java.entities.EntidadHija;
-import com.atm.buenas_practicas_java.entities.EntidadPadre;
-import com.atm.buenas_practicas_java.repositories.EntidadHijaRepository;
-import com.atm.buenas_practicas_java.repositories.EntidadPadreRepository;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Base64;
-
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @Log4j2

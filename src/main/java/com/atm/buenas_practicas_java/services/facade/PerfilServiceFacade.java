@@ -1,16 +1,12 @@
 package com.atm.buenas_practicas_java.services.facade;
 
-import com.atm.buenas_practicas_java.dtos.GeneroDTO;
-import com.atm.buenas_practicas_java.dtos.UsuarioDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
 import com.atm.buenas_practicas_java.entities.Amistad;
 import com.atm.buenas_practicas_java.entities.Genero;
-import com.atm.buenas_practicas_java.entities.Publicacion;
 import com.atm.buenas_practicas_java.entities.Usuario;
 import com.atm.buenas_practicas_java.repositories.AmistadRepository;
 import com.atm.buenas_practicas_java.services.*;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PerfilServiceFacade {
 
     private final UsuarioService usuarioService;
-    private final GeneroService generoService;
     private final ResenaService resenaService;
     private final ComentarioPublicacionService comentarioPublicacionService;
     private final ComentarioResenaService comentarioResenaService;

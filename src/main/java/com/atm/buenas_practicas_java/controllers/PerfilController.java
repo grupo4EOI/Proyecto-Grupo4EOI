@@ -2,8 +2,6 @@ package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.dtos.composedDTOs.AjustesPerfilDTO;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.UsuarioPerfilDTO;
-import com.atm.buenas_practicas_java.services.GeneroService;
-import com.atm.buenas_practicas_java.services.PerfilService;
 import com.atm.buenas_practicas_java.services.facade.PerfilServiceFacade;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
@@ -14,7 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PerfilController {
-
+    private static final String REDIRECT_LOGIN_PATH = "redirect:/login";
+    private static final String REDIRECT_PERFIL_PATH = "redirect:/perfil/";
     private final PerfilServiceFacade perfilServiceFacade;
 
 
@@ -43,7 +42,7 @@ public class PerfilController {
     public String mostrarPerfilAutenticado(Authentication authentication, Model model, HttpSession session) {
         if (authentication == null || !authentication.isAuthenticated()
                 || authentication.getPrincipal().equals("anonymousUser")) {
-            return "redirect:/login";
+            return REDIRECT_LOGIN_PATH;
         }
 
         String nombreUsuario = authentication.getName();
@@ -58,35 +57,35 @@ public class PerfilController {
     public String editarBiografia(Long idUsuario, String biografia, RedirectAttributes redirectAttributes) {
         perfilServiceFacade.editarBiografia(idUsuario, biografia);
         redirectAttributes.addFlashAttribute("guardado", true);
-        return "redirect:/perfil/" + idUsuario;
+        return REDIRECT_PERFIL_PATH + idUsuario;
     }
 
     //Agregar amigo
     @PostMapping("/perfil/{id}/agregar-amigo")
     public String agregarAmigo(@PathVariable Long id, Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
-            return "redirect:/login";
+            return REDIRECT_LOGIN_PATH;
         }
 
         String nombreUsuarioActual = authentication.getName();
         Long idUsuarioActual = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuarioActual);
 
         perfilServiceFacade.agregarAmigo(idUsuarioActual, id);
-        return "redirect:/perfil/" + id;
+        return REDIRECT_PERFIL_PATH + id;
     }
 
     //Eliminar amigo
     @PostMapping("/perfil/{id}/eliminar-amigo")
     public String eliminarAmigo(@PathVariable Long id, Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
-            return "redirect:/login";
+            return REDIRECT_LOGIN_PATH;
         }
 
         String nombreUsuarioActual = authentication.getName();
         Long idUsuarioActual = perfilServiceFacade.obtenerIdUsuarioPorNombreUsuario(nombreUsuarioActual);
 
         perfilServiceFacade.eliminarAmigo(idUsuarioActual, id);
-        return "redirect:/perfil/" + id;
+        return REDIRECT_PERFIL_PATH + id;
     }
 
     //Ajustes del perfil de usuario.
@@ -106,6 +105,6 @@ public class PerfilController {
             return "redirect:/ajustes-perfil/" + id;
         }
 
-        return "redirect:/perfil/" + id;
+        return REDIRECT_PERFIL_PATH + id;
     }
 }
