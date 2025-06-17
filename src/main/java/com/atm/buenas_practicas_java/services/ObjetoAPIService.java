@@ -22,24 +22,24 @@ import info.movito.themoviedbapi.tools.TmdbException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ObjetoAPIService {
 
     private final TmdbApi tmdbApi = new TmdbApi("eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZmQ3ZjI5ODZhNWU3M2I2NDA1YmY5ZGQ1ZDU4Y2MxMSIsIm5iZiI6MTc0OTY0ODQ4Mi43NzksInN1YiI6IjY4NDk4NDYyN2YzZGVmNmY4MTMwMjQ2ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ueqIfjlrnRyU96FGrK-HQfEOyeBmQ1xvY-uXYtK3G_o");
     private final TmdbMovies tmdbMovies = new TmdbMovies(tmdbApi);
+    private static final String BASE_PATH_FOTO = "https://image.tmdb.org/t/p/w342";
+    private static final String BASE_PATH_VIDEO = "https://youtube.com/embed/";
+    private static final String LENGUAJE = "es-ES";
 
     private String buscarTrailerUrlPelicula(Movie movie) {
-        TmdbMovies tmdbMovies = tmdbApi.getMovies();
         try {
-            VideoResults videos = tmdbMovies.getVideos(movie.getId(), "es-ES");
+            VideoResults videos = tmdbMovies.getVideos(movie.getId(), LENGUAJE);
             if (videos != null && videos.getResults() != null) {
                 for (Video video : videos.getResults()) {
                     if ("Trailer".equalsIgnoreCase(video.getType()) && "YouTube".equalsIgnoreCase(video.getSite())) {
                         String key = video.getKey();
-                        String youtubeUrl = "https://youtube.com/embed/" + key;
-                        return youtubeUrl;
+                        return BASE_PATH_VIDEO + key;
                     }
                 }            }
         } catch (TmdbException e) {
@@ -50,10 +50,10 @@ public class ObjetoAPIService {
 
     private String buscarCarteleraPelicula(Movie movie) {
         try {
-            MovieDb movieDb = tmdbApi.getMovies().getDetails(movie.getId(), "es-ES");
+            MovieDb movieDb = tmdbApi.getMovies().getDetails(movie.getId(), LENGUAJE);
             String posterPath = movieDb.getPosterPath();
             if (posterPath != null && !posterPath.isBlank()) {
-                return "https://image.tmdb.org/t/p/w342/" + posterPath;
+                return BASE_PATH_FOTO + posterPath;
             } else {
                 return null;
             }
@@ -63,7 +63,7 @@ public class ObjetoAPIService {
     }
 
     private List<GeneroDTO> buscarGenerosPelicula(Movie movie) throws TmdbException {
-        MovieDb pelicula = tmdbMovies.getDetails(movie.getId(), "es-ES");
+        MovieDb pelicula = tmdbMovies.getDetails(movie.getId(), LENGUAJE);
         if (pelicula.getGenres() == null) {
             return new ArrayList<>();
         }
@@ -74,7 +74,7 @@ public class ObjetoAPIService {
 
     private PersonaDTO obtenerDetallesPersona(Integer idPersona) throws TmdbException {
         TmdbPeople tmdbPeople = tmdbApi.getPeople();
-        PersonDb persona = tmdbPeople.getDetails(idPersona, "es-ES");
+        PersonDb persona = tmdbPeople.getDetails(idPersona, LENGUAJE);
         if (persona == null) {
             return null;
         }
@@ -82,7 +82,7 @@ public class ObjetoAPIService {
         String profilePath = persona.getProfilePath();
         String imagenUrl = null;
         if (profilePath != null && !profilePath.isBlank()) {
-            imagenUrl = "https://image.tmdb.org/t/p/w342" + profilePath;
+            imagenUrl = BASE_PATH_FOTO + profilePath;
         }
 
         return new PersonaDTO(
@@ -95,7 +95,7 @@ public class ObjetoAPIService {
 
 
     private List<PersonaDTO> buscarActoresPelicula(Movie movie) throws TmdbException {
-        Credits credits = tmdbMovies.getCredits(movie.getId(), "es-ES");
+        Credits credits = tmdbMovies.getCredits(movie.getId(), LENGUAJE);
         if (credits == null ||credits.getCast() == null) {
             return new ArrayList<>();
         }
@@ -113,7 +113,7 @@ public class ObjetoAPIService {
     }
 
     private List<PersonaDTO> buscarDirectoresPelicula(Movie movie) throws TmdbException {
-        Credits credits = tmdbMovies.getCredits(movie.getId(), "es-ES");
+        Credits credits = tmdbMovies.getCredits(movie.getId(), LENGUAJE);
         if (credits == null || credits.getCrew() == null) {
             return new ArrayList<>();
         }
@@ -134,7 +134,7 @@ public class ObjetoAPIService {
 
     public List<ObjetoCrearDTO> buscarPeliculas(String query) throws TmdbException {
         TmdbSearch buscador = tmdbApi.getSearch();
-        MovieResultsPage resultado = buscador.searchMovie(query, true, "es-ES", null, 0, null, null);
+        MovieResultsPage resultado = buscador.searchMovie(query, true, LENGUAJE, null, 0, null, null);
         List<Movie> peliculas = resultado.getResults();
         return peliculas.stream()
                 .map(pelicula -> {
@@ -157,7 +157,7 @@ public class ObjetoAPIService {
     }
 
     public ObjetoCrearDTO obtenerDetallesCompletos(Integer tmdbId) throws TmdbException {
-        MovieDb pelicula = tmdbMovies.getDetails(tmdbId, "es-ES");
+        MovieDb pelicula = tmdbMovies.getDetails(tmdbId, LENGUAJE);
 
         Movie movie = new Movie();
         movie.setId(pelicula.getId());
@@ -182,11 +182,11 @@ public class ObjetoAPIService {
      */
     public List<ObjetoCrearDTO> buscarSeries(String query) throws TmdbException {
         TmdbSearch buscador = tmdbApi.getSearch();
-        TvSeriesResultsPage resultado = buscador.searchTv(query, null, true, "es-ES", 0, null);
+        TvSeriesResultsPage resultado = buscador.searchTv(query, null, true, LENGUAJE, 0, null);
         return resultado.getResults().stream()
                 .map(serie -> new ObjetoCrearDTO(
                         serie.getName(),
-                        "https://image.tmdb.org/t/p/w342" + serie.getPosterPath(),
+                        BASE_PATH_FOTO + serie.getPosterPath(),
                         buscarTrailerUrlSerie(serie.getId()),
                         serie.getFirstAirDate(),
                         serie.getOverview(),
@@ -199,11 +199,11 @@ public class ObjetoAPIService {
 
     public ObjetoCrearDTO obtenerDetallesSerie(Integer tmdbId) throws TmdbException {
         TmdbTvSeries tmdbTv = tmdbApi.getTvSeries();
-        TvSeriesDb serie = tmdbTv.getDetails(tmdbId, "es-ES");
+        TvSeriesDb serie = tmdbTv.getDetails(tmdbId, LENGUAJE);
 
         return new ObjetoCrearDTO(
                 serie.getName(),
-                "https://image.tmdb.org/t/p/w342" + serie.getPosterPath(),
+                BASE_PATH_FOTO + serie.getPosterPath(),
                 buscarTrailerUrlSerie(tmdbId),
                 serie.getFirstAirDate(),
                 serie.getOverview(),
@@ -216,21 +216,21 @@ public class ObjetoAPIService {
 
     public List<TemporadaDTO> obtenerTemporadas(Integer tmdbId) throws TmdbException {
         TmdbTvSeries tmdbTv = tmdbApi.getTvSeries();
-        TvSeriesDb serie = tmdbTv.getDetails(tmdbId, "es-ES");
+        TvSeriesDb serie = tmdbTv.getDetails(tmdbId, LENGUAJE);
 
         List<TemporadaDTO> temporadas = new ArrayList<>();
         for (TvSeason temporada : serie.getSeasons()) {
             TemporadaDTO temporadaDTO = new TemporadaDTO(temporada.getSeasonNumber());
 
             TmdbTvSeasons seasons = tmdbApi.getTvSeasons();
-            TvSeasonDb temporadaDetalles = seasons.getDetails(tmdbId, temporada.getSeasonNumber(), "es-ES");
+            TvSeasonDb temporadaDetalles = seasons.getDetails(tmdbId, temporada.getSeasonNumber(), LENGUAJE);
 
             for (TvSeasonEpisode episodio : temporadaDetalles.getEpisodes()) {
                 temporadaDTO.agregarCapitulo(new CapituloDTO(
                         episodio.getEpisodeNumber(),
                         episodio.getName(),
                         episodio.getOverview(),
-                        "https://image.tmdb.org/t/p/w342" + episodio.getStillPath(),
+                        BASE_PATH_FOTO + episodio.getStillPath(),
                         episodio.getAirDate()
                 ));
             }
@@ -242,11 +242,11 @@ public class ObjetoAPIService {
 
     public ObjetoCrearDTO obtenerDetallesCapitulo(Integer tmdbId, Integer temporada, Integer capitulo) throws TmdbException {
         TmdbTvSeasons seasons = tmdbApi.getTvSeasons();
-        TvSeasonDb season = seasons.getDetails(tmdbId, temporada, "es-ES");
+        TvSeasonDb season = seasons.getDetails(tmdbId, temporada, LENGUAJE);
 
         TvSeasonEpisode episode = null;
         for (TvSeasonEpisode ep : season.getEpisodes()) {
-            if (ep.getEpisodeNumber() == capitulo) {
+            if (ep.getEpisodeNumber().equals(capitulo)) {
                 episode = ep;
                 break;
             }
@@ -260,7 +260,7 @@ public class ObjetoAPIService {
 
         return new ObjetoCrearDTO(
                 String.format("%s: T.%s Ep.%s - %s", serie.titulo(), temporada, capitulo, episode.getName()),
-                "https://image.tmdb.org/t/p/w342" + episode.getStillPath(),
+                BASE_PATH_FOTO + episode.getStillPath(),
                 serie.trailerUrl(),
                 episode.getAirDate(),
                 episode.getOverview(),
@@ -273,10 +273,10 @@ public class ObjetoAPIService {
 
     private String buscarTrailerUrlSerie(Integer tmdbId) {
         try {
-            VideoResults videos = tmdbApi.getTvSeries().getVideos(tmdbId, "es-ES");
+            VideoResults videos = tmdbApi.getTvSeries().getVideos(tmdbId, LENGUAJE);
             for (Video video : videos.getResults()) {
                 if ("Trailer".equalsIgnoreCase(video.getType())) {
-                    return "https://youtube.com/embed/" + video.getKey();
+                    return BASE_PATH_VIDEO + video.getKey();
                 }
             }
         } catch (TmdbException e) {
@@ -288,7 +288,7 @@ public class ObjetoAPIService {
     private List<GeneroDTO> obtenerGenerosSerie(TvSeriesDb serie) {
         return serie.getGenres().stream()
                 .map(genero -> new GeneroDTO(genero.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
 
@@ -305,11 +305,11 @@ public class ObjetoAPIService {
                         throw new RuntimeException(e);
                     }
                 })
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private List<PersonaDTO> obtenerActoresPrincipalesSerie(Integer tmdbId) throws TmdbException {
-        info.movito.themoviedbapi.model.tv.core.credits.Credits credits = tmdbApi.getTvSeries().getCredits(tmdbId, "es-ES");
+        info.movito.themoviedbapi.model.tv.core.credits.Credits credits = tmdbApi.getTvSeries().getCredits(tmdbId, LENGUAJE);
         if (credits == null || credits.getCast() == null) {
             return new ArrayList<>();
         }
@@ -318,22 +318,22 @@ public class ObjetoAPIService {
                 .limit(3)
                 .map(cast -> {
                     try {
-                        PersonDb actorDetails = tmdbApi.getPeople().getDetails(cast.getId(), "es-ES");
+                        PersonDb actorDetails = tmdbApi.getPeople().getDetails(cast.getId(), LENGUAJE);
 
                         return new PersonaDTO(
                                 actorDetails.getName(),
                                 actorDetails.getBirthday(),
                                 actorDetails.getBiography(),
-                                "https://image.tmdb.org/t/p/w342" + actorDetails.getProfilePath()
+                                BASE_PATH_FOTO + actorDetails.getProfilePath()
                         );
-                    } catch (TmdbException e) {
+                    } catch (TmdbException _) {
                         return new PersonaDTO(
                                 cast.getName(),
                                 null,"",
-                                "https://image.tmdb.org/t/p/w342" + cast.getProfilePath()
+                                BASE_PATH_FOTO + cast.getProfilePath()
                         );
                     }
                 })
-                .collect(Collectors.toList());
+                .toList();
     }
 }
