@@ -25,7 +25,8 @@ services:
     restart: always
     volumes:
       - produccion_javadata:/var/lib/data/
-      - perfil_uploads:/var/lib/data/uploads
+      - - perfil_uploads:/var/lib/data/uploads
+
   db:
     image: postgres:latest
     environment:
