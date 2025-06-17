@@ -1,5 +1,8 @@
 name: ${COMPOSE_NAME}
 
+volumes:
+  -perfil_uploads:
+
 # Definimos los servicios que se ejecutarán en los contenedores Docker.
 services:
   java:
@@ -36,6 +39,3 @@ services:
     restart: always
     ports:
       - "${PUERTO_DB_DESARROLLO}:5432"
-
-volumes:
-  perfil_uploads:

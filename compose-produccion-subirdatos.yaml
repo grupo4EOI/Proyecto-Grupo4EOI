@@ -1,5 +1,8 @@
 name: ${COMPOSE_NAME}
 
+volumes:
+  - perfil_uploads:
+
 # Definimos los servicios que se ejecutarán en los contenedores Docker.
 services:
   java:
@@ -37,6 +40,3 @@ services:
     restart: always
     volumes:
       - produccion_pgdata:/var/lib/postgresql/data/
-
-volumes:
-  perfil_uploads:

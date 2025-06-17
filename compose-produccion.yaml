@@ -1,5 +1,8 @@
 name: ${COMPOSE_NAME}
 
+volumes:
+  - perfil_uploads:
+
 # Definimos los servicios que se ejecutarán en los contenedores Docker.
 services:
   java:
