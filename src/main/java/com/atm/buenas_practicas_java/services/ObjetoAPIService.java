@@ -291,27 +291,49 @@ public class ObjetoAPIService {
                 .collect(Collectors.toList());
     }
 
+
     private List<PersonaDTO> obtenerCreadoresSerie(TvSeriesDb serie) {
+        if (serie.getCreatedBy() == null) {
+            return new ArrayList<>();
+        }
+
         return serie.getCreatedBy().stream()
-                .map(creator -> new PersonaDTO(
-                        creator.getName(),
-                        null,
-                        "",
-                        "https://image.tmdb/t/p/w342" + creator.getProfilePath()
-                )).collect(Collectors.toList());
+                .map(creator -> {
+                    try {
+                        return obtenerDetallesPersona(creator.getId());
+                    } catch (TmdbException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
     private List<PersonaDTO> obtenerActoresPrincipalesSerie(Integer tmdbId) throws TmdbException {
         info.movito.themoviedbapi.model.tv.core.credits.Credits credits = tmdbApi.getTvSeries().getCredits(tmdbId, "es-ES");
+        if (credits == null || credits.getCast() == null) {
+            return new ArrayList<>();
+        }
+
         return credits.getCast().stream()
                 .limit(3)
-                .map(cast -> new PersonaDTO(
-                        cast.getName(),
-                        null,
-                        "",
-                        "https://image.tmdb.org/t/p/w342" + cast.getProfilePath()
-                )).collect(Collectors.toList());
+                .map(cast -> {
+                    try {
+                        PersonDb actorDetails = tmdbApi.getPeople().getDetails(cast.getId(), "es-ES");
+
+                        return new PersonaDTO(
+                                actorDetails.getName(),
+                                actorDetails.getBirthday(),
+                                actorDetails.getBiography(),
+                                "https://image.tmdb.org/t/p/w342" + actorDetails.getProfilePath()
+                        );
+                    } catch (TmdbException e) {
+                        return new PersonaDTO(
+                                cast.getName(),
+                                null,"",
+                                "https://image.tmdb.org/t/p/w342" + cast.getProfilePath()
+                        );
+                    }
+                })
+                .collect(Collectors.toList());
     }
-
-
 }
