@@ -25,7 +25,6 @@ import java.util.Optional;
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
-    private final PublicacionRepository publicacionRepository;
     private final PasswordEncoder passwordEncoder;
     private final ObjetoUsuarioRepository objetoUsuarioRepository;
     private final ObjetoRepository objetoRepository;
@@ -47,6 +46,10 @@ public class UsuarioService implements UserDetailsService {
     public Usuario findByNombreUsuario(String nombreUsuario) {
         return usuarioRepository.findByNombreUsuario(nombreUsuario)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+    }
+
+    public boolean existsByNombreUsuarioAndIdNot(String nombreUsuario, Long idUsuario) {
+        return usuarioRepository.existsByNombreUsuarioAndIdUsuarioNot(nombreUsuario, idUsuario);
     }
 
     // Métodos relacionados con el usuario en la ficha de objeto

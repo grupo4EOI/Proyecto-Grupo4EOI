@@ -19,6 +19,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("UPDATE Usuario u SET u.baneado = true WHERE u.idUsuario = :idUsuario")
     void banUsuario(@Param("idUsuario") Long idUsuario);
 
+    boolean existsByNombreUsuarioAndIdUsuarioNot(String nombreUsuario, Long idUsuario);
+
     @Query("""
         SELECT DISTINCT u
             FROM Usuario u

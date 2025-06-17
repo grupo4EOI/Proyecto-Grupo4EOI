@@ -127,6 +127,9 @@ public class PerfilServiceFacade {
         Usuario usuario = usuarioService.findById(idUsuario);
 
         if (ajustesPerfildto.nombreUsuario() != null && !ajustesPerfildto.nombreUsuario().isBlank()) {
+            if (usuarioService.existsByNombreUsuarioAndIdNot(ajustesPerfildto.nombreUsuario(), idUsuario)) {
+                throw new IllegalStateException("El nombre de usuario ya está en uso");
+            }
             usuario.setNombreUsuario(ajustesPerfildto.nombreUsuario());
         }
 

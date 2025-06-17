@@ -17,8 +17,9 @@
       <div class="contenedor-ajustes-usuario container mt-5">
           <h2 class="text-center mb-5">Configuración del perfil de usuario</h2>
 
-              <form th:action="@{'/ajustes-perfil/' + ${ajustesPerfil.idUsuario}}" method="post" enctype="multipart/form-data" th:object="${ajustesPerfil}">
+            <div th:if="${error}" class="alert alert-danger" role="alert"><span th:text="${error}"></span></div>
 
+              <form th:action="@{'/ajustes-perfil/' + ${ajustesPerfil.idUsuario}}" method="post" enctype="multipart/form-data" th:object="${ajustesPerfil}">
 
               <!-- Nombre de usuario -->
               <div class="mb-3">

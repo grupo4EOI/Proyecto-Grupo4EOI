@@ -98,11 +98,14 @@ public class PerfilController {
     }
 
     @PostMapping("/ajustes-perfil/{id}")
-    public String guardarAjustesPerfil(
-            @PathVariable Long id,
-            @ModelAttribute AjustesPerfilDTO ajustesPerfilDTO
-    ) {
-        perfilServiceFacade.actualizarAjustesPerfil(id, ajustesPerfilDTO);
+    public String guardarAjustesPerfil(@PathVariable Long id, @ModelAttribute AjustesPerfilDTO ajustesPerfilDTO, RedirectAttributes redirectAttributes) {
+        try {
+            perfilServiceFacade.actualizarAjustesPerfil(id, ajustesPerfilDTO);
+        } catch (IllegalStateException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/ajustes-perfil/" + id;
+        }
+
         return "redirect:/perfil/" + id;
     }
 }
