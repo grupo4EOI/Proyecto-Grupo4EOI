@@ -7,7 +7,6 @@ import com.atm.buenas_practicas_java.repositories.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,7 +109,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
 
-//     Métodos para el registro y el login
+    // Métodos para el registro y el login
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario)
@@ -124,13 +122,6 @@ public class UsuarioService implements UserDetailsService {
                 .roles(usuario.getRole())
                 .build();
     }
-
-//    public void registerUser(UserForm userForm) {
-//        Usuario usuario = userForm.toUserWithPassword(passwordEncoder);
-//        usuario.setContrasena(passwordEncoder.encode(userForm.getContrasena()));
-//        usuarioRepository.save(usuario);
-//    }
-
 
     public boolean existeNombreUsuario(String nombreUsuario) {
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
@@ -160,5 +151,4 @@ public class UsuarioService implements UserDetailsService {
 
         usuarioRepository.save(usuario);
     }
-
 }

@@ -41,22 +41,18 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private String role = "USER"; // Valor por defecto como String
     private Boolean baneado = false;
 
-    // Relación 1:N con reseñas
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Resena> resenas;
 
-    // Relación M:N entre las tablas objetos y usuarios
     @OneToMany(mappedBy = "usuario")
     private Set<ObjetoUsuario> objetos;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Publicacion> publicaciones = new ArrayList<>();
 
-    // Relación con comentarios de las publicaciones
     @OneToMany(mappedBy = "usuario")
     private Set<ComentarioPublicacion> comentariosPublicacion = new HashSet<>();
 
-    // Relación con comunidad
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
     private Set<Comunidad> comunidades = new HashSet<>();
 
@@ -65,7 +61,6 @@ public class Usuario implements UserDetails, CredentialsContainer {
     private Set<Amistad> usuarios = new HashSet<>();
 
     @OneToMany(mappedBy = "amigo")
-    //@JoinColumn(name = "id_amigo")
     private Set<Amistad> amigos = new HashSet<>();
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
@@ -119,8 +114,9 @@ public class Usuario implements UserDetails, CredentialsContainer {
 
     @Override
     public void eraseCredentials() {
-
+        // No implementado, ya que no se va a modificar la credencial del usuario
     }
+
     @PrePersist
     protected void onCreate() {
         this.fechaRegistro = LocalDateTime.now();

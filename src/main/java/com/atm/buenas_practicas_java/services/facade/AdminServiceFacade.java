@@ -2,7 +2,6 @@ package com.atm.buenas_practicas_java.services.facade;
 
 import com.atm.buenas_practicas_java.dtos.*;
 import com.atm.buenas_practicas_java.dtos.composedDTOs.EstadisticasReportesDTO;
-import com.atm.buenas_practicas_java.dtos.composedDTOs.PanelAdminDTO;
 import com.atm.buenas_practicas_java.entities.*;
 import com.atm.buenas_practicas_java.services.*;
 import lombok.RequiredArgsConstructor;
@@ -144,7 +143,7 @@ public class AdminServiceFacade {
 
         objeto.setComunidad(comunidad);
         // Guardar objeto principal
-        Comunidad comunidadGuardada = comunidadService.save(comunidad);
+        comunidadService.save(comunidad);
         Objeto objetoGuardado = objetoService.save(objeto);
 
         // Guardar directores y sus relaciones

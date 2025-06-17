@@ -35,7 +35,7 @@ public class PersonaService {
         return relaciones.stream()
                 .map(PersonaObjeto::getPersona)
                 .map(personaMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<PersonaDTO> getActoresByObjetoId(Long idObjeto) {

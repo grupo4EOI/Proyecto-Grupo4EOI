@@ -30,8 +30,4 @@ public class Reaccion {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_resena")
     private Resena resena;
-
-    @ManyToOne
-    @JoinColumn(name = "id_comentario_resena")
-    private ComentarioResena comentarioResena;
 }

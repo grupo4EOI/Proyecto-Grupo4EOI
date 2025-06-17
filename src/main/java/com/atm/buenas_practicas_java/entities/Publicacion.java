@@ -34,5 +34,4 @@ public class Publicacion {
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
-
 }

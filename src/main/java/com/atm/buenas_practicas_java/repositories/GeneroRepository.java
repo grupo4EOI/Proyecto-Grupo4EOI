@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface GeneroRepository extends JpaRepository<Genero, Integer> {
     List<Genero> findByTipoNombreIgnoreCase(String nombreTipo);
 
-    Optional<Genero> findByNombre(String nombre);
-
     Optional<Genero> findByNombreAndTipo_Nombre(String nombre, String tipoNombre);
 
     List<Genero> findAll();

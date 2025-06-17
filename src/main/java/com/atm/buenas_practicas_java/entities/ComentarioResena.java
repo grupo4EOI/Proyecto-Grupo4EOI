@@ -41,7 +41,4 @@ public class ComentarioResena {
     @JoinColumn(name = "id_resena", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Resena resena;
-
-    @OneToMany(mappedBy = "comentarioResena")
-    private List<Reaccion> reacciones = new ArrayList<>();
 }

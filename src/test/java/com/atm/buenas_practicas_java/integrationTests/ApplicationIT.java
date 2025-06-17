@@ -1,10 +1,6 @@
 package com.atm.buenas_practicas_java.integrationTests;
 
 import com.atm.buenas_practicas_java.PostgreSQLContainerTest;
-import com.atm.buenas_practicas_java.entities.EntidadHija;
-import com.atm.buenas_practicas_java.entities.EntidadPadre;
-import com.atm.buenas_practicas_java.repositories.EntidadHijaRepository;
-import com.atm.buenas_practicas_java.repositories.EntidadPadreRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.Arrays;
-import java.util.Base64;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
