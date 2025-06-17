@@ -1,7 +1,5 @@
 name: ${COMPOSE_NAME}
 
-
-# Definimos los servicios que se ejecutarán en los contenedores Docker.
 services:
   java:
     image: ${PROJECT_NAME}:${VERSION:-snapshot}
@@ -22,11 +20,19 @@ services:
       timeout: 10s
       retries: 5
     restart: always
-
+    # Añade volumen para persistencia y debug
+    volumes:
+      - ./uploads:/tmp/uploads  # Mapeo directo para ver archivos en host
     command: >
       sh -c "
+      # Comandos de diagnóstico
+      echo 'Creando directorio de uploads: $${APP_UPLOAD_DIR}' &&
       mkdir -p $${APP_UPLOAD_DIR} &&
+      echo 'Asignando permisos...' &&
       chmod -R 777 $${APP_UPLOAD_DIR} &&
+      echo 'Contenido inicial del directorio:' &&
+      ls -la $${APP_UPLOAD_DIR} &&
+      echo 'Iniciando aplicación...' &&
       java -jar /app.jar
       "
 
@@ -37,7 +43,7 @@ services:
       POSTGRES_USER: 'desarrollouser'
       POSTGRES_PASSWORD: 'desarrollopassword'
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U desarrollouser -d desarrollodb"  ]
+      test: [ "CMD-SHELL", "pg_isready -U desarrollouser -d desarrollodb" ]
       timeout: 20s
       retries: 10
     restart: always
