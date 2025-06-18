@@ -99,16 +99,6 @@
 <!--                            <i class="bi bi-person me-2"></i>-->
                             @<span th:text="${resena.autor().nombreUsuario()}">MrReseñador</span>
                         </a>
-                        <button sec:authorize="!isAuthenticated()"
-                                type="button"
-                                class="etiqueta px-2 mb-2 me-3 w-auto"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="click"
-                                data-bs-placement="top"
-                                title="Atención"
-                                data-bs-content="Debes iniciar sesión para poder dar like, conchudo">
-                            <i class="bi bi-heart"></i> Me gusta <span th:text="'(' + ${resena.numeroLikes()} + ')'"></span>
-                        </button>
                         <div class="container" id="review">
                             <div class="row">
                                 <div class="col-12 mb-2 mt-1">Puntuación: <span th:text="${resena.puntuacion()} + ' / 5'"></span>
