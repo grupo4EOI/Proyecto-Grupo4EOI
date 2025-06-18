@@ -20,23 +20,22 @@
         <h1 class="mb-4">Resultados para "<span th:text="${filtro}"></span>"</h1>
 
 <!--         No hay resultados -->
-        <div th:if="${resultados != null and resultados.empty}" class="text-center">
+        <div th:if="${resultados != null and resultados.isEmpty()}" class="text-center">
             <p class="text-muted">No se encontraron resultados para "<span th:text="${filtro}"></span>".</p>
         </div>
 
         <!-- Sí hay resultados -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" th:if="${resultados != null and !resultados.empty}">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" th:if="${resultados != null and !resultados.isEmpty}">
             <div class="col" th:each="objeto : ${resultados}">
                 <div class="card h-100 shadow-sm">
-                    <img th:src="${objeto.imagenUrl}" class="card-img-top" alt="Imagen del objeto">
+                    <img th:src="${objeto.imagenUrl()}" class="card-img-top imagen" th:alt="'Imagen de ' + ${objeto.titulo()}">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title text-center">
-                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto})}"
+                            <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}"
                                class="text-decoration-none text-dark"
-                               th:text="${objeto.titulo}">Título</a>
+                               th:text="${objeto.titulo()}">Título</a>
                         </h5>
-                        <p class="card-text small text-muted text-center mb-1" th:text="${objeto.tipo.nombre}">Tipo</p>
-                        <p class="card-text small text-muted text-center" th:text="${objeto.descripcion}">Descripción</p>
+                        <p class="card-text small text-muted text-center mb-1" th:text="${objeto.tipo()}">Tipo</p>
                     </div>
                 </div>
             </div>

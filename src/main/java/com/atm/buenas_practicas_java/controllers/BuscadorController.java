@@ -1,7 +1,9 @@
 package com.atm.buenas_practicas_java.controllers;
 
+import com.atm.buenas_practicas_java.dtos.ObjetoDTO;
 import com.atm.buenas_practicas_java.entities.Objeto;
 import com.atm.buenas_practicas_java.repositories.ObjetoRepository;
+import com.atm.buenas_practicas_java.services.ObjetoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +14,10 @@ import java.util.List;
 @Controller
 public class BuscadorController {
 
-    private final ObjetoRepository objetoRepository;
+    private final ObjetoService objetoService;
 
-    public BuscadorController(ObjetoRepository objetoRepository) {
-        this.objetoRepository = objetoRepository;
+    public BuscadorController(ObjetoService objetoService) {
+        this.objetoService = objetoService;
     }
 
     @GetMapping("/buscar")
@@ -31,7 +33,7 @@ public class BuscadorController {
             return "buscador-resultado";
         }
 
-        List<Objeto> resultados = objetoRepository.findByTituloContainingIgnoreCase(filtro.trim());
+        List<ObjetoDTO> resultados = objetoService.findByTituloContainingIgnoreCase(filtro.trim());
         model.addAttribute("resultados", resultados);
         model.addAttribute("filtro", filtro);
         return "buscador-resultado";
