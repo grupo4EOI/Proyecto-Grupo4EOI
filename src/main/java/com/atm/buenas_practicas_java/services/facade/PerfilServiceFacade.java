@@ -25,16 +25,13 @@ public class PerfilServiceFacade {
     private final ComentarioResenaService comentarioResenaService;
     private final ImagenPerfilService imagenPerfilService;
     private final ReaccionService reaccionService;
-    private final PasswordEncoder encoder;
     private final ObjetoUsuarioService objetoUsuarioService;
-    @Autowired
-    private AmistadRepository amistadRepository;
+    private final AmistadService amistadService;
+    private final PasswordEncoder encoder;
 
     @Transactional
     public UsuarioPerfilDTO obtenerPerfilDTO(Long idUsuario, Long idAutenticado) {
         Usuario usuario = usuarioService.findById(idUsuario);
-
-        Set<Genero> generos = usuario.getGeneros();
 
         boolean esAmigo = false;
         if (idAutenticado != null && !idUsuario.equals(idAutenticado)) {
@@ -74,7 +71,7 @@ public class PerfilServiceFacade {
         Usuario usuario = usuarioService.findById(idUsuario);
         Usuario amigo = usuarioService.findById(idAmigo);
 
-        Optional<Amistad> existente = amistadRepository.findByUsuarioAndAmigo(usuario, amigo);
+        Optional<Amistad> existente = amistadService.findByUsuarioAndAmigo(usuario, amigo);
         if (existente.isPresent()) return;
 
         Amistad amistad = new Amistad();
@@ -82,7 +79,7 @@ public class PerfilServiceFacade {
         amistad.setAmigo(amigo);
         amistad.setFecha(new Date());
         amistad.setEstado(true);
-        amistadRepository.save(amistad);
+        amistadService.save(amistad);
     }
 
     @Transactional
@@ -92,11 +89,11 @@ public class PerfilServiceFacade {
         Usuario usuario = usuarioService.findById(idUsuario);
         Usuario amigo = usuarioService.findById(idAmigo);
 
-        amistadRepository.findByUsuarioAndAmigo(usuario, amigo)
-                .ifPresent(amistadRepository::delete);
+        amistadService.findByUsuarioAndAmigo(usuario, amigo)
+                .ifPresent(amistadService::delete);
 
-        amistadRepository.findByUsuarioAndAmigo(amigo, usuario)
-                .ifPresent(amistadRepository::delete);
+        amistadService.findByUsuarioAndAmigo(amigo, usuario)
+                .ifPresent(amistadService::delete);
     }
 
     public Long obtenerIdUsuarioPorNombreUsuario(String nombreUsuario) {
