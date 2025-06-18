@@ -28,7 +28,7 @@ public interface FichaObjetoMapper {
     FichaObjetoDTO toDto(Objeto objeto);
 
     default String fechaYDuracion(Objeto objeto) {
-        return String.format("Año de publicación: %d", objeto.getDuracionMinutos());
+        return String.format("Año de publicación: %d", objeto.getFechaPublicacion().getYear());
     }
 
     @Named("tipoToString")
