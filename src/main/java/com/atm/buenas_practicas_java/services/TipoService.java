@@ -17,5 +17,4 @@ public class TipoService {
     public Tipo findByNombre(String nombre) {
         return tipoRepository.findByNombre(nombre).orElseThrow(EntityNotFoundException::new);
     }
-
 }

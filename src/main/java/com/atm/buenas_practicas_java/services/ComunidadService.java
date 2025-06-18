@@ -1,7 +1,6 @@
 package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.dtos.ComunidadDTO;
-import com.atm.buenas_practicas_java.dtos.ComunidadSimpleDTO;
 import com.atm.buenas_practicas_java.entities.Comunidad;
 import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
 import com.atm.buenas_practicas_java.mapper.ComunidadSimpleMapper;
@@ -16,17 +15,15 @@ public class ComunidadService {
 
     private final ComunidadRepository comunidadRepository;
     private final ComunidadMapper comunidadMapper;
-    private final ComunidadSimpleMapper comunidadSimpleMapper;
 
-    public ComunidadService(ComunidadRepository comunidadRepository, ComunidadMapper comunidadMapper, ComunidadSimpleMapper comunidadSimpleMapper) {
+    public ComunidadService(ComunidadRepository comunidadRepository, ComunidadMapper comunidadMapper) {
         this.comunidadRepository = comunidadRepository;
         this.comunidadMapper = comunidadMapper;
-        this.comunidadSimpleMapper = comunidadSimpleMapper;
     }
 
     @Transactional
-    public Comunidad save (Comunidad comunidad) {
-        return comunidadRepository.save(comunidad);
+    public void save (Comunidad comunidad) {
+        comunidadRepository.save(comunidad);
     }
 
     @Transactional

@@ -61,7 +61,8 @@ public class ObjetoService {
                         objeto.trailerUrl(),
                         objeto.anoPublicacion(),
                         df.format(calcularPuntuacionObjeto(objeto.idObjeto())),
-                        calcularNumeroResenas(objeto.idObjeto())
+                        calcularNumeroResenas(objeto.idObjeto()),
+                        objeto.tipo()
                 )).toList();
     }
 
@@ -81,6 +82,13 @@ public class ObjetoService {
         List<Objeto> objetos = objetoRepository.buscarListaObjetosMasPopularesPorTipo(tipo, limit);
         List<ObjetoDTO> objetosMasVistos = objetoMapper.toDtoList(objetos);
         return rellenarListaObjetosDTO(objetosMasVistos);
+    }
+
+    /**
+     * Métodos del buscador
+     */
+    public List<ObjetoDTO> findByTituloContainingIgnoreCase(String titulo) {
+        return objetoMapper.toDtoList((objetoRepository.findByTituloContainingIgnoreCase(titulo)));
     }
 
     @Transactional

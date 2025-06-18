@@ -1,21 +1,17 @@
 package com.atm.buenas_practicas_java.config;
 
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -36,8 +32,9 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
     private final Environment environment;
+    private static final String PATH_INICIAR_SESION = "/iniciar-sesion";
+    private static final String PATH_PAGINA_PRINCIPAL = "/pagina-principal";
 
     public SecurityConfig(Environment environment) {
         this.environment = environment;
@@ -48,63 +45,36 @@ public class SecurityConfig {
         return new HiddenHttpMethodFilter();
     }
 
-    /**
-     * Método que configura un {@link UserDetailsService} para la autenticación en memoria.
-     * Este método crea un usuario en memoria utilizando un nombre de usuario y contraseña
-     * definidos en las propiedades de configuración `spring.security.user.name` y
-     * `spring.security.user.password`, o valores predeterminados si no están configurados.
-     *
-     * <p>Nota: Se utiliza el identificador `{noop}` en la contraseña para evitar el uso
-     * de un encoder, ideal solo para pruebas. No debe ser utilizado en un entorno de producción.</p>
-     *
-     * @return Un {@link InMemoryUserDetailsManager} que contiene los detalles del usuario configurado.
-     *
-     * @Author No se especificó autor.
-     */
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        String name = environment.getProperty("spring.security.user.name", "user");
-//        String password = environment.getProperty("spring.security.user.password", "password");
-//
-//        var user = User.withUsername(name)
-//                .password("{noop}" + password) // {noop} indica que no se usa encoder para simplificar (solo pruebas)
-//                .roles("USER")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/iniciar-sesion")
+                        .loginPage(PATH_INICIAR_SESION)
                         .loginProcessingUrl("/procesar-login")
-                        .defaultSuccessUrl("/pagina-principal")
-                        .failureUrl("/iniciar-sesion?error")
+                        .defaultSuccessUrl(PATH_PAGINA_PRINCIPAL)
+                        .failureUrl(PATH_INICIAR_SESION + "?error")
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/pagina-principal")
+                        .logoutSuccessUrl(PATH_PAGINA_PRINCIPAL)
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/",
-                                "/iniciar-sesion",
+                                PATH_INICIAR_SESION,
                                 "/registro",
                                 "/perfil/**",
                                 "/ajustes-perfil/**",
-                                "/pagina-principal",
+                                PATH_PAGINA_PRINCIPAL,
                                 "/seccion/**",
                                 "/comunidades/**",
                                 "/ficha-objeto/**",
@@ -116,8 +86,8 @@ public class SecurityConfig {
                                 "/js/**"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/registro").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/iniciar-sesion").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/iniciar-sesion").permitAll()
+                        .requestMatchers(HttpMethod.POST, PATH_INICIAR_SESION).permitAll()
+                        .requestMatchers(HttpMethod.GET, PATH_INICIAR_SESION).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Solo ADMIN puede acceder a /admin
                         .anyRequest().authenticated()
                 )

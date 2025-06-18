@@ -30,5 +30,4 @@ public class ObjetoUsuario {
     @ManyToOne
     @JoinColumn(name = "id_objeto")
     private Objeto objeto;
-
 }

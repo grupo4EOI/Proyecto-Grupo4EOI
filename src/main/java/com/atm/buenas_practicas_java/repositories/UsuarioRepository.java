@@ -2,7 +2,6 @@ package com.atm.buenas_practicas_java.repositories;
 
 import com.atm.buenas_practicas_java.entities.Usuario;
 import jakarta.transaction.Transactional;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +17,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Transactional
     @Query("UPDATE Usuario u SET u.baneado = true WHERE u.idUsuario = :idUsuario")
     void banUsuario(@Param("idUsuario") Long idUsuario);
+
+    boolean existsByNombreUsuarioAndIdUsuarioNot(String nombreUsuario, Long idUsuario);
 
     @Query("""
         SELECT DISTINCT u
@@ -38,7 +39,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     boolean existsByNombreUsuario(String nombreUsuario);
 
     boolean existsByEmail(String email);
-
-    // Méodo adicional útil para búsqueda por email
-    Optional<Usuario> findByEmail(String email);
 }

@@ -1,32 +1,23 @@
 package com.atm.buenas_practicas_java.controllers;
 
 import com.atm.buenas_practicas_java.dtos.*;
-import com.atm.buenas_practicas_java.entities.ComentarioPublicacion;
-import com.atm.buenas_practicas_java.entities.Comunidad;
-import com.atm.buenas_practicas_java.entities.Publicacion;
-import com.atm.buenas_practicas_java.entities.Usuario;
-import com.atm.buenas_practicas_java.mapper.ComunidadMapper;
-import com.atm.buenas_practicas_java.services.*;
 import com.atm.buenas_practicas_java.services.facade.ComunidadServiceFacade;
 import com.atm.buenas_practicas_java.utils.PaginacionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequestMapping("/comunidades")
 public class ComunidadesController {
 
+    private static final String REDIRECT_COMUNIDADES_PATH = "redirect:/comunidades/%d/temas/%d";
     private final ComunidadServiceFacade comunidadServiceFacade;
 
     public ComunidadesController(ComunidadServiceFacade comunidadServiceFacade) {
@@ -70,7 +61,7 @@ public class ComunidadesController {
     @PostMapping("/{id}/temas")
     public String crearNuevoTema(@PathVariable Long id, @ModelAttribute("nuevoTema") PublicacionCrearDTO publicacion, Principal principal) {
         PublicacionCrearDTO publicacionDTO = comunidadServiceFacade.nuevaPublicacion(id, publicacion, principal.getName());
-        return String.format("redirect:/comunidades/%d/temas/%d", id, publicacionDTO.idPublicacion());
+        return String.format(REDIRECT_COMUNIDADES_PATH, id, publicacionDTO.idPublicacion());
     }
 
     @PostMapping(value = "/{idcom}/temas/{id}", params = "accion=nuevoComentario")
@@ -79,7 +70,7 @@ public class ComunidadesController {
                                   @ModelAttribute("comentario") ComentarioPublicacionCrearDTO comentario,
                                   Principal principal) {
         ComentarioPublicacionCrearDTO comentarioDTO = comunidadServiceFacade.nuevoComentario(idcom,comentario, principal.getName(), id);
-        return String.format("redirect:/comunidades/%d/temas/%d", idcom, comentarioDTO.publicacion().idPublicacion());
+        return String.format(REDIRECT_COMUNIDADES_PATH, idcom, comentarioDTO.publicacion().idPublicacion());
     }
 
     @PutMapping(value = "/{idcom}/temas/{id}", params = "accion=reportarComentario")
@@ -87,7 +78,7 @@ public class ComunidadesController {
                                      @PathVariable Long id,
                                      @RequestParam("idComentarioPublicacion") Long idComentarioPublicacion){
         comunidadServiceFacade.reportarComentarioPublicacion(idComentarioPublicacion);
-        return String.format("redirect:/comunidades/%d/temas/%d", idcom, id);
+        return String.format(REDIRECT_COMUNIDADES_PATH, idcom, id);
     }
 
 

@@ -32,7 +32,4 @@ public class Amistad {
     @JoinColumn(name="id_amigo")
     private Usuario amigo;
 
-    @OneToMany(mappedBy = "amistad")
-    private List<Mensaje> mensajes;
-
 }

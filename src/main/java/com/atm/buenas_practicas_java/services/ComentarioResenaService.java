@@ -2,10 +2,8 @@ package com.atm.buenas_practicas_java.services;
 
 import com.atm.buenas_practicas_java.dtos.ComentarioResenaDTO;
 import com.atm.buenas_practicas_java.entities.ComentarioResena;
-import com.atm.buenas_practicas_java.entities.Resena;
 import com.atm.buenas_practicas_java.mapper.ComentarioResenaMapper;
 import com.atm.buenas_practicas_java.repositories.ComentarioResenaRepository;
-import com.atm.buenas_practicas_java.repositories.ResenaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

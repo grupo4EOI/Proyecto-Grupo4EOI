@@ -27,9 +27,6 @@ public class Genero {
     @ManyToMany(mappedBy = "generos")
     private List<Objeto> objetos;
 
-    @ManyToMany(mappedBy = "generos")
-    private Set<Usuario> usuarios;
-
     @ManyToOne
     @JoinColumn(name = "id_tipo")
     private Tipo tipo;
