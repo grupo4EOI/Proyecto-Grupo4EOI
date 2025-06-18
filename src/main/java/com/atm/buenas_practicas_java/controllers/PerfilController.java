@@ -103,6 +103,9 @@ public class PerfilController {
         } catch (IllegalStateException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/ajustes-perfil/" + id;
+        } catch (RuntimeException e) {
+            redirectAttributes.addFlashAttribute("error", "Error al guardar la imagen: " + e.getMessage());
+            return "redirect:/ajustes-perfil/" + id;
         }
 
         return REDIRECT_PERFIL_PATH + id;
