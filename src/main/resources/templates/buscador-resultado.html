@@ -28,7 +28,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" th:if="${resultados != null and !resultados.isEmpty}">
             <div class="col" th:each="objeto : ${resultados}">
                 <div class="card h-100 shadow-sm">
-                    <img th:src="${objeto.imagenUrl()}" class="card-img-top imagen" th:alt="'Imagen de ' + ${objeto.titulo()}">
+                    <img th:src="${objeto.imagenUrl()}" class="card-img-top imagen align-self-center" th:alt="'Imagen de ' + ${objeto.titulo()}">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title text-center">
                             <a th:href="@{/ficha-objeto/{id}(id=${objeto.idObjeto()})}"
